@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "label": "Dashboard",
+    "routerLink": "/dashboard"
+  },
+  {
+    "id": 2,
+    "label": "Moradores",
+    "routerLink": "/residents"
+  },
+  {
+    "id": 3,
+    "label": "Imóveis Disponíveis",
+    "routerLink": "/properties"
+  },
+  {
+    "id": 4,
+    "label": "Serviços",
+    "items": [
+      {
+        "id": 1,
+        "text": "Não sei",
+        "routerLink": "/services"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "label": "Faturas",
+    "routerLink": "/invoices"
+  },
+  {
+    "id": 6,
+    "label": "Relatórios",
+    "routerLink": "/reports"
+  },
+  {
+    "id": 7,
+    "label": "Layout das Casas",
+    "routerLink": "/houses-layout"
+  },
+  {
+    "id": 8,
+    "label": "Documentos",
+    "routerLink": "/documents"
+  },
+  {
+    "id": 9,
+    "label": "Enviar E-mail",
+    "routerLink": "/send-email"
+  }
+]

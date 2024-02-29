@@ -1,2 +1,9 @@
-<app-nav />
+@defer {
+    <app-nav [menuItens]="menuItens" />
+  } @placeholder {
+    <div class="item">
+        <ngx-skeleton-loader count="5" appearance="circle" />
+      </div>
+  }
+
 <router-outlet />
