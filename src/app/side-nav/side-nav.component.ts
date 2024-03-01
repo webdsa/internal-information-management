@@ -2,18 +2,18 @@ import { Component, Input } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { MenuItem } from 'primeng/api';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 
 @Component({
-  selector: 'app-nav',
+  selector: 'app-side-nav',
   standalone: true,
-  imports: [CardModule, FormsModule,PanelMenuModule],
-  templateUrl: './nav.component.html',
-  styleUrl: './nav.component.scss'
+  imports: [CardModule, FormsModule,PanelMenuModule,NgOptimizedImage,CommonModule],
+  templateUrl: './side-nav.component.html',
+  styleUrl: './side-nav.component.scss'
 })
 export class NavComponent {
   public text: string = 'Hello World';
-  @Input() menuItens:MenuItem[] = [];;
+  @Input() menuItens:any[] = [];
   constructor() {}  
 }

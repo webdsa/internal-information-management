@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './side-nav/side-nav.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { MenuItem } from 'primeng/api';
+
 import { HttpClient, HttpClientModule  } from '@angular/common/http';
+import { layoutMenu } from './core/models/layoutMenu.model';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,10 @@ import { HttpClient, HttpClientModule  } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'patrimony-management';
-  public menuItens:MenuItem[] = [];
+  public menuItens:layoutMenu[] = [];
   constructor(private _httpClient: HttpClient) { }
   ngOnInit() {
-    this._httpClient.get<MenuItem[]>('assets/mock/menu.json').subscribe(data => {
+    this._httpClient.get<layoutMenu[]>('assets/mock/menu.json').subscribe(data => {
       this.menuItens = data;
     });
   }
