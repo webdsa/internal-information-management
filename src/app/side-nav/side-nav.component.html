@@ -1,18 +1,23 @@
 <div class="side-nav">
-    <div class="logo-menu">
-        <img ngSrc="./assets/media/logo.png" width="50" height="50" priority>
-        <span><strong>
-                <h2>GERENCIAMENTO</h2>
-            </strong>
-            <p>DE PATRIMÔNIO - DSA</p>
-        </span>
+  <div class="btn-return">
+    <span class="material-symbols-outlined arrow-left"> keyboard_double_arrow_left </span>
+  </div>
+  <div class="logo-menu">
+    <img ngSrc="./assets/media/logo.png" width="50" height="50" priority />
+    <span
+      ><strong>
+        <h2>GERENCIAMENTO</h2>
+      </strong>
+      <p>DE PATRIMÔNIO - DSA</p>
+    </span>
+  </div>
+  <hr />
+  <div class="menu">
+    <div class="item" *ngFor="let menuItem of menuItens">
+      <a [routerLink]="menuItem.route">
+        <span class="material-symbols-outlined">{{ menuItem.icon }}</span>
+        <label>{{ menuItem.label }}</label>
+      </a>
     </div>
-    <hr>
-    <div class="menu">
-        <div class="item" *ngFor="let menuItem of menuItens">
-            <a [routerLink]="menuItem.route">
-                <span class="material-symbols-outlined">{{menuItem.icon}}</span>
-                <label>{{menuItem.label}}</label>
-            </a>
-        </div>
-    </div>
+  </div>
+</div>
