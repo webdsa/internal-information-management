@@ -22,13 +22,9 @@
     "@angular/router": "^17.1.0",
     "@angular/ssr": "^17.1.2",
     "express": "^4.18.2",
-<<<<<<< HEAD
     "material-icons": "^1.13.12",
-=======
     "ngx-skeleton-loader": "^9.0.0",
-    "primeicons": "^6.0.1",
-    "primeng": "^17.8.0",
->>>>>>> 7a1632aeaea79526b38a47ca3ce46d30e02a1561
+    "primeng": "^17.9.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
