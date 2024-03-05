@@ -14,7 +14,7 @@
   <hr />
   <div class="menu">
     <div class="item" *ngFor="let menuItem of menuItens">
-      <a [routerLink]="menuItem.route">
+      <a [routerLink]="menuItem.routerLink">
         <span class="material-symbols-outlined">{{ menuItem.icon }}</span>
         <label>{{ menuItem.label }}</label>
       </a>

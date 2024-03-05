@@ -3,7 +3,7 @@
     "id": 1,
     "label": "Dashboard",
     "icon": "dashboard",
-    "routerLink": "/dashboard"
+    "routerLink": "/"
   },
   {
     "id": 2,
