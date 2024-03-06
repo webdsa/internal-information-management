@@ -9,7 +9,7 @@ import { layoutMenu } from './core/models/layoutMenu.model';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,NavComponent,NgxSkeletonLoaderModule,HttpClientModule],
+  imports: [RouterOutlet,NavComponent,NgxSkeletonLoaderModule, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

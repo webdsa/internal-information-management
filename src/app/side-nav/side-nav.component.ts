@@ -15,6 +15,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 })
 export class NavComponent {
   public text: string = 'Hello World';
+  public retract: boolean = false;
   @Input() menuItens:any[] = [];
   constructor() {}  
 }

@@ -1,3 +1,13 @@
+.side-nav-retracted {
+  background: var(--primary-color);
+  width: 80px;
+  height: 100vh;
+  border-radius: 0px 20px 20px 0px;
+  padding: 10px;
+  color: var(--light-color);
+  position: fixed;
+}
+
 .side-nav {
   background: var(--primary-color);
   width: 300px;
@@ -5,66 +15,80 @@
   border-radius: 0px 20px 20px 0px;
   padding: 40px;
   color: var(--light-color);
-  .logo-menu {
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-    img {
-      margin-right: 10px;
-    }
-    h2 {
-      font-size: var(--title-font);
-      font-weight: 700;
-    }
-    p {
-      font-size: var(--small-font);
-    }
+  position: fixed;
+}
+
+.logo-menu {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+
+  img {
+    margin-right: 10px;
   }
-  .menu {
-    display: flex;
-    flex-direction: column;
-    .item {
-      height: 3rem;
-      margin: 0.5rem 0;
-      border-radius: 10px;
-      display: flex;
-      padding: 0 1rem;
-      a {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        color: var(--light-color);
-        font-size: var(--text-font);
-        transition: 0.3s;
-        span {
-          margin-right: 10px;
-        }
-      }
-      &:hover {
-        background-color: #004aec;
-        cursor: pointer;
-      }
-      span,
-      label {
-        cursor: pointer;
-      }
-    }
+
+  h2 {
+    font-size: var(--title-font);
+    font-weight: 700;
   }
-  .btn-return{
+
+  p {
+    font-size: var(--small-font);
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+
+  .item {
+    height: 3rem;
+    margin: 0.5rem 0;
+    border-radius: 10px;
     display: flex;
-    justify-content: end;
-    margin-bottom: 1rem;
-    .arrow-left{
-      background-color: #004aec;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
+    padding: 0 1rem;
+
+    a {
+      display: inline-flex;
       align-items: center;
-      height: 2rem;
-      width: 2rem;
+      text-decoration: none;
+      color: var(--light-color);
+      font-size: var(--text-font);
+      transition: 0.3s;
+
+      span {
+        margin-right: 10px;
+      }
     }
+
     &:hover {
+      background-color: #004aec;
       cursor: pointer;
     }
+
+    span,
+    label {
+      cursor: pointer;
+    }
+  }
+}
+
+.btn-return {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1rem;
+
+  .arrow {
+    background-color: #004aec;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 2rem;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }
