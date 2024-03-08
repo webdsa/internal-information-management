@@ -1,8 +1,56 @@
-<div class="container-login">
-  <div class="image-login col-7">
-    teste de bootstrap
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+      .container-login {
+      height: 100%;
+    }
+
+    .row.h-100 {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .image-login, .form-login {
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container-login">
+    <div class="row h-100">
+      <div class="image-login col-7">
+        <img src="../assets/media/login-amico.png" alt="Image Login">
+      </div>
+
+      <div class="col-5 form-login">
+        <div class="form text-center">
+          <div class="title">
+            <h2> Bem-vindo</h2>
+            <span> Faça o login para continuar</span>
+          </div>
+         <div class="inputs d-grid">
+          <input type="email" id="email" name="email" ngModel="email" placeholder="E-mail" required email />
+          <input type="password" id="password" name="password" placeholder="Senha" ngModel="password" required />
+         </div>
+         <div class="forget-password">
+          <span>Esqueceu a senha?</span>
+         </div>
+         <div class="btn-login">
+          <button value="Entrar" type="submit">Entrar</button>
+         </div>
+         <div class="register">
+          <span>Não possui conta?</span>
+          <span> Cadastre-se</span>
+         </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-login ">
-    teste de bootstrap
-  </div>
-</div>
+
+</body>
+</html>
