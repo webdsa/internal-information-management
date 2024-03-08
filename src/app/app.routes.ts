@@ -7,12 +7,18 @@ import { PropertiesComponent } from './modules/properties/properties.component';
 import { InvoicesComponent } from './modules/invoices/invoices.component';
 import { ReportsComponent } from './modules/reports/reports.component';
 import { SendEmailComponent } from './modules/send-email/send-email.component';
+import { LoginComponent } from './modules/login/login.component';
 
 export const routes: Routes = [
     {
         path: '',
         title: 'Auth Page',
-        component: DashboardComponent
+        component: LoginComponent
+    },
+    {
+        path: 'login',
+        title: 'Login',
+        component: LoginComponent
     },
     {
         path: 'dashboard',
