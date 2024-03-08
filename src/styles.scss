@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 *{
     margin: 0;
@@ -10,13 +11,27 @@
 :root{
     // Colors
     --primary-color: #0C55F3;
-    --secondary-color: #6c757d;
+    --secondary-color: #6c757d; 
     --success-color: #28a745;
     --info-color: #17a2b8;
     --warning-color: #ffc107;
     --danger-color: #dc3545;
     --light-color: #DEDDE4;
     --dark-color: #343a40;
+
+    --text-1: #1B1731;
+    --text-2: #4F4F5E;
+    --text-3: #6A677A;
+    --text-4: #9795A0;
+    --text-5: #DEDDE4;
+    --text-6: #EAE9F0;
+    --text-7: #F9F8FF;
+
+    --primary-color-2: #2A6DFF;
+    --primary-color-3: #EFF4FF;
+
+    --secondary-color-1: #F5645E;
+    --secondary-color-2: #FFE9E8;   
 
     // Fonts
     --title-font: 1.2rem;
@@ -33,3 +48,8 @@
     --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
