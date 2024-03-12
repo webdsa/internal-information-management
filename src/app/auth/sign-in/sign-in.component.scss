@@ -66,6 +66,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  margin-bottom: 1.25rem;
 }
 
 input {
@@ -83,6 +84,8 @@ input {
   padding: 0 4px;
   transition: all 0.2s ease-in;
   opacity: 1;
+  font-size: 18px;
+  margin: 0;
 }
 
 input:is(:focus, :valid) {
@@ -90,7 +93,7 @@ input:is(:focus, :valid) {
 }
 
 input:is(:focus, :valid) + .placeholder {
-  transform: translatey(calc(-1 * var(--padding) - 8px)) translatex(-8px);
+  transform: translatey(calc(-1 * var(--padding) - 12px)) translatex(-8px);
   font-size: 14px;
   color: var(--primary-color);
 }
