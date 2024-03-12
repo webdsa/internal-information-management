@@ -3,12 +3,12 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateFn} fro
 import { MsalService } from '@azure/msal-angular';
 
 
-export const microsoftLoginGuard: CanActivateFn = (
+export const MicrosoftLoginGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
   if (inject(MsalService).instance.getActiveAccount() == null) {
-         inject(Router).navigate(['/login']);
+         inject(Router).navigate(['/signIn']);
          return false;
   } else {
     return true;

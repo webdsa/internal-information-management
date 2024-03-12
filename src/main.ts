@@ -1,12 +1,8 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { MsalRedirectComponent } from '@azure/msal-angular';
 import { AppComponent } from './app/app.component';
-import { environment } from './environments/environment';
-import { enableProdMode } from '@angular/core';
-
-if (environment.production) {
-  enableProdMode();
-}
+import { appConfig } from './app/app.config';
 
 bootstrapApplication(AppComponent, appConfig)
+  .then(appref => appref.bootstrap(MsalRedirectComponent))
   .catch((err) => console.error(err));
