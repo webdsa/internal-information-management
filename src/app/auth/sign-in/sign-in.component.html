@@ -1,28 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-      .container-login {
-      height: 100%;
-    }
-
-    .row.h-100 {
-      display: flex;
-      align-items: stretch;
-    }
-
-    .image-login, .form-login {
-      padding: 15px;
-    }
-  </style>
-</head>
-<body>
-
   <div class="container-login">
-    <div class="row h-100">
+    <div class="row h-100 sign-in">
       <div class="image-login col-7">
         <img src="../assets/media/login-amico.png" alt="Image Login">
       </div>
@@ -33,10 +10,18 @@
             <h2> Bem-vindo</h2>
             <span> Faça o login para continuar</span>
           </div>
-         <div class="inputs d-grid">
-          <input type="email" id="email" name="email" ngModel="email" placeholder="E-mail" required email />
-          <input type="password" id="password" name="password" placeholder="Senha" ngModel="password" required />
-         </div>
+         <div class="input-wrapper">
+          <input type='text' id='input' required />
+          <label for='input' class='placeholder'>
+            E-mail
+          </label>
+        </div>
+        <div class="input-wrapper">
+          <input type='text' id='input' required />
+          <label for='input' class='placeholder'>
+            Senha
+          </label>
+        </div>
          <div class="forget-password">
           <span>Esqueceu a senha?</span>
          </div>
@@ -57,6 +42,3 @@
       </div>
     </div>
   </div>
-
-</body>
-</html>
