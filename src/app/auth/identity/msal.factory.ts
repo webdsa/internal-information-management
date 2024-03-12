@@ -18,7 +18,7 @@ export class MsalFactory {
         return new PublicClientApplication({
             auth: {
                 clientId: environment.msalConfig.clientId,
-                authority: `${environment.msalConfig.authority}/${environment.msalConfig.tenantId}`,
+                authority: `https://login.microsoftonline.com/common/${environment.msalConfig.tenantId}`,
                 redirectUri: environment.msalConfig.redirect,
                 postLogoutRedirectUri: environment.msalConfig.redirect
             },

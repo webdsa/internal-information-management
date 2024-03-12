@@ -1,12 +1,19 @@
 
+import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, Inject, OnInit, WritableSignal, signal } from '@angular/core';
-import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalModule, MsalService } from '@azure/msal-angular';
 import { AccountInfo, AuthenticationResult, EventMessage, EventType, InteractionStatus, RedirectRequest } from '@azure/msal-browser';
 import { Subject, filter, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-signIn',
   standalone: true,
+  imports: [
+    CommonModule,
+    MsalModule,
+    RouterLink,
+    RouterOutlet],
   templateUrl: './sign.in.component.html',
   styleUrls: ['./sign.in.component.scss']
 })
@@ -74,6 +81,7 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
+    debugger;
     if (this._msalGuardConfig.authRequest)
       this._authService.loginRedirect(
         { ...this._msalGuardConfig.authRequest } as RedirectRequest

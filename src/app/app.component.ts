@@ -12,7 +12,7 @@ import { MsalService } from '@azure/msal-angular';
   standalone: true,
   imports: [RouterOutlet,NavComponent,NgxSkeletonLoaderModule, HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'patrimony-management';
