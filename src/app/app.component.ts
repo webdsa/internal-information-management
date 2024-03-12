@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { layoutMenu } from './core/models/layoutMenu.model';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from './side-nav/side-nav.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { MsalService } from '@azure/msal-angular';
 
-import { HttpClient, HttpClientModule  } from '@angular/common/http';
-import { layoutMenu } from './core/models/layoutMenu.model';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +17,16 @@ import { layoutMenu } from './core/models/layoutMenu.model';
 export class AppComponent {
   title = 'patrimony-management';
   public menuItens:layoutMenu[] = [];
-  constructor(private _httpClient: HttpClient) { }
+  
+  constructor(private _httpClient: HttpClient, private _msalService : MsalService) {   }
   ngOnInit() {
+    
     this._httpClient.get<layoutMenu[]>('assets/mock/menu.json').subscribe(data => {
       this.menuItens = data;
     });
   }
+  public isLogged(): boolean {
+    return this._msalService.instance.getActiveAccount() != null;
+  }
 }
+
