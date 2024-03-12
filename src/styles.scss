@@ -1,55 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-:root{
-    // Colors
-    --primary-color: #0C55F3;
-    --secondary-color: #6c757d; 
-    --success-color: #28a745;
-    --info-color: #17a2b8;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --light-color: #DEDDE4;
-    --dark-color: #343a40;
+:root {
+  // Colors
+  --primary-color: #0c55f3;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --info-color: #17a2b8;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --light-color: #dedde4;
+  --dark-color: #343a40;
 
-    --text-1: #1B1731;
-    --text-2: #4F4F5E;
-    --text-3: #6A677A;
-    --text-4: #9795A0;
-    --text-5: #DEDDE4;
-    --text-6: #EAE9F0;
-    --text-7: #F9F8FF;
+  --text-1: #1b1731;
+  --text-2: #4f4f5e;
+  --text-3: #6a677a;
+  --text-4: #9795a0;
+  --text-5: #dedde4;
+  --text-6: #eae9f0;
+  --text-7: #f9f8ff;
 
-    --primary-color-2: #2A6DFF;
-    --primary-color-3: #EFF4FF;
+  --primary-color-2: #0c55f3;
+  --primary-color-3: #eff4ff;
 
-    --secondary-color-1: #F5645E;
-    --secondary-color-2: #FFE9E8;   
+  --secondary-color-1: #f5645e;
+  --secondary-color-2: #ffe9e8;
 
-    // Fonts
-    --title-font: 1.2rem;
-    --text-font: 0.8rem;
-    --small-font: 0.6rem;
+  // Fonts
+  --title-font: 1.2rem;
+  --text-font: 0.8rem;
+  --small-font: 0.6rem;
 
-    --breakpoint-xs: 0;
-    --breakpoint-sm: 576px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 992px;
-    --breakpoint-xl: 1200px;
-    --breakpoint-xxl: 1400px;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
 
-    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-sans-serif: "Inter", sans-serif;
+  //--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-  }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--font-family-sans-serif), sans-serif !important;
+}

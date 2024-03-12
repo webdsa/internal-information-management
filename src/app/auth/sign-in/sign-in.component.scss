@@ -19,10 +19,11 @@
     .form-login {
       background-color: white;
       border-radius: 1.5rem 0 0 1.5rem;
+      display: grid;
 
       .form {
-        display: grid;
-        justify-content: center;
+        display: inline;
+        justify-self: center;
         .title {
           margin-bottom: 3rem;
           h2 {
@@ -39,7 +40,7 @@
 
         .btn-login {
           display: grid;
-          margin: 2rem 1rem;
+          margin: 2rem 0;
           button {
             width: 374px;
             height: 48px;
@@ -69,14 +70,15 @@
 
 input {
   padding: var(--padding);
-  border: 2px solid gray;
+  border: 1px solid var(--light-color);
   outline: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  width: 100%;
 }
 .placeholder {
   position: absolute;
   background-color: white;
-  color: gray;
+  color: var(--text-4);
   left: var(--padding);
   padding: 0 4px;
   transition: all 0.2s ease-in;
@@ -84,11 +86,11 @@ input {
 }
 
 input:is(:focus, :valid) {
-  border: 2px solid var(--focus-color);
+  border: 2px solid var(--primary-color);
 }
 
 input:is(:focus, :valid) + .placeholder {
-  transform: translatey(calc(-1 * var(--padding) - 12px)) translatex(-8px);
+  transform: translatey(calc(-1 * var(--padding) - 8px)) translatex(-8px);
   font-size: 14px;
-  color: var(--focus-color);
+  color: var(--primary-color);
 }
