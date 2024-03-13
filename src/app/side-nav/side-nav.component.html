@@ -1,11 +1,14 @@
-<div class="{{!retract ? ' side-nav': 'side-nav-retracted'}}">
+<div class="{{ !retract ? ' side-nav' : 'side-nav-retracted' }}">
   <div class="btn-return">
-    <span class="material-symbols-outlined arrow" (click)="retract = !retract"> keyboard_double_arrow_{{!retract ? 'left':'right'}} </span>
+    <span class="material-symbols-outlined arrow" (click)="retract = !retract">
+      keyboard_double_arrow_{{ !retract ? "left" : "right" }}
+    </span>
   </div>
   <div class="logo-menu">
     <img ngSrc="./assets/media/logo.png" width="50" height="50" priority />
     @if (!retract) {
-    <span><strong>
+    <span
+      ><strong>
         <h2>GERENCIAMENTO</h2>
       </strong>
       <p>DE PATRIMÔNIO - DSA</p>
@@ -17,7 +20,14 @@
     <div class="item" *ngFor="let menuItem of menuItens">
       <a [routerLink]="menuItem.routerLink">
         <span class="material-symbols-outlined">{{ menuItem.icon }}</span>
-        @if (!retract) {<label>{{ menuItem.label }}</label>}
+        @if (!retract) {<label>{{ menuItem.label }}</label
+        >}
+      </a>
+    </div>
+    <div class="logoff">
+      <a>
+        <span class="material-symbols-outlined"> logout </span>
+        @if (!retract) {<label> Sair da conta </label>}
       </a>
     </div>
   </div>
