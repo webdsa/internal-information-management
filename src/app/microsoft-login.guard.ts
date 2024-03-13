@@ -14,3 +14,4 @@ export const MicrosoftLoginGuard: CanActivateFn = (
     return true;
   }
 };
+

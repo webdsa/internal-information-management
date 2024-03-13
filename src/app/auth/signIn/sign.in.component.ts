@@ -1,7 +1,7 @@
 
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, OnInit, WritableSignal, signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ChangeDetectorRef, Component, Inject, NgZone, OnInit, WritableSignal, signal } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalModule, MsalService } from '@azure/msal-angular';
 import { AccountInfo, AuthenticationResult, EventMessage, EventType, InteractionStatus, RedirectRequest } from '@azure/msal-browser';
 import { Subject, filter, takeUntil } from 'rxjs';
@@ -26,10 +26,13 @@ export class SignInComponent implements OnInit {
     @Inject(MSAL_GUARD_CONFIG) private _msalGuardConfig: MsalGuardConfiguration,
     private _msalBroadcastService: MsalBroadcastService,
     private _authService: MsalService,
-    private _cdr: ChangeDetectorRef
+    private _cdr: ChangeDetectorRef,
+    private ngZone: NgZone,
+    private router: Router,
   ) { }
 
   ngOnInit() {
+    if(this.isLogged()) this.ngZone.run(() => this.router.navigate(['']));
     this._msalBroadcastService
       .inProgress$
       .pipe(
@@ -75,6 +78,10 @@ export class SignInComponent implements OnInit {
     email: '',
     password: ''
   };
+
+  public isLogged(): boolean {
+    return this._authService.instance.getActiveAccount() != null;
+  }
 
   onSubmit() {
     console.log('Formulário enviado:', this.user);
