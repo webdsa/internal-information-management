@@ -14,8 +14,8 @@ import { Subject, filter, takeUntil } from 'rxjs';
     MsalModule,
     RouterLink,
     RouterOutlet],
-  templateUrl: './sign.in.component.html',
-  styleUrls: ['./sign.in.component.scss']
+  templateUrl: './signIn.component.html',
+  styleUrls: ['./signIn.component.scss']
 })
 export class SignInComponent implements OnInit {
   private readonly _destroying$ = new Subject<void>();

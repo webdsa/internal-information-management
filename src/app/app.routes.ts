@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './modules/not-found/not-found.component';
-import { SignInComponent } from './auth/signIn/sign.in.component';
+import { SignInComponent } from './auth/signIn/signIn.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { MicrosoftLoginGuard } from './microsoft-login.guard';
 
