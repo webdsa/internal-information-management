@@ -14,17 +14,10 @@ export const routes: Routes = [
     {
         path: 'signIn',
         component: SignInComponent,
-        // loadChildren: () => import('./auth/sign-in/sign.in.component').then((m) => m.SignInComponent),
-    },
-    {
-        path: 'signUp',
-        component: SignInComponent,
-        // loadChildren: () => import('./auth/sign-in/sign.in.component').then((m) => m.SignInComponent),
     },
     {
         path: 'register',
         component: RegisterComponent,
-        // loadChildren: () => import('./auth/sign-in/sign.in.component').then((m) => m.SignInComponent),
     },
     { path: '**', component: NotFoundComponent }
 

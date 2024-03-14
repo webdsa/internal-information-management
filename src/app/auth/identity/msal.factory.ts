@@ -28,7 +28,6 @@ export class MsalFactory {
             system: {
                 allowNativeBroker: false,
                 loggerOptions: {
-                    loggerCallback: (_, message: string) => console.log(message),
                     // logLevel: LogLevel.Info,
                     logLevel: LogLevel.Warning,
                     piiLoggingEnabled: false
