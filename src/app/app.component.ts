@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { layoutMenu } from './core/models/layoutMenu.model';
 import { RouterOutlet } from '@angular/router';
-import { NavComponent } from './side-nav/side-nav.component';
+import { NavComponent } from './shared/side-nav/side-nav.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { MsalService } from '@azure/msal-angular';
 

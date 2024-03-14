@@ -8,12 +8,13 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { NgModule } from '@angular/core';
+import { SignInComponent } from '../auth/signIn/signIn.component';
 
 export const routes: Routes = [
     {
         path: '',
         title: 'App Dash Page',
-        component: DashboardComponent,
+        component: SignInComponent,
     },
     {
         path: 'documents',
