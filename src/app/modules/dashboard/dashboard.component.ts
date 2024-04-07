@@ -13,15 +13,9 @@ export class DashboardComponent implements OnInit {
   profile?: GraphProfile;
   tokenExpiration!: string;
 
-  constructor(
-      private _http: HttpClient
-  ) { }
+  constructor() { }
   ngOnInit(): void {
-    this._http
-    .get<GraphProfile>('https://graph.microsoft.com/v1.0/me')
-    .subscribe((profile: GraphProfile) => this.profile = profile);
-
-this.tokenExpiration = localStorage.getItem('tokenExpiration')!;
+    this.tokenExpiration = localStorage.getItem('tokenExpiration')!;
   }
 
 }

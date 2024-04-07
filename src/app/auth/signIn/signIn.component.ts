@@ -22,7 +22,7 @@ import {
   EventMessage,
   EventType,
   InteractionStatus,
-  RedirectRequest,
+  PopupRequest,
 } from '@azure/msal-browser';
 import { Subject, filter, takeUntil } from 'rxjs';
 
@@ -98,12 +98,15 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
-    debugger;
     if (this._msalGuardConfig.authRequest)
-      this._authService.loginRedirect({
+      this._authService.loginPopup({
         ...this._msalGuardConfig.authRequest,
-      } as RedirectRequest);
-    else this._authService.loginRedirect();
+      } as PopupRequest).subscribe((respoonse:any) =>{
+        this._authService.instance.setActiveAccount(respoonse.account);
+        console.log('medo bobo',respoonse);
+        this.ngZone.run(() => this.router.navigate(['']));
+      }) ;
+    else this._authService.loginPopup();
   }
   logout() {
     this._authService.logoutRedirect();
