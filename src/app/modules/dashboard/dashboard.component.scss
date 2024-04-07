@@ -1,0 +1,89 @@
+.dash {
+    .dash-header {
+        background-color: #0C55F3;
+        padding: 10px;
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+
+        .logo img {
+            width: 43px;
+            height: 43px;
+            gap: 0px;
+            opacity: 0px;
+            margin: 10px;
+        }
+
+        .user {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--white);
+            border: 1px solid #447BF180;
+            align-content: center;
+            text-align: center;
+            background-color: #447BF180;
+            margin: 10px;
+        }
+
+        .user:hover {
+            background-color: #447BF1;
+            cursor: pointer;
+        }
+    }
+
+    .main {
+        margin: 10vh 0px 0px 10vw;
+        width: 80vw;
+
+        h1 {
+            font-size: var(--h6-font);
+        }
+
+        h3 {
+            font-size: var(--h7-font);
+        }
+
+        .welcome {
+            font-family: "Poppins";
+            font-weight: 700;
+            line-height: 30px;
+            text-align: left;
+
+            .user {
+                color: var(--primary-color);
+
+            }
+        }
+
+        .cards {
+            display: flex;
+            gap: 50px;
+
+            .card {
+                width: 277px;
+                height: 200px;
+                gap: 0px;
+                border-radius: 10px 0px 0px 0px;
+                opacity: 0px;
+                padding: 20px;
+                align-items: center;
+                text-align: center;
+
+                .icon {
+                    width: 85px;
+                    height: 85px;
+                    border-radius: 50%;
+                    background-color: #FFE9E8;
+                    display: flex;
+                    align-items: center;
+                    align-self: center;
+                    text-align: center;
+                    .material-symbols-outlined {
+                        font-size: var(--h3-font);
+                    }
+                }
+            }
+        }
+    }
+}

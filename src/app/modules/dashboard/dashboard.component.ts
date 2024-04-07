@@ -12,7 +12,7 @@ import { GraphProfile } from '../../core/models/graph-profile.type';
 export class DashboardComponent implements OnInit {
   profile?: GraphProfile;
   tokenExpiration!: string;
-
+  public userName:string = 'User';
   constructor() { }
   ngOnInit(): void {
     this.tokenExpiration = localStorage.getItem('tokenExpiration')!;
