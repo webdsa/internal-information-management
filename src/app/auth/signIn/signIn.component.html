@@ -1,0 +1,84 @@
+<div class="container-login">
+  <div class="row h-100 sign-in">
+    <div class="image-login col-7">
+      <img src="../assets/media/login-amico.png" alt="Image Login" />
+    </div>
+
+    <div class="col-5 form-login">
+      <div class="logo">
+        <h2>IntraInfo</h2>
+      </div>
+      <div class="form">
+        <div class="inputs-form">
+          <div class="title">
+            <h2>Bem-vindo</h2>
+            <span> Faça o login para continuar</span>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" id="input" required />
+            <label for="input" class="placeholder"> E-mail </label>
+          </div>
+          <div class="input-wrapper">
+            <input
+              [attr.type]="visibility ? 'text' : 'password'"
+              id="input"
+              required
+            />
+            <label for="input" class="placeholder">Senha</label>
+            <span class="toggle-password" (click)="toggleVisibility()">
+              @if (visibility) {
+              <span
+                class="material-symbols-outlined"
+                id="icon-eyes"
+                *ngIf="visibility"
+              >
+                visibility </span
+              >} @if (!visibility) {
+              <span
+                class="material-symbols-outlined"
+                id="icon-eyes-off"
+                *ngIf="!visibility"
+              >
+                visibility_off </span
+              >}
+            </span>
+          </div>
+        </div>
+
+        <div class="forget-password">
+          <div class="remember-pass">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+            <span>Lembrar a minha senha</span>
+          </div>
+          <div class="forget-pass">
+            <span>Esqueceu a senha?</span>
+          </div>
+        </div>
+        <div class="btn-login">
+          <button value="entrar" class="login-default">Entrar</button>
+        </div>
+        <div class="divisor">
+          <hr class="hr-divider" />
+          <span>ou</span>
+          <hr class="hr-divider" />
+        </div>
+        <div class="btn-login">
+          <button value="conectar" (click)="login()" class="login-sso">
+            Conecte-se com SSO
+            <span class="material-symbols-outlined"> key_vertical </span>
+          </button>
+          
+        </div>
+        <div class="register text-center">
+          <span>Não possui conta?</span>
+          <a routerLink="/register"><span> Cadastre-se</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

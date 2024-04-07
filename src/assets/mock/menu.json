@@ -1,0 +1,63 @@
+[
+  {
+    "id": 1,
+    "label": "Dashboard",
+    "icon": "dashboard",
+    "routerLink": "/"
+  },
+  {
+    "id": 2,
+    "label": "Moradores",
+    "icon": "group",
+    "routerLink": "/residents"
+  },
+  {
+    "id": 3,
+    "label": "Imóveis Disponíveis",
+    "icon": "home",
+    "routerLink": "/properties"
+  },
+  {
+    "id": 4,
+    "label": "Serviços",
+    "icon": "build",
+    "items": [
+      {
+        "id": 1,
+        "text": "Não sei",
+        "icon": "dashboard",
+        "routerLink": "/services"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "label": "Faturas",
+    "icon": "attach_money",
+    "routerLink": "/invoices"
+  },
+  {
+    "id": 6,
+    "label": "Relatórios",
+    "icon": "description",
+    "routerLink": "/reports"
+  },
+  {
+    "id": 7,
+    "label": "Layout das Casas",
+    "icon": "design_services",
+    "routerLink": "/houses-layout"
+  },
+  {
+    "id": 8,
+    "label": "Documentos",
+    "icon": "attach_file",
+    "routerLink": "/documents"
+  },
+  {
+    "id": 9,
+    "label": "Enviar E-mail",
+    "icon": "mail",
+    "routerLink": "/send-email"
+  }
+]
