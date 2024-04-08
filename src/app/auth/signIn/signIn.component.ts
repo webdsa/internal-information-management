@@ -103,7 +103,6 @@ export class SignInComponent implements OnInit {
         ...this._msalGuardConfig.authRequest,
       } as PopupRequest).subscribe((respoonse:any) =>{
         this._authService.instance.setActiveAccount(respoonse.account);
-        console.log('medo bobo',respoonse);
         this.ngZone.run(() => this.router.navigate(['']));
       }) ;
     else this._authService.loginPopup();
