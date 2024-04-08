@@ -1,0 +1,17 @@
+<div [style]="_style" class="card  {{ hasPadding ? 'p-5' : '' }}">
+  <!-- <div class="div-parada">
+    <h3 title="" class="title-card" *ngIf="title">
+      {{ title }}
+      <span *ngIf="info">
+        <i class="fa-solid fa-circle-exclamation icon-info"></i>
+      </span>
+    </h3>
+  </div> -->
+  <div
+    [style]="_styleBody"
+    [style]="overflowY ? 'overflow-y:auto;' : ''"
+    class="card-body {{ hasPadding ? '' : 'noPadding' }}"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>
