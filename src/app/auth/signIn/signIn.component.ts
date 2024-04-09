@@ -109,9 +109,6 @@ export class SignInComponent implements OnInit {
       }) ;
     else this._authService.loginPopup();
   }
-  logout() {
-    this._authService.logoutRedirect();
-  }
   ngOnDestroy(): void {
     this._destroying$.next(undefined);
     this._destroying$.complete();
