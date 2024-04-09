@@ -103,6 +103,8 @@ export class SignInComponent implements OnInit {
         ...this._msalGuardConfig.authRequest,
       } as PopupRequest).subscribe((respoonse:any) =>{
         this._authService.instance.setActiveAccount(respoonse.account);
+        localStorage.setItem('expiresOn', respoonse.expiresOn);
+        localStorage.setItem('nameAcount', respoonse.account.name);
         this.ngZone.run(() => this.router.navigate(['']));
       }) ;
     else this._authService.loginPopup();
