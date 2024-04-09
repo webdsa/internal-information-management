@@ -1,1 +1,27 @@
-<p>dashboard works!</p>
+<div class="dash">
+    <div class="dash-header">
+        <div class="logo"><img src="../../../assets/media/church.png" alt=""></div>
+        <div class="user">{{getInitials(nameAcount)}}</div>
+    </div>
+    <div class="main">
+        <h1 class="welcome">Bem-Vindo, <span class="user">{{nameAcount}}</span></h1>
+        <h3>Explore o painel administrativo de cada aplicaçäo ao clicar na opçäo correspondente.</h3>
+        <hr>
+        <div class="cards">
+            <div class="card" (click)="navigateTo('internal-information')">
+                <div class="icon" style="background-color: #FFE9E8;"><span class="material-symbols-outlined" style="color: #FF4436;">assignment_ind</span></div>
+                <div class="text">
+                    <h2>Manual de</h2>
+                    <h1><strong style="color: #FF4436;">ORIENTAÇÖES</strong></h1>
+                </div>
+            </div>
+            <div class="card" (click)="navigateTo('patrimony')">
+                <div class="icon" style="background-color: #FFFBEA;"><span class="material-symbols-outlined" style="color: #FFD32A;">holiday_village</span></div>
+                <div class="text">
+                    <h2>Gestäo de </h2>
+                    <h1><strong style="color: #FFD32A;">PATRIMONIO</strong></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
