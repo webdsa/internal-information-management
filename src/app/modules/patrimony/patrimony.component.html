@@ -1,5 +1,5 @@
 <div class="patrymony">
-    <div class="sidenav" [style]="' margin-right: ' + this.colapse">
+    <div class="sidenav" [style]="' margin-right: ' + this.colapse+'px'">
         
         @defer {
         <app-side-nav [menuItens]="menuItens" (colapseMenu)="colapse = $event" />
