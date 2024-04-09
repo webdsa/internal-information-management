@@ -1,9 +1,21 @@
 <div class="out">
-  <div class="side-bar">
-    <app-side-nav></app-side-nav>
-  </div>
   <div class="property">
     <span>Todos os imóveis</span>
   </div>
+  <div class="d-flex justify-content-between">
+    <div class="search">
+      <span>search aqui! </span>
+    </div>
+    <div class="d-flex justify-content">
+      <div class="filter">
+        <span>FILTER </span>
+      </div>
+      <div class="filter">
+        <span>BUTTON </span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <app-card [hasPadding]="true"> </app-card>
+  </div>
 </div>
-
