@@ -34,4 +34,6 @@ export class DashboardComponent implements OnInit {
   navigateTo(rout: string) {
     this.ngZone.run(() => this.router.navigate([rout]));
   }
+
+  // this._http.get<GraphProfile>('https://graph.microsoft.com/v1.0/me').subscribe((profile: GraphProfile) => this.profile = profile);
 }
