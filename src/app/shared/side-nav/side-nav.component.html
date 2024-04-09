@@ -1,6 +1,6 @@
 <div class="{{ !retract ? ' side-nav' : 'side-nav-retracted' }}">
   <div class="btn-return">
-    <span class="material-symbols-outlined arrow" (click)="retract = !retract">
+    <span class="material-symbols-outlined arrow" (click)="retract = !retract; retract == true ? colapseMenu.emit(80):colapseMenu.emit(300)">
       keyboard_double_arrow_{{ !retract ? "left" : "right" }}
     </span>
   </div>

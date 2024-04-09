@@ -14,7 +14,7 @@ import { PropertyModel } from '../../../core/models/property.model';
     standalone: true,
     templateUrl: './property.component.html',
     styleUrl: './property.component.scss',
-    imports: [CommonModule, NavComponent, CardComponent, SearchComponent, FilterComponent, ModalComponent]
+    imports: [CommonModule, NavComponent, CardComponent, SearchComponent, FilterComponent, ModalComponent],
 })
 export class PropertyComponent {
 

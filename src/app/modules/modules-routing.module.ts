@@ -15,11 +15,13 @@ export const routes: Routes = [
         path: 'patrimony',
         title: 'App Patrimony Page',
         component: PatrimonyComponent,
-    },
-    {
-      path: 'patrimony/property',
-      title: 'App Property Page',
-      component: PropertyComponent,
+        children:[
+            {
+                path: 'property',
+                title: 'App Property Page',
+                component: PropertyComponent,
+            }
+        ]
     },
     {
         path: 'internal-information',
