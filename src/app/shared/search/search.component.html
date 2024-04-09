@@ -1,0 +1,23 @@
+<div class="input-group">
+  <span class="input-group-text" id="basic-addon1">
+    <span class="material-symbols-outlined"> search </span>
+  </span>
+  <input
+    type="text"
+    class="form-control"
+    [placeholder]="placeholder"
+    [attr.disabled]="Disabled ? true : null"
+    aria-describedby="basic-addon1"
+    id="example-search-input"
+    (input)="searchDataItem($event)"
+    #content
+  />
+  <span
+    class="input-group-text"
+    id="basic-addon1"
+    (click)="searchDataItem($event); content.value = ''"
+    *ngIf="content.value != ''"
+  >
+    <span class="material-symbols-outlined"> close </span>
+  </span>
+</div>

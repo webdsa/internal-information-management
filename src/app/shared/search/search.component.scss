@@ -1,0 +1,38 @@
+.input-group {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#basic-addon1.input-group-text,
+#example-search-input {
+  border: 0;
+  background-color: white;
+}
+
+#example-search-input.form-control2,
+#basic-addon1.input-group-text2 {
+  background-color: var(--kt-dark-inverse);
+}
+
+.form-control {
+  border: 0;
+  color: var(--kt-input-color);
+  text-align: left;
+  letter-spacing: 0.34px;
+  padding: 8px 15px;
+  font-family: Poppins, Helvetica, sans-serif;
+  font-size:  var(--caption-font);
+  flex: 1; /* Faz o input ocupar todo o espaço disponível horizontalmente */
+}
+
+input:disabled {
+  background-color: var(--kt-gray-700);
+}
+
+::placeholder {
+  font-weight: 400;
+  font-size: var(--big-font);
+  color: var(--bs-gray);
+}

@@ -1,0 +1,41 @@
+.out {
+  margin: 3rem 2rem;
+
+  .title {
+    font-size: var(--h4-font);
+    font-weight: 600;
+  }
+  .label-property {
+    color: #17b582;
+  }
+
+  .add-property {
+    background-color: var(--primary-color);
+    padding: 0.5rem 2rem;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-size: var(--caption-font);
+    display: flex;
+    align-items: center;
+
+    label {
+      margin: 0 0.25rem;
+    }
+  }
+
+  .search {
+    width: 30rem;
+  }
+
+  .checkbox {
+    display: flex;
+    justify-content: center;
+    margin-left: 1rem;
+
+    input {
+      background-color: var(--bs-gray-200);
+      border: 0;
+    }
+  }
+}

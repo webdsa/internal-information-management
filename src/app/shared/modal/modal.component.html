@@ -1,0 +1,19 @@
+<div *ngIf="open">
+  <div class="bg bg-black"></div>
+  <div class="modal">
+    <div class="content">
+      <div class="icon-description">
+        <i class="yellow fa-light {{ icon }}"></i>
+        <p>{{ description }}</p>
+      </div>
+      <div class="btns">
+        <button BlockClicks class="btn btn-primary" (click)="response(1)">
+          {{ messageBtnYes }}
+        </button>
+        <button *ngIf="messageBtnNo" class="btn btn-light" (click)="response(0)">
+          {{ messageBtnNo }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

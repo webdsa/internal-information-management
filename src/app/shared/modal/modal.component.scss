@@ -1,0 +1,62 @@
+.bg {
+  background-color: var(--kt-modal-backdrop-bg);
+  opacity: var(--opacity-md);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: var(--up-zindex);
+}
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  opacity: var(--opacity-1);
+  width: 400px;
+  height: 400px;
+  background-color: var(--kt-modal-bg);
+  z-index: var(--up-zindex) !important;
+  box-shadow: var(--kt-box-shadow);
+  border-radius: var(--bs-border-radius-lg);
+}
+.yellow {
+  color: var(--kt-warning);
+  font-size: var(--xxl-font);
+}
+
+.icon-description {
+  display: grid;
+  justify-items: center;
+
+  p {
+    text-align: center;
+    font-size: var(--normal-font);
+  }
+}
+
+i {
+  margin-bottom: 30px;
+}
+
+.btns {
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-light {
+  background-color: var(--kt-light);
+  color: var(--kt--dark);
+}
+
+.content {
+  padding: 30px;
+}

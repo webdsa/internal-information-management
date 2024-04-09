@@ -1,8 +1,8 @@
-.card {
+.c-card {
   margin: 10px 4px;
-  background: var(--kt-dark-inverse);
   box-shadow: 0px 0px 40px #4c577d05;
   border-radius: 10px;
+  background-color: white;
 }
 
 .title-card {
@@ -15,9 +15,7 @@
 }
 
 .card-body {
-  max-height: 84vh;
   padding: 0px;
-  height: 100%;
 }
 
 .icon-info {
