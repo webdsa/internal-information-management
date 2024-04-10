@@ -3,7 +3,7 @@ import { HeaderTitleComponent } from '../../../shared/header-title/header-title.
 import { CardComponent } from '../../../shared/card/card.component';
 import { CommonModule } from '@angular/common';
 import { FormLabelComponent } from '../../../shared/form-label/form-label.component';
-import { FormMsgErrorComponent } from '../../../shared/form-msg-error/form-msg-error.component';
+import typeValid, { FormMsgErrorComponent } from '../../../shared/form-msg-error/form-msg-error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RealtyFormModel } from '../../../core/models/realtyForm.model';
 
