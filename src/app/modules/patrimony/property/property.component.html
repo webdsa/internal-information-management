@@ -25,22 +25,22 @@
     <app-card [hasPadding]="true">
       <div class="data-table-reports">
         <div
-          class="row thead text-start text-muted fw-normal gs-0"
+          class="row thead text-start text-muted fw-normal gs-0 border-style"
         >
           <div class="d-flex">
             <div class="checkbox">
               <input class="form-check-input" type="checkbox" id="checkAll" />
             </div>
             <div class="col title-table">Código</div>
-            <div class="col-5 title-table">Nome do Edifício</div>
+            <div class="col-4 title-table">Nome do Edifício</div>
             <div class="col title-table">Proprietário</div>
-            <div class="col title-table">Tipo</div>
+            <div class="col-2 title-table">Tipo</div>
             <div class="col title-table">Status</div>
-            <div class="col title-table"></div>
+            <div class="col-2 title-table"></div>
           </div>
         </div>
         <div class="reports" *ngFor="let report of property">
-          <div class="row tbody">
+          <div class="row tbody border-style">
             <div class="d-flex list">
               <div class="checkbox">
                 <input
@@ -55,13 +55,13 @@
                 >
                   {{ report.id }}
                 </div>
-                <div class="col-5 date">
+                <div class="col-4 date">
                   {{ report.edifice }}
                 </div>
                 <div class="col date">
                   {{ report.proprietary }}
                 </div>
-                <div class="col date">
+                <div class="col-2 date">
                   {{ report.type }}
                 </div>
                 <div class="col status">
@@ -70,14 +70,14 @@
                   }
 
                 </div>
-                <div class="col date">
-                  <button>
+                <div class="col-2 date">
+                  <button class="action edit">
                     <span class="material-symbols-outlined"> edit </span>
                   </button>
-                  <button>
+                  <button class="action visibility">
                     <span class="material-symbols-outlined"> visibility </span>
                   </button>
-                  <button>
+                  <button class="action delete">
                     <span class="material-symbols-outlined"> delete </span>
                   </button>
                 </div>

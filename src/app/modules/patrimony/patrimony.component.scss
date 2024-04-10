@@ -4,5 +4,10 @@
 
   .children{
     width: 85%;
+    transition: width 0.3s ease;
+  }
+
+  .collapsed {
+    width: calc(100% - 3rem);
   }
 }
