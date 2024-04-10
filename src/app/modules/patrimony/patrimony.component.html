@@ -1,23 +1,21 @@
 <div class="patrymony">
-    <div class="sidenav" [style]="' margin-right: ' + this.colapse">
-        
-        @defer {
-        <app-side-nav [menuItens]="menuItens" (colapseMenu)="colapse = $event" />
-        } @placeholder {
-        <div class="item">
-            <ngx-skeleton-loader count="1" appearance="line" animation="progress" />
-        </div>
-        }
+  <div class="sidenav" [style]="' margin-right: ' + this.colapse">
+    @defer {
+    <app-side-nav [menuItens]="menuItens" (colapseMenu)="colapse = $event" />
+    } @placeholder {
+    <div class="item">
+      <ngx-skeleton-loader count="1" appearance="line" animation="progress" />
     </div>
+    }
+  </div>
 
-
-    <div class="children">
-        @defer {
-        <router-outlet />
-        } @placeholder {
-        <div class="item">
-            <ngx-skeleton-loader count="1" appearance="line" animation="progress" />
-        </div>
-        }
+  <div class="children">
+    @defer {
+    <router-outlet />
+    } @placeholder {
+    <div class="item">
+      <ngx-skeleton-loader count="1" appearance="line" animation="progress" />
     </div>
+    }
+  </div>
 </div>

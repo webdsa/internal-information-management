@@ -1,11 +1,8 @@
-.sidenav{
-    z-index: 1000;
-}
-.children{
-    z-index: 0;
-    width: 90%;
-}
-
 .patrymony{
-    display: flex;
+  display: flex;
+  justify-content: space-between;
+
+  .children{
+    width: 85%;
+  }
 }

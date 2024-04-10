@@ -25,17 +25,18 @@
     <app-card [hasPadding]="true">
       <div class="data-table-reports">
         <div
-          class="row thead text-start text-muted fw-normal text-uppercase gs-0"
+          class="row thead text-start text-muted fw-normal gs-0"
         >
           <div class="d-flex">
             <div class="checkbox">
               <input class="form-check-input" type="checkbox" id="checkAll" />
             </div>
             <div class="col title-table">Código</div>
-            <div class="col-7 title-table">Nome do Edifício</div>
+            <div class="col-5 title-table">Nome do Edifício</div>
             <div class="col title-table">Proprietário</div>
             <div class="col title-table">Tipo</div>
             <div class="col title-table">Status</div>
+            <div class="col title-table"></div>
           </div>
         </div>
         <div class="reports" *ngFor="let report of property">
@@ -54,7 +55,7 @@
                 >
                   {{ report.id }}
                 </div>
-                <div class="col-7 date">
+                <div class="col-5 date">
                   {{ report.edifice }}
                 </div>
                 <div class="col date">
@@ -63,8 +64,22 @@
                 <div class="col date">
                   {{ report.type }}
                 </div>
+                <div class="col status">
+                  @if(report.status){
+                    <label class="status-red">{{ report.status }}</label>
+                  }
+
+                </div>
                 <div class="col date">
-                  {{ report.status }}
+                  <button>
+                    <span class="material-symbols-outlined"> edit </span>
+                  </button>
+                  <button>
+                    <span class="material-symbols-outlined"> visibility </span>
+                  </button>
+                  <button>
+                    <span class="material-symbols-outlined"> delete </span>
+                  </button>
                 </div>
               </div>
             </div>
