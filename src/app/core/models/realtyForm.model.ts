@@ -9,7 +9,7 @@ export class RealtyFormModel {
     city!: string;
     UF!: string;
     nameBuilding!: string;
-    detailRealty!: detailRealty;
+    detailRealty: detailRealty = new detailRealty();
   }
   export class detailRealty {
     hasSolarPower!: boolean;
@@ -22,5 +22,9 @@ export class RealtyFormModel {
     municipalRegister!: string;
     codIPTU!: number;
     realtyValue!: number;
+    numberPhone!: number;
+    numberPhone2!: number;
+    emailConcierge!: string;
+    observations!: string;
   }
   

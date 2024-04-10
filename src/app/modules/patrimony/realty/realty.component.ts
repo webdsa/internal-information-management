@@ -10,10 +10,11 @@ import { RealtyFormModel } from '../../../core/models/realtyForm.model';
 @Component({
   selector: 'app-realty',
   standalone: true,
-  imports: [HeaderTitleComponent,CardComponent,CommonModule,FormLabelComponent,FormMsgErrorComponent,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,HeaderTitleComponent,CardComponent,FormLabelComponent,FormMsgErrorComponent,FormsModule,ReactiveFormsModule],
   templateUrl: './realty.component.html',
   styleUrl: './realty.component.scss'
 })
 export class RealtyComponent {
   public form: RealtyFormModel = new RealtyFormModel();
+  public retractInfo:boolean = true;
 }

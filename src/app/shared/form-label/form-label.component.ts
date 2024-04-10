@@ -10,5 +10,11 @@ import { Component, Input } from '@angular/core';
 })
 export class FormLabelComponent {
   @Input() required: boolean | undefined;
-  @Input() title: any;
+  @Input() titleLabel: any = 'pamonh';
+  ngOnInit(): void {
+    if (this.required === undefined) {
+      this.required = false;
+    }
+    
+  }
 }
