@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PatrimonyComponent } from './patrimony/patrimony.component';
 import { InternalInformationComponent } from './internal-information/internal-information.component';
 import { PropertyComponent } from './patrimony/property/property.component';
+import { RealtyComponent } from './patrimony/realty/realty.component';
 
 export const routes: Routes = [
     {
@@ -20,6 +21,11 @@ export const routes: Routes = [
                 path: 'property',
                 title: 'App Property Page',
                 component: PropertyComponent,
+            },
+            {
+                path: 'realty',
+                title: 'App Realty Page',
+                component: RealtyComponent,
             }
         ]
     },
