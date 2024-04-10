@@ -3,14 +3,14 @@ import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 
 
 @Component({
   selector: 'app-side-nav',
   standalone: true,
-  imports: [CardModule, FormsModule,PanelMenuModule,NgOptimizedImage,CommonModule,RouterLink],
+  imports: [CardModule, FormsModule,PanelMenuModule,NgOptimizedImage,CommonModule,RouterLink,RouterOutlet],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss'
 })

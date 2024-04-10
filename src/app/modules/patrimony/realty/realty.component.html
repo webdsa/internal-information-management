@@ -1,1 +1,113 @@
-<p>realty works!</p>
+<div class="realty">
+    @defer () {
+    <app-header-title class="header-line" title="Adicionar Novo" textBtn="VER TODOS IMÓVEIS" titleEmphasis="Imóvel"
+        description="Preencha corretamente com as informações do novo imóvel." color="#17B582"
+        colorLight="#E5FAF5"></app-header-title>
+    }
+    @defer () {
+        <app-card [hasPadding]="true">
+            <div class="form-info">
+                <app-form-label title="Código do Imóvel">
+                    <input type="text" [(ngModel)]="form.id" />
+                    <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label title="Proprietário">
+                    <input type="text" [(ngModel)]="form.proprietary" />
+                    <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label title=" Tipo do Imóvel">
+                    <input type="text" [(ngModel)]="form.id" />
+                    <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+                </app-form-label>
+                
+                <app-form-label title="CEP">
+                    <input type="text" [(ngModel)]="form.id" />
+                    <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+                </app-form-label>
+                
+                <app-form-label title="Endereço">
+                    <input type="text" [(ngModel)]="form.id" />
+                    <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+                </app-form-label>
+                
+                <app-form-label title="Complemento">
+                    <input type="text" [(ngModel)]="form.id" />
+                    <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+                </app-form-label>
+                
+                <app-form-label title="Bairro">
+                    <input type="text" [(ngModel)]="form.id" />
+                    <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+                </app-form-label>
+                
+                <app-form-label title="Cidade">
+                    <input type="text" [(ngModel)]="form.id" />
+                    <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+                </app-form-label>
+                
+                <app-form-label title="UF">
+                    <input type="text" [(ngModel)]="form.id" />
+                    <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+                </app-form-label>
+                
+                <app-form-label title="Nome do edifício">
+                    <input type="text" [(ngModel)]="form.id" />
+                    <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+                </app-form-label>
+            </div>
+            <div class="form-detail">
+            <app-form-label title="Possuí fotovoltaica?">
+                <input type="text" [(ngModel)]="form.id" />
+                <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+            </app-form-label>
+            
+            <app-form-label title="Qual tipo de gás?">
+                <input type="text" [(ngModel)]="form.id" />
+                <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+            </app-form-label>
+            
+            <app-form-label title="Quantidade de quartos">
+                <input type="text" [(ngModel)]="form.id" />
+                <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+            </app-form-label>
+            
+            <app-form-label title="Limite de moradores">
+                <input type="text" [(ngModel)]="form.id" />
+                <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+            </app-form-label>
+            
+            <app-form-label title="Código do cliente - Energia">
+                <input type="text" [(ngModel)]="form.id" />
+                <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+            </app-form-label>
+            
+            <app-form-label title="Medidor cliente - Energia">
+                <input type="text" [(ngModel)]="form.id" />
+                <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+            </app-form-label>
+            
+            <app-form-label title="Código cliente - Água">
+                <input type="text" [(ngModel)]="form.id" />
+                <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+            </app-form-label>
+            
+            <app-form-label title="Inscrição municipal">
+                <input type="text" [(ngModel)]="form.id" />
+                <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+            </app-form-label>
+            
+            <app-form-label title="IPTU/TLP">
+                <input type="text" [(ngModel)]="form.id" />
+                <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+            </app-form-label>
+            
+            <app-form-label title="Avaliação do imóvel">
+                <input type="text" [(ngModel)]="form.id" />
+                <app-form-msg-error [value]="" [type]="1"></app-form-msg-error>
+            </app-form-label>
+            </div>
+        </app-card>
+    }
+</div>
