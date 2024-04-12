@@ -1,1 +1,20 @@
-<p>filter works!</p>
+<div class="filter-component">
+  <div class="d-flex justify-content-end">
+    <button class="filter-button" (click)="toggleFilter()">
+      <span class="material-symbols-outlined"> filter_alt </span>
+      Filter
+    </button>
+  </div>
+
+  <div class="filter-box" *ngIf="showFilter">
+    <select class="filter-select" (change)="onTypeChange($event.target)">
+      <option value="Todos" selected>Todos</option>
+      <option *ngFor="let type of TypeEnum" [value]="type">{{ type }}</option>
+    </select>
+    <select class="filter-select" (change)="onStatusChange($event.target)">
+      <option *ngFor="let status of StatusEnum" [value]="status">
+        {{ status }}
+      </option>
+    </select>
+  </div>
+</div>

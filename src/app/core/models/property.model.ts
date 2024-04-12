@@ -3,7 +3,7 @@ export class PropertyModel {
   proprietary!: string;
   fotovoltaica!: boolean;
   ge_di!: boolean;
-  status!: boolean;
+  status!: string;
   type_gas!: string;
   type!: string;
   edifice!: string;

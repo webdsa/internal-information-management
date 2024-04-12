@@ -9,7 +9,7 @@
     </div>
     <div class="d-flex justify-content">
       <div class="filter">
-        <app-filter></app-filter>
+        <app-filter (typeSelected)="onTypeSelected($event)" (statusSelected)="onStatusSelected($event)"></app-filter>
       </div>
       <div class="filter">
         <button class="add-property" (click)="onclickOpenModal()">
@@ -39,9 +39,9 @@
             <div class="col-2 title-table"></div>
           </div>
         </div>
-        <div class="reports" *ngFor="let report of property">
+        <div class="reports" *ngFor="let report of filteredProperties">
           <div class="row tbody border-style">
-            <div class="d-flex list">
+            <div class="d-flex list align-items-center">
               <div class="checkbox">
                 <input
                   [id]="'checkbox' + report.id"
@@ -64,11 +64,14 @@
                 <div class="col-2 date">
                   {{ report.type }}
                 </div>
-                <div class="col status">
-                  @if(report.status){
-                    <label class="status-red">{{ report.status }}</label>
+                <div class="col">
+                  @if(report.status == 'Ocupado'){
+                    <label class="status status-red">{{ report.status }}</label>
+                  } @else if (report.status == 'Desocupado'){
+                    <label class="status status-green">{{ report.status }}</label>
+                  } @else {
+                    <label class="status status-yellow">{{ report.status }}</label>
                   }
-
                 </div>
                 <div class="col-2 date">
                   <button class="action edit">
