@@ -34,13 +34,13 @@ export class PropertyComponent {
   constructor(private _httpClient: HttpClient) {   }
   ngOnInit() {
     this.getProperty();
-    this.loadTypes();
   }
 
   getProperty(){
     this._httpClient.get<PropertyModel[]>('assets/mock/property.json').subscribe(data => {
       this.property = data;
       this.propertyBkp = data;
+      this.filteredProperties = data
     });
   }
 
@@ -56,18 +56,25 @@ export class PropertyComponent {
 
   onTypeSelected(type: string) {
     if (type === "Todos") {
-      this.filteredProperties = this.property; // Mostrar todas as propriedades
+      this.filteredProperties = this.property;
     } else {
-      this.filteredProperties = this.property.filter(property => property.type === type); // Filtrar as propriedades com base no tipo selecionado
+      this.filteredProperties = this.property.filter(property => property.type === type);
     }
   }
 
   onStatusSelected(status: string) {
-      this.filteredProperties = this.property.filter(property => property.status === status); // Filtrar as propriedades com base no tipo selecionado
+      this.filteredProperties = this.property.filter(property => property.status === status);
   }
 
+  searchByName(search: string) {
+    if (search != '' && search != undefined) {
+        this.property = this.filteredProperties?.filter(
+            (x: PropertyModel) => search == '' || this.noAccents(x.edifice.toUpperCase()).includes(search) || x.items.find((item) => item.proprietary.trim().toString().includes(search.trim()))
+        );
+    } else this.property = this.filteredProperties;
+  }
 
-  loadTypes() {
-    this.types = ["Todos", ...new Set(this.property.map(property => property.type))];
+  noAccents(str: string) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 }
