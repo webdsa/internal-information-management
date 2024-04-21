@@ -1,5 +1,5 @@
 .filter-button {
-  background-color: white;
+  background-color: var(--kt-white);
   border-radius: 10px;
   height: 3rem;
   padding: 0 1rem;
@@ -14,7 +14,7 @@
   z-index: 999;
   position: absolute;
   padding: 2rem 2rem 1rem 2rem;
-  background-color: white;
+  background-color: var(--kt-white);
   box-shadow: 0px 4px 32px #00000014;
   border-radius: 10px;
 }
@@ -23,4 +23,15 @@ select {
   padding: 0.5rem;
   border-radius: 5px;
   margin-bottom: 1rem;
+}
+.apply-button {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  color: var(--kt-white);
+  height: 3rem;
+  padding: 0 1rem;
+  border: 0;
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
 }

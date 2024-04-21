@@ -8,7 +8,6 @@
 
   <div class="filter-box" *ngIf="showFilter">
     <select class="filter-select" (change)="onTypeChange($event.target)">
-      <option value="Todos" selected>Todos</option>
       <option *ngFor="let type of TypeEnum" [value]="type">{{ type }}</option>
     </select>
     <select class="filter-select" (change)="onStatusChange($event.target)">
@@ -16,5 +15,9 @@
         {{ status }}
       </option>
     </select>
+    <button class="apply-button" (click)="applyFilter()">
+      <span class="material-symbols-outlined"> filter_alt </span>
+      Aplicar
+    </button>
   </div>
 </div>

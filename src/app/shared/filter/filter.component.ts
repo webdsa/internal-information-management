@@ -11,19 +11,20 @@ import { TypePropertyEnum } from '../../core/enums/typePropertyEnum.enum';
   styleUrl: './filter.component.scss'
 })
 export class FilterComponent {
-  showFilter: boolean = false;
-  TypeEnum: any[] = Object.values(TypePropertyEnum);
-  StatusEnum: any[] = Object.values(StatusPropertyEnum);
+  public showFilter: boolean = false;
+  public TypeEnum: any[] = Object.values(TypePropertyEnum);
+  public StatusEnum: any[] = Object.values(StatusPropertyEnum);
+  public selectedType: any = 'Todos';
+  public selectedStatus: any = 'Todos';
 
-  @Output() typeSelected = new EventEmitter<string>();
-  @Output() statusSelected = new EventEmitter<string>();
+  @Output() ApplyFilter = new EventEmitter<any>();
 
   onTypeChange(type: any) {
-    this.typeSelected.emit(type.value);
+    this.selectedType = type.value;
   }
 
   onStatusChange(status: any) {
-    this.statusSelected.emit(status.value);
+    this.selectedStatus = status.value;
   }
 
   ngOnInit() {
@@ -31,6 +32,14 @@ export class FilterComponent {
 
   toggleFilter() {
     this.showFilter = !this.showFilter;
+  }
+  applyFilter(){
+    this.showFilter = false;
+    const filter = { 
+      type: this.selectedType,
+      status: this.selectedStatus
+     };
+     this.ApplyFilter.emit(filter);
   }
 }
 

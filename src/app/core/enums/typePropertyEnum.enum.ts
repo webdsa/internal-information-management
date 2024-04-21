@@ -1,4 +1,5 @@
 export enum TypePropertyEnum {
+  Todos = 'Todos',
   CondominioEscritorio = 'Condomínio Escritório',
   CondominioVert = 'Condomínio Vertical',
   CondominioHoriz = 'Condomínio Horizontal',

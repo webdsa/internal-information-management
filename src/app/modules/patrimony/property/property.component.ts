@@ -10,18 +10,18 @@ import { CommonModule } from '@angular/common';
 import { PropertyModel } from '../../../core/models/property.model';
 
 @Component({
-    selector: 'app-property',
-    standalone: true,
-    templateUrl: './property.component.html',
-    styleUrl: './property.component.scss',
-    imports: [CommonModule, NavComponent, CardComponent, SearchComponent, FilterComponent, ModalComponent],
+  selector: 'app-property',
+  standalone: true,
+  templateUrl: './property.component.html',
+  styleUrl: './property.component.scss',
+  imports: [CommonModule, NavComponent, CardComponent, SearchComponent, FilterComponent, ModalComponent],
 })
 export class PropertyComponent {
 
-  public property:PropertyModel[] = [];
+  public property: PropertyModel[] = [];
   public propertyBkp: PropertyModel[] = [];
   public modalOpen: boolean = false;
-  public filteredProperties :PropertyModel[] = [];
+  public filteredProperties: PropertyModel[] = [];
   types: string[] = [];
   status: string[] = [];
 
@@ -31,12 +31,12 @@ export class PropertyComponent {
 
   @Output() result: EventEmitter<number> = new EventEmitter();
 
-  constructor(private _httpClient: HttpClient) {   }
+  constructor(private _httpClient: HttpClient) { }
   ngOnInit() {
     this.getProperty();
   }
 
-  getProperty(){
+  getProperty() {
     this._httpClient.get<PropertyModel[]>('assets/mock/property.json').subscribe(data => {
       this.property = data;
       this.propertyBkp = data;
@@ -54,27 +54,23 @@ export class PropertyComponent {
     this.result.emit(1);
   }
 
-  onTypeSelected(type: string) {
-    if (type === "Todos") {
-      this.filteredProperties = this.property;
-    } else {
-      this.filteredProperties = this.property.filter(property => property.type === type);
-    }
-  }
-
-  onStatusSelected(status: string) {
-      this.filteredProperties = this.property.filter(property => property.status === status);
-  }
-
   searchByName(search: string) {
     if (search != '' && search != undefined) {
-        this.property = this.filteredProperties?.filter(
-            (x: PropertyModel) => search == '' || this.noAccents(x.edifice.toUpperCase()).includes(search) || x.items.find((item) => item.proprietary.trim().toString().includes(search.trim()))
-        );
-    } else this.property = this.filteredProperties;
+      search = this.noAccents(search);
+      this.filteredProperties = this.propertyBkp?.filter((x) => this.noAccents(x.edifice.toUpperCase()).includes(search) || this.noAccents(x.status.toUpperCase()).includes(search));
+
+    } else this.filteredProperties = this.property;
   }
 
   noAccents(str: string) {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+  filterProperty(event: any) {
+    if (event.type === "Todos" && event.status === "Todos")this.filteredProperties = this.propertyBkp;
+      else if (event.type === "Todos") {
+      this.filteredProperties = this.propertyBkp.filter(property => property.status === event.status);
+    }else{
+      this.filteredProperties = this.propertyBkp.filter(property => property.type === event.type && property.status === event.status);
+    } 
   }
 }

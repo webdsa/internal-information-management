@@ -1,4 +1,5 @@
 export enum StatusPropertyEnum {
+  Todos = 'Todos',
   Ocupado = 'Ocupado',
   Desocupado = 'Desocupado',
   Entregue = 'Entregue',

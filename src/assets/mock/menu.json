@@ -3,19 +3,19 @@
     "id": 1,
     "label": "Dashboard",
     "icon": "dashboard",
-    "routerLink": "/"
+    "routerLink": "/patrimony"
   },
   {
     "id": 2,
     "label": "Moradores",
     "icon": "group",
-    "routerLink": "/residents"
+    "routerLink": "/patrimony/property"
   },
   {
     "id": 3,
     "label": "Imóveis Disponíveis",
     "icon": "home",
-    "routerLink": "/properties"
+    "routerLink": "/patrimony/realty"
   },
   {
     "id": 4,
