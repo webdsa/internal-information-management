@@ -25,6 +25,7 @@ import {
   PopupRequest,
 } from '@azure/msal-browser';
 import { Subject, filter, takeUntil } from 'rxjs';
+import { LocalStorageUtils } from '../../core/utils/local-storage.utils';
 
 @Component({
   selector: 'app-signIn',
@@ -32,6 +33,7 @@ import { Subject, filter, takeUntil } from 'rxjs';
   imports: [CommonModule, MsalModule, RouterLink, RouterOutlet],
   templateUrl: './signIn.component.html',
   styleUrls: ['./signIn.component.scss'],
+  providers: [LocalStorageUtils],
 })
 export class SignInComponent implements OnInit {
   private readonly _destroying$ = new Subject<void>();
@@ -45,7 +47,8 @@ export class SignInComponent implements OnInit {
     private _authService: MsalService,
     private _cdr: ChangeDetectorRef,
     private ngZone: NgZone,
-    private router: Router
+    private router: Router,
+    private _localStorageUtils: LocalStorageUtils
   ) {}
 
   ngOnInit() {
@@ -101,11 +104,11 @@ export class SignInComponent implements OnInit {
     if (this._msalGuardConfig.authRequest)
       this._authService.loginPopup({
         ...this._msalGuardConfig.authRequest,
-      } as PopupRequest).subscribe((respoonse:any) =>{
-        this._authService.instance.setActiveAccount(respoonse.account);
-        localStorage.setItem('expiresOn', respoonse.expiresOn);
-        localStorage.setItem('nameAcount', respoonse.account.name);
-        this.ngZone.run(() => this.router.navigate(['']));
+      } as PopupRequest).subscribe((response:any) =>{
+        console.log(response);
+        this._authService.instance.setActiveAccount(response.account);
+        this._localStorageUtils.setUserToken(response.account.idToken);
+        this.ngZone.run(() => this.router.navigate([''])); 
       }) ;
     else this._authService.loginPopup();
   }

@@ -9,13 +9,13 @@
     "id": 2,
     "label": "Moradores",
     "icon": "group",
-    "routerLink": "/patrimony/property"
+    "routerLink": "/patrimony/resident"
   },
   {
     "id": 3,
     "label": "Imóveis Disponíveis",
     "icon": "home",
-    "routerLink": "/patrimony/realty"
+    "routerLink": "/patrimony/property"
   },
   {
     "id": 4,

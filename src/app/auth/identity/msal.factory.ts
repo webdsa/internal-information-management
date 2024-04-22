@@ -23,7 +23,7 @@ export class MsalFactory {
                 postLogoutRedirectUri: environment.msalConfig.redirect
             },
             cache: {
-                cacheLocation: BrowserCacheLocation.LocalStorage
+                 cacheLocation: BrowserCacheLocation.LocalStorage
             },
             system: {
                 allowNativeBroker: false,

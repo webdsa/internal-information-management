@@ -8,6 +8,8 @@ import { FilterComponent } from "../../../shared/filter/filter.component";
 import { ModalComponent } from "../../../shared/modal/modal.component";
 import { CommonModule } from '@angular/common';
 import { PropertyModel } from '../../../core/models/property.model';
+import { PatrimonyService } from '../services/patrimony.services';
+import { ResponseModel } from '../../../core/models/response.model';
 
 @Component({
   selector: 'app-property',
@@ -18,10 +20,12 @@ import { PropertyModel } from '../../../core/models/property.model';
 })
 export class PropertyComponent {
 
-  public property: PropertyModel[] = [];
-  public propertyBkp: PropertyModel[] = [];
+  public property: Array<PropertyModel> = [];
+  public propertyBkp: Array<PropertyModel> = [];
+  public filteredProperties: Array<PropertyModel> = [];
+
   public modalOpen: boolean = false;
-  public filteredProperties: PropertyModel[] = [];
+
   types: string[] = [];
   status: string[] = [];
 
@@ -31,16 +35,16 @@ export class PropertyComponent {
 
   @Output() result: EventEmitter<number> = new EventEmitter();
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _patrimonyService: PatrimonyService) { }
   ngOnInit() {
     this.getProperty();
   }
 
   getProperty() {
-    this._httpClient.get<PropertyModel[]>('assets/mock/property.json').subscribe(data => {
-      this.property = data;
-      this.propertyBkp = data;
-      this.filteredProperties = data
+    this._patrimonyService.getProperty().subscribe((response: ResponseModel<Array<PropertyModel>>) => {
+      this.property = response.data!;
+      this.propertyBkp = response.data!;
+      this.filteredProperties = response.data!;
     });
   }
 
@@ -57,7 +61,7 @@ export class PropertyComponent {
   searchByName(search: string) {
     if (search != '' && search != undefined) {
       search = this.noAccents(search);
-      this.filteredProperties = this.propertyBkp?.filter((x) => this.noAccents(x.edifice.toUpperCase()).includes(search) || this.noAccents(x.status.toUpperCase()).includes(search));
+      this.filteredProperties = this.propertyBkp?.filter((x) => this.noAccents(x.propertyName.toUpperCase()).includes(search) || this.noAccents(x.status.toUpperCase()).includes(search));
 
     } else this.filteredProperties = this.property;
   }
@@ -66,11 +70,11 @@ export class PropertyComponent {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
   filterProperty(event: any) {
-    if (event.type === "Todos" && event.status === "Todos")this.filteredProperties = this.propertyBkp;
-      else if (event.type === "Todos") {
+    if (event.type === "Todos" && event.status === "Todos") this.filteredProperties = this.propertyBkp;
+    else if (event.type === "Todos") {
       this.filteredProperties = this.propertyBkp.filter(property => property.status === event.status);
-    }else{
-      this.filteredProperties = this.propertyBkp.filter(property => property.type === event.type && property.status === event.status);
-    } 
+    } else {
+      this.filteredProperties = this.propertyBkp.filter(property => property.propertyType === event.type && property.status === event.status);
+    }
   }
 }
