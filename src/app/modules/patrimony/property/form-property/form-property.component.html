@@ -1,1 +1,176 @@
-<p>form-property works!</p>
+<div class="realty">
+  @defer () {
+  <app-header-title class="header-line" title="Adicionar Novo" textBtn="VER TODOS IMÓVEIS" titleEmphasis="Imóvel"
+      description="Preencha corretamente com as informações do novo imóvel." color="#37B582"
+      colorLight="#E5FAF5"></app-header-title>
+  }
+  @defer () {
+  <app-card [hasPadding]="true">
+      <div class="form-info">
+          <h3>INFORMAÇÕES GERAIS</h3>
+          <div class="row">
+              <app-form-label class="col-4" titleLabel="Código do Imóvel">
+                  <input type="text" class="form-control" [(ngModel)]="form.id" />
+                  <app-form-msg-error [value]="form.id" [type]="1"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-4" titleLabel="Proprietário" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.proprietary" />
+                  <app-form-msg-error [value]="form.proprietary" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-4" titleLabel=" Tipo do Imóvel" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.typeRealty" />
+                  <app-form-msg-error [value]="form.typeRealty" [type]="3"></app-form-msg-error>
+              </app-form-label>
+          </div>
+          <div class="row">
+              <app-form-label class="col-3" titleLabel="CEP" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.CEP" />
+                  <app-form-msg-error [value]="form.CEP" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-6" titleLabel="Endereço" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.address" />
+                  <app-form-msg-error [value]="form.address" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-3" titleLabel="Complemento">
+                  <input type="text" class="form-control" [(ngModel)]="form.complement" />
+                  <app-form-msg-error [value]="form.complement"></app-form-msg-error>
+              </app-form-label>
+          </div>
+          <div class="row">
+              <app-form-label class="col-3" titleLabel="Bairro" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.neighborhood" />
+                  <app-form-msg-error [value]="form.neighborhood" [type]="3"></app-form-msg-error>
+              </app-form-label>
+              <app-form-label class="col-3" titleLabel="Cidade" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.city" />
+                  <app-form-msg-error [value]="form.city" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-1" titleLabel="UF" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.UF" />
+                  <app-form-msg-error [value]="form.UF" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-5" titleLabel="Nome do edifício">
+                  <input type="text" class="form-control" [(ngModel)]="form.nameBuilding" />
+                  <app-form-msg-error [value]="form.nameBuilding" [type]="3"></app-form-msg-error>
+              </app-form-label>
+          </div>
+      </div>
+      <div class="form-detail">
+          <h3>DETALHES DO IMÓVEL</h3>
+          <div class="row">
+              <app-form-label class="col-3" titleLabel="Possuí fotovoltaica?" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.detailRealty.hasSolarPower" />
+                  <app-form-msg-error [value]="form.detailRealty.hasSolarPower" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-3" titleLabel="Qual tipo de gás?" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.detailRealty.typeGas" />
+                  <app-form-msg-error [value]="form.detailRealty.typeGas" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-3" titleLabel="Quantidade de quartos" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.detailRealty.qtdRooms" />
+                  <app-form-msg-error [value]="form.detailRealty.qtdRooms" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-3" titleLabel="Limite de moradores" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.detailRealty.limitPeople" />
+                  <app-form-msg-error [value]="form.detailRealty.limitPeople" [type]="3"></app-form-msg-error>
+              </app-form-label>
+          </div>
+          <div class="row">
+              <app-form-label class="col-4" titleLabel="Código do cliente - Energia" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.detailRealty.codEnergy" />
+                  <app-form-msg-error [value]="form.detailRealty.codEnergy" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-4" titleLabel="Medidor cliente - Energia" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.detailRealty.meterEnergy" />
+                  <app-form-msg-error [value]="form.detailRealty.meterEnergy" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-4" titleLabel="Código cliente - Água" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.detailRealty.codWater" />
+                  <app-form-msg-error [value]="form.detailRealty.codWater" [type]="3"></app-form-msg-error>
+              </app-form-label>
+          </div>
+          <div class="row">
+              <app-form-label class="col-4" titleLabel="Inscrição municipal">
+                  <input type="text" class="form-control" [(ngModel)]="form.detailRealty.municipalRegister" />
+                  <app-form-msg-error [value]="form.detailRealty.municipalRegister" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-4" titleLabel="IPTU/TLP" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.detailRealty.codIPTU" />
+                  <app-form-msg-error [value]="form.detailRealty.codIPTU" [type]="3"></app-form-msg-error>
+              </app-form-label>
+
+              <app-form-label class="col-4" titleLabel="Avaliação do imóvel" [required]="true">
+                  <input type="text" class="form-control" [(ngModel)]="form.detailRealty.realtyValue" />
+                  <app-form-msg-error [value]="form.detailRealty.realtyValue" [type]="3"></app-form-msg-error>
+              </app-form-label>
+          </div>
+      </div>
+      <div class="add-informations">
+          @if (retractInfo) {
+          <div class="btn-info">
+              <div class="btns-title" (click)="retractInfo =! retractInfo">
+                  <span class="material-symbols-outlined">
+                      add
+                  </span>
+                  <span>
+                      Adicionar informações
+                  </span>
+              </div>
+          </div>
+          }
+          @else {
+              <div>
+                  <h3>INFORMAÇÕES ADICIONAIS</h3>
+                  <div class="row">
+                      <app-form-label class="col-4" titleLabel="Numero de Telefone" [required]="false">
+                          <input type="text" class="form-control" [(ngModel)]="form.detailRealty.numberPhone" />
+                          <app-form-msg-error [value]="form.detailRealty.numberPhone" [type]="1"></app-form-msg-error>
+                      </app-form-label>
+
+                      <app-form-label class="col-4" titleLabel="Telefone da portaria " [required]="false">
+                          <input type="text" class="form-control" [(ngModel)]="form.detailRealty.numberPhone2" />
+                          <app-form-msg-error [value]="form.detailRealty.numberPhone2" [type]="3"></app-form-msg-error>
+                      </app-form-label>
+
+                      <app-form-label class="col-4" titleLabel="Email da portaria" [required]="false">
+                          <input type="email" class="form-control" [(ngModel)]="form.detailRealty.emailConcierge" />
+                          <app-form-msg-error [value]="form.detailRealty.emailConcierge" [type]="3"></app-form-msg-error>
+                      </app-form-label>
+                  </div>
+                  <div class="row">
+                      <app-form-label class="col-12" titleLabel="Observações" [required]="false">
+                          <textarea class="form-control" [(ngModel)]="form.detailRealty.observations" rows="3"></textarea>
+                      </app-form-label>
+                  </div>
+              </div>
+          <div class="btn-info">
+              <div class="btns-title" (click)="retractInfo =! retractInfo">
+                  <span class="material-symbols-outlined">
+                      remove
+                  </span>
+                  <span>
+                      Ocultar informações
+                  </span>
+              </div>
+          </div>
+          }
+      </div>
+      <div class="btn">
+          <button type="button" class="btn btn-light">Cancelar</button>
+          <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+  </app-card>
+  }
+</div>

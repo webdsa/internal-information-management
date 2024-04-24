@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { PropertyModel } from '../../../core/models/property.model';
 import { PatrimonyService } from '../services/patrimony.services';
 import { ResponseModel } from '../../../core/models/response.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-property',
@@ -35,7 +36,7 @@ export class PropertyComponent {
 
   @Output() result: EventEmitter<number> = new EventEmitter();
 
-  constructor(private _patrimonyService: PatrimonyService) { }
+  constructor(private _patrimonyService: PatrimonyService, private router: Router) { }
   ngOnInit() {
     this.getProperty();
   }
@@ -76,5 +77,9 @@ export class PropertyComponent {
     } else {
       this.filteredProperties = this.propertyBkp.filter(property => property.propertyType === event.type && property.status === event.status);
     }
+  }
+
+  addNew(){
+    this.router.navigate(['/patrimony/new-property']);
   }
 }
