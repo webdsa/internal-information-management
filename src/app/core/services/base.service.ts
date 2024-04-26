@@ -7,12 +7,12 @@ export abstract class BaseService {
     protected UrlServiceV1: string = environment.urlApi;
     public LocalStorage = new LocalStorageUtils();
 
-    protected ObterAuthHeaderJson() {
+    protected ObterAuthHeader() {
         return {
             headers: new HttpHeaders({
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.LocalStorage.getUserToken()}`
-            })
+            }),
+            withCredentials: false
         };
     }
 }

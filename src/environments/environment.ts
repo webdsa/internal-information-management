@@ -8,5 +8,5 @@ export const environment = {
         uri: 'https://graph.microsoft.com/v1.0/me',
         scopes: ['user.read']
     },
-    urlApi: 'https://localhost:5171'
+    urlApi: 'http://localhost:5171'
 };
