@@ -11,8 +11,7 @@ export abstract class BaseService {
         return {
             headers: new HttpHeaders({
                 'Authorization': `Bearer ${this.LocalStorage.getUserToken()}`
-            }),
-            withCredentials: false
+            })
         };
     }
 }

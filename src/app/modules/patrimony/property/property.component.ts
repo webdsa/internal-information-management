@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NavComponent } from '../../../shared/side-nav/side-nav.component';
 import { CardComponent } from '../../../shared/card/card.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { layoutMenu } from '../../../core/models/layoutMenu.model';
 import { SearchComponent } from "../../../shared/search/search.component";
 import { FilterComponent } from "../../../shared/filter/filter.component";
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   standalone: true,
   templateUrl: './property.component.html',
   styleUrl: './property.component.scss',
-  imports: [CommonModule, NavComponent, CardComponent, SearchComponent, FilterComponent, ModalComponent],
+  imports: [CommonModule, NavComponent, CardComponent, SearchComponent, FilterComponent, ModalComponent,HttpClientModule],
 })
 export class PropertyComponent {
 
