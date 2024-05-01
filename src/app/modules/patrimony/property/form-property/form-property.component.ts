@@ -35,7 +35,6 @@ export class FormPropertyComponent {
   }
 
   saveProperty() {
-    console.log('oi');
     this.fillAdditionalData();
     this._formService.postProperty(this.form).subscribe({
       next: () => {
