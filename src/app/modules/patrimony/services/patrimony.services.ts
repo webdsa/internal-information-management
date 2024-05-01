@@ -25,4 +25,8 @@ export class PatrimonyService extends BaseService {
   public postProperty(property: InsertProperty) {
     return this._http.post<ResponseModel<Array<InsertProperty>>>(this._urlPostProperty, property, this.ObterAuthHeader());
   }
+
+  public deletePropertyById(id: number):Observable<ResponseModel<any>> {
+    return this._http.delete<ResponseModel<any>>(`${this._urlPostProperty}/${id}`, this.ObterAuthHeader());
+  }
 }

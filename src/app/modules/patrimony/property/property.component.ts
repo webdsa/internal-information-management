@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   standalone: true,
   templateUrl: './property.component.html',
   styleUrl: './property.component.scss',
-  imports: [CommonModule, NavComponent, CardComponent, SearchComponent, FilterComponent, ModalComponent,HttpClientModule],
+  imports: [CommonModule, NavComponent, CardComponent, SearchComponent, FilterComponent, ModalComponent, HttpClientModule],
 })
 export class PropertyComponent {
 
@@ -79,7 +79,13 @@ export class PropertyComponent {
     }
   }
 
-  addNew(){
+  addNew() {
     this.router.navigate(['/patrimony/new-property']);
+  }
+
+  deletePropertyById(id: number) {
+    this._patrimonyService.deletePropertyById(id).subscribe((response: ResponseModel<any>) => {
+      this.getProperty();
+    });
   }
 }
