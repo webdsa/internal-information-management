@@ -8,6 +8,7 @@ import { FormLabelComponent } from '../../../../shared/form-label/form-label.com
 import { FormMsgErrorComponent } from '../../../../shared/form-msg-error/form-msg-error.component';
 import { DetailRealty, InsertProperty } from '../../../../core/models/insert.property';
 import { PatrimonyService } from '../../services/patrimony.services';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-form-property',
   standalone: true,
@@ -22,8 +23,21 @@ export class FormPropertyComponent {
 
   @Input() realty: InsertProperty = new InsertProperty();
 
-  constructor(private _formService: PatrimonyService) { }
+  constructor(private _formService: PatrimonyService, private _rout: ActivatedRoute) { }
 
+  ngOnInit(): void {
+    this._rout.params.subscribe(params => {
+      if (params['id']) {
+        this._formService.getPropertyById(params['id']).subscribe({
+          next: (response) => {
+            this.realty = response.data!;
+          }
+        });
+      }
+    });
+  
+    
+  }
   ngOnChanges(changes: SimpleChanges) {
     if (this.checkChanges(changes, 'realty')) {
       this.form = this.realty;

@@ -22,6 +22,10 @@ export class PatrimonyService extends BaseService {
     return this._http.get<ResponseModel<Array<PropertyModel>>>(this._urlGetProperty, this.ObterAuthHeader());
   }
 
+  public getPropertyById(id: number): Observable<ResponseModel<InsertProperty>> {
+    return this._http.get<ResponseModel<InsertProperty>>(`${this._urlPostProperty}/${id}`, this.ObterAuthHeader());
+  }
+
   public postProperty(property: InsertProperty) {
     return this._http.post<ResponseModel<Array<InsertProperty>>>(this._urlPostProperty, property, this.ObterAuthHeader());
   }

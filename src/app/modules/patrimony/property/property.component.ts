@@ -88,4 +88,8 @@ export class PropertyComponent {
       this.getProperty();
     });
   }
+
+  editProperty(id:number){
+    this.router.navigate(['/patrimony/property', id]);
+  }
 }
