@@ -50,28 +50,33 @@ export class FormPropertyComponent {
 
   saveProperty() {
     this.fillAdditionalData();
+    this.form.PropertyType = Number(this.form.PropertyType);
     this._formService.postProperty(this.form).subscribe({
       next: () => {
         // this._toast.success('Sucesso!', 'Imóvel cadastrado com sucesso!');
         this.form = new InsertProperty();
+        this.form.AdditionalData = [];
       },
       error: () => { } //this._toast.error('Ops! Algo deu errado!', 'Erro interno, já estamos trabalhando para resolver!'),
     });
   }
 
   fillAdditionalData() {
+    if (!this.form.AdditionalData) {
+      this.form.AdditionalData = [];
+    }
     this.form.AdditionalData.push(
-      { Type: 0, Value: this.detailRealty.qtdRooms.toString() },
+      { Type: 0, Value: this.detailRealty.qtdRooms.toString()??"0" },
       // { Type: 1, Value: this.detailRealty.QtyBathrooms },
       // { Type: 2, Value: this.detailRealty. }, //IntercomNumber
       // { Type: 3, Value: this.detailRealty. }, //ConciergePhone
-      { Type: 4, Value: this.detailRealty.observations }, //Observation
-      { Type: 5, Value: this.detailRealty.codEnergy.toString() }, //EletricalCode
-      { Type: 6, Value: this.detailRealty.codWater.toString() }, //WaterCode
-      { Type: 7, Value: this.detailRealty.meterEnergy.toString() }, //EletricMeter
+      { Type: 4, Value: this.detailRealty.observations??"" }, //Observation
+      { Type: 5, Value: this.detailRealty.codEnergy.toString()??"0" }, //EletricalCode
+      { Type: 6, Value: this.detailRealty.codWater.toString()??"0" }, //WaterCode
+      { Type: 7, Value: this.detailRealty.meterEnergy.toString()??"0" }, //EletricMeter
       // { Type: 8, Value: this.detailRealty. }, //QtyResidents
-      { Type: 9, Value: this.detailRealty.limitPeople.toString() }, //QtyMaxResidents
-      { Type: 10, Value: this.detailRealty.municipalRegister },//MunicipalRegistration
+      { Type: 9, Value: this.detailRealty.limitPeople.toString()??"0" }, //QtyMaxResidents
+      { Type: 10, Value: this.detailRealty.municipalRegister??"0" },//MunicipalRegistration
       // { Type: 11, Value: this.detailRealty. } //PropertyTax
     );
   }

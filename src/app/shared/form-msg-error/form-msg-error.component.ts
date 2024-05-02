@@ -63,31 +63,31 @@ export class FormMsgErrorComponent {
 
   ValidDate() {
     const val = new Date(Date.parse(this.value));
-    if (isNaN(val.getTime())) this.msg = 'module.personnel.report.form.base.required.value-required';
+    if (isNaN(val.getTime())) this.msg = 'Valor é requerido';
   }
 
   ValidRequired() {
-    if (this.value == '' || this.value.length == 0 || this.value == null || !this.value) this.msg = 'module.personnel.report.form.base.required.value-required';
+    if (this.value == '' || this.value.length == 0 || this.value == null || !this.value) this.msg = 'Valor é requerido';
   }
 
   ValidNumber() {
     const val = parseFloat(this.value);
-    if (this.msg === '' && isNaN(val)) this.msg = 'module.personnel.report.form.base.required.value-required';
+    if (this.msg === '' && isNaN(val)) this.msg = 'Valor é requerido';
   }
 
   ValidDocument() {
     if (this.value.length == 11 && !cpf.isValid(this.value)) {
-      this.msg = 'module.personnel.report.form.base.required.document-invalid';
+      this.msg = 'Documento Inválido';
     }
 
     if (this.value.length == 14 && !cnpj.isValid(this.value)) {
-      this.msg = 'module.personnel.report.form.base.required.document-invalid';
+      this.msg = 'Documento Inválido';
     }
   }
 
   ValidZeroOrNegative() {
     const val = parseFloat(this.value);
-    if ((this.msg === '' && val === 0) || val < 0 || isNaN(val)) this.msg = 'module.personnel.report.form.base.error.value-invalid';
+    if ((this.msg === '' && val === 0) || val < 0 || isNaN(val)) this.msg = 'Valor Inválido';
   }
 }
 

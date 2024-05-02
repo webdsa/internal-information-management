@@ -2,8 +2,8 @@ export class InsertProperty {
     id!: number;
     OwnerName!: string;
     PropertyName!: string;
-    PropertyType!: PropertyTypeEnum;
-    Status!: PropertyStatusEnum;
+    PropertyType!: number;
+    Status!: number;
     PostalCode!: string;
     Address!: string;
     Complement!: string;
@@ -12,7 +12,7 @@ export class InsertProperty {
     FederativeUnit!: string;
     HasPhotovoltaic!: boolean;
     PropertyValue!: number;
-    GasType!: GasTypeEnum;
+    GasType!: number;
     AdditionalData!: Array<PropertyAdditionalDataModel>;
 }
 
@@ -37,7 +37,7 @@ export enum GasTypeEnum {
     Plumbed
 }
 export class PropertyAdditionalDataModel {
-    Type!: PropertyAdditionalDataType;
+    Type!: number;
     Value!: string;
 }
 
