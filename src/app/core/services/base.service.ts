@@ -4,6 +4,7 @@ import { LocalStorageUtils } from "../utils/local-storage.utils";
 
 export abstract class BaseService {
 
+    
     protected UrlServiceV1: string = environment.urlApi;
     public LocalStorage = new LocalStorageUtils();
 

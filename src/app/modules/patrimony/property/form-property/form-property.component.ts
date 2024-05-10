@@ -28,7 +28,7 @@ export class FormPropertyComponent {
   ngOnInit(): void {
     this._rout.params.subscribe(params => {
       if (params['id']) {
-        this._formService.getPropertyById(params['id']).subscribe({
+        this._formService.getPropertyById(params['id']).result$.subscribe({
           next: (response) => {
             this.realty = response.data!;
           }
@@ -51,7 +51,7 @@ export class FormPropertyComponent {
   saveProperty() {
     this.fillAdditionalData();
     this.form.PropertyType = Number(this.form.PropertyType);
-    this._formService.postProperty(this.form).subscribe({
+    this._formService.postProperty(this.form).result$.subscribe({
       next: () => {
         // this._toast.success('Sucesso!', 'Imóvel cadastrado com sucesso!');
         this.form = new InsertProperty();

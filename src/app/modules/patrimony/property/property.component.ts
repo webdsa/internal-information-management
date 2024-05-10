@@ -42,10 +42,11 @@ export class PropertyComponent {
   }
 
   getProperty() {
-    this._patrimonyService.getProperty().subscribe((response: ResponseModel<Array<PropertyModel>>) => {
-      this.property = response.data!;
-      this.propertyBkp = response.data!;
-      this.filteredProperties = response.data!;
+    this._patrimonyService.getProperty().result$.subscribe((response: any) => {
+      if (response.data == null) return;
+      this.property = response.data!.data;
+      this.propertyBkp = response.data!.data;
+      this.filteredProperties = response.data!.data;
     });
   }
 
@@ -84,12 +85,12 @@ export class PropertyComponent {
   }
 
   deletePropertyById(id: number) {
-    this._patrimonyService.deletePropertyById(id).subscribe((response: ResponseModel<any>) => {
+    this._patrimonyService.deletePropertyById(id).result$.subscribe((response: any) => {
       this.getProperty();
     });
   }
 
   editProperty(id:number){
-    this.router.navigate(['/patrimony/property', id]);
+    this.router.navigate(['/patrimony/edit-property', id]);
   }
 }
