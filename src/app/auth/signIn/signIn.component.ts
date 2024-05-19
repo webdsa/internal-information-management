@@ -49,7 +49,7 @@ export class SignInComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router,
     private _localStorageUtils: LocalStorageUtils
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (this.isLogged()) this.ngZone.run(() => this.router.navigate(['']));
@@ -104,12 +104,12 @@ export class SignInComponent implements OnInit {
     if (this._msalGuardConfig.authRequest)
       this._authService.loginPopup({
         ...this._msalGuardConfig.authRequest,
-      } as PopupRequest).subscribe((response:any) =>{
-        console.log(response);
+      } as PopupRequest).subscribe((response: any) => {
+        this._localStorageUtils.setUserName(response.account.name);
         this._authService.instance.setActiveAccount(response.account);
         this._localStorageUtils.setUserToken(response.account.idToken);
-        this.ngZone.run(() => this.router.navigate([''])); 
-      }) ;
+        this.ngZone.run(() => this.router.navigate(['']));
+      });
     else this._authService.loginPopup();
   }
   ngOnDestroy(): void {
@@ -120,6 +120,6 @@ export class SignInComponent implements OnInit {
   toggleVisibility() {
     this.visibility = !this.visibility;
   }
-  
-  
+
+
 }

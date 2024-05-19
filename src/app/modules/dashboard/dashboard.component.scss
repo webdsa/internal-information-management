@@ -2,103 +2,104 @@
     background-color: #EFF4FF;
     width: 100%;
     height: 100%;
-    .dash-header {
-        background-color: #0C55F3;
-        padding: 10px;
-        height: 80px;
-        display: flex;
-        justify-content: space-between;
-
-        .logo img {
-            width: 43px;
-            height: 43px;
-            gap: 0px;
-            opacity: 0px;
-            margin: 10px;
-        }
-
-        .user {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            color: var(--white);
-            border: 1px solid #447BF180;
-            align-content: center;
-            text-align: center;
-            background-color: #447BF180;
-            margin: 10px;
-        }
-
-        .user:hover {
-            background-color: #447BF1;
-            cursor: pointer;
-        }
-    }
 
     .main {
-        margin: 10vh 0px 0px 10vw;
+        margin: 8vh 0px 0px 10vw;
         width: 80vw;
 
-        h1 {
-            font-size: var(--h6-font);
-        }
+        .card-gradient {
+            gap: 0px;
+            border-radius: 10px;
+            opacity: 0px;
+            padding: 10vh 5vw;
+            background: rgb(143, 193, 251);
+            background: linear-gradient(90deg, rgba(143, 193, 251, 1) 0%, rgba(167, 252, 252, 1) 100%);
+            color: var(--white);
 
-        h3 {
-            font-size: var(--h7-font);
-        }
+            .welcome {
+                font-family: Inter;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 24px;
+                text-align: left;
+            }
 
-        .welcome {
-            font-family: "Poppins";
-            font-weight: 700;
-            line-height: 30px;
-            text-align: left;
+            h1 {
+                margin: 20px 0px 30px 0px;
+                font-family: Inter;
+                font-size: 60px;
+                font-weight: 700;
+                line-height: 64px;
+                text-align: left;
+            }
 
-            .user {
-                color: var(--primary-color);
-
+            small {
+                font-family: Inter;
+                font-size: 15px;
+                font-weight: 500;
+                line-height: 22.5px;
+                text-align: left;
             }
         }
 
-        .cards {
-            display: flex;
-            gap: 50px;
-            .card {
-                cursor: pointer;
-                width: 277px;
-                height: 200px;
-                gap: 0px;
-                border-radius: 10px;
-                opacity: 0px;
-                padding: 20px;
-                align-items: center;
-                text-align: center;
-                border: transparent;
-                h2{
-                    margin-top: 10px;
-                    color: #9795A0;
-                    font-size: var(--h6-font);
-                }
-                .icon {
-                    width: 85px;
-                    height: 85px;
-                    border-radius: 50%;
-                    background-color: #FFE9E8;
-                    display: flex;
-                    align-items: center;
-                    align-self: center;
-                    text-align: center;
-                    font-weight: 700 !important;
-                    justify-content: center;
+        .app {
+            h3 {
+                margin-top: 60px;
+                color: #1B1731;
+                font-family: Inter;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 22.5px;
+                text-align: left;
+            }
 
-                    .material-symbols-outlined {
-                        font-size: var(--h1-font);
-                        margin: 1vw;
+            .cards {
+                display: flex;
+
+                .card {
+                    background: rgba(255, 255, 255, 0.4);
+                    max-width: 500px;
+                    padding: 40px;
+                    border-radius: 12px;
+                    opacity: 30;
+                    margin: 10px 40px 0px 0px;
+                    border: transparent;
+
+                    .title {
+                        color: #081B28;
+                        font-family: Inter;
+                        font-size: 24px;
+                        font-weight: 700;
+                        line-height: 24px;
+                        text-align: left;
+                        vertical-align: middle;
+                        justify-items: center;
+                    }
+
+                    .description {
+                        font-family: Inter;
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 24px;
+                        text-align: left;
+                        color: #00000066;
+                    }
+
+                    .btn {
+                        color: var(--white);
+                        background: var(--Surfaces-Button-Primary-normal, #1E5799);
+                        width: 150px;
+                        height: 50px;
+                        padding: 5px;
+                        border-radius: 12px;
+                        justify-self: center;
+                        font-family: Inter;
+                        font-size: 16px;
+                        font-weight: 700;
+                        line-height: 20px;
 
                     }
                 }
-            }
-            .card:hover {
-                background-color: #F5F5F5;
             }
         }
     }

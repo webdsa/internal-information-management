@@ -1,0 +1,32 @@
+.dash-header {
+    background-color: var(--manual---primary--03);
+    padding: 10px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+
+    .logo img {
+        width: 43px;
+        height: 43px;
+        gap: 0px;
+        opacity: 0px;
+        margin: 10px;
+    }
+
+    .user {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: var(--white);
+        border: 1px solid #447BF180;
+        align-content: center;
+        text-align: center;
+        background-color: #447BF180;
+        margin: 10px;
+    }
+
+    .user:hover {
+        background-color: #447BF1;
+        cursor: pointer;
+    }
+}

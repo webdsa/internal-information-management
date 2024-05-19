@@ -10,5 +10,11 @@ export class LocalStorageUtils {
     public setUserToken(token: string) {
         localStorage.setItem('dsa.token', token);
     }
+    public setUserName(name: string) {
+        localStorage.setItem('user.name', name);
+    }
+    public getUserName() {
+        return localStorage.getItem('user.name');
+    }
 
 }
