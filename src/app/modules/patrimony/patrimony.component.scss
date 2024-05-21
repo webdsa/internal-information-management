@@ -1,13 +1,28 @@
-.patrymony{
-  display: flex;
-  justify-content: space-between;
-
-  .children{
-    width: 85%;
+.patrymony {
+  .children {
     transition: width 0.3s ease;
-  }
+    padding: 8vh 6vw;
 
-  .collapsed {
-    width: calc(100% - 3rem);
+    p {
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 20px;
+      text-align: left;
+      color: #1B1731;
+    }
+
+    strong {
+      font-family: Inter;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 24px;
+      text-align: left;
+
+      .name {
+        color: #1E5799;
+      }
+    }
+
   }
 }

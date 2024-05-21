@@ -1,15 +1,47 @@
+@defer {
+<app-menu-bar></app-menu-bar>
 <div class="patrymony">
-  <div class="sidenav" [style]="' margin-right: ' + this.colapse + 'px'" [style.marginRight.px]="colapse">
-    @defer {
-    <app-side-nav [menuItens]="menuItens" (colapseMenu)="colapse = $event" />
-    } @placeholder {
-    <div class="item">
-      <ngx-skeleton-loader count="1" appearance="line" animation="progress" />
-    </div>
-    }
-  </div>
+  <!-- <div class="sidenav" [style]="' margin-right: ' + this.colapse + 'px'" [style.marginRight.px]="colapse">
+      @defer {
+      <app-side-nav [menuItens]="menuItens" (colapseMenu)="colapse = $event" />
+      } @placeholder {
+      <div class="item">
+        <ngx-skeleton-loader count="1" appearance="line" animation="progress" />
+      </div>
+      }
+    </div> -->
 
   <div class="children" [class.collapsed]="colapse > 0">
+    <strong>Bem-vindo, <span class="name">{{personName}}</span></strong>
+    <p>Gerencie o patrimônio da Igreja Adventista do Sétimo Dia.</p>
+
+    <div class="cards">
+      <div class="row">
+        <div class="card">
+          <h2>MORADORES</h2>
+          <p class="description">CADASTRADOS</p>
+          <h1>230</h1>
+          <img src="assets/media/svg/PeopleOnWindow.svg" width="175px">
+        </div>
+        <div class="card">
+          <h2>IMÓVEIS</h2>
+          <p class="description">DISPONÍVEIS</p>
+          <h1>30</h1>
+          <img src="assets/media/svg/Houses.svg" width="175px">
+        </div>
+      </div>
+      <div class="row">
+        <div class="card">
+          <span class="title">Relatórios</span>
+          @for (item of reports; track $index) {
+          <span class="material-symbols-outlined">
+            {{item.icon}}
+          </span>
+          <span>{{item.name}}</span>
+          }
+        </div>
+      </div>
+    </div>
     @defer {
     <router-outlet />
     } @placeholder {
@@ -19,3 +51,4 @@
     }
   </div>
 </div>
+}
