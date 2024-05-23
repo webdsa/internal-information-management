@@ -19,6 +19,38 @@ export class PatrimonyComponent {
   public menuItens: layoutMenu[] = [];
   public colapse: number = 300;
   public personName: string = 'User';
+  public services: any[] = [
+    {
+      "id": 0,
+      "name": "Financeiro",
+      "description": "Notas fiscais, faturas, preço do gás, conferência.",
+      "icon": "attach_money"
+    },
+    {
+      "id": 1,
+      "name": "Rateios",
+      "description": "Rateio de gás, PROTEGE, cortinas e pintura.",
+      "icon": "call_split"
+    },
+    {
+      "id": 2,
+      "name": "Garantias",
+      "description": "Boiler das casas e bombs de poço.",
+      "icon": "license"
+    },
+    {
+      "id": 3,
+      "name": "Outros Serviços",
+      "description": "Detetização, limpeza de cortinas, pinturas e mais.",
+      "icon": "build"
+    },
+    {
+      "id": 4,
+      "name": "Preço do gás",
+      "description": "Confira o valor atual do gás.",
+      "icon": "propane_tank"
+    }
+  ];
   public reports: any[] = [ // Change the type from Array<any> to any[]
     {
       "id": 0,

@@ -16,28 +16,51 @@
     <p>Gerencie o patrimônio da Igreja Adventista do Sétimo Dia.</p>
 
     <div class="cards">
-      <div class="row">
-        <div class="card">
-          <h2>MORADORES</h2>
-          <p class="description">CADASTRADOS</p>
-          <h1>230</h1>
-          <img src="assets/media/svg/PeopleOnWindow.svg" width="175px">
+      <div>
+        <div class="row">
+          <div class="col-4">
+            <div class="card">
+              <h2 style="color: #1E5799;">MORADORES</h2>
+              <p style="color: #1E5799;" class="description">CADASTRADOS</p>
+              <h1>230</h1>
+              <img src="assets/media/svg/PeopleOnWindow.svg" width="175px">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card">
+              <h2 style="color: #40B2B2;">IMÓVEIS</h2>
+              <p style="color: #40B2B2;" class="description">DISPONÍVEIS</p>
+              <h1>30</h1>
+              <img src="assets/media/svg/Houses.svg" width="175px">
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <h2>IMÓVEIS</h2>
-          <p class="description">DISPONÍVEIS</p>
-          <h1>30</h1>
-          <img src="assets/media/svg/Houses.svg" width="175px">
+        <div class="row">
+          <div class="card">
+            <span class="title">Relatórios</span>
+            @for (item of reports; track $index) {
+            <span class="material-symbols-outlined">
+              {{item.icon}}
+            </span>
+            <span>{{item.name}}</span>
+            }
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="card">
-          <span class="title">Relatórios</span>
-          @for (item of reports; track $index) {
-          <span class="material-symbols-outlined">
-            {{item.icon}}
-          </span>
-          <span>{{item.name}}</span>
+      <div class="card">
+        <h3>Procurando algum serviço?</h3>
+        <p>Confira nossa lista</p>
+        <div class="services">
+          @for (service of services; track $index) {
+          <div class="icon">
+            <span class="material-symbols-outlined">
+              {{service.icon}}
+            </span>
+          </div>
+          <div class="text">
+            <span class="title-service">{{service.name}}</span>
+            <span class="description-service">{{service.description}}</span>
+          </div>
           }
         </div>
       </div>
