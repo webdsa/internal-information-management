@@ -24,8 +24,26 @@
       }
     }
 
+    .cards {
+      display: flex;
+    }
+
+    .mb {
+      margin-bottom: 30px;
+    }
+
     .card {
       padding: 10px 20px 0px 20px;
+
+      .title {
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 20px;
+        text-align: left;
+        color: #081B28;
+        margin-bottom: 30px;
+      }
 
       h2 {
         font-family: Inter;
@@ -56,6 +74,44 @@
         position: absolute;
         right: 20px;
         top: 20px
+      }
+
+      .title-service {
+        display: flex;
+      }
+    }
+
+    .card-report {
+      padding: 20px 20px 0px 30px;
+
+      .reports {
+        display: grid;
+        gap: 25px;
+        grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+
+        .item {
+          display: flex;
+          gap: 5px;
+
+          span:first-child {
+            width: 40px;
+            height: 40px;
+            font-size: 2rem;
+            font-weight: 700;
+            border-radius: 5px;
+            background-color: #EBF4FF;
+            color: #1E5799;
+          }
+
+          span:last-child {
+            font-family: Inter;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: left;
+            color: #1B1731;
+          }
+        }
       }
     }
   }

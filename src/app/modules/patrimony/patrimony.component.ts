@@ -3,7 +3,7 @@ import { NavComponent } from '../../shared/side-nav/side-nav.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { layoutMenu } from '../../core/models/layoutMenu.model';
 import { HttpClient } from '@angular/common/http';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -24,31 +24,36 @@ export class PatrimonyComponent {
       "id": 0,
       "name": "Financeiro",
       "description": "Notas fiscais, faturas, preço do gás, conferência.",
-      "icon": "attach_money"
+      "icon": "attach_money",
+      "rout": "financeiro"
     },
     {
       "id": 1,
       "name": "Rateios",
       "description": "Rateio de gás, PROTEGE, cortinas e pintura.",
-      "icon": "call_split"
+      "icon": "call_split",
+      "rout": "rateios"
     },
     {
       "id": 2,
       "name": "Garantias",
       "description": "Boiler das casas e bombs de poço.",
-      "icon": "license"
+      "icon": "license",
+      "rout": "garantias"
     },
     {
       "id": 3,
       "name": "Outros Serviços",
       "description": "Detetização, limpeza de cortinas, pinturas e mais.",
-      "icon": "build"
+      "icon": "build",
+      "rout": "outros-servicos"
     },
     {
       "id": 4,
       "name": "Preço do gás",
       "description": "Confira o valor atual do gás.",
-      "icon": "propane_tank"
+      "icon": "propane_tank",
+      "rout": "preco-gas"
     }
   ];
   public reports: any[] = [ // Change the type from Array<any> to any[]
@@ -88,12 +93,16 @@ export class PatrimonyComponent {
       "icon": "description",
     }
   ];
-  constructor(private _httpClient: HttpClient, private _sanitizer: DomSanitizer) { }
+  constructor(private _httpClient: HttpClient, private _sanitizer: DomSanitizer, private _router: Router) { }
   ngOnInit() {
 
     this.personName = localStorage.getItem('user.name')!;
     this._httpClient.get<layoutMenu[]>('assets/mock/menu.json').subscribe(data => {
       this.menuItens = data;
     });
+  }
+
+  navigateTo(route: string) {
+    this._router.navigate(['patrimony/' + route]);
   }
 }

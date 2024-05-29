@@ -53,6 +53,13 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
     if (this.isLogged()) this.ngZone.run(() => this.router.navigate(['']));
+    this._msalBroadcastService.msalSubject$.subscribe({
+      next: (msalSubject) => {
+        if (msalSubject.eventType === 'msal:acquireTokenFailure') {
+          this.router.navigate(['/signIn']);
+        }
+      },
+    });
     this._msalBroadcastService.inProgress$
       .pipe(
         filter(
@@ -76,6 +83,7 @@ export class SignInComponent implements OnInit {
       .subscribe((msg: EventMessage) =>
         localStorage.setItem('tokenExpiration', (msg.payload as any).expiresOn)
       );
+
 
     this._msalBroadcastService.msalSubject$
       .pipe(

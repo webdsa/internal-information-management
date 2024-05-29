@@ -14,11 +14,10 @@
   <div class="children" [class.collapsed]="colapse > 0">
     <strong>Bem-vindo, <span class="name">{{personName}}</span></strong>
     <p>Gerencie o patrimônio da Igreja Adventista do Sétimo Dia.</p>
-
     <div class="cards">
-      <div>
-        <div class="row">
-          <div class="col-4">
+      <div class="col-8">
+        <div class="row mb">
+          <div class="col-6">
             <div class="card">
               <h2 style="color: #1E5799;">MORADORES</h2>
               <p style="color: #1E5799;" class="description">CADASTRADOS</p>
@@ -26,7 +25,7 @@
               <img src="assets/media/svg/PeopleOnWindow.svg" width="175px">
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-6">
             <div class="card">
               <h2 style="color: #40B2B2;">IMÓVEIS</h2>
               <p style="color: #40B2B2;" class="description">DISPONÍVEIS</p>
@@ -36,32 +35,40 @@
           </div>
         </div>
         <div class="row">
-          <div class="card">
-            <span class="title">Relatórios</span>
-            @for (item of reports; track $index) {
-            <span class="material-symbols-outlined">
-              {{item.icon}}
-            </span>
-            <span>{{item.name}}</span>
-            }
+          <div class="col-12">
+            <div class="card card-report">
+              <span class="title">Relatórios</span>
+              <div class="reports">
+                @for (item of reports; track $index) {
+                <div class="item">
+                  <span class="material-symbols-outlined">
+                    {{item.icon}}
+                  </span>
+                  <span>{{item.name}}</span>
+                </div>
+                }
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="card">
-        <h3>Procurando algum serviço?</h3>
-        <p>Confira nossa lista</p>
-        <div class="services">
-          @for (service of services; track $index) {
-          <div class="icon">
-            <span class="material-symbols-outlined">
-              {{service.icon}}
-            </span>
-          </div>
-          <div class="text">
-            <span class="title-service">{{service.name}}</span>
+      <div class="col-4">
+        <div class="card">
+          <h3>Procurando algum serviço?</h3>
+          <p>Confira nossa lista</p>
+          <div class="services">
+            @for (service of services; track $index) {
+            <div class="title-service" (click)="navigateTo(service.rout)">
+              <div class="icon">
+                <span class="material-symbols-outlined">
+                  {{service.icon}}
+                </span>
+              </div>
+              <span>{{service.name}}</span>
+            </div>
             <span class="description-service">{{service.description}}</span>
+            }
           </div>
-          }
         </div>
       </div>
     </div>
