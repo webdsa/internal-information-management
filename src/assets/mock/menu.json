@@ -1,63 +1,40 @@
 [
   {
     "id": 1,
-    "label": "Dashboard",
+    "label": "Inicio",
     "icon": "dashboard",
     "routerLink": "/patrimony"
   },
   {
     "id": 2,
+    "label": "Imóveis",
+    "icon": "home",
+    "routerLink": "/patrimony/property",
+    "items": [
+      {
+        "id": 1,
+        "label": "Cadastrar",
+        "icon": "add",
+        "routerLink": "/patrimony/property/new"
+      },
+      {
+        "id": 2,
+        "label": "Listar",
+        "icon": "list",
+        "routerLink": "/patrimony/property"
+      }
+    ]
+  },
+  {
+    "id": 3,
     "label": "Moradores",
     "icon": "group",
     "routerLink": "/patrimony/resident"
   },
   {
-    "id": 3,
-    "label": "Imóveis Disponíveis",
-    "icon": "home",
-    "routerLink": "/patrimony/property"
-  },
-  {
     "id": 4,
-    "label": "Serviços",
+    "label": "Fornecedores",
     "icon": "build",
-    "items": [
-      {
-        "id": 1,
-        "text": "Não sei",
-        "icon": "dashboard",
-        "routerLink": "/services"
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "label": "Faturas",
-    "icon": "attach_money",
-    "routerLink": "/invoices"
-  },
-  {
-    "id": 6,
-    "label": "Relatórios",
-    "icon": "description",
-    "routerLink": "/reports"
-  },
-  {
-    "id": 7,
-    "label": "Layout das Casas",
-    "icon": "design_services",
-    "routerLink": "/houses-layout"
-  },
-  {
-    "id": 8,
-    "label": "Documentos",
-    "icon": "attach_file",
-    "routerLink": "/documents"
-  },
-  {
-    "id": 9,
-    "label": "Enviar E-mail",
-    "icon": "mail",
-    "routerLink": "/send-email"
+    "routerLink": "/patrimony/supplier"
   }
 ]

@@ -1,18 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { get } from 'http';
+import { layoutMenu } from '../../core/models/layoutMenu.model';
+import { HttpClient } from '@angular/common/http';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-menu-bar',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './menu-bar.component.html',
   styleUrl: './menu-bar.component.scss'
 })
 export class MenuBarComponent implements OnInit {
+  constructor(private _httpClient: HttpClient) { }
   public nameAcount: string = 'User';
+  public menuItens: layoutMenu[] = [];
+
   ngOnInit(): void {
     this.nameAcount = localStorage.getItem('user.name')!;
     this.getInitials();
+    this.getMenu();
   }
   getInitials() {
     const firstName = this.nameAcount[0];
@@ -22,5 +28,10 @@ export class MenuBarComponent implements OnInit {
     const firstLetterLastName = lastName.charAt(0);
 
     return firstLetterFirstName + firstLetterLastName;
+  }
+  getMenu() {
+    this._httpClient.get<layoutMenu[]>('assets/mock/menu.json').subscribe(data => {
+      this.menuItens = data;
+    });
   }
 }
