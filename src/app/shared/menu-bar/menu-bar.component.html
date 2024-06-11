@@ -1,20 +1,24 @@
 <div class="dash-header">
     <div class="logo"><img src="../../assets/media/church.png" alt=""></div>
+    @if (haveMenuItens == true) {
     <div class="menu-itens">
         @for (item of menuItens; track $index) {
-        <a [routerLink]="item.routerLink">
-            <label>{{ item.label }}</label>
-        </a>@if (item.items.length>0) {
-        @for (children of item.items; track $index) {
-        <div class="children-itens">
-            <a [routerLink]="children.routerLink">
-                <label>{{ children.label }}</label>
-            </a>
-        </div>
+        @if(item.routerLink){
+        <label (click)="openSubMenu(item.id);navigateTo(item.routerLink?item.routerLink:'')">{{ item.label }}</label>
+        }@else {
+        <label (click)="openSubMenu(item.id)">{{ item.label }}</label>
         }
         }
-        }
-
     </div>
+    }
     <div class="user">{{getInitials()}}</div>
 </div>
+@if (subMenu.length > 0 && haveMenuItens == true) {
+<div class="children-itens">
+    @for (children of subMenu; track $index) {
+    <a [routerLink]="children.routerLink">
+        <label>{{ children.label }}</label>
+    </a>
+    }
+</div>
+}

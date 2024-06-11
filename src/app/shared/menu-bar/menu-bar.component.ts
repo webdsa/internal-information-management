@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
 import { layoutMenu } from '../../core/models/layoutMenu.model';
 import { HttpClient } from '@angular/common/http';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-menu-bar',
@@ -11,9 +11,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './menu-bar.component.scss'
 })
 export class MenuBarComponent implements OnInit {
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient, private ngZone: NgZone, private router: Router) { }
   public nameAcount: string = 'User';
   public menuItens: layoutMenu[] = [];
+  public subMenu: layoutMenu[] = [];
+
+  @Input() haveMenuItens: boolean = true;
 
   ngOnInit(): void {
     this.nameAcount = localStorage.getItem('user.name')!;
@@ -33,5 +36,11 @@ export class MenuBarComponent implements OnInit {
     this._httpClient.get<layoutMenu[]>('assets/mock/menu.json').subscribe(data => {
       this.menuItens = data;
     });
+  }
+  openSubMenu(id: number) {
+    this.subMenu = this.menuItens.find(x => x.id === id)!.items;
+  }
+  navigateTo(rout: string) {
+    this.ngZone.run(() => this.router.navigate([rout]));
   }
 }

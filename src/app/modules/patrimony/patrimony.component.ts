@@ -17,6 +17,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class PatrimonyComponent {
 
   public menuItens: layoutMenu[] = [];
+  public menuClick: boolean = false;
   public colapse: number = 300;
   public personName: string = 'User';
   public services: any[] = [
@@ -95,7 +96,6 @@ export class PatrimonyComponent {
   ];
   constructor(private _httpClient: HttpClient, private _sanitizer: DomSanitizer, private _router: Router) { }
   ngOnInit() {
-
     this.personName = localStorage.getItem('user.name')!;
     this._httpClient.get<layoutMenu[]>('assets/mock/menu.json').subscribe(data => {
       this.menuItens = data;

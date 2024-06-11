@@ -1,16 +1,6 @@
-@defer {
 <app-menu-bar></app-menu-bar>
+@if (menuClick) {}
 <div class="patrymony">
-  <!-- <div class="sidenav" [style]="' margin-right: ' + this.colapse + 'px'" [style.marginRight.px]="colapse">
-      @defer {
-      <app-side-nav [menuItens]="menuItens" (colapseMenu)="colapse = $event" />
-      } @placeholder {
-      <div class="item">
-        <ngx-skeleton-loader count="1" appearance="line" animation="progress" />
-      </div>
-      }
-    </div> -->
-
   <div class="children" [class.collapsed]="colapse > 0">
     <strong>Bem-vindo, <span class="name">{{personName}}</span></strong>
     <p>Gerencie o patrimônio da Igreja Adventista do Sétimo Dia.</p>
@@ -74,4 +64,4 @@
     </div>
   </div>
 </div>
-}
+<router-outlet />
