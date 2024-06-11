@@ -1,5 +1,5 @@
 <app-menu-bar></app-menu-bar>
-@if (menuClick) {}
+@if (!showProperty && !showResident) {
 <div class="patrymony">
   <div class="children" [class.collapsed]="colapse > 0">
     <strong>Bem-vindo, <span class="name">{{personName}}</span></strong>
@@ -64,4 +64,6 @@
     </div>
   </div>
 </div>
+}@else {
 <router-outlet />
+}

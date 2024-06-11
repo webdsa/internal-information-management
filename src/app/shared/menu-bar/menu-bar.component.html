@@ -4,9 +4,11 @@
     <div class="menu-itens">
         @for (item of menuItens; track $index) {
         @if(item.routerLink){
-        <label (click)="openSubMenu(item.id);navigateTo(item.routerLink?item.routerLink:'')">{{ item.label }}</label>
+        <a [routerLink]="item.routerLink?item.routerLink:''">
+            <label>{{ item.label }}</label>
+        </a>
         }@else {
-        <label (click)="openSubMenu(item.id)">{{ item.label }}</label>
+        <label (click)="openSubMenu(item.id);selected = !selected">{{ item.label }}</label>
         }
         }
     </div>

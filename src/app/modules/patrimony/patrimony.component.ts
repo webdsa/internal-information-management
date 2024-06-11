@@ -3,7 +3,7 @@ import { NavComponent } from '../../shared/side-nav/side-nav.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { layoutMenu } from '../../core/models/layoutMenu.model';
 import { HttpClient } from '@angular/common/http';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -17,7 +17,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class PatrimonyComponent {
 
   public menuItens: layoutMenu[] = [];
+
   public menuClick: boolean = false;
+  public showProperty = false;
+  public showResident = false;
+
   public colapse: number = 300;
   public personName: string = 'User';
   public services: any[] = [
@@ -94,7 +98,13 @@ export class PatrimonyComponent {
       "icon": "description",
     }
   ];
-  constructor(private _httpClient: HttpClient, private _sanitizer: DomSanitizer, private _router: Router) { }
+  constructor(private _httpClient: HttpClient, private _sanitizer: DomSanitizer, private _router: Router) {
+    this._router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.updateComponentDisplay(event.urlAfterRedirects);
+      }
+    });
+  }
   ngOnInit() {
     this.personName = localStorage.getItem('user.name')!;
     this._httpClient.get<layoutMenu[]>('assets/mock/menu.json').subscribe(data => {
@@ -104,5 +114,10 @@ export class PatrimonyComponent {
 
   navigateTo(route: string) {
     this._router.navigate(['patrimony/' + route]);
+  }
+  updateComponentDisplay(url: string) {
+    console.log(url, 'aqui');
+    this.showProperty = url.endsWith('/property');
+    this.showResident = url.endsWith('/resident');
   }
 }

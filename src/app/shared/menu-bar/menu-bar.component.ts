@@ -15,6 +15,7 @@ export class MenuBarComponent implements OnInit {
   public nameAcount: string = 'User';
   public menuItens: layoutMenu[] = [];
   public subMenu: layoutMenu[] = [];
+  public selected: boolean = false;
 
   @Input() haveMenuItens: boolean = true;
 
@@ -41,6 +42,7 @@ export class MenuBarComponent implements OnInit {
     this.subMenu = this.menuItens.find(x => x.id === id)!.items;
   }
   navigateTo(rout: string) {
+    if (this.selected) this.subMenu = [];
     this.ngZone.run(() => this.router.navigate([rout]));
   }
 }
