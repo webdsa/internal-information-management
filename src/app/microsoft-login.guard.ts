@@ -1,7 +1,6 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateFn } from '@angular/router';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
-import { LocalStorageUtils } from './core/utils/local-storage.utils';
 
 
 export const MicrosoftLoginGuard: CanActivateFn = (
