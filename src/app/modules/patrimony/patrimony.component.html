@@ -5,7 +5,7 @@
     <strong>Bem-vindo, <span class="name">{{personName}}</span></strong>
     <p>Gerencie o patrimônio da Igreja Adventista do Sétimo Dia.</p>
     <div class="cards">
-      <div class="col-8">
+      <div class="col-8 p-0">
         <div class="row mb">
           <div class="col-6">
             <div class="card">
@@ -54,9 +54,11 @@
                   {{service.icon}}
                 </span>
               </div>
-              <span>{{service.name}}</span>
+              <div class="d-grid">
+                <span>{{service.name}}</span>
+                <span class="description-service">{{service.description}}</span>
+              </div>
             </div>
-            <span class="description-service">{{service.description}}</span>
             }
           </div>
         </div>

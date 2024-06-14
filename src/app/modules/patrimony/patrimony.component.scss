@@ -33,7 +33,8 @@
     }
 
     .card {
-      padding: 10px 20px 0px 20px;
+      padding: 20px;
+      border: 0;
 
       .title {
         font-family: Inter;
@@ -43,6 +44,10 @@
         text-align: left;
         color: #081B28;
         margin-bottom: 30px;
+      }
+
+      h3 {
+        font-size: var(--subtitle-font);
       }
 
       h2 {
@@ -79,6 +84,13 @@
       .title-service {
         display: flex;
         cursor: pointer;
+        margin-bottom: 1rem;
+
+        .icon {
+          align-content: center;
+          padding: 2px;
+          margin-right: 0.5rem;
+        }
       }
     }
 
@@ -88,7 +100,7 @@
       .reports {
         display: grid;
         gap: 25px;
-        grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+        grid-template: repeat(3, 1fr) / repeat(4, 1fr);
 
         .item {
           display: flex;
@@ -102,17 +114,26 @@
             border-radius: 5px;
             background-color: #EBF4FF;
             color: #1E5799;
+            align-content: center;
+            text-align: -webkit-center;
           }
 
           span:last-child {
             font-family: Inter;
-            font-size: 18px;
+            font-size: var(--text-font);
             font-weight: 400;
             line-height: 20px;
             text-align: left;
             color: #1B1731;
+            align-content: space-evenly;
           }
         }
+      }
+    }
+
+    .services{
+      .description-service {
+        font-size: var(--small-font);
       }
     }
   }
