@@ -8,5 +8,5 @@ export const environment = {
         uri: 'https://graph.microsoft.com/v1.0/me',
         scopes: ['user.read']
     },
-    urlApi: 'http://localhost:5171'
+    urlApi: 'https://02c8-187-75-79-100.ngrok-free.app/'
 }
