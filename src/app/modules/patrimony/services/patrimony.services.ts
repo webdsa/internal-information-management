@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { ResponseModel } from '../../../core/models/response.model';
 import { PropertyModel } from '../../../core/models/property.model';
 import { BaseService } from '../../../core/services/base.service';
 import { InsertProperty } from '../../../core/models/insert.property';
@@ -15,7 +14,7 @@ export class PatrimonyService extends BaseService {
   private _urlBase = environment.urlApi;
   private _urlGetProperty = `${this._urlBase}/property/list`;
   private _urlPostProperty = `${this._urlBase}/property`;
-  
+
   #http = inject(HttpClient);
   #query = injectQuery();
 

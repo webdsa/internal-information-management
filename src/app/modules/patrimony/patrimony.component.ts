@@ -98,7 +98,7 @@ export class PatrimonyComponent {
       "icon": "description",
     }
   ];
-  constructor(private _httpClient: HttpClient, private _sanitizer: DomSanitizer, private _router: Router) {
+  constructor(private _httpClient: HttpClient, private _router: Router) {
     this._router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateComponentDisplay(event.urlAfterRedirects);

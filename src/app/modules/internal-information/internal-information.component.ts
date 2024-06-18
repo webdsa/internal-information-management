@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavComponent } from '../../shared/side-nav/side-nav.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
+import { HttpClient } from '@angular/common/http';
+import { InternalService } from './services/internal.service';
 
 @Component({
   selector: 'app-internal-information',
@@ -13,4 +15,11 @@ import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
 })
 export class InternalInformationComponent {
   public colapse: number = 300;
+
+  constructor(private _internalService: InternalService) { }
+
+  ngOnInit(): void {
+    this._internalService.getAllGuide();
+
+  }
 }
