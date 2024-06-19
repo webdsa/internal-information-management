@@ -17,7 +17,7 @@
         align-items: center;
 
         a {
-          color: #F5F7F9;
+            color: #F5F7F9;
         }
     }
 
@@ -66,4 +66,9 @@
         color: #1E5799;
         padding: 10px 2rem;
     }
+}
+
+a,
+label {
+    cursor: pointer;
 }

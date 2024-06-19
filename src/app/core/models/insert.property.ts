@@ -14,6 +14,7 @@ export class InsertProperty {
     PropertyValue!: number;
     GasType!: GasTypeEnum;
     AdditionalData!: Array<PropertyAdditionalDataModel>;
+
 }
 
 export enum PropertyTypeEnum {
@@ -38,7 +39,7 @@ export enum GasTypeEnum {
 }
 export class PropertyAdditionalDataModel {
     Type!: number;
-    Value!: string;
+    Value!: any;
 }
 
 export enum PropertyAdditionalDataType {
@@ -57,7 +58,7 @@ export enum PropertyAdditionalDataType {
 }
 
 export class DetailRealty {
-    hasSolarPower!: boolean;
+    hasPhotovoltaic!: boolean;
     typeGas!: any;
     qtdRooms!: number;
     limitPeople!: number;
@@ -65,10 +66,10 @@ export class DetailRealty {
     meterEnergy!: number;
     codWater!: number;
     municipalRegister!: string;
-    codIPTU!: number;
+    propertyTax!: boolean;
     realtyValue!: number;
     numberPhone!: number;
     numberPhone2!: number;
     emailConcierge!: string;
     observations!: string;
-  }
+}

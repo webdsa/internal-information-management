@@ -4,7 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { PropertyModel } from '../../../core/models/property.model';
 import { BaseService } from '../../../core/services/base.service';
 import { InsertProperty } from '../../../core/models/insert.property';
-import { injectQuery } from '@ngneat/query';
+import { injectMutation, injectQuery, injectQueryClient } from '@ngneat/query';
 
 
 @Injectable({
@@ -17,6 +17,8 @@ export class PatrimonyService extends BaseService {
 
   #http = inject(HttpClient);
   #query = injectQuery();
+  #mutation = injectMutation();
+  #client = injectQueryClient();
 
   constructor() { super(); }
 
@@ -35,16 +37,16 @@ export class PatrimonyService extends BaseService {
   }
 
   public postProperty(property: InsertProperty) {
-    return this.#query({
-      queryKey: ['property'],
-      queryFn: () => this.#http.post<Array<InsertProperty>>(this._urlPostProperty, property, this.ObterAuthHeader())
+    return this.#mutation({
+      mutationKey: ['property'],
+      mutationFn: () => this.#http.post<InsertProperty>(this._urlPostProperty, property, this.ObterAuthHeader())
     });
   }
 
   public deletePropertyById(id: number) {
-    return this.#query({
-      queryKey: ['property', id],
-      queryFn: () => this.#http.delete<any>(`${this._urlPostProperty}/${id}`, this.ObterAuthHeader())
+    return this.#mutation({
+      mutationKey: ['property'],
+      mutationFn: () => this.#http.delete(`${this._urlPostProperty}/${id}`, this.ObterAuthHeader())
     });
 
   }

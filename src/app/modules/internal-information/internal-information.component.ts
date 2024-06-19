@@ -21,7 +21,7 @@ export class InternalInformationComponent {
   public showGuids: boolean = false;
   public openModal: boolean = false;
 
-  constructor(private _internalService: InternalService, private ngZone: NgZone, private _router: Router) {
+  constructor(private ngZone: NgZone, private _router: Router) {
     this._router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateComponentDisplay(event.urlAfterRedirects);
@@ -31,10 +31,6 @@ export class InternalInformationComponent {
 
   ngOnInit(): void {
 
-  }
-
-  public selectedInput(event: any) {
-    console.log(event)
   }
   public navigateTo(rout: string) {
     this.ngZone.run(() => this._router.navigate([rout]));
