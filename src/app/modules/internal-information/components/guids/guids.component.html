@@ -21,13 +21,18 @@
         <div class="row">
             <div class="card subtopic">
                 <div class="row menu-subtopic">
-                    <span class="material-symbols-outlined" (click)="isCollapsed[$index] = !isCollapsed[$index]">
+                    <span class="material-symbols-outlined"
+                        (click)="isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]">
                         more_vert
                     </span>
-                    @if (isCollapsed[$index]) {
+                    @if (isCollapsed[guid.id][$index]) {
                     <div class="colapse">
-                        <li>Editar</li>
-                        <li style="color: red;">Excluir</li>
+                        <li
+                            (click)="editSubTopic(subtopic);isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]">
+                            Editar</li>
+                        <li style="color: red;"
+                            (click)="deleteSubTopic($index);isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]">
+                            Excluir</li>
                     </div>
                     }
 
@@ -70,7 +75,8 @@
         <span class="material-symbols-outlined" (click)="openModalSubtopic = !openModalSubtopic">
             close
         </span>
-        <app-new-subtopic [topicId]="topicId" (onClose)="openModalSubtopic = !$event"></app-new-subtopic>
+        <app-new-subtopic [subtopic]="subTopic" [topicId]="topicId"
+            (onClose)="openModalSubtopic = !$event"></app-new-subtopic>
     </div>
 </div>
 }
