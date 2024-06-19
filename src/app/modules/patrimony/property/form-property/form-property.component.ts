@@ -8,7 +8,6 @@ import { FormLabelComponent } from '../../../../shared/form-label/form-label.com
 import { FormMsgErrorComponent } from '../../../../shared/form-msg-error/form-msg-error.component';
 import { DetailRealty, GasTypeEnum, InsertProperty, PropertyTypeEnum } from '../../../../core/models/insert.property';
 import { PatrimonyService } from '../../services/patrimony.services';
-import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-form-property',
   standalone: true,
@@ -40,12 +39,11 @@ export class FormPropertyComponent {
   #patrimonyService = inject(PatrimonyService);
   constructor(private _toast: ToastrService) { }
 
-  ngOnInit(): void { }
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.checkChanges(changes, 'realty')) {
-      this.form = this.realty;
-    }
+  ngOnInit(): void {
+    this.form = this.realty ?? new InsertProperty();
+    console.log(this.realty, 'ola');
   }
+
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
     return changes[values] && changes[values]?.previousValue != changes[values]?.currentValue;

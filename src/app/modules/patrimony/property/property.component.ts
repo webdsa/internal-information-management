@@ -9,7 +9,7 @@ import { PatrimonyService } from '../services/patrimony.services';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormPropertyComponent } from './form-property/form-property.component';
-import { InsertProperty } from '../../../core/models/insert.property';
+import { InsertProperty, PropertyStatusEnum } from '../../../core/models/insert.property';
 
 @Component({
   selector: 'app-property',
@@ -24,6 +24,8 @@ export class PropertyComponent {
   public property: InsertProperty = new InsertProperty();
   public propertysBkp: Array<InsertProperty> = [];
   public filteredProperties: Array<InsertProperty> = [];
+
+  public PropertyStatusEnum!: PropertyStatusEnum;
 
   public modalOpen: boolean = false;
   public openModalEdit: boolean = false;
@@ -96,7 +98,8 @@ export class PropertyComponent {
     });
   }
 
-  editProperty(id: number) {
-
+  editProperty(property: any) {
+    this.openModalEdit = true;
+    this.property = property;
   }
 }

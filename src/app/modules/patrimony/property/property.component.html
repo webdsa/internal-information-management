@@ -57,17 +57,19 @@
                   {{ report.PropertyType }}
                 </div>
                 <div class="col">
-                  @if(report.Status.toString() == 'Ocupado'){
-                  <label class="status status-red">{{ report.Status.toString() }}</label>
-                  } @else if (report.Status.toString() == 'Desocupado'){
-                  <label class="status status-green">{{ report.Status.toString() }}</label>
-                  } @else {
-                  <label class="status status-yellow">{{ report.Status.toString() }}</label>
+                  @if(report.Status === 0) {
+                  <label class="status status-red">Ocupado</label>
                   }
+                  @else if (report.Status === 1) {
+                  <label class="status status-green">Desocupado</label>
+                  }
+                  <!-- @else {
+                  <label class="status status-yellow">{{ report.Status.toString() }}</label>
+                  } -->
                 </div>
                 <div class="col-2 date">
                   <button class="action edit">
-                    <span class="material-symbols-outlined" (click)="editProperty(report.id)"> edit </span>
+                    <span class="material-symbols-outlined" (click)="editProperty(report)"> edit </span>
                   </button>
                   <button class="action visibility">
                     <span class="material-symbols-outlined"> visibility </span>
