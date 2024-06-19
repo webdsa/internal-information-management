@@ -4,12 +4,11 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
 import { InternalService } from './services/internal.service';
 import { FormsModule } from '@angular/forms';
-import { SelectInputComponent } from './components/select-input/select-input.component';
 
 @Component({
   selector: 'app-internal-information',
   standalone: true,
-  imports: [MenuBarComponent, NgxSkeletonLoaderModule, RouterOutlet, SelectInputComponent, FormsModule],
+  imports: [MenuBarComponent, NgxSkeletonLoaderModule, RouterOutlet, FormsModule],
   templateUrl: './internal-information.component.html',
   styleUrl: './internal-information.component.scss'
 })

@@ -39,12 +39,93 @@
 
     }
 
-    .subtopic {
-        width: 416px;
-        height: 264px;
-        padding: 68px 0px 68px 0px;
-        border-radius: 12px;
-        border: none;
-        background-color: var(--white);
+    .subtopics {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+
+        .menu-subtopic {
+            .material-symbols-outlined {
+                display: flex;
+                justify-content: end;
+                float: right;
+                cursor: pointer;
+            }
+
+            .colapse {
+                position: absolute;
+                top: 40px;
+                background-color: #ffffff;
+                width: 100px;
+                right: 0px;
+                padding: 10px;
+                border-radius: 8px;
+
+                li {
+                    text-decoration: none;
+                    list-style-type: none;
+                    cursor: pointer;
+                }
+
+                li:hover {
+                    background-color: var(--foundation---primary---light);
+                }
+            }
+        }
+
+        .subtopic {
+            width: 416px;
+            height: 264px;
+            border-radius: 12px;
+            border: none;
+            background-color: #FFFFFF4D;
+            padding: 24px;
+
+            .description {
+                margin-top: 10px;
+            }
+        }
+
+        .title-subtopic {
+            font-family: Inter;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 24px;
+            text-align: left;
+
+        }
+    }
+
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+
+    .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 777px;
+        height: 304px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        .material-symbols-outlined {
+            cursor: pointer;
+            position: absolute;
+            right: 25px;
+
+        }
     }
 }

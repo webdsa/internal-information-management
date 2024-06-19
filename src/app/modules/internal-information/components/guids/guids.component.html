@@ -6,7 +6,8 @@
             </span>
         </div>
         <div class="col" style="float: right;">
-            <button class="btn" style="background-color: #1E5799;border: 1px #1E5799 solid; color: #ffffff;">Adicionar
+            <button class="btn" style="background-color: #1E5799;border: 1px #1E5799 solid; color: #ffffff;"
+                (click)="openModal = !openModal">Adicionar
                 Novo</button>
         </div>
     </div>
@@ -15,15 +16,45 @@
         <small>TÓPICO {{$index +1}}</small>
         <span class="title-guid">{{guid.name}}</span>
     </div>
-    @for (subtopic of guid.subTopics; track $index) {
-    <div class="row">
-        <div class="card subtopic">
-            <span class="title-subtopic">
-                <img src="../../../../../assets/media/svg/star-icon.svg" alt=""> {{subtopic.name}}
-            </span>
+    <div class="subtopics">
+        @for (subtopic of guid.subTopics; track $index) {
+        <div class="row">
+            <div class="card subtopic">
+                <div class="row menu-subtopic">
+                    <span class="material-symbols-outlined" (click)="isCollapsed[$index] = !isCollapsed[$index]">
+                        more_vert
+                    </span>
+                    @if (isCollapsed[$index]) {
+                    <div class="colapse">
+                        <li>Editar</li>
+                        <li style="color: red;">Excluir</li>
+                    </div>
+                    }
+
+                </div>
+                <div class="row">
+                    <span class="title-subtopic">
+                        <img src="../../../../../assets/media/svg/star-icon.svg" alt=""> {{subtopic.name}}
+                    </span>
+                </div>
+                <div class="row description">
+                    {{subtopic.description}}
+                </div>
+            </div>
         </div>
+        }
     </div>
-    }
+
     }
 
 </div>
+@if (openModal) {
+<div class="modal">
+    <div class="modal-content">
+        <span class="material-symbols-outlined" (click)="openModal = !openModal">
+            close
+        </span>
+        <app-new-topic (onClose)="openModal = $event"></app-new-topic>
+    </div>
+</div>
+}
