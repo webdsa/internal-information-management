@@ -37,45 +37,45 @@
             <div class="col-2 title-table"></div>
           </div>
         </div>
-        <div class="reports" *ngFor="let report of filteredProperties">
+        <div class="reports" *ngFor="let property of propertys">
           <div class="row tbody border-style">
             <div class="d-flex list align-items-center">
               <div class="checkbox">
-                <input [id]="'checkbox' + report.id" class="form-check-input" type="checkbox" />
+                <input [id]="'checkbox' + property.id" class="form-check-input" type="checkbox" />
               </div>
               <div style="display: contents">
                 <div class="col person-name --kt-text-gray-900 text-hover-primary fw-semibold">
-                  {{ report.id }}
+                  {{ property.id }}
                 </div>
                 <div class="col-4 date">
-                  {{ report.PropertyName }}
+                  {{ property.PropertyName |json}}
                 </div>
                 <div class="col date">
-                  {{ report.OwnerName }}
+                  {{ property.OwnerName }}
                 </div>
                 <div class="col-2 date">
-                  {{ report.PropertyType }}
+                  {{ property.PropertyType }}
                 </div>
                 <div class="col">
-                  @if(report.Status === 0) {
+                  @if(property.Status === 0) {
                   <label class="status status-red">Ocupado</label>
                   }
-                  @else if (report.Status === 1) {
+                  @else if (property.Status === 1) {
                   <label class="status status-green">Desocupado</label>
                   }
                   <!-- @else {
-                  <label class="status status-yellow">{{ report.Status.toString() }}</label>
+                  <label class="status status-yellow">{{ property.Status.toString() }}</label>
                   } -->
                 </div>
                 <div class="col-2 date">
                   <button class="action edit">
-                    <span class="material-symbols-outlined" (click)="editProperty(report)"> edit </span>
+                    <span class="material-symbols-outlined" (click)="editProperty(property)"> edit </span>
                   </button>
                   <button class="action visibility">
                     <span class="material-symbols-outlined"> visibility </span>
                   </button>
                   <button class="action delete">
-                    <span class="material-symbols-outlined" (click)="deletePropertyById(report.id)"> delete </span>
+                    <span class="material-symbols-outlined" (click)="deletePropertyById(property.id)"> delete </span>
                   </button>
                 </div>
               </div>

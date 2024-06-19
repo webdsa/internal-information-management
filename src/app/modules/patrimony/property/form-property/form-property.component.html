@@ -19,13 +19,13 @@
                         <option value="-0">
                             Selecione o proprietário
                         </option>
-                        <option value="CUB">
+                        <option value="CUB" [selected]="form.OwnerName == 'CUB'">
                             CUB
                         </option>
-                        <option value="PROASA">
+                        <option value="PROASA" [selected]="form.OwnerName == 'PROASA'">
                             PROASA
                         </option>
-                        <option value="IAJA">
+                        <option value="IAJA" [selected]="form.OwnerName == 'IAJA'">
                             IAJA
                         </option>
                     </select>
@@ -37,7 +37,7 @@
                             Selecione o tipo do imóvel
                         </option>
                         @for (item of typePropertyArray; track $index) {
-                        <option value="{{item.value}}">
+                        <option value="{{item.value}}" [selected]="form.PropertyType == item.label">
                             {{item.label}}
                         </option>
                         }
@@ -89,10 +89,10 @@
                         <option value="-0">
                             Escolhe uma opção
                         </option>
-                        <option value="0">
+                        <option value="0" [selected]="detailRealty.hasPhotovoltaic == false">
                             Não
                         </option>
-                        <option value="1">
+                        <option value="1" [selected]="detailRealty.hasPhotovoltaic == true">
                             Sim
                         </option>
                     </select>
@@ -104,7 +104,7 @@
                             Selecione o tipo do gás
                         </option>
                         @for (item of typeGasArray; track $index) {
-                        <option value="{{item.value}}">
+                        <option value="{{item.value}}" [selected]="form.GasType == item.label">
                             {{item.label}}
                         </option>
                         }
@@ -148,10 +148,10 @@
                         <option value="-0">
                             Selecione uma opção
                         </option>
-                        <option value="0">
+                        <option value="0" [selected]="detailRealty.propertyTax == 'false'">
                             Não
                         </option>
-                        <option value="1">
+                        <option value="1" [selected]="detailRealty.propertyTax == 'true'">
                             Sim
                         </option>
                     </select>
