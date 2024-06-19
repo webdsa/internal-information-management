@@ -13,16 +13,22 @@ import { InternalService } from '../../services/internal.service';
 })
 export class NewSubtopicComponent {
   @Input() public topicId!: number;
+  @Input() public subTopiIid!: number;
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public titleSuTtopic: string = '';
   public subTopicDescription: string = '';
+  public subTopicContent: string = '';
 
 
   constructor(private _toast: ToastrService) { }
 
   #InternalService = inject(InternalService);
 
+  ngOnInit(): void {
+
+
+  }
   public createSubTopic() {
     const topic = {
       "id": 0,
@@ -30,7 +36,7 @@ export class NewSubtopicComponent {
       "isActive": true,
       "description": this.subTopicDescription,
       "topicId": this.topicId,
-      "content": ''
+      "content": this.subTopicContent
     };
     this.#InternalService.createSubTopic(topic).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {

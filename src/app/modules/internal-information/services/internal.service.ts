@@ -38,9 +38,28 @@ export class InternalService extends BaseService {
             }
         });
     }
+
+    public deleteTopic(id: number) {
+        return this.#mutation({
+            mutationFn: () => this.#http.delete(`${this._urlGuid}/${id}`, this.ObterAuthHeader()),
+            onSuccess: () => {
+                this.#client.invalidateQueries({ queryKey: ['AllGuid'] });
+            }
+        });
+    }
+
     public createSubTopic(subTopic: any) {
         return this.#mutation({
             mutationFn: () => this.#http.post(this._urlSubTopic, subTopic, this.ObterAuthHeader()),
+            onSuccess: () => {
+                this.#client.invalidateQueries({ queryKey: ['AllGuid'] });
+            }
+        });
+    }
+
+    public deleteSubTopic(id: number) {
+        return this.#mutation({
+            mutationFn: () => this.#http.delete(`${this._urlSubTopic}/${id}`, this.ObterAuthHeader()),
             onSuccess: () => {
                 this.#client.invalidateQueries({ queryKey: ['AllGuid'] });
             }
