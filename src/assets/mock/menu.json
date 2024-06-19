@@ -33,7 +33,7 @@
         "id": 1,
         "label": "Cadastrar",
         "icon": "add",
-        "routerLink": "/patrimony/resident/new"
+        "routerLink": "/patrimony/new-resident"
       },
       {
         "id": 2,
