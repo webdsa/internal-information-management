@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { GuidModel, Subtopics } from '../../../../core/models/guid.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -29,9 +28,9 @@ export class NewSubtopicComponent {
       "id": 0,
       "name": this.titleSuTtopic,
       "isActive": true,
-      "description": '',
+      "description": this.subTopicDescription,
       "topicId": this.topicId,
-      "content": this.subTopicDescription
+      "content": ''
     };
     this.#InternalService.createSubTopic(topic).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {
