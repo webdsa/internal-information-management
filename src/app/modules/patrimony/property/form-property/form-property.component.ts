@@ -8,7 +8,6 @@ import { FormLabelComponent } from '../../../../shared/form-label/form-label.com
 import { FormMsgErrorComponent } from '../../../../shared/form-msg-error/form-msg-error.component';
 import { DetailRealty, GasTypeEnum, InsertProperty, PropertyTypeEnum } from '../../../../core/models/insert.property';
 import { PatrimonyService } from '../../services/patrimony.services';
-import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-form-property',
   standalone: true,
@@ -20,6 +19,7 @@ export class FormPropertyComponent {
   public form: InsertProperty = new InsertProperty();
   public retractInfo: boolean = true;
   public detailRealty: DetailRealty = new DetailRealty();
+
   public typePropertyArray = Object.keys(PropertyTypeEnum)
     .filter(key => !isNaN(Number(key)))
     .map(key => ({
@@ -37,26 +37,13 @@ export class FormPropertyComponent {
 
   @Input() realty: InsertProperty = new InsertProperty();
   #patrimonyService = inject(PatrimonyService);
-  constructor(private _rout: ActivatedRoute, private _toast: ToastrService) { }
+  constructor(private _toast: ToastrService) { }
 
   ngOnInit(): void {
-    this._rout.params.subscribe(params => {
-      if (params['id']) {
-        this.#patrimonyService.getPropertyById(params['id']).result$.subscribe({
-          next: (response) => {
-            this.realty = response.data!;
-          }
-        });
-      }
-    });
-
-
+    this.form = this.realty ?? new InsertProperty();
+    console.log(this.realty, 'ola');
   }
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.checkChanges(changes, 'realty')) {
-      this.form = this.realty;
-    }
-  }
+
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
     return changes[values] && changes[values]?.previousValue != changes[values]?.currentValue;
@@ -105,7 +92,7 @@ export class FormPropertyComponent {
     this.detailRealty.hasPhotovoltaic = Boolean(event.value);
   }
   selectIptu(event: any) {
-    this.detailRealty.propertyTax = Boolean(event.value);
+    this.detailRealty.propertyTax = event.value;
   }
   selectOwnerName(event: any) {
     this.form.OwnerName = event.value;

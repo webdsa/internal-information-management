@@ -66,7 +66,7 @@ export class DetailRealty {
     meterEnergy!: number;
     codWater!: number;
     municipalRegister!: string;
-    propertyTax!: boolean;
+    propertyTax!: string;
     realtyValue!: number;
     numberPhone!: number;
     numberPhone2!: number;

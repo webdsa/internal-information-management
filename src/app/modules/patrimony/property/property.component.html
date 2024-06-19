@@ -24,9 +24,7 @@
   <div class="card-property">
     <app-card [hasPadding]="true">
       <div class="data-table-reports">
-        <div
-          class="row thead text-start text-muted fw-normal gs-0 border-style"
-        >
+        <div class="row thead text-start text-muted fw-normal gs-0 border-style">
           <div class="d-flex">
             <div class="checkbox">
               <input class="form-check-input" type="checkbox" id="checkAll" />
@@ -43,45 +41,40 @@
           <div class="row tbody border-style">
             <div class="d-flex list align-items-center">
               <div class="checkbox">
-                <input
-                  [id]="'checkbox' + report.id"
-                  class="form-check-input"
-                  type="checkbox"
-                />
+                <input [id]="'checkbox' + report.id" class="form-check-input" type="checkbox" />
               </div>
               <div style="display: contents">
-                <div
-                  class="col person-name --kt-text-gray-900 text-hover-primary fw-semibold"
-                >
+                <div class="col person-name --kt-text-gray-900 text-hover-primary fw-semibold">
                   {{ report.id }}
                 </div>
                 <div class="col-4 date">
-                  {{ report.propertyName }}
+                  {{ report.PropertyName }}
                 </div>
                 <div class="col date">
-                  {{ report.ownerName }}
+                  {{ report.OwnerName }}
                 </div>
                 <div class="col-2 date">
-                  {{ report.propertyType }}
+                  {{ report.PropertyType }}
                 </div>
                 <div class="col">
-                  @if(report.status == 'Ocupado'){
-                    <label class="status status-red">{{ report.status }}</label>
-                  } @else if (report.status == 'Desocupado'){
-                    <label class="status status-green">{{ report.status }}</label>
-                  } @else {
-                    <label class="status status-yellow">{{ report.status }}</label>
+                  @if(report.Status === 0) {
+                  <label class="status status-red">Ocupado</label>
                   }
+                  @else if (report.Status === 1) {
+                  <label class="status status-green">Desocupado</label>
+                  }
+                  <!-- @else {
+                  <label class="status status-yellow">{{ report.Status.toString() }}</label>
+                  } -->
                 </div>
                 <div class="col-2 date">
                   <button class="action edit">
-                    <span class="material-symbols-outlined" (click)="editProperty(report.id)"> edit </span>
+                    <span class="material-symbols-outlined" (click)="editProperty(report)"> edit </span>
                   </button>
                   <button class="action visibility">
                     <span class="material-symbols-outlined"> visibility </span>
                   </button>
-                  <button class="action delete" >
-                    <!-- (click)="onclickOpenModal()" -->
+                  <button class="action delete">
                     <span class="material-symbols-outlined" (click)="deletePropertyById(report.id)"> delete </span>
                   </button>
                 </div>
@@ -93,11 +86,16 @@
     </app-card>
   </div>
 </div>
-<app-modal
-  [open]="modalOpen"
-  icon="e5cd"
-  description="Apagar imóvel?"
-  messageBtnYes="Sim"
-  messageBtnNo="Cancelar"
-  (result)="onclickCloseModal($event)"
-></app-modal>
+<app-modal [open]="modalOpen" icon="e5cd" description="Apagar imóvel?" messageBtnYes="Sim" messageBtnNo="Cancelar"
+  (result)="onclickCloseModal($event)"></app-modal>
+
+@if (openModalEdit) {
+<div class="modal">
+  <div class="modal-content">
+    <span class="material-symbols-outlined" (click)="openModalEdit = !openModalEdit">
+      close
+    </span>
+    <app-form-property [realty]="property" (onClose)="openModalEdit = !$event"></app-form-property>
+  </div>
+</div>
+}
