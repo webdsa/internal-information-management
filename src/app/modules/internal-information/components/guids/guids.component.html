@@ -43,6 +43,12 @@
             </div>
         </div>
         }
+        <div class="card subtopic new" (click)="openModalSubtopic = !openModalSubtopic">
+            <img src="../../../../../assets/media/svg/plus-icon.svg">
+            <span class="subTitle-subtopic">
+                Adicionar novo sub-tópico
+            </span>
+        </div>
     </div>
 
     }
@@ -54,7 +60,17 @@
         <span class="material-symbols-outlined" (click)="openModal = !openModal">
             close
         </span>
-        <app-new-topic (onClose)="openModal = $event"></app-new-topic>
+        <app-new-topic (onClose)="openModal = !$event"></app-new-topic>
+    </div>
+</div>
+}
+@if (openModalSubtopic) {
+<div class="modal">
+    <div class="modal-content">
+        <span class="material-symbols-outlined" (click)="openModal = !openModal">
+            close
+        </span>
+        <app-new-topic (onClose)="openModal = !$event"></app-new-topic>
     </div>
 </div>
 }

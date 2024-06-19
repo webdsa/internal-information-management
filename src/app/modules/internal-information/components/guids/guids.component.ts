@@ -14,17 +14,17 @@ import { NewTopicComponent } from '../new-topic/new-topic.component';
 export class GuidsComponent {
   public allGuids: GuidModel[] = [];
   public isCollapsed: boolean[] = [];
-  public openModal: boolean = true;
+  public openModal: boolean = false;
+  public openModalSubtopic: boolean = false;
 
   #internalService = inject(InternalService);
 
   ngOnInit(): void {
     this.#internalService.getAllGuide().result$.subscribe((res: any) => {
       this.allGuids = res?.data?.data as GuidModel[];
-    });
-
-    this.allGuids.forEach((guid: GuidModel) => {
-      this.isCollapsed = guid.subTopics.map(() => false)
+      this.allGuids?.forEach((guid: GuidModel) => {
+        this.isCollapsed = guid.subTopics.map(() => false)
+      });
     });
   }
 }

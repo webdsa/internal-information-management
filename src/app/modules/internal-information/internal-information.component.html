@@ -10,7 +10,8 @@
         <button class="btn" style="background-color: #1E5799;border: 1px #1E5799 solid; color: #ffffff;"
           (click)="navigateTo('internal-information/guids')">Ver
           Tópicos</button><button class="btn"
-          style="background-color: #ffffff;border: 1px #1E5799 solid; color: #1E5799;">Adicionar Novo</button>
+          style="background-color: #ffffff;border: 1px #1E5799 solid; color: #1E5799;"
+          (click)="openModal = !openModal">Adicionar Novo</button>
       </div>
     </div>
     <div class="col-6">
@@ -21,4 +22,14 @@
 </div>
 }@else {
 <router-outlet />
+}
+@if (openModal) {
+<div class="modal">
+  <div class="modal-content">
+    <span class="material-symbols-outlined" (click)="openModal = !openModal">
+      close
+    </span>
+    <app-new-topic (onClose)="openModal = !$event"></app-new-topic>
+  </div>
+</div>
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { BaseService } from '../../../core/services/base.service';
-import { injectQuery } from '@ngneat/query';
+import { injectMutation, injectQuery, injectQueryClient } from '@ngneat/query';
 
 
 @Injectable({
@@ -10,10 +10,14 @@ import { injectQuery } from '@ngneat/query';
 })
 export class InternalService extends BaseService {
     private _urlBase = environment.urlApi;
+    private _urlGuid = `${this._urlBase}/guide/topic`;
     private _urlAllGuid = `${this._urlBase}/guide/topic/all`;
+
 
     #http = inject(HttpClient);
     #query = injectQuery();
+    #mutation = injectMutation();
+    #client = injectQueryClient();
 
     constructor() { super(); }
 
@@ -23,5 +27,14 @@ export class InternalService extends BaseService {
             queryKey: ['AllGuid'],
             queryFn: () => this.#http.get<Array<any>>(this._urlAllGuid, this.ObterAuthHeader())
         })
+    }
+
+    public createTopic(topic: any) {
+        return this.#mutation({
+            mutationFn: () => this.#http.post(this._urlGuid, topic, this.ObterAuthHeader()),
+            onSuccess: () => {
+                this.#client.invalidateQueries({ queryKey: ['AllGuid'] });
+            }
+        });
     }
 }

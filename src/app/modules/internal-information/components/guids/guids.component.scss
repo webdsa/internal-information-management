@@ -86,6 +86,33 @@
             }
         }
 
+        .new {
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 85px;
+                height: 85px;
+                top: 882px;
+                left: 677px;
+            }
+
+            .subTitle-subtopic {
+                font-family: Inter;
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 24px;
+                text-align: left;
+                color: #D4D4D4;
+            }
+        }
+
+        .card:hover .subtopic {
+            background-color: red;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
         .title-subtopic {
             font-family: Inter;
             font-size: 20px;
