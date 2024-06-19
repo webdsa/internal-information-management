@@ -5,6 +5,7 @@ import { PatrimonyComponent } from './patrimony/patrimony.component';
 import { InternalInformationComponent } from './internal-information/internal-information.component';
 import { PropertyComponent } from './patrimony/property/property.component';
 import { FormPropertyComponent } from './patrimony/property/form-property/form-property.component';
+import { GuidsComponent } from './internal-information/components/guids/guids.component';
 
 export const routes: Routes = [
     {
@@ -39,6 +40,13 @@ export const routes: Routes = [
         path: 'internal-information',
         title: 'App Internal Information Page',
         component: InternalInformationComponent,
+        children: [
+            {
+                path: 'guids',
+                title: 'App Guids Page',
+                component: GuidsComponent,
+            }
+        ]
     },
 ];
 

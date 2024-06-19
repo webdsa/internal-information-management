@@ -1,27 +1,24 @@
 <app-menu-bar [haveMenuItens]="false"></app-menu-bar>
-<div class="container">
-  <h2>Configurar Tópicos</h2>
-
-  <form>
-    <div class="mb-3">
-      <label for="topicSelect" class="form-label">Selecione o tópico</label>
-      <select class="form-select" id="topicSelect">
-        <option selected>Opção 1</option>
-        <option value="1">Opção 2</option>
-        <option value="2">Opção 3</option>
-      </select>
+@if (!showGuids) {
+<div class="card">
+  <div class="row">
+    <div class="col-6" style="padding-top: 60px;">
+      <span class="title">Seja bem vindo ao <strong>manual</strong> de instruções da <strong>DSA</strong></span>
+      <p class="text">Aqui você encontra informações sobre os processos internos da DSA, como procedimentos, normas e
+        regulamentos.</p>
+      <div class="btns">
+        <button class="btn" style="background-color: #1E5799;border: 1px #1E5799 solid; color: #ffffff;"
+          (click)="navigateTo('internal-information/guids')">Ver
+          Tópicos</button><button class="btn"
+          style="background-color: #ffffff;border: 1px #1E5799 solid; color: #1E5799;">Adicionar Novo</button>
+      </div>
     </div>
-
-    <div class="mb-3">
-      <label for="titleInput" class="form-label">Escreva o título</label>
-      <input type="text" class="form-control" id="titleInput">
+    <div class="col-6">
+      <img src="../../../assets/media/svg/bgDashTopic.svg" alt="">
     </div>
+  </div>
 
-    <div class="mb-3">
-      <label for="contentTextarea" class="form-label">Conteúdo</label>
-      <textarea class="form-control" id="contentTextarea" rows="5"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Salvar</button>
-  </form>
 </div>
+}@else {
+<router-outlet />
+}

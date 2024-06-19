@@ -1,15 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { NavComponent } from '../../../shared/side-nav/side-nav.component';
 import { CardComponent } from '../../../shared/card/card.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { layoutMenu } from '../../../core/models/layoutMenu.model';
+import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from "../../../shared/search/search.component";
 import { FilterComponent } from "../../../shared/filter/filter.component";
 import { ModalComponent } from "../../../shared/modal/modal.component";
 import { CommonModule } from '@angular/common';
 import { PropertyModel } from '../../../core/models/property.model';
 import { PatrimonyService } from '../services/patrimony.services';
-import { ResponseModel } from '../../../core/models/response.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,7 +14,7 @@ import { Router } from '@angular/router';
   standalone: true,
   templateUrl: './property.component.html',
   styleUrl: './property.component.scss',
-  imports: [CommonModule, NavComponent, CardComponent, SearchComponent, FilterComponent, ModalComponent, HttpClientModule],
+  imports: [CommonModule, CardComponent, SearchComponent, FilterComponent, ModalComponent, HttpClientModule],
 })
 export class PropertyComponent {
 
@@ -90,7 +87,7 @@ export class PropertyComponent {
     });
   }
 
-  editProperty(id:number){
+  editProperty(id: number) {
     this.router.navigate(['/patrimony/edit-property', id]);
   }
 }

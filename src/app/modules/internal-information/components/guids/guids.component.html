@@ -1,0 +1,20 @@
+<div class="guids">
+    <div class="row header">
+        <div class="col">
+            <span class="title">
+                Manual de instruções - Tópicos
+            </span>
+        </div>
+        <div class="col" style="float: right;">
+            <button class="btn" style="background-color: #1E5799;border: 1px #1E5799 solid; color: #ffffff;">Adicionar
+                Novo</button>
+        </div>
+    </div>
+    @for (guid of allGuids; track $index) {
+    <div class="row">
+        <small>TÓPICO {{$index +1}}</small>
+        <span class="title-guid">{{guid.name}}</span>
+    </div>
+    }
+
+</div>

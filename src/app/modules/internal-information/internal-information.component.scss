@@ -1,4 +1,41 @@
-.container {
-    max-width: 600px;
-    margin: 20px auto;
+.card {
+    top: 100px;
+    left: 80px;
+    width: 94vw;
+    padding: 10px 160px 10px 100px;
+    border-radius: 32px;
+    display: inline-flex;
+    align-items: center;
+    border: none;
+
+    span {
+        font-family: Inter;
+        font-size: 56px;
+        font-weight: 700;
+        line-height: 64px;
+
+        strong {
+            color: #1E5799;
+        }
+    }
+
+    .btns {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+
+        .btn {
+            width: 201px;
+            padding: 12px 40px 12px 40px;
+            border-radius: 8px;
+        }
+    }
+
+
+    img {
+        width: 325.74px;
+        height: 327.78px;
+        float: right;
+    }
+
 }

@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
-import { NavComponent } from '../../shared/side-nav/side-nav.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { layoutMenu } from '../../core/models/layoutMenu.model';
 import { HttpClient } from '@angular/common/http';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
-import { DomSanitizer } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-patrimony',
   standalone: true,
-  imports: [NavComponent, NgxSkeletonLoaderModule, RouterOutlet, MenuBarComponent],
+  imports: [CommonModule, NgxSkeletonLoaderModule, RouterOutlet, MenuBarComponent],
   templateUrl: './patrimony.component.html',
   styleUrl: './patrimony.component.scss'
 })
@@ -19,8 +18,8 @@ export class PatrimonyComponent {
   public menuItens: layoutMenu[] = [];
 
   public menuClick: boolean = false;
-  public showProperty = false;
-  public showResident = false;
+  public showProperty: boolean = false;
+  public showResident: boolean = false;
 
   public colapse: number = 300;
   public personName: string = 'User';
@@ -116,7 +115,6 @@ export class PatrimonyComponent {
     this._router.navigate(['patrimony/' + route]);
   }
   updateComponentDisplay(url: string) {
-    console.log(url, 'aqui');
     this.showProperty = url.endsWith('/property');
     this.showResident = url.endsWith('/resident');
   }

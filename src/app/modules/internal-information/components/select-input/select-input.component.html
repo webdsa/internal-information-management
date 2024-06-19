@@ -1,0 +1,19 @@
+<div class="dropdown">
+    <button class="dropdown-button" (click)="showItens = !showItens">{{ title }} <span
+            class="material-symbols-outlined">
+            keyboard_arrow_down
+        </span></button>
+    @if (showItens) {
+    <div class="dropdown-content">
+        <div *ngFor="let item of allGuids" (click)="selectedItem(item)">
+            {{ item.name }}
+        </div>
+        <div>
+            <span class="plus material-symbols-outlined">
+                add_circle
+            </span> Novo tópico
+        </div>
+    </div>
+    }
+
+</div>
