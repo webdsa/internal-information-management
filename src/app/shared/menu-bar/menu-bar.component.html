@@ -1,4 +1,4 @@
-<div class="dash-header">
+<div class="dash-header" #Menu>
     <div class="logo"><img src="../../assets/media/church.png" alt="" routerLink=""></div>
     @if (haveMenuItens == true) {
     <div class="menu-itens">
@@ -16,7 +16,7 @@
     <div class="user">{{getInitials()}}</div>
 </div>
 @if (subMenu.length > 0 && haveMenuItens == true) {
-<div class="children-itens">
+<div class="children-itens" #childrenMenu>
     @for (children of subMenu; track $index) {
     <a [routerLink]="children.routerLink">
         <label>{{ children.label }}</label>

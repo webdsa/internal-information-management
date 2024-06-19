@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
 import { layoutMenu } from '../../core/models/layoutMenu.model';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
@@ -11,6 +11,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './menu-bar.component.scss'
 })
 export class MenuBarComponent implements OnInit {
+  @ViewChild('childrenMenu') childrenMenuRef!: ElementRef;
+  @ViewChild('Menu') MenuRef!: ElementRef;
   constructor(private _httpClient: HttpClient, private ngZone: NgZone, private router: Router) { }
   public nameAcount: string = 'User';
   public menuItens: layoutMenu[] = [];
@@ -24,6 +26,21 @@ export class MenuBarComponent implements OnInit {
     this.getInitials();
     this.getMenu();
   }
+
+  ngAfterViewInit() {
+    document.addEventListener('click', this.handleOutsideClick.bind(this));
+  }
+
+  ngOnDestroy() {
+    document.removeEventListener('click', this.handleOutsideClick.bind(this));
+  }
+
+  handleOutsideClick(event: MouseEvent) {
+    if (this.childrenMenuRef && !this.childrenMenuRef.nativeElement.contains(event.target) && this.MenuRef && !this.MenuRef.nativeElement.contains(event.target)) {
+      this.subMenu = [];
+    }
+  }
+
   getInitials() {
     const firstName = this.nameAcount[0];
     const lastName = this.nameAcount[this.nameAcount.length - 1];
