@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { PropertyModel } from '../../../core/models/property.model';
 import { BaseService } from '../../../core/services/base.service';
 import { InsertProperty } from '../../../core/models/insert.property';
 import { injectMutation, injectQuery, injectQueryClient } from '@ngneat/query';
@@ -25,7 +24,7 @@ export class PatrimonyService extends BaseService {
   public getProperty() {
     return this.#query({
       queryKey: ['property'],
-      queryFn: () => this.#http.get<Array<PropertyModel>>(this._urlGetProperty, this.ObterAuthHeader())
+      queryFn: () => this.#http.get<Array<InsertProperty>>(this._urlGetProperty, this.ObterAuthHeader())
     })
   }
 
