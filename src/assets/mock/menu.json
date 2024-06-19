@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "label": "Inicio",
+    "label": "Início",
     "icon": "dashboard",
     "routerLink": "/patrimony"
   },
@@ -18,7 +18,7 @@
       },
       {
         "id": 2,
-        "label": "Listar",
+        "label": "Todos os imóveis",
         "icon": "list",
         "routerLink": "/patrimony/property"
       }
@@ -37,7 +37,7 @@
       },
       {
         "id": 2,
-        "label": "Listar",
+        "label": "Todos os moradores",
         "icon": "list",
         "routerLink": "/patrimony/resident"
       }

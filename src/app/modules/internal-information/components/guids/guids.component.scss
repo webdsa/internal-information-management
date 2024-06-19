@@ -119,13 +119,25 @@
       text-align: left;
     }
   }
+
+  .delete-sub{
+    display: flex;
+    align-items: center;
+
+    .btn-delete{
+      border: 0;
+      padding: 0.5rem 2rem;
+      background-color: var(--tailwind--rose--100);
+      color: var(--tailwind--rose--500);
+      border-radius: 8px;
+    }
+  }
 }
 
 .modal {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -135,10 +147,9 @@
 
   .modal-content {
     background-color: white;
-    padding: 20px;
+    padding: 2rem 3rem;
     border-radius: 8px;
     width: 777px;
-    height: 304px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -149,5 +160,9 @@
       position: absolute;
       right: 25px;
     }
+  }
+
+  .btns button {
+    margin: 1rem 1rem 0;
   }
 }

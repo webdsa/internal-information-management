@@ -19,6 +19,14 @@
         a {
             color: #F5F7F9;
         }
+
+        a label {
+          cursor: pointer;
+        }
+
+        label {
+          cursor: pointer;
+        }
     }
 
     .logo img {
@@ -65,6 +73,7 @@
         text-align: left;
         color: #1E5799;
         padding: 10px 2rem;
+        cursor: pointer;
     }
 }
 
