@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { InternalService } from '../../services/internal.service';
 import { GuidModel, Subtopics } from '../../../../core/models/guid.model';
 import { NewTopicComponent } from '../new-topic/new-topic.component';
@@ -19,9 +19,13 @@ export class GuidsComponent {
 
   public openModal: boolean = false;
   public openModalSubtopic: boolean = false;
+  public openModalConfirm: boolean = false;
+  public openModalConfirmSub: boolean = false;
 
   public topicId: number = 0;
   public subTopic: Subtopics = new Subtopics();
+
+  @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private _toast: ToastrService) { }
   #internalService = inject(InternalService);
@@ -40,6 +44,16 @@ export class GuidsComponent {
     this.topicId = id;
   }
 
+  public openModalDelete(id: number){
+    this.openModalConfirm = true;
+    this.topicId = id;
+  }
+
+  public openModalDeleteSub(id: number){
+    this.openModalConfirmSub = true;
+    this.topicId = id;
+  }
+
   public deleteTopic(id: number) {
     this.#internalService.deleteTopic(id).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {
@@ -48,6 +62,7 @@ export class GuidsComponent {
         this._toast.error('Procure a equipe de suporte.', 'Erro ao deletar tópico!');
       }
     });
+    this.openModalConfirm = false;
   }
 
   public deleteSubTopic(id: number) {
@@ -58,6 +73,7 @@ export class GuidsComponent {
         this._toast.error('Procure a equipe de suporte.', 'Erro ao deletar tópico!');
       }
     });
+    this.openModalConfirmSub = false;
   }
 
   public editSubTopic(subTopic: Subtopics) {

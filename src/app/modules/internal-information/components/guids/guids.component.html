@@ -1,82 +1,190 @@
 <div class="guids">
-    <div class="row header">
-        <div class="col">
-            <span class="title">
-                Manual de instruções - Tópicos
-            </span>
-        </div>
-        <div class="col" style="float: right;">
-            <button class="btn" style="background-color: #1E5799;border: 1px #1E5799 solid; color: #ffffff;"
-                (click)="openModal = !openModal">Adicionar
-                Novo</button>
-        </div>
+  <div class="row header">
+    <div class="col">
+      <span class="title"> Manual de instruções - Tópicos </span>
     </div>
-    @for (guid of allGuids; track $index) {
+    <div class="col" style="float: right">
+      <button
+        class="btn"
+        style="
+          background-color: #1e5799;
+          border: 1px #1e5799 solid;
+          color: #ffffff;
+        "
+        (click)="openModal = !openModal"
+      >
+        Adicionar Novo
+      </button>
+    </div>
+  </div>
+  @for (guid of allGuids; track $index) {
+  <div class="row">
+    <div class="col d-grid title">
+      <small>TÓPICO {{ $index + 1 }}</small>
+      <span class="title-guid">{{ guid.name }}</span>
+    </div>
+    <div class="col delete-sub">
+      <button class="btn-delete" (click)="openModalDelete(guid.id)">
+        Excluir
+      </button>
+    </div>
+  </div>
+  <div class="subtopics">
+    @for (subtopic of guid.subTopics; track $index) {
     <div class="row">
-        <small>TÓPICO {{$index +1}}</small>
-        <span class="title-guid">{{guid.name}}</span>
-    </div>
-    <div class="subtopics">
-        @for (subtopic of guid.subTopics; track $index) {
+      <div class="card subtopic">
+        <div class="row menu-subtopic">
+          <span
+            class="material-symbols-outlined"
+            (click)="
+              isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]
+            "
+          >
+            more_vert
+          </span>
+          @if (isCollapsed[guid.id][$index]) {
+          <div class="colapse">
+            <li
+              (click)="
+                editSubTopic(subtopic);
+                isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]
+              "
+            >
+              Editar
+            </li>
+            <li
+              style="color: red"
+              (click)="
+                openModalDeleteSub(subtopic.id);
+              "
+            >
+              Excluir
+            </li>
+          </div>
+          }
+        </div>
         <div class="row">
-            <div class="card subtopic">
-                <div class="row menu-subtopic">
-                    <span class="material-symbols-outlined"
-                        (click)="isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]">
-                        more_vert
-                    </span>
-                    @if (isCollapsed[guid.id][$index]) {
-                    <div class="colapse">
-                        <li
-                            (click)="editSubTopic(subtopic);isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]">
-                            Editar</li>
-                        <li style="color: red;"
-                            (click)="deleteSubTopic($index);isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]">
-                            Excluir</li>
-                    </div>
-                    }
-
-                </div>
-                <div class="row">
-                    <span class="title-subtopic">
-                        <img src="../../../../../assets/media/svg/star-icon.svg" alt=""> {{subtopic.name}}
-                    </span>
-                </div>
-                <div class="row description">
-                    {{subtopic.description}}
-                </div>
-            </div>
+          <span class="title-subtopic">
+            <img src="../../../../../assets/media/svg/star-icon.svg" alt="" />
+            {{ subtopic.name }}
+          </span>
         </div>
-        }
-        <div class="card subtopic new" (click)="OpenModalSubtopic(guid.id)">
-            <img src="../../../../../assets/media/svg/plus-icon.svg">
-            <span class="subTitle-subtopic">
-                Adicionar novo sub-tópico
-            </span>
+        <div class="row description">
+          {{ subtopic.description }}
         </div>
+      </div>
     </div>
-
     }
+    <div class="card subtopic new" (click)="OpenModalSubtopic(guid.id)">
+      <img src="../../../../../assets/media/svg/plus-icon.svg" />
+      <span class="subTitle-subtopic"> Adicionar novo sub-tópico </span>
+    </div>
+  </div>
 
+  }
 </div>
 @if (openModal) {
 <div class="modal">
-    <div class="modal-content">
-        <span class="material-symbols-outlined" (click)="openModal = !openModal">
-            close
-        </span>
-        <app-new-topic (onClose)="openModal = !$event"></app-new-topic>
-    </div>
+  <div class="modal-content">
+    <span class="material-symbols-outlined" (click)="openModal = !openModal">
+      close
+    </span>
+    <app-new-topic (onClose)="openModal = !$event"></app-new-topic>
+  </div>
 </div>
-}
-@if (openModalSubtopic) {
+} @if (openModalSubtopic) {
 <div class="modal">
-    <div class="modal-content">
-        <span class="material-symbols-outlined" (click)="openModalSubtopic = !openModalSubtopic">
-            close
-        </span>
-        <app-new-subtopic [subtopic]="subTopic" [topicId]="topicId"
-            (onClose)="openModalSubtopic = !$event"></app-new-subtopic>
-    </div>
+  <div class="modal-content">
+    <span
+      class="material-symbols-outlined"
+      (click)="openModalSubtopic = !openModalSubtopic"
+    >
+      close
+    </span>
+    <app-new-subtopic
+      [subtopic]="subTopic"
+      [topicId]="topicId"
+      (onClose)="openModalSubtopic = !$event"
+    ></app-new-subtopic>
+  </div>
 </div>
-}
+} @if (openModalConfirm) {
+<div class="modal">
+  <div class="modal-content">
+    <span
+      class="material-symbols-outlined"
+      (click)="openModalConfirm = !openModalConfirm"
+    >
+      close
+    </span>
+    <div class="row">
+      <strong>Tem certeza que deseja excluir este tópico?</strong>
+    </div>
+    <div class="btns">
+      <button
+        class="btn"
+        style="
+          background-color: #ffffff;
+          border: 1px #1e5799 solid;
+          color: #1e5799;
+        "
+         (click)="openModalConfirm = !openModalConfirm"
+      >
+        Cancelar
+      </button>
+      <button
+        class="btn"
+        style="
+          background-color: #1e5799;
+          border: 1px #1e5799 solid;
+          color: #ffffff;
+        "
+        (click)="deleteTopic(topicId)"
+      >
+        Excluir
+      </button>
+    </div>
+  </div>
+</div>
+} @if (openModalConfirmSub) {
+  <div class="modal">
+    <div class="modal-content">
+      <span
+        class="material-symbols-outlined"
+        (click)="openModalConfirmSub = !openModalConfirmSub"
+      >
+        close
+      </span>
+      <div class="row">
+        <i class="fa-sharp fa-thin fa-circle-xmark"></i>
+      </div>
+      <div class="row">
+        <strong>Tem certeza que deseja excluir este subtópico?</strong>
+      </div>
+      <div class="btns">
+        <button
+          class="btn"
+          style="
+            background-color: #ffffff;
+            border: 1px #1e5799 solid;
+            color: #1e5799;
+          "
+          (click)="openModalConfirmSub = !openModalConfirmSub"
+        >
+          Cancelar
+        </button>
+        <button
+          class="btn"
+          style="
+            background-color: #1e5799;
+            border: 1px #1e5799 solid;
+            color: #ffffff;
+          "
+          (click)="deleteSubTopic(topicId)"
+        >
+          Excluir
+        </button>
+      </div>
+    </div>
+  </div>
+  }
