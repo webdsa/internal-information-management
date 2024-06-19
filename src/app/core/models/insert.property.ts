@@ -2,8 +2,8 @@ export class InsertProperty {
     id!: number;
     OwnerName!: string;
     PropertyName!: string;
-    PropertyType!: number;
-    Status!: number;
+    PropertyType!: PropertyTypeEnum;
+    Status!: PropertyStatusEnum;
     PostalCode!: string;
     Address!: string;
     Complement!: string;
@@ -12,7 +12,7 @@ export class InsertProperty {
     FederativeUnit!: string;
     HasPhotovoltaic!: boolean;
     PropertyValue!: number;
-    GasType!: number;
+    GasType!: GasTypeEnum;
     AdditionalData!: Array<PropertyAdditionalDataModel>;
 }
 
@@ -72,4 +72,3 @@ export class DetailRealty {
     emailConcierge!: string;
     observations!: string;
   }
-  
