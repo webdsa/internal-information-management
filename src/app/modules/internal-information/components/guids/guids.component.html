@@ -25,10 +25,14 @@
                         (click)="isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]">
                         more_vert
                     </span>
-                    @if (isCollapsed[$index]) {
+                    @if (isCollapsed[guid.id][$index]) {
                     <div class="colapse">
-                        <li (click)="editSubTopic($index)">Editar</li>
-                        <li style="color: red;" (click)="deleteSubTopic($index)">Excluir</li>
+                        <li
+                            (click)="editSubTopic(subtopic);isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]">
+                            Editar</li>
+                        <li style="color: red;"
+                            (click)="deleteSubTopic($index);isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]">
+                            Excluir</li>
                     </div>
                     }
 
@@ -71,7 +75,7 @@
         <span class="material-symbols-outlined" (click)="openModalSubtopic = !openModalSubtopic">
             close
         </span>
-        <app-new-subtopic [subTopiIid]="subTopicId" [topicId]="topicId"
+        <app-new-subtopic [subtopic]="subTopic" [topicId]="topicId"
             (onClose)="openModalSubtopic = !$event"></app-new-subtopic>
     </div>
 </div>

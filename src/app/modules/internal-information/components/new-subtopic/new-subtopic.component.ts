@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { InternalService } from '../../services/internal.service';
+import { Subtopics } from '../../../../core/models/guid.model';
 
 @Component({
   selector: 'app-new-subtopic',
@@ -12,8 +13,8 @@ import { InternalService } from '../../services/internal.service';
   styleUrl: './new-subtopic.component.scss'
 })
 export class NewSubtopicComponent {
-  @Input() public topicId!: number;
-  @Input() public subTopiIid!: number;
+  @Input() public topicId: number = 0;
+  @Input() public subtopic: Subtopics = new Subtopics();
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public titleSuTtopic: string = '';
@@ -26,12 +27,16 @@ export class NewSubtopicComponent {
   #InternalService = inject(InternalService);
 
   ngOnInit(): void {
-
-
+    if (this.subtopic) {
+      this.titleSuTtopic = this.subtopic.name;
+      this.subTopicDescription = this.subtopic.description;
+      this.subTopicContent = this.subtopic.content;
+    }
   }
+
   public createSubTopic() {
     const topic = {
-      "id": 0,
+      "id": this.subtopic.id ?? 0,
       "name": this.titleSuTtopic,
       "isActive": true,
       "description": this.subTopicDescription,

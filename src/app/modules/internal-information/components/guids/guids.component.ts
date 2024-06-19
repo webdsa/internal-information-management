@@ -21,7 +21,7 @@ export class GuidsComponent {
   public openModalSubtopic: boolean = false;
 
   public topicId: number = 0;
-  public subTopicId: number = 0;
+  public subTopic: Subtopics = new Subtopics();
 
   constructor(private _toast: ToastrService) { }
   #internalService = inject(InternalService);
@@ -60,8 +60,8 @@ export class GuidsComponent {
     });
   }
 
-  public editSubTopic(id: number) {
+  public editSubTopic(subTopic: Subtopics) {
     this.openModalSubtopic = true;
-    this.subTopicId = id;
+    this.subTopic = subTopic;
   }
 }
