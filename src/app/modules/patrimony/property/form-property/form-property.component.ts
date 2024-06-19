@@ -41,9 +41,13 @@ export class FormPropertyComponent {
 
   ngOnInit(): void {
     this.form = this.realty ?? new InsertProperty();
-    console.log(this.realty, 'ola');
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.checkChanges(changes, 'realty')) {
+      this.form = this.realty ?? new InsertProperty();
+    }
+  }
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
     return changes[values] && changes[values]?.previousValue != changes[values]?.currentValue;
