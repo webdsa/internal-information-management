@@ -31,25 +31,15 @@ export const routes: Routes = [
                 component: FormPropertyComponent,
             },
             {
-                path: 'edit-property/:id',
-                title: 'Editar Imóvel',
-                component: FormPropertyComponent,
+                path: 'resident',
+                title: 'App Resident Page',
+                component: ResidentComponent,
             },
             {
-              path: 'resident',
-              title: 'App Resident Page',
-              component: ResidentComponent,
+                path: 'new-resident',
+                title: 'Novo Morador',
+                component: FormResidentComponent,
             },
-            {
-              path: 'new-resident',
-              title: 'Novo Morador',
-              component: FormResidentComponent,
-          },
-          {
-              path: 'edit-resident/:id',
-              title: 'Editar Morador',
-              component: FormResidentComponent,
-          },
         ]
     },
     {
