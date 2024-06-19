@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { InternalService } from '../../services/internal.service';
+import { GuidModel } from '../../../../core/models/guid.model';
 
 @Component({
   selector: 'app-guids',
@@ -10,11 +11,11 @@ import { InternalService } from '../../services/internal.service';
   styleUrl: './guids.component.scss'
 })
 export class GuidsComponent {
-  public allGuids: any[] = [];
+  public allGuids: GuidModel[] = [];
   #internalService = inject(InternalService);
   ngOnInit(): void {
     this.#internalService.getAllGuide().result$.subscribe((res: any) => {
-      this.allGuids = res?.data?.data as any[];
+      this.allGuids = res?.data?.data as GuidModel[];
     });
   }
 }

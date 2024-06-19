@@ -15,6 +15,15 @@
         <small>TÓPICO {{$index +1}}</small>
         <span class="title-guid">{{guid.name}}</span>
     </div>
+    @for (subtopic of guid.subTopics; track $index) {
+    <div class="row">
+        <div class="card subtopic">
+            <span class="title-subtopic">
+                <img src="../../../../../assets/media/svg/star-icon.svg" alt=""> {{subtopic.name}}
+            </span>
+        </div>
+    </div>
+    }
     }
 
 </div>
