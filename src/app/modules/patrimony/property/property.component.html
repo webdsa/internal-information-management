@@ -37,7 +37,8 @@
             <div class="col-2 title-table"></div>
           </div>
         </div>
-        <div class="reports" *ngFor="let property of propertys">
+        @for (property of propertys; track $index) {
+        <div class="reports">
           <div class="row tbody border-style">
             <div class="d-flex list align-items-center">
               <div class="checkbox">
@@ -48,7 +49,7 @@
                   {{ property.id }}
                 </div>
                 <div class="col-4 date">
-                  {{ property.PropertyName |json}}
+                  {{ property.PropertyName}}
                 </div>
                 <div class="col date">
                   {{ property.OwnerName }}
@@ -64,8 +65,8 @@
                   <label class="status status-green">Desocupado</label>
                   }
                   <!-- @else {
-                  <label class="status status-yellow">{{ property.Status.toString() }}</label>
-                  } -->
+                    <label class="status status-yellow">{{ property.Status.toString() }}</label>
+                    } -->
                 </div>
                 <div class="col-2 date">
                   <button class="action edit">
@@ -82,6 +83,7 @@
             </div>
           </div>
         </div>
+        }
       </div>
     </app-card>
   </div>
