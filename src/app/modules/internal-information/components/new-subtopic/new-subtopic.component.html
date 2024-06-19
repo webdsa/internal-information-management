@@ -1,0 +1,18 @@
+<div class="new-subtopic">
+    <div class="row">
+        <input type="text" name="guidTopic" class="form-control text-start" placeholder="Escreva o título do Subtópico"
+            [(ngModel)]="titleSuTtopic" />
+    </div>
+    <div class="row">
+        <textarea class="form-control" id="txtArea" rows="5" placeholder="Digite aqui o conteúdo."
+            [(ngModel)]="subTopicDescription"></textarea>
+    </div>
+    <div class="row">
+        <div class="btns">
+            <button class="btn" style="background-color: #ffffff;border: 1px #1E5799 solid; color: #1E5799;"
+                (click)="onClose.emit(true)">Cancelar</button>
+            <button class="btn" style="background-color: #1E5799;border: 1px #1E5799 solid; color: #ffffff;"
+                (click)="createSubTopic()">Adicionar</button>
+        </div>
+    </div>
+</div>

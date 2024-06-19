@@ -1,0 +1,16 @@
+new-topic {
+    margin: 4px 0px 0px 0px;
+}
+
+.btns {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: end;
+
+    .btn {
+        width: 201px;
+        padding: 12px 40px 12px 40px;
+        border-radius: 8px;
+    }
+}
