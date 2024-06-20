@@ -157,10 +157,10 @@
 @if (openModalAlterRuleSubtopic) {
 <div class="modal">
   <div class="modal-content">
-    <span class="material-symbols-outlined" (click)="openModalSubtopic = !openModalSubtopic">
+    <span class="material-symbols-outlined" (click)="openModalAlterRuleSubtopic = !openModalAlterRuleSubtopic">
       close
     </span>
-    <app-alter-rule-subtopic [subtopic]="subTopic" (onClose)="openModalSubtopic = !$event"></app-alter-rule-subtopic>
+    <app-alter-rule-subtopic [subtopic]="subTopic" (onClose)="openModalAlterRuleSubtopic = !$event"></app-alter-rule-subtopic>
   </div>
 </div>
 }

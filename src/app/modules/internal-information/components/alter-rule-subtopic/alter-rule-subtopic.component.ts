@@ -20,6 +20,9 @@ export class AlterRuleSubtopicComponent {
   public ageMax: number = 0;
   public ageMin: number = 0;
   public exacliAge: number = 0;
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
 
   @Input() public subtopic: Subtopics = new Subtopics();
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();

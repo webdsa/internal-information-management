@@ -14,6 +14,7 @@ export class InternalService extends BaseService {
     private _urlAllGuid = `${this._urlBase}/guide/topic/all`;
     private _urlSubTopic = `${this._urlBase}/guide/subtopic`;
     private _urlGuidRules = `${this._urlBase}/guide/rules`;
+    private _urlDepartaments = `${this._urlBase}/Collaborators/departments`;
 
 
     #http = inject(HttpClient);
@@ -82,4 +83,16 @@ export class InternalService extends BaseService {
         });
     }
 
+    // get departamentos
+    public getDepartments(){
+      return this.#mutation({
+        mutationFn: () => this.#http.get(`${this._urlDepartaments}`, this.ObterAuthHeader()),
+        onSuccess: () => {
+            this.#client.invalidateQueries({ queryKey: ['AllDepartaments'] });
+        }
+    });
+    }
+
+    // put rules
+    // /guide/rules
 }

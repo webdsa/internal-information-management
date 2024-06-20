@@ -1,40 +1,83 @@
 <div class="alter-rule">
-    <div class="row">
-        <input type="text" name="ageMax" class="form-control text-start" placeholder="Idade máxima"
-            [(ngModel)]="ageMax" />
+  <div class="row">
+    <label>Idade máxima: </label>
+    <input
+      type="text"
+      name="ageMax"
+      class="form-control text-start"
+      placeholder="Idade máxima"
+      [(ngModel)]="ageMax"
+    />
+  </div>
+  <div class="row">
+    <label>Idade mínima: </label>
+    <input
+      type="text"
+      name="ageMin"
+      class="form-control text-start"
+      placeholder="Idade mínima"
+      [(ngModel)]="ageMin"
+    />
+  </div>
+  <div class="row">
+    <label>Idade exata: </label>
+    <input
+      type="text"
+      name="exacliAge"
+      class="form-control text-start"
+      placeholder="Idade exata"
+      [(ngModel)]="exacliAge"
+    />
+  </div>
+  <div class="row">
+    <label>Departamento: </label>
+    <input
+      type="text"
+      name="departure"
+      class="form-control text-start"
+      placeholder="Escreva departamento"
+      [(ngModel)]="departure"
+    />
+
+  </div>
+  <div class="row">
+    <label>Gênero: </label>
+    <!-- <input type="text" name="genderType" class="form-control text-start" placeholder="Gênero destinado"
+            [(ngModel)]="genderType" /> -->
+    <select>
+      <option [(ngModel)]="genderType">-</option>
+      <option class="form-control text-start" [(ngModel)]="genderType">
+        Masculino
+      </option>
+      <option class="form-control text-start" [(ngModel)]="genderType">
+        Feminino
+      </option>
+    </select>
+  </div>
+  <div class="row">
+    <div class="btns">
+      <button
+        class="btn"
+        style="
+          background-color: #ffffff;
+          border: 1px #1e5799 solid;
+          color: #1e5799;
+        "
+        (click)="onClose.emit(true)"
+      >
+        Cancelar
+      </button>
+      <button
+        class="btn"
+        style="
+          background-color: #1e5799;
+          border: 1px #1e5799 solid;
+          color: #ffffff;
+        "
+        (click)="AlterRuleSubTopic()"
+      >
+        Adicionar
+      </button>
     </div>
-    <div class="row">
-        <input type="text" name="ageMin" class="form-control text-start" placeholder="Idade mínima"
-            [(ngModel)]="ageMin" />
-    </div>
-    <div class="row">
-        <input type="text" name="exacliAge" class="form-control text-start" placeholder="Idade exata"
-            [(ngModel)]="exacliAge" />
-    </div>
-    <div class="row">
-        <input type="text" name="departure" class="form-control text-start" placeholder="Escreva departamento"
-            [(ngModel)]="departure" />
-    </div>
-    <div class="row">
-        <input type="text" name="genderType" class="form-control text-start" placeholder="Gênero destinado"
-            [(ngModel)]="genderType" />
-    </div>
-    <div class="row">
-        <div class="btns">
-            <button class="btn" style="
-              background-color: #ffffff;
-              border: 1px #1e5799 solid;
-              color: #1e5799;
-            " (click)="onClose.emit(true)">
-                Cancelar
-            </button>
-            <button class="btn" style="
-              background-color: #1e5799;
-              border: 1px #1e5799 solid;
-              color: #ffffff;
-            " (click)="AlterRuleSubTopic()">
-                Adicionar
-            </button>
-        </div>
-    </div>
+  </div>
 </div>
