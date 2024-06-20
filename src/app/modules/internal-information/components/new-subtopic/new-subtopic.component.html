@@ -5,54 +5,31 @@
     </h2>
   </div>
   <div class="row title">
-    <input
-      type="text"
-      name="guidTopic"
-      class="form-control text-start"
-      placeholder="Escreva o título do Subtópico"
-      [(ngModel)]="titleSuTtopic"
-    />
+    <input type="text" name="guidTopic" class="form-control text-start" placeholder="Escreva o título do Subtópico"
+      [(ngModel)]="titleSuTtopic" />
   </div>
   <div class="row subtitle">
-    <textarea
-      class="form-control"
-      id="txtArea"
-      rows="3"
-      placeholder="Digite aqui uma breve descrição."
-      [(ngModel)]="subTopicDescription"
-    ></textarea>
+    <textarea class="form-control" id="txtArea" rows="3" placeholder="Digite aqui uma breve descrição."
+      [(ngModel)]="subTopicDescription"></textarea>
   </div>
   <div class="row content">
-    <textarea
-      class="form-control"
-      id="txtArea"
-      rows="5"
-      placeholder="Digite aqui o conteúdo."
-      [(ngModel)]="subTopicContent"
-    ></textarea>
+    <quill-editor [styles]="{height: '200px'}" placeholder="Digite aqui o conteúdo." [(ngModel)]="subTopicContent"
+      (onEditorChanged)="changedEditor($event)" (onEditorCreated)="created($event)"></quill-editor>
   </div>
   <div class="row">
     <div class="btns">
-      <button
-        class="btn"
-        style="
+      <button class="btn" style="
           background-color: #ffffff;
           border: 1px #1e5799 solid;
           color: #1e5799;
-        "
-        (click)="onClose.emit(true)"
-      >
+        " (click)="onClose.emit(true)">
         Cancelar
       </button>
-      <button
-        class="btn"
-        style="
+      <button class="btn" style="
           background-color: #1e5799;
           border: 1px #1e5799 solid;
           color: #ffffff;
-        "
-        (click)="createSubTopic()"
-      >
+        " (click)="createSubTopic()">
         Adicionar
       </button>
     </div>

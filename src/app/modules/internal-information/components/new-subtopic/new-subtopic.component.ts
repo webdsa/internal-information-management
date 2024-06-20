@@ -4,11 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { InternalService } from '../../services/internal.service';
 import { Subtopics } from '../../../../core/models/guid.model';
+import { EditorChangeContent, EditorChangeSelection, QuillModule } from 'ngx-quill';
+import Quill from 'quill'
+
 
 @Component({
   selector: 'app-new-subtopic',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, QuillModule],
   templateUrl: './new-subtopic.component.html',
   styleUrl: './new-subtopic.component.scss'
 })
@@ -55,5 +58,15 @@ export class NewSubtopicComponent {
 
   public selectId(event: any) {
     this.topicId = event.value;
+  }
+
+  created(event: Quill | any) {
+    // tslint:disable-next-line:no-console
+    console.log('editor-created', event)
+  }
+
+  changedEditor(event: EditorChangeContent | EditorChangeSelection | any) {
+    // tslint:disable-next-line:no-console
+    console.log('editor-change', event)
   }
 }
