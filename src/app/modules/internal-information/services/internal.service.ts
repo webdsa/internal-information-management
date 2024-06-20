@@ -13,6 +13,7 @@ export class InternalService extends BaseService {
     private _urlGuid = `${this._urlBase}/guide/topic`;
     private _urlAllGuid = `${this._urlBase}/guide/topic/all`;
     private _urlSubTopic = `${this._urlBase}/guide/subtopic`;
+    private _urlGuidRules = `${this._urlBase}/guide/rules`;
 
 
     #http = inject(HttpClient);
@@ -67,6 +68,14 @@ export class InternalService extends BaseService {
     public deleteSubTopic(id: number) {
         return this.#mutation({
             mutationFn: () => this.#http.delete(`${this._urlSubTopic}/${id}`, this.ObterAuthHeader()),
+            onSuccess: () => {
+                this.#client.invalidateQueries({ queryKey: ['AllGuid'] });
+            }
+        });
+    }
+    public alterRuleSubTopic(subTopic: any) {
+        return this.#mutation({
+            mutationFn: () => this.#http.put(`${this._urlGuidRules}`, subTopic, this.ObterAuthHeader()),
             onSuccess: () => {
                 this.#client.invalidateQueries({ queryKey: ['AllGuid'] });
             }

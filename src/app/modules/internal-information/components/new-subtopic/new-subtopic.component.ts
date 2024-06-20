@@ -24,7 +24,6 @@ export class NewSubtopicComponent {
   public subTopicDescription: string = '';
   public subTopicContent: string = '';
 
-
   constructor(private _toast: ToastrService) { }
 
   #InternalService = inject(InternalService);

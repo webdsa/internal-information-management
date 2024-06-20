@@ -5,11 +5,12 @@ import { GuidModel, Subtopics } from '../../../../core/models/guid.model';
 import { NewTopicComponent } from '../new-topic/new-topic.component';
 import { NewSubtopicComponent } from '../new-subtopic/new-subtopic.component';
 import { ToastrService } from 'ngx-toastr';
+import { AlterRuleSubtopicComponent } from '../alter-rule-subtopic/alter-rule-subtopic.component';
 
 @Component({
   selector: 'app-guids',
   standalone: true,
-  imports: [CommonModule, NewTopicComponent, NewSubtopicComponent],
+  imports: [CommonModule, NewTopicComponent, NewSubtopicComponent, AlterRuleSubtopicComponent],
   templateUrl: './guids.component.html',
   styleUrl: './guids.component.scss'
 })
@@ -21,6 +22,7 @@ export class GuidsComponent {
   public openModalSubtopic: boolean = false;
   public openModalConfirm: boolean = false;
   public openModalConfirmSub: boolean = false;
+  public openModalAlterRuleSubtopic: boolean = false;
 
   public topicId: number = 0;
   public subTopic: Subtopics = new Subtopics();
@@ -44,12 +46,12 @@ export class GuidsComponent {
     this.topicId = id;
   }
 
-  public openModalDelete(id: number){
+  public openModalDelete(id: number) {
     this.openModalConfirm = true;
     this.topicId = id;
   }
 
-  public openModalDeleteSub(id: number){
+  public openModalDeleteSub(id: number) {
     this.openModalConfirmSub = true;
     this.topicId = id;
   }
@@ -78,6 +80,11 @@ export class GuidsComponent {
 
   public editSubTopic(subTopic: Subtopics) {
     this.openModalSubtopic = true;
+    this.subTopic = subTopic;
+  }
+
+  openModalAlterRule(subTopic: Subtopics) {
+    this.openModalAlterRuleSubtopic = true;
     this.subTopic = subTopic;
   }
 }
