@@ -1,1 +1,80 @@
-<p>resident works!</p>
+<div class="out">
+  <div class="resident">
+    <span class="title all">Todos os </span>
+    <span class="title label-resident"> Moradores</span>
+  </div>
+  <div class="d-flex justify-content-between">
+    <div class="search">
+      <app-search (result)="searchByName($event)"></app-search>
+    </div>
+    <div class="d-flex justify-content">
+      <div class="filter">
+        <app-filter (ApplyFilter)="filterProperty($event)"></app-filter>
+      </div>
+      <div class="filter">
+        <button class="add-resident" (click)="addNew()">
+          <span class="material-symbols-outlined"> add_circle </span>
+          <label>ADICIONAR NOVO</label>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- tabela com todos os moradores -->
+  <div class="card-property">
+    <app-card [hasPadding]="true">
+      <div class="data-table-reports">
+        <div class="row thead text-start text-muted fw-normal gs-0 border-style">
+          <div class="d-flex">
+            <div class="checkbox">
+              <input class="form-check-input" type="checkbox" id="checkAll" />
+            </div>
+            <div class="col title-table">Código</div>
+            <div class="col-3 title-table">Nome do Morador</div>
+            <div class="col title-table">Setor</div>
+            <div class="col title-table">Obreiro</div>
+            <div class="col-2 title-table">Imóvel</div>
+            <div class="col title-table">Entrada</div>
+            <div class="col title-table"></div>
+          </div>
+        </div>
+        @for (resident of residents; track $index) {
+        <div class="reports">
+          <div class="row tbody border-style">
+            <div class="d-flex list align-items-center">
+              <div class="checkbox">
+                <input [id]="'checkbox' + resident.collaboradorId" class="form-check-input" type="checkbox" />
+              </div>
+              <div style="display: contents">
+                <div class="col person-name --kt-text-gray-900 text-hover-primary fw-semibold">
+                  {{ resident.collaboradorId }}
+                </div>
+                <div class="col-4 date">
+                  {{ resident.spouse.name}}
+                </div>
+
+                  <!-- @else {
+                    <label class="status status-yellow">{{ property.Status.toString() }}</label>
+                    } -->
+
+                <!-- <div class="col-2 date">
+                  <button class="action edit">
+                    <span class="material-symbols-outlined" (click)="editProperty(property)"> edit </span>
+                  </button>
+                  <button class="action visibility">
+                    <span class="material-symbols-outlined"> visibility </span>
+                  </button>
+                  <button class="action delete">
+                    <span class="material-symbols-outlined" (click)="deletePropertyById(property.id)"> delete </span>
+                  </button>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </app-card>
+  </div>
+</div>
