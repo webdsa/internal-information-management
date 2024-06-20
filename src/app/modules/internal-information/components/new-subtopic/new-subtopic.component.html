@@ -13,7 +13,7 @@
       [(ngModel)]="subTopicDescription"></textarea>
   </div>
   <div class="row content">
-    <quill-editor [styles]="{height: '200px'}" placeholder="Digite aqui o conteúdo." [(ngModel)]="subTopicContent"
+    <quill-editor [style]="{height: '200px', padding: '0px'}" placeholder="Digite aqui o conteúdo." [(ngModel)]="subTopicContent"
       (onEditorChanged)="changedEditor($event)" (onEditorCreated)="created($event)"></quill-editor>
   </div>
   <div class="row">
