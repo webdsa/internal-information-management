@@ -89,14 +89,13 @@
                         <option value="-0">
                             Escolhe uma opção
                         </option>
-                        <option value="0" [selected]="detailRealty.hasPhotovoltaic == false">
+                        <option value="0" [selected]="form.hasPhotovoltaic == false">
                             Não
                         </option>
-                        <option value="1" [selected]="detailRealty.hasPhotovoltaic == true">
+                        <option value="1" [selected]="form.hasPhotovoltaic == true">
                             Sim
                         </option>
                     </select>
-                    {{detailRealty.hasPhotovoltaic}}
                 </app-form-label>
 
                 <app-form-label class="col-3" titleLabel="Qual tipo de gás?" [required]="true">
@@ -149,18 +148,18 @@
                         <option value="-0">
                             Selecione uma opção
                         </option>
-                        <option value="0" [selected]="detailRealty.propertyTax == 'false'">
+                        <option value="0" [selected]="detailRealty.propertyTax == '0'">
                             Não
                         </option>
-                        <option value="1" [selected]="detailRealty.propertyTax == 'true'">
+                        <option value="1" [selected]="detailRealty.propertyTax == '1'">
                             Sim
                         </option>
                     </select>
                 </app-form-label>
 
                 <app-form-label class="col-4" titleLabel="Avaliação do imóvel" [required]="true">
-                    <input type="text" class="form-control" [(ngModel)]="detailRealty.realtyValue" />
-                    <app-form-msg-error [value]="detailRealty.realtyValue" [type]="3"></app-form-msg-error>
+                    <input type="text" class="form-control" [(ngModel)]="form.propertyValue" />
+                    <app-form-msg-error [value]="form.propertyValue" [type]="3"></app-form-msg-error>
                 </app-form-label>
             </div>
         </div>
@@ -216,7 +215,7 @@
         </div>
         <div class="btn">
             <button type="button" class="btn btn-light">Cancelar</button>
-            <button type="button" class="btn btn-primary" (click)="saveProperty()">Salvar</button>
+            <button type="button" class="btn btn-primary" (click)="edit?updateProperty():saveProperty()">Salvar</button>
         </div>
     </app-card>
     }

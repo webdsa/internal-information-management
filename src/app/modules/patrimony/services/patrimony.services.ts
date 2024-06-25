@@ -41,6 +41,12 @@ export class PatrimonyService extends BaseService {
       mutationFn: () => this.#http.post<InsertProperty>(this._urlPostProperty, property, this.ObterAuthHeader())
     });
   }
+  public putProperty(property: InsertProperty) {
+    return this.#mutation({
+      mutationKey: ['property'],
+      mutationFn: () => this.#http.put<InsertProperty>(this._urlPostProperty, property, this.ObterAuthHeader())
+    });
+  }
 
   public deletePropertyById(id: number) {
     return this.#mutation({

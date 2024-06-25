@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges, inject, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -37,12 +37,18 @@ export class FormPropertyComponent {
 
 
   @Input() realty: InsertProperty = new InsertProperty();
+  @Input() edit: boolean = false;
+
+  @Output() onEdited: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   #patrimonyService = inject(PatrimonyService);
   constructor(private _toast: ToastrService) { }
 
   ngOnInit(): void {
-    this.form = this.realty ?? new InsertProperty();
-    this.fillAdditionalDataByRealty(this.form.additionalData);
+    if (this.realty && Object.keys(this.realty).length > 0) {
+      this.form = this.realty ?? new InsertProperty();
+      this.fillAdditionalDataByRealty(this.form.additionalData);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -52,7 +58,7 @@ export class FormPropertyComponent {
   }
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
-    return changes[values] && changes[values]?.previousValue != changes[values]?.currentValue;
+    return changes[values] && changes[values]?.previousValue != changes[values]?.previousValue;
   }
 
   saveProperty() {
@@ -69,60 +75,77 @@ export class FormPropertyComponent {
     });
   }
 
+  updateProperty() {
+    this.fillAdditionalData();
+    this.form.status = 0;
+    this.form.propertyValue = 0;
+    this.#patrimonyService.putProperty(this.form).mutateAsync(null).then((res: any) => {
+      if (res.succeeded) {
+        this._toast.success('Imóvel cadastrado com sucesso!');
+        this.form = new InsertProperty();
+        this.edit = false;
+        this.onEdited.emit(true);
+      } else {
+        this._toast.error('Procure a equipe de suporte.', 'Erro ao cadastrar imóvel!');
+      }
+    });
+  }
+
   fillAdditionalData() {
     this.form.additionalData = [];
     this.form.additionalData.push(
-      { Type: 0, Value: this.detailRealty.qtyRooms.toString() ?? "0" },
-      // { Type: 1, Value: this.detailRealty.QtyBathrooms },
-      { Type: 2, Value: this.detailRealty.intercomNumber.toString() ?? "0" }, //IntercomNumber
-      { Type: 3, Value: this.detailRealty.conciergePhone.toString() ?? "0" }, //ConciergePhone
-      { Type: 4, Value: this.detailRealty.observation ?? "" }, //Observation
-      { Type: 5, Value: this.detailRealty.eletricalCode.toString() ?? "0" }, //EletricalCode
-      { Type: 6, Value: this.detailRealty.waterCode.toString() ?? "0" }, //WaterCode
-      { Type: 7, Value: this.detailRealty.eletricMeter.toString() ?? "0" }, //EletricMeter
-      // { Type: 8, Value: this.detailRealty. }, //QtyResidents
-      { Type: 9, Value: this.detailRealty.qtyMaxResidents.toString() ?? "0" }, //QtyMaxResidents
-      { Type: 10, Value: this.detailRealty.municipalRegistration ?? "0" },//MunicipalRegistration
-      { Type: 11, Value: this.detailRealty.propertyTax ?? "0" } //PropertyTax
+      { type: 0, value: this.detailRealty.qtyRooms.toString() ?? "0" },
+      // { type: 1, value: this.detailRealty.QtyBathrooms },
+      { type: 2, value: this.detailRealty.intercomNumber.toString() ?? "0" }, //IntercomNumber
+      { type: 3, value: this.detailRealty.conciergePhone.toString() ?? "0" }, //ConciergePhone
+      { type: 4, value: this.detailRealty.observation ?? "" }, //Observation
+      { type: 5, value: this.detailRealty.eletricalCode.toString() ?? "0" }, //EletricalCode
+      { type: 6, value: this.detailRealty.waterCode.toString() ?? "0" }, //WaterCode
+      { type: 7, value: this.detailRealty.eletricMeter.toString() ?? "0" }, //EletricMeter
+      // { type: 8, value: this.detailRealty. }, //QtyResidents
+      { type: 9, value: this.detailRealty.qtyMaxResidents.toString() ?? "0" }, //QtyMaxResidents
+      { type: 10, value: this.detailRealty.municipalRegistration ?? "0" },//MunicipalRegistration
+      { type: 11, value: this.detailRealty.propertyTax ?? "0" } //PropertyTax
     );
   }
 
   fillAdditionalDataByRealty(additionalData: Array<PropertyAdditionalDataModel>) {
     if (!additionalData) return;
     additionalData.forEach((data) => {
-      switch (data.Type) {
+      console.log(data.type);
+      switch (data.type as number) {
         case 0:
-          this.detailRealty.qtyRooms = Number(data.Value);
+          this.detailRealty.qtyRooms = Number(data.value);
           break;
         case 1:
-          this.detailRealty.qtyBathrooms = Number(data.Value);
+          this.detailRealty.qtyBathrooms = Number(data.value);
           break;
         case 2:
-          this.detailRealty.intercomNumber = Number(data.Value);
+          this.detailRealty.intercomNumber = Number(data.value);
           break;
         case 3:
-          this.detailRealty.conciergePhone = Number(data.Value);
+          this.detailRealty.conciergePhone = Number(data.value);
           break;
         case 4:
-          this.detailRealty.observation = data.Value;
+          this.detailRealty.observation = data.value;
           break;
         case 5:
-          this.detailRealty.eletricalCode = Number(data.Value);
+          this.detailRealty.eletricalCode = Number(data.value);
           break;
         case 6:
-          this.detailRealty.waterCode = Number(data.Value);
+          this.detailRealty.waterCode = Number(data.value);
           break;
         case 7:
-          this.detailRealty.eletricMeter = Number(data.Value);
+          this.detailRealty.eletricMeter = Number(data.value);
           break;
         case 9:
-          this.detailRealty.qtyMaxResidents = Number(data.Value);
+          this.detailRealty.qtyMaxResidents = Number(data.value);
           break;
         case 10:
-          this.detailRealty.municipalRegistration = data.Value;
+          this.detailRealty.municipalRegistration = data.value;
           break;
         case 11:
-          this.detailRealty.propertyTax = data.Value;
+          this.detailRealty.propertyTax = data.value;
           break;
       }
     });
@@ -137,7 +160,7 @@ export class FormPropertyComponent {
   }
 
   selectSolarPower(event: any) {
-    this.detailRealty.hasPhotovoltaic = Boolean(event.value);
+    this.form.hasPhotovoltaic = Boolean(event.value);
   }
   selectIptu(event: any) {
     this.detailRealty.propertyTax = event.value;

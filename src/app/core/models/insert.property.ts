@@ -38,8 +38,8 @@ export enum GasTypeEnum {
     Plumbed = 2
 }
 export class PropertyAdditionalDataModel {
-    Type!: number;
-    Value!: string;
+    type!: number;
+    value!: string;
 }
 
 export enum PropertyAdditionalDataType {
@@ -57,7 +57,6 @@ export enum PropertyAdditionalDataType {
     PropertyTax = 11
 }
 export class DetailRealty {
-    hasPhotovoltaic!: boolean;
     typeGas!: any;
     qtyRooms!: number;
     qtyBathrooms!: number;
@@ -67,7 +66,6 @@ export class DetailRealty {
     waterCode!: number;
     municipalRegistration!: string;
     propertyTax!: string;
-    realtyValue!: number;
     intercomNumber!: number;
     conciergePhone!: number;
     emailConcierge!: string;

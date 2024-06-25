@@ -97,7 +97,7 @@
     <span class="material-symbols-outlined" (click)="openModalEdit = !openModalEdit">
       close
     </span>
-    <app-form-property [realty]="property" (onClose)="openModalEdit = !$event"></app-form-property>
+    <app-form-property [realty]="property" [edit]="true" (onEdited)="openModalEdit = !$event"></app-form-property>
   </div>
 </div>
 }
