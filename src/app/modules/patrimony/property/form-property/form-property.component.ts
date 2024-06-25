@@ -8,6 +8,7 @@ import { FormLabelComponent } from '../../../../shared/form-label/form-label.com
 import { FormMsgErrorComponent } from '../../../../shared/form-msg-error/form-msg-error.component';
 import { DetailRealty, GasTypeEnum, InsertProperty, PropertyAdditionalDataModel, PropertyTypeEnum } from '../../../../core/models/insert.property';
 import { PatrimonyService } from '../../services/patrimony.services';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-property',
   standalone: true,
@@ -42,7 +43,7 @@ export class FormPropertyComponent {
   @Output() onEdited: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   #patrimonyService = inject(PatrimonyService);
-  constructor(private _toast: ToastrService) { }
+  constructor(private _toast: ToastrService, private _router: Router) { }
 
   ngOnInit(): void {
     if (this.realty && Object.keys(this.realty).length > 0) {
@@ -167,5 +168,14 @@ export class FormPropertyComponent {
   }
   selectOwnerName(event: any) {
     this.form.ownerName = event.value;
+  }
+
+  cancel() {
+    this.form = new InsertProperty();
+    this.detailRealty = new DetailRealty();
+  }
+
+  public navigateTo(path: string) {
+    this._router.navigate(['patrimony/' + path]);
   }
 }

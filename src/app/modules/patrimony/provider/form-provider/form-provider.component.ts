@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InsertProvider } from '../../../../core/models/insert.provider';
 import { PatrimonyService } from '../../services/patrimony.services';
 import { ToastrService } from 'ngx-toastr';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-provider',
   standalone: true,
@@ -24,7 +24,7 @@ export class FormProviderComponent {
 
   @Output() onEdited: EventEmitter<boolean> = new EventEmitter<boolean>();
   #patrimonyService = inject(PatrimonyService);
-  constructor(private _toast: ToastrService) { }
+  constructor(private _toast: ToastrService, private _router: Router) { }
 
   ngOnInit(): void {
     if (this.provider && Object.keys(this.provider).length > 0) {
@@ -55,5 +55,11 @@ export class FormProviderComponent {
       this._toast.success('Fornecedor atualizado com sucesso!');
       this.onEdited.emit(true);
     });
+  }
+  cancel() {
+    this.form = new InsertProvider();
+  }
+  public navigateTo(path: string) {
+    this._router.navigate(['patrimony/' + path]);
   }
 }

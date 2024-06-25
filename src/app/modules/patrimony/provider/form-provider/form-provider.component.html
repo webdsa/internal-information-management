@@ -1,8 +1,8 @@
-<div class="realty">
+<div class="provider">
     @defer () {
-    <app-header-title class="header-line" title="Adicionar Novo" textBtn="VER TODOS IMÓVEIS" titleEmphasis="Imóvel"
-        description="Preencha corretamente com as informações do novo imóvel." color="#37B582"
-        colorLight="#E5FAF5"></app-header-title>
+    <app-header-title class="header-line" title="Adicionar Novo" textBtn="VER TODOS FORNECEDORES"
+        titleEmphasis="Fornecedor" description="Preencha corretamente com as informações do novo Fornecedor."
+        color="#17a2b8" colorLight="#E5FAF5" (click)="navigateTo('provider')"></app-header-title>
     }
     @defer () {
     <app-card [hasPadding]="true">
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="btn">
-            <button type="button" class="btn btn-light">Cancelar</button>
+            <button type="button" class="btn btn-light" (click)="cancel()">Cancelar</button>
             <button type="button" class="btn btn-primary" (click)="edit?updateProvider():saveProvider()">Salvar</button>
         </div>
     </app-card>
