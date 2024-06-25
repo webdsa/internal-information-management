@@ -1,0 +1,19 @@
+{
+    "id": 3,
+    "label": "Moradores",
+    "icon": "group",
+    "items": [
+        {
+            "id": 1,
+            "label": "Cadastrar",
+            "icon": "add",
+            "routerLink": "/patrimony/new-resident"
+        },
+        {
+            "id": 2,
+            "label": "Todos os moradores",
+            "icon": "list",
+            "routerLink": "/patrimony/resident"
+        }
+    ]
+}
