@@ -43,17 +43,24 @@ export class FormProviderComponent {
   }
 
   public saveProvider() {
-    this.#patrimonyService.postProvider(this.form).result$.subscribe((response: any) => {
-      if (response.data == null) return;
-      this._toast.success('Fornecedor cadastrado com sucesso!');
-      this.onEdited.emit(true);
+    this.#patrimonyService.postProvider(this.form).mutateAsync(null).then((res: any) => {
+      if (res.succeeded) {
+        this._toast.success('Fornecedor cadastrado com sucesso!');
+        this.form = new InsertProvider();
+      } else {
+        this._toast.error('Procure a equipe de suporte.', 'Erro ao cadastrar Fornecedor!');
+      }
     });
   }
   public updateProvider() {
-    this.#patrimonyService.updateProvider(this.form).result$.subscribe((response: any) => {
-      if (response.data == null) return;
-      this._toast.success('Fornecedor atualizado com sucesso!');
-      this.onEdited.emit(true);
+    this.#patrimonyService.updateProvider(this.form).mutateAsync(null).then((res: any) => {
+      if (res.succeeded) {
+        this._toast.success('Fornecedor atualizado com sucesso!');
+        this.form = new InsertProvider();
+        this.onEdited.emit(true);
+      } else {
+        this._toast.error('Procure a equipe de suporte.', 'Erro ao atualizar Fornecedor!');
+      }
     });
   }
   cancel() {

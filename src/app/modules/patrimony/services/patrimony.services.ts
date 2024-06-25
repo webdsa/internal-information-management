@@ -14,7 +14,7 @@ export class PatrimonyService extends BaseService {
   private _urlBase = environment.urlApi;
   private _urlGetProperty = `${this._urlBase}/property/list`;
   private _urlPostProperty = `${this._urlBase}/property`;
-  private _urlGetProvider = `${this._urlBase}/provider/`;
+  private _urlProvider = `${this._urlBase}/provider`;
 
   #http = inject(HttpClient);
   #query = injectQuery();
@@ -60,25 +60,25 @@ export class PatrimonyService extends BaseService {
   public getProvider() {
     return this.#query({
       queryKey: ['provider'],
-      queryFn: () => this.#http.get<Array<InsertProvider>>(this._urlGetProvider, this.ObterAuthHeader())
+      queryFn: () => this.#http.get<Array<InsertProvider>>(this._urlProvider, this.ObterAuthHeader())
     });
   }
   public deleteProviderById(id: number) {
     return this.#mutation({
       mutationKey: ['provider'],
-      mutationFn: () => this.#http.delete(`${this._urlGetProvider}/${id}`, this.ObterAuthHeader())
+      mutationFn: () => this.#http.delete(`${this._urlBase}/${id}`, this.ObterAuthHeader())
     });
   }
   public postProvider(provider: InsertProvider) {
     return this.#mutation({
       mutationKey: ['provider'],
-      mutationFn: () => this.#http.post<InsertProvider>(this._urlGetProvider, provider, this.ObterAuthHeader())
+      mutationFn: () => this.#http.post<InsertProvider>(this._urlProvider, provider, this.ObterAuthHeader())
     });
   }
   public updateProvider(provider: InsertProvider) {
     return this.#mutation({
       mutationKey: ['provider'],
-      mutationFn: () => this.#http.put<InsertProvider>(this._urlGetProvider, provider, this.ObterAuthHeader())
+      mutationFn: () => this.#http.put<InsertProvider>(this._urlProvider, provider, this.ObterAuthHeader())
     });
   }
 }
