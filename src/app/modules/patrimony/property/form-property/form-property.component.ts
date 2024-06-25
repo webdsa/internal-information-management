@@ -70,6 +70,7 @@ export class FormPropertyComponent {
       if (res.succeeded) {
         this._toast.success('Imóvel cadastrado com sucesso!');
         this.form = new InsertProperty();
+        this._router.navigate(['patrimony/property']);
       } else {
         this._toast.error('Procure a equipe de suporte.', 'Erro ao cadastrar imóvel!');
       }
@@ -86,6 +87,7 @@ export class FormPropertyComponent {
         this.form = new InsertProperty();
         this.edit = false;
         this.onEdited.emit(true);
+        this._router.navigate(['patrimony/property']);
       } else {
         this._toast.error('Procure a equipe de suporte.', 'Erro ao cadastrar imóvel!');
       }

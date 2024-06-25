@@ -47,6 +47,7 @@ export class FormProviderComponent {
       if (res.succeeded) {
         this._toast.success('Fornecedor cadastrado com sucesso!');
         this.form = new InsertProvider();
+        this._router.navigate(['patrimony/provider']);
       } else {
         this._toast.error('Procure a equipe de suporte.', 'Erro ao cadastrar Fornecedor!');
       }
@@ -58,6 +59,7 @@ export class FormProviderComponent {
         this._toast.success('Fornecedor atualizado com sucesso!');
         this.form = new InsertProvider();
         this.onEdited.emit(true);
+        this._router.navigate(['patrimony/provider']);
       } else {
         this._toast.error('Procure a equipe de suporte.', 'Erro ao atualizar Fornecedor!');
       }
