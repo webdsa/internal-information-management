@@ -1,75 +1,75 @@
 export class InsertProperty {
     id!: number;
-    OwnerName!: string;
-    PropertyName!: string;
-    PropertyType!: PropertyTypeEnum;
-    Status!: PropertyStatusEnum;
-    PostalCode!: string;
-    Address!: string;
-    Complement!: string;
-    Neighborhood!: string;
-    City!: string;
-    FederativeUnit!: string;
-    HasPhotovoltaic!: boolean;
-    PropertyValue!: number;
-    GasType!: GasTypeEnum;
-    AdditionalData!: Array<PropertyAdditionalDataModel>;
+    ownerName!: string;
+    propertyName!: string;
+    propertyType!: PropertyTypeEnum;
+    status!: PropertyStatusEnum;
+    postalCode!: string;
+    address!: string;
+    complement!: string;
+    neighborhood!: string;
+    city!: string;
+    federativeUnit!: string;
+    hasPhotovoltaic!: boolean;
+    propertyValue!: number;
+    gasType!: GasTypeEnum;
+    additionalData!: Array<PropertyAdditionalDataModel>;
 
 }
 
 export enum PropertyTypeEnum {
-    Apartment,
-    House,
-    Academy
+    Apartment = 0,
+    House = 1,
+    Academy = 2
 }
 
 export enum PropertyStatusEnum {
-    Buzy,
-    NotBuzy,
-    Sold,
-    Delivered,
-    NotControlled,
-    NotUsed
+    Buzy = 0,
+    NotBuzy = 1,
+    Sold = 2,
+    Delivered = 3,
+    NotControlled = 4,
+    NotUsed = 5
 }
 
 export enum GasTypeEnum {
-    P13,
-    P45,
-    Plumbed
+    P13 = 0,
+    P45 = 1,
+    Plumbed = 2
 }
 export class PropertyAdditionalDataModel {
     Type!: number;
-    Value!: any;
+    Value!: string;
 }
 
 export enum PropertyAdditionalDataType {
-    QtyRooms,
-    QtyBathrooms,
-    IntercomNumber,
-    ConciergePhone,
-    Observation,
-    EletricalCode,
-    WaterCode,
-    EletricMeter,
-    QtyResidents,
-    QtyMaxResidents,
-    MunicipalRegistration,
-    PropertyTax
+    QtyRooms = 0,
+    QtyBathrooms = 1,
+    IntercomNumber = 2,
+    ConciergePhone = 3,
+    Observation = 4,
+    EletricalCode = 5,
+    WaterCode = 6,
+    EletricMeter = 7,
+    QtyResidents = 8,
+    QtyMaxResidents = 9,
+    MunicipalRegistration = 10,
+    PropertyTax = 11
 }
-
 export class DetailRealty {
     hasPhotovoltaic!: boolean;
     typeGas!: any;
-    qtdRooms!: number;
-    limitPeople!: number;
-    codEnergy!: number;
-    meterEnergy!: number;
-    codWater!: number;
-    municipalRegister!: string;
+    qtyRooms!: number;
+    qtyBathrooms!: number;
+    qtyMaxResidents!: number;
+    eletricalCode!: number;
+    eletricMeter!: number;
+    waterCode!: number;
+    municipalRegistration!: string;
     propertyTax!: string;
     realtyValue!: number;
-    numberPhone!: number;
-    numberPhone2!: number;
+    intercomNumber!: number;
+    conciergePhone!: number;
     emailConcierge!: string;
-    observations!: string;
+    observation!: string;
 }

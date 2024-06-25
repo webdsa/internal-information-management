@@ -9,7 +9,7 @@ export const environment = {
         uri: 'https://graph.microsoft.com/v1.0/me',
         scopes: ['user.read']
     },
-    urlApi: 'https://e4b4-179-89-244-234.ngrok-free.app'
+    urlApi: 'https://a240-179-89-244-234.ngrok-free.app'
     // urlApi: 'http://localhost:5171'
 
 };

@@ -66,7 +66,7 @@ export class PropertyComponent {
   searchByName(search: string) {
     if (search != '' && search != undefined) {
       search = this.noAccents(search);
-      this.filteredProperties = this.propertysBkp?.filter((x) => this.noAccents(x.PropertyName.toUpperCase()).includes(search) || this.noAccents((x.Status.toString()).toUpperCase()).includes(search));
+      this.filteredProperties = this.propertysBkp?.filter((x) => this.noAccents(x.propertyName.toUpperCase()).includes(search) || this.noAccents((x.status.toString()).toUpperCase()).includes(search));
 
     } else this.filteredProperties = this.propertys;
   }
@@ -77,9 +77,9 @@ export class PropertyComponent {
   filterProperty(event: any) {
     if (event.type === "Todos" && event.status === "Todos") this.filteredProperties = this.propertysBkp;
     else if (event.type === "Todos") {
-      this.filteredProperties = this.propertysBkp.filter(property => property.Status === event.status);
+      this.filteredProperties = this.propertysBkp.filter(property => property.status === event.status);
     } else {
-      this.filteredProperties = this.propertysBkp.filter(property => property.PropertyType === event.type && property.Status === event.status);
+      this.filteredProperties = this.propertysBkp.filter(property => property.propertyType === event.type && property.status === event.status);
     }
   }
 
