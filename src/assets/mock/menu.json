@@ -47,6 +47,19 @@
     "id": 4,
     "label": "Fornecedores",
     "icon": "build",
-    "routerLink": "/patrimony/supplier"
+    "items": [
+      {
+        "id": 1,
+        "label": "Cadastrar",
+        "icon": "add",
+        "routerLink": "/patrimony/new-provider"
+      },
+      {
+        "id": 2,
+        "label": "Todos os Fornecedores",
+        "icon": "list",
+        "routerLink": "/patrimony/provider"
+      }
+    ]
   }
 ]

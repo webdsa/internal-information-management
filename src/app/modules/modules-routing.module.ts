@@ -8,6 +8,8 @@ import { FormPropertyComponent } from './patrimony/property/form-property/form-p
 import { GuidsComponent } from './internal-information/components/guids/guids.component';
 import { ResidentComponent } from './patrimony/resident/resident.component';
 import { FormResidentComponent } from './patrimony/resident/form-resident/form-resident.component';
+import { ProviderComponent } from './patrimony/provider/provider.component';
+import { FormProviderComponent } from './patrimony/provider/form-provider/form-provider.component';
 
 export const routes: Routes = [
     {
@@ -39,6 +41,16 @@ export const routes: Routes = [
                 path: 'new-resident',
                 title: 'Novo Morador',
                 component: FormResidentComponent,
+            },
+            {
+                path: 'provider',
+                title: 'App Provider Page',
+                component: ProviderComponent,
+            },
+            {
+                path: 'new-provider',
+                title: 'Novo Fornecedor',
+                component: FormProviderComponent,
             },
         ]
     },

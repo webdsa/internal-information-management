@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { BaseService } from '../../../core/services/base.service';
 import { InsertProperty } from '../../../core/models/insert.property';
 import { injectMutation, injectQuery, injectQueryClient } from '@ngneat/query';
+import { InsertProvider } from '../../../core/models/insert.provider';
 
 
 @Injectable({
@@ -13,6 +14,7 @@ export class PatrimonyService extends BaseService {
   private _urlBase = environment.urlApi;
   private _urlGetProperty = `${this._urlBase}/property/list`;
   private _urlPostProperty = `${this._urlBase}/property`;
+  private _urlGetProvider = `${this._urlBase}/provider/`;
 
   #http = inject(HttpClient);
   #query = injectQuery();
@@ -53,6 +55,30 @@ export class PatrimonyService extends BaseService {
       mutationKey: ['property'],
       mutationFn: () => this.#http.delete(`${this._urlPostProperty}/${id}`, this.ObterAuthHeader())
     });
+  }
 
+  public getProvider() {
+    return this.#query({
+      queryKey: ['provider'],
+      queryFn: () => this.#http.get<Array<InsertProvider>>(this._urlGetProvider, this.ObterAuthHeader())
+    });
+  }
+  public deleteProviderById(id: number) {
+    return this.#mutation({
+      mutationKey: ['provider'],
+      mutationFn: () => this.#http.delete(`${this._urlGetProvider}/${id}`, this.ObterAuthHeader())
+    });
+  }
+  public postProvider(provider: InsertProvider) {
+    return this.#mutation({
+      mutationKey: ['provider'],
+      mutationFn: () => this.#http.post<InsertProvider>(this._urlGetProvider, provider, this.ObterAuthHeader())
+    });
+  }
+  public updateProvider(provider: InsertProvider) {
+    return this.#mutation({
+      mutationKey: ['provider'],
+      mutationFn: () => this.#http.put<InsertProvider>(this._urlGetProvider, provider, this.ObterAuthHeader())
+    });
   }
 }

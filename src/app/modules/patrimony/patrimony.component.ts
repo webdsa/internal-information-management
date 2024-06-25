@@ -20,6 +20,7 @@ export class PatrimonyComponent {
   public menuClick: boolean = false;
   public showProperty: boolean = false;
   public showResident: boolean = false;
+  public showProvider: boolean = false;
 
   public colapse: number = 300;
   public personName: string = 'User';
@@ -117,5 +118,6 @@ export class PatrimonyComponent {
   updateComponentDisplay(url: string) {
     this.showProperty = url.endsWith('/property') || url.endsWith('/new-property');
     this.showResident = url.endsWith('/resident') || url.endsWith('/new-resident');
+    this.showProvider = url.endsWith('/provider') || url.endsWith('/new-provider');
   }
 }
