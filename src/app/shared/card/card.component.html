@@ -1,0 +1,9 @@
+<div [style]="_style" class="c-card  {{ hasPadding ? 'p-4' : '' }}">
+  <div
+    [style]="_styleBody"
+    [style]="overflowY ? 'overflow-y:auto;' : ''"
+    class="card-body {{ hasPadding ? '' : 'noPadding' }}"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.header-title{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .btn{
+        display: flex;
+        width: 200px;
+        height: 45px;
+        font-size: 12px;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+}

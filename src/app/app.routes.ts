@@ -19,10 +19,6 @@ export const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
     },
-    {
-      path: 'property',
-      component: PropertyComponent,
-  },
     { path: '**', component: NotFoundComponent }
 
 ];

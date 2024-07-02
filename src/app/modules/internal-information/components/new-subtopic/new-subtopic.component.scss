@@ -1,0 +1,29 @@
+.new-subtopic{
+    margin: 4px 0px 0px 0px;
+    width: 35rem;
+
+    h2, .btns{
+      padding: 0;
+    }
+}
+
+.btns {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: end;
+
+    .btn {
+        width: 201px;
+        padding: 12px 40px 12px 40px;
+        border-radius: 8px;
+    }
+}
+
+.title, .subtitle, .content{
+  margin-bottom: 1rem;
+}
+
+.content {
+  height: 18rem;
+}

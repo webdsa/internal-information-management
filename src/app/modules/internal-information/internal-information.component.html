@@ -1,1 +1,35 @@
-<p>internal-information works!</p>
+<app-menu-bar [haveMenuItens]="false"></app-menu-bar>
+@if (!showGuids) {
+<div class="card">
+  <div class="row">
+    <div class="col-6" style="padding-top: 60px;">
+      <span class="title">Seja bem vindo ao <strong>manual</strong> de instruções da <strong>DSA</strong></span>
+      <p class="text">Aqui você encontra informações sobre os processos internos da DSA, como procedimentos, normas e
+        regulamentos.</p>
+      <div class="btns">
+        <button class="btn" style="background-color: #1E5799;border: 1px #1E5799 solid; color: #ffffff;"
+          (click)="navigateTo('internal-information/guids')">Ver
+          Tópicos</button><button class="btn"
+          style="background-color: #ffffff;border: 1px #1E5799 solid; color: #1E5799;"
+          (click)="openModal = !openModal">Adicionar Novo</button>
+      </div>
+    </div>
+    <div class="col-6">
+      <img src="../../../assets/media/svg/bgDashTopic.svg" alt="">
+    </div>
+  </div>
+
+</div>
+}@else {
+<router-outlet />
+}
+@if (openModal) {
+<div class="modal">
+  <div class="modal-content">
+    <span class="material-symbols-outlined" (click)="openModal = !openModal">
+      close
+    </span>
+    <app-new-topic (onClose)="openModal = !$event"></app-new-topic>
+  </div>
+</div>
+}

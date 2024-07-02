@@ -22,9 +22,10 @@ import {
   EventMessage,
   EventType,
   InteractionStatus,
-  RedirectRequest,
+  PopupRequest,
 } from '@azure/msal-browser';
 import { Subject, filter, takeUntil } from 'rxjs';
+import { LocalStorageUtils } from '../../core/utils/local-storage.utils';
 
 @Component({
   selector: 'app-signIn',
@@ -32,6 +33,7 @@ import { Subject, filter, takeUntil } from 'rxjs';
   imports: [CommonModule, MsalModule, RouterLink, RouterOutlet],
   templateUrl: './signIn.component.html',
   styleUrls: ['./signIn.component.scss'],
+  providers: [LocalStorageUtils],
 })
 export class SignInComponent implements OnInit {
   private readonly _destroying$ = new Subject<void>();
@@ -45,11 +47,19 @@ export class SignInComponent implements OnInit {
     private _authService: MsalService,
     private _cdr: ChangeDetectorRef,
     private ngZone: NgZone,
-    private router: Router
-  ) {}
+    private router: Router,
+    private _localStorageUtils: LocalStorageUtils
+  ) { }
 
   ngOnInit() {
     if (this.isLogged()) this.ngZone.run(() => this.router.navigate(['']));
+    this._msalBroadcastService.msalSubject$.subscribe({
+      next: (msalSubject) => {
+        if (msalSubject.eventType === 'msal:acquireTokenFailure') {
+          this.router.navigate(['/signIn']);
+        }
+      },
+    });
     this._msalBroadcastService.inProgress$
       .pipe(
         filter(
@@ -73,6 +83,7 @@ export class SignInComponent implements OnInit {
       .subscribe((msg: EventMessage) =>
         localStorage.setItem('tokenExpiration', (msg.payload as any).expiresOn)
       );
+
 
     this._msalBroadcastService.msalSubject$
       .pipe(
@@ -98,15 +109,16 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
-    debugger;
     if (this._msalGuardConfig.authRequest)
-      this._authService.loginRedirect({
+      this._authService.loginPopup({
         ...this._msalGuardConfig.authRequest,
-      } as RedirectRequest);
-    else this._authService.loginRedirect();
-  }
-  logout() {
-    this._authService.logoutRedirect();
+      } as PopupRequest).subscribe((response: any) => {
+        this._localStorageUtils.setUserName(response.account.name);
+        this._authService.instance.setActiveAccount(response.account);
+        this._localStorageUtils.setUserToken(response.account.idToken);
+        this.ngZone.run(() => this.router.navigate(['']));
+      });
+    else this._authService.loginPopup();
   }
   ngOnDestroy(): void {
     this._destroying$.next(undefined);
@@ -116,6 +128,6 @@ export class SignInComponent implements OnInit {
   toggleVisibility() {
     this.visibility = !this.visibility;
   }
-  
-  
+
+
 }

@@ -1,0 +1,111 @@
+.dash {
+    background-color: #EFF4FF;
+    width: 100%;
+    height: 100%;
+
+    .main {
+        margin: 8vh 0px 0px 10vw;
+        width: 80vw;
+
+        .card-gradient {
+            gap: 0px;
+            border-radius: 10px;
+            opacity: 0px;
+            padding: 10vh 5vw;
+            background: rgb(143, 193, 251);
+            background: linear-gradient(90deg, rgba(143, 193, 251, 1) 0%, rgba(167, 252, 252, 1) 100%);
+            color: var(--white);
+
+            .welcome {
+                font-family: Inter;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 24px;
+                text-align: left;
+            }
+
+            h1 {
+                margin: 20px 0px 30px 0px;
+                font-family: Inter;
+                font-size: 60px;
+                font-weight: 700;
+                line-height: 64px;
+                text-align: left;
+            }
+
+            small {
+                font-family: Inter;
+                font-size: 15px;
+                font-weight: 500;
+                line-height: 22.5px;
+                text-align: left;
+            }
+        }
+
+        .app {
+            h3 {
+                margin-top: 60px;
+                color: #1B1731;
+                font-family: Inter;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 22.5px;
+                text-align: left;
+            }
+
+            .cards {
+                display: flex;
+
+                .card {
+                    background: rgba(255, 255, 255, 0.4);
+                    max-width: 500px;
+                    padding: 40px;
+                    border-radius: 12px;
+                    opacity: 30;
+                    margin: 1rem 2rem 5rem 0;
+                    border: transparent;
+
+                    .title {
+                        color: #081B28;
+                        font-family: Inter;
+                        font-size: 24px;
+                        font-weight: 700;
+                        line-height: 24px;
+                        text-align: left;
+                        vertical-align: middle;
+                        justify-items: center;
+
+                        .material-symbols-outlined {
+                            margin-right: 8px;
+                        }
+                    }
+
+                    .description {
+                        font-family: Inter;
+                        font-size: var(--h6-font);
+                        font-weight: 400;
+                        line-height: 24px;
+                        text-align: left;
+                        color: rgba(0, 0, 0, 0.4);
+                        margin-top: 10px;
+                    }
+
+                    .btn {
+                        color: var(--white);
+                        background: var(--Surfaces-Button-Primary-normal, #1E5799);
+                        width: 150px;
+                        height: 50px;
+                        padding: 5px;
+                        border-radius: 12px;
+                        justify-self: center;
+                        font-family: Inter;
+                        font-size: 16px;
+                        font-weight: 700;
+                        line-height: 20px;
+
+                    }
+                }
+            }
+        }
+    }
+}

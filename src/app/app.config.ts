@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -7,14 +7,19 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { routes } from './app.routes';
 import { provideMsal } from './auth/identity/msal.providers';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr';
+import { provideQuillConfig } from 'ngx-quill';
 
 export const appConfig: ApplicationConfig = {
 
   providers: [
-    provideRouter(routes), provideClientHydration(),
+    provideRouter(routes), importProvidersFrom(BrowserAnimationsModule), provideClientHydration(),
     provideAnimationsAsync(),
+    provideAnimations(),
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
-    provideMsal()
+    provideMsal(),
+    provideToastr(),
 
   ]
 };

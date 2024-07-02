@@ -23,7 +23,7 @@ export class MsalFactory {
                 postLogoutRedirectUri: environment.msalConfig.redirect
             },
             cache: {
-                cacheLocation: BrowserCacheLocation.LocalStorage
+                 cacheLocation: BrowserCacheLocation.LocalStorage
             },
             system: {
                 allowNativeBroker: false,
@@ -45,7 +45,7 @@ export class MsalFactory {
         protectedResourceMap.set(environment.graph.uri, environment.graph.scopes);
 
         return {
-            interactionType: InteractionType.Redirect,
+            interactionType: InteractionType.Popup,
             protectedResourceMap
         };
     }
@@ -56,7 +56,7 @@ export class MsalFactory {
     */
     public static MSALGuardConfigFactory(): MsalGuardConfiguration {
         return {
-            interactionType: InteractionType.Redirect,
+            interactionType: InteractionType.Popup,
             authRequest: {
                 scopes: environment.graph.scopes
             }

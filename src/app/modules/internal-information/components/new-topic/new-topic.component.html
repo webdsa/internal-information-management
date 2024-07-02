@@ -1,0 +1,15 @@
+<div class="row">
+    <span class="title">
+        Adicionar novo tópico
+    </span>
+</div>
+<div class="row">
+    <input type="text" name="guidTopic" class="form-control text-start" [(ngModel)]="topic" />
+    <div class="btns">
+        <button class="btn" style="background-color: #ffffff;border: 1px #1E5799 solid; color: #1E5799;"
+            (click)="onClose.emit(true)">Cancelar</button>
+        <button class="btn" style="background-color: #1E5799;border: 1px #1E5799 solid; color: #ffffff;"
+            (click)="createTopic()">Adicionar</button>
+    </div>
+
+</div>

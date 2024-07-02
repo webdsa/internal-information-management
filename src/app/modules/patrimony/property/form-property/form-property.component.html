@@ -1,1 +1,222 @@
-<p>form-property works!</p>
+<div class="realty">
+    @defer () {
+    <app-header-title class="header-line" title="Adicionar Novo" textBtn="VER TODOS IMÓVEIS" titleEmphasis="Imóvel"
+        description="Preencha corretamente com as informações do novo imóvel." color="#37B582" colorLight="#E5FAF5"
+        (click)="navigateTo('property')"></app-header-title>
+    }
+    @defer () {
+    <app-card [hasPadding]="true">
+        <div class="form-info">
+            <h3>INFORMAÇÕES GERAIS</h3>
+            <div class="row">
+                <app-form-label class="col-4" titleLabel="Código do Imóvel">
+                    <input type="number" class="form-control" [(ngModel)]="form.id" />
+                    <app-form-msg-error [value]="form.id" [type]="1"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label class="col-4" titleLabel="Proprietário" [required]="true">
+                    <select class="form-select" (change)="selectOwnerName($event.target)">
+                        <option value="-0">
+                            Selecione o proprietário
+                        </option>
+                        <option value="CUB" [selected]="form.ownerName == 'CUB'">
+                            CUB
+                        </option>
+                        <option value="PROASA" [selected]="form.ownerName == 'PROASA'">
+                            PROASA
+                        </option>
+                        <option value="IAJA" [selected]="form.ownerName == 'IAJA'">
+                            IAJA
+                        </option>
+                    </select>
+                </app-form-label>
+
+                <app-form-label class="col-4" titleLabel=" Tipo do Imóvel" [required]="true">
+                    <select class="form-select" (change)="selectProperty($event.target)">
+                        <option value="-0">
+                            Selecione o tipo do imóvel
+                        </option>
+                        @for (item of typePropertyArray; track $index) {
+                        <option value="{{item.value}}" [selected]="item.value == +form.propertyType">
+                            {{item.label}}
+                        </option>
+                        }
+                    </select>
+                </app-form-label>
+            </div>
+            <div class="row">
+                <app-form-label class="col-3" titleLabel="CEP" [required]="true">
+                    <input type="text" class="form-control" [(ngModel)]="form.postalCode" />
+                    <app-form-msg-error [value]="form.postalCode" [type]="3"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label class="col-6" titleLabel="Endereço" [required]="true">
+                    <input type="text" class="form-control" [(ngModel)]="form.address" />
+                    <app-form-msg-error [value]="form.address" [type]="3"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label class="col-3" titleLabel="Complemento">
+                    <input type="text" class="form-control" [(ngModel)]="form.complement" />
+                    <app-form-msg-error [value]="form.complement"></app-form-msg-error>
+                </app-form-label>
+            </div>
+            <div class="row">
+                <app-form-label class="col-3" titleLabel="Bairro" [required]="true">
+                    <input type="text" class="form-control" [(ngModel)]="form.neighborhood" />
+                    <app-form-msg-error [value]="form.neighborhood" [type]="3"></app-form-msg-error>
+                </app-form-label>
+                <app-form-label class="col-3" titleLabel="Cidade" [required]="true">
+                    <input type="text" class="form-control" [(ngModel)]="form.city" />
+                    <app-form-msg-error [value]="form.city" [type]="3"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label class="col-1" titleLabel="UF" [required]="true">
+                    <input type="text" class="form-control" [(ngModel)]="form.federativeUnit" />
+                    <app-form-msg-error [value]="form.federativeUnit" [type]="3"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label class="col-5" titleLabel="Nome do edifício">
+                    <input type="text" class="form-control" [(ngModel)]="form.propertyName" />
+                    <app-form-msg-error [value]="form.propertyName" [type]="3"></app-form-msg-error>
+                </app-form-label>
+            </div>
+        </div>
+        <div class="form-detail">
+            <h3>DETALHES DO IMÓVEL</h3>
+            <div class="row">
+                <app-form-label class="col-3" titleLabel="Possuí fotovoltaica?" [required]="true">
+                    <select class="form-select" (change)="selectSolarPower($event.target)">
+                        <option value="-0">
+                            Escolhe uma opção
+                        </option>
+                        <option value="0" [selected]="form.hasPhotovoltaic == false">
+                            Não
+                        </option>
+                        <option value="1" [selected]="form.hasPhotovoltaic == true">
+                            Sim
+                        </option>
+                    </select>
+                </app-form-label>
+
+                <app-form-label class="col-3" titleLabel="Qual tipo de gás?" [required]="true">
+                    <select class="form-select" (change)="selectGas($event.target)">
+                        <option value="-0">
+                            Selecione o tipo do gás
+                        </option>
+                        @for (item of typeGasArray; track $index) {
+                        <option value="{{item.value}}" [selected]="item.value == +form.gasType">
+                            {{item.label}}
+                        </option>
+                        }
+                    </select>
+                </app-form-label>
+
+                <app-form-label class="col-3" titleLabel="Quantidade de quartos" [required]="true">
+                    <input type="number" class="form-control" [(ngModel)]="detailRealty.qtyRooms" />
+                    <app-form-msg-error [value]="detailRealty.qtyRooms" [type]="1"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label class="col-3" titleLabel="Limite de moradores" [required]="true">
+                    <input type="number" class="form-control" [(ngModel)]="detailRealty.qtyMaxResidents" />
+                    <app-form-msg-error [value]="detailRealty.qtyMaxResidents" [type]="1"></app-form-msg-error>
+                </app-form-label>
+            </div>
+            <div class="row">
+                <app-form-label class="col-4" titleLabel="Código do cliente - Energia" [required]="true">
+                    <input type="text" class="form-control" [(ngModel)]="detailRealty.eletricalCode" />
+                    <app-form-msg-error [value]="detailRealty.eletricalCode" [type]="3"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label class="col-4" titleLabel="Medidor cliente - Energia" [required]="true">
+                    <input type="text" class="form-control" [(ngModel)]="detailRealty.eletricMeter" />
+                    <app-form-msg-error [value]="detailRealty.eletricMeter" [type]="3"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label class="col-4" titleLabel="Código cliente - Água" [required]="true">
+                    <input type="text" class="form-control" [(ngModel)]="detailRealty.waterCode" />
+                    <app-form-msg-error [value]="detailRealty.waterCode" [type]="3"></app-form-msg-error>
+                </app-form-label>
+            </div>
+            <div class="row">
+                <app-form-label class="col-4" titleLabel="Inscrição municipal">
+                    <input type="text" class="form-control" [(ngModel)]="detailRealty.municipalRegistration" />
+                    <app-form-msg-error [value]="detailRealty.municipalRegistration" [type]="3"></app-form-msg-error>
+                </app-form-label>
+
+                <app-form-label class="col-4" titleLabel="IPTU/TLP" [required]="true">
+                    <select class="form-select" (change)="selectIptu($event.target)">
+                        <option value="-0">
+                            Selecione uma opção
+                        </option>
+                        <option value="0" [selected]="detailRealty.propertyTax == '0'">
+                            Não
+                        </option>
+                        <option value="1" [selected]="detailRealty.propertyTax == '1'">
+                            Sim
+                        </option>
+                    </select>
+                </app-form-label>
+
+                <app-form-label class="col-4" titleLabel="Avaliação do imóvel" [required]="true">
+                    <input type="text" class="form-control" [(ngModel)]="form.propertyValue" />
+                    <app-form-msg-error [value]="form.propertyValue" [type]="3"></app-form-msg-error>
+                </app-form-label>
+            </div>
+        </div>
+        <div class="add-informations">
+            @if (retractInfo) {
+            <div class="btn-info">
+                <div class="btns-title" (click)="retractInfo =! retractInfo">
+                    <span class="material-symbols-outlined">
+                        add
+                    </span>
+                    <span>
+                        Adicionar informações
+                    </span>
+                </div>
+            </div>
+            }
+            @else {
+            <div>
+                <h3>INFORMAÇÕES ADICIONAIS</h3>
+                <div class="row">
+                    <app-form-label class="col-4" titleLabel="Numero de Interfone" [required]="false">
+                        <input type="text" class="form-control" [(ngModel)]="detailRealty.intercomNumber" />
+                        <app-form-msg-error [value]="detailRealty.intercomNumber" [type]="1"></app-form-msg-error>
+                    </app-form-label>
+
+                    <app-form-label class="col-4" titleLabel="Telefone da portaria " [required]="false">
+                        <input type="text" class="form-control" [(ngModel)]="detailRealty.conciergePhone" />
+                        <app-form-msg-error [value]="detailRealty.conciergePhone" [type]="3"></app-form-msg-error>
+                    </app-form-label>
+
+                    <app-form-label class="col-4" titleLabel="Email da portaria" [required]="false">
+                        <input type="email" class="form-control" [(ngModel)]="detailRealty.emailConcierge" />
+                        <app-form-msg-error [value]="detailRealty.emailConcierge" [type]="3"></app-form-msg-error>
+                    </app-form-label>
+                </div>
+                <div class="row">
+                    <app-form-label class="col-12" titleLabel="Observações" [required]="false">
+                        <textarea class="form-control" [(ngModel)]="detailRealty.observation" rows="3"></textarea>
+                    </app-form-label>
+                </div>
+            </div>
+            <div class="btn-info">
+                <div class="btns-title" (click)="retractInfo =! retractInfo">
+                    <span class="material-symbols-outlined">
+                        remove
+                    </span>
+                    <span>
+                        Ocultar informações
+                    </span>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="btn">
+            <button type="button" class="btn btn-light" (click)="cancel()">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="edit?updateProperty():saveProperty()">Salvar</button>
+        </div>
+    </app-card>
+    }
+</div>

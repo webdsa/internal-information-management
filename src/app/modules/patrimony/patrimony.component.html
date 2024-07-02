@@ -1,1 +1,71 @@
-<p>patrimony works!</p>
+<app-menu-bar></app-menu-bar>
+@if (!showProperty && !showResident && !showProvider) {
+<div class="patrymony">
+  <div class="children" [class.collapsed]="colapse > 0">
+    <strong>Bem-vindo, <span class="name">{{personName}}</span></strong>
+    <p>Gerencie o patrimônio da Igreja Adventista do Sétimo Dia.</p>
+    <div class="cards">
+      <div class="col-8 p-0">
+        <div class="row mb">
+          <div class="col-6">
+            <div class="card">
+              <h2 style="color: #1E5799;">MORADORES</h2>
+              <p style="color: #1E5799;" class="description">CADASTRADOS</p>
+              <h1>0</h1>
+              <img src="assets/media/svg/PeopleOnWindow.svg" width="175px">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <h2 style="color: #40B2B2;">IMÓVEIS</h2>
+              <p style="color: #40B2B2;" class="description">DISPONÍVEIS</p>
+              <h1>0</h1>
+              <img src="assets/media/svg/Houses.svg" width="175px">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-report">
+              <span class="title">Relatórios</span>
+              <div class="reports">
+                @for (item of reports; track $index) {
+                <div class="item">
+                  <span class="material-symbols-outlined">
+                    {{item.icon}}
+                  </span>
+                  <span>{{item.name}}</span>
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3>Procurando algum serviço?</h3>
+          <p>Confira nossa lista</p>
+          <div class="services">
+            @for (service of services; track $index) {
+            <div class="title-service" (click)="navigateTo(service.rout)">
+              <div class="icon">
+                <span class="material-symbols-outlined">
+                  {{service.icon}}
+                </span>
+              </div>
+              <div class="d-grid">
+                <span>{{service.name}}</span>
+                <span class="description-service">{{service.description}}</span>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}@else {
+<router-outlet />
+}
