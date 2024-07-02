@@ -42,5 +42,11 @@
         "routerLink": "/patrimony/provider"
       }
     ]
+  },
+  {
+    "id": 4,
+    "label": "Política de Privacidade",
+    "icon": "build",
+    "routerLink": "/privacy-policy"
   }
 ]
