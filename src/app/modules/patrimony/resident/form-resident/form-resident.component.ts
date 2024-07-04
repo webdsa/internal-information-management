@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InsertResident } from '../../../../core/models/insert-resident.model';
 import { DetailRealty } from '../../../../core/models/insert.property';
 import { PatrimonyService } from '../../services/patrimony.services';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-form-resident',
@@ -23,6 +24,8 @@ export class FormResidentComponent {
   @Input() edit: boolean = false;
 
   #patrimonyService = inject(PatrimonyService);
+
+  constructor (private _router: Router) {}
 
   selectMaritalStatus(event: any) {
     this.form.maritalStatus = event.value;
@@ -43,5 +46,9 @@ export class FormResidentComponent {
 
   saveResident() {
     // Logic for save Resident
+  }
+
+  public navigateTo(path: string) {
+    this._router.navigate(['patrimony/' + path]);
   }
 }

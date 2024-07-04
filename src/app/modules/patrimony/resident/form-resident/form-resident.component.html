@@ -1,14 +1,8 @@
 <div class="resident">
   @defer () {
-  <app-header-title
-    class="header-line"
-    title="Adicionar Novo"
-    textBtn="VER TODOS MORADORES"
-    titleEmphasis="Morador"
-    description="Preencha corretamente com as informações do novo morador."
-    color="#1E5799"
-    colorLight="#EBF4FF"
-  ></app-header-title>
+    <app-header-title class="header-line" title="Adicionar Novo" textBtn="VER TODOS MORADORES" titleEmphasis="Morador"
+    description="Preencha corretamente com as informações do novo morador." color="#1E5799" colorLight="#EBF4FF"
+    (click)="navigateTo('resident')"></app-header-title>
   } @defer () {
   <app-card [hasPadding]="true">
     <div class="form-info">
