@@ -28,10 +28,6 @@ export class FormResidentComponent {
 
   constructor(private _router: Router) { }
 
-  selectMaritalStatus(event: any) {
-    this.form.maritalStatus = event.value;
-  }
-
   selectProperty(event: any) {
     this.form.propertyId = Number(event.value);
   }
