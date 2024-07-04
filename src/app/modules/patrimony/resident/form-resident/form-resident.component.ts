@@ -69,6 +69,12 @@ export class FormResidentComponent {
   }
 
   saveResident() {
+    console.log(this.selectedColaborator, 'super estranho');
+    this.form.propertyId = Number(this.selectedProperty);
+    this.form.collaboradorId = Number(this.selectedColaborator);
+    this.form.entryAt = new Date(this.form.entryAt);
+    this.form.departureAt = new Date(this.form.departureAt);
+
     this.#patrimonyService.postColaborator(this.form).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {
         this._toast.success('Colaborador linkado com sucesso!');
@@ -83,9 +89,4 @@ export class FormResidentComponent {
   // updateResident() {
   //   this.#patrimonyService.updateColabo
   // }
-
-
-  public navigateTo(path: string) {
-    this._router.navigate(['patrimony/' + path]);
-  }
 }

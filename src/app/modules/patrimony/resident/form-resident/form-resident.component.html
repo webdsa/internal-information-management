@@ -1,8 +1,8 @@
 <div class="resident">
   @defer () {
   <app-header-title class="header-line" title="Linkar Colaborador" textBtn="VER TODOS MORADORES" titleEmphasis="Morador"
-    description="Preencha corretamente com as informações para linkar morador." color="#1E5799"
-    colorLight="#EBF4FF"></app-header-title>
+    description="Preencha corretamente com as informações para linkar morador." color="#1E5799" colorLight="#EBF4FF"
+    router="patrimony/resident"></app-header-title>
   } @defer () {
   <app-card [hasPadding]="true">
     <div class="form-info">
@@ -11,7 +11,7 @@
         <app-form-label class="col" [required]="true">
           <p-dropdown [options]="colaboratorNames()" [(ngModel)]="selectedColaborator"
             placeholder="Selecione o colaborador" [filter]="true" />
-          <app-form-msg-error [value]="selectedColaborator" [type]="1"></app-form-msg-error>
+          <app-form-msg-error [value]="selectedColaborator" [type]="3"></app-form-msg-error>
         </app-form-label>
       </div>
     </div>
@@ -21,7 +21,7 @@
         <app-form-label class="col-4" [required]="true">
           <p-dropdown [options]="properties()" [(ngModel)]="selectedProperty" placeholder="Selecione uma propriedade"
             [filter]="true" />
-          <app-form-msg-error [value]="selectedProperty" [type]="1"></app-form-msg-error>
+          <app-form-msg-error [value]="selectedProperty" [type]="3"></app-form-msg-error>
         </app-form-label>
 
         <app-form-label class="col-4" titleLabel="Data de entrada" [required]="true">
@@ -30,8 +30,7 @@
         </app-form-label>
 
         <app-form-label class="col-4" titleLabel="Data de saída">
-          <input type="date" class="form-control" id="departureAt" name="departureAt" disabled="disabled"
-            [(ngModel)]="form.departureAt" />
+          <input type="date" class="form-control" id="departureAt" name="departureAt" [(ngModel)]="form.departureAt" />
           <app-form-msg-error [value]="form.departureAt" [type]="3"></app-form-msg-error>
         </app-form-label>
 
