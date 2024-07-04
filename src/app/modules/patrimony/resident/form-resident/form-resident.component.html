@@ -8,29 +8,12 @@
     <div class="form-info">
       <h3>INFORMAÇÕES GERAIS</h3>
       <div class="row">
-        <app-form-label class="col-4" titleLabel="Código APS">
-          <input type="number" class="form-control" [(ngModel)]="form.collaboradorId" />
-          <app-form-msg-error [type]="1"></app-form-msg-error>
-        </app-form-label>
-
-        <app-form-label class="col-4" titleLabel="Código do Inquilino">
-          <input type="number" class="form-control" />
-          <app-form-msg-error [type]="1"></app-form-msg-error>
-        </app-form-label>
-
-        <app-form-label class="col-4" titleLabel="Código do Imóvel">
-          <input type="number" class="form-control" />
-          <app-form-msg-error [type]="1"></app-form-msg-error>
-        </app-form-label>
-      </div>
-      <div class="row">
         <app-form-label class="col-8" titleLabel="Nome completo" [required]="true">
           <input type="text" class="form-control" />
           <app-form-msg-error [type]="3"></app-form-msg-error>
         </app-form-label>
 
         <app-form-label class="col-4" titleLabel="Gênero" [required]="true">
-          <input type="text" class="form-control" />
           <label for="male">Masculino</label>
           <input type="radio" name="gender" id="male" value="male" checked />
           <label for="female">Feminino</label>
@@ -42,23 +25,6 @@
         <app-form-label class="col-3" titleLabel="Telefone (Whatsapp)" [required]="true">
           <input type="text" class="form-control" />
           <app-form-msg-error [type]="3"></app-form-msg-error>
-        </app-form-label>
-        <app-form-label class="col-3" titleLabel="Estado civil" [required]="true">
-          <select class="form-select" (change)="selectMaritalStatus($event.target)">
-            <option value="-0">Selecione</option>
-            <option value="Solteiro" [selected]="form.maritalStatus == 'Solteiro'">
-              Solteiro
-            </option>
-            <option value="Casado" [selected]="form.maritalStatus == 'Casado'">
-              Casado
-            </option>
-            <option value="Divorciado" [selected]="form.maritalStatus == 'Divorciado'">
-              Divorciado
-            </option>
-            <option value="Viúvo" [selected]="form.maritalStatus == 'Viúvo'">
-              Viúvo
-            </option>
-          </select>
         </app-form-label>
       </div>
       <div class="row">
@@ -97,61 +63,15 @@
         </app-form-label>
 
       </div>
+
       <div class="row">
-        <app-form-label class="col-8" titleLabel="Nome do Edifício" [required]="true">
-          <input type="text" class="form-control" [(ngModel)]="form.propertyId" />
-          <app-form-msg-error [value]="form.propertyId" [type]="3"></app-form-msg-error>
+        <app-form-label class="col-12" titleLabel="Observações" [required]="false">
+          <textarea class="form-control" [(ngModel)]="detailRealty.observation" rows="3"></textarea>
         </app-form-label>
-
-        <app-form-label class="col-4" titleLabel="Cidade" [required]="true">
-          <input type="text" class="form-control" [(ngModel)]="form.propertyId" />
-          <app-form-msg-error [value]="form.propertyId" [type]="3"></app-form-msg-error>
-        </app-form-label>
-
       </div>
 
     </div>
-    <div class="add-informations">
-      @if (retractInfo) {
-      <div class="btn-info">
-        <div class="btns-title" (click)="retractInfo = !retractInfo">
-          <span class="material-symbols-outlined"> add </span>
-          <span> Adicionar informações </span>
-        </div>
-      </div>
-      } @else {
-      <div>
-        <h3>INFORMAÇÕES ADICIONAIS</h3>
-        <div class="row">
-          <app-form-label class="col-4" titleLabel="Numero de Interfone" [required]="false">
-            <input type="text" class="form-control" [(ngModel)]="detailRealty.intercomNumber" />
-            <app-form-msg-error [value]="detailRealty.intercomNumber" [type]="1"></app-form-msg-error>
-          </app-form-label>
 
-          <app-form-label class="col-4" titleLabel="Telefone da portaria " [required]="false">
-            <input type="text" class="form-control" [(ngModel)]="detailRealty.conciergePhone" />
-            <app-form-msg-error [value]="detailRealty.conciergePhone" [type]="3"></app-form-msg-error>
-          </app-form-label>
-
-          <app-form-label class="col-4" titleLabel="Email da portaria" [required]="false">
-            <input type="email" class="form-control" [(ngModel)]="detailRealty.emailConcierge" />
-            <app-form-msg-error [value]="detailRealty.emailConcierge" [type]="3"></app-form-msg-error>
-          </app-form-label>
-        </div>
-        <div class="row">
-          <app-form-label class="col-12" titleLabel="Observações" [required]="false">
-            <textarea class="form-control" [(ngModel)]="detailRealty.observation" rows="3"></textarea>
-          </app-form-label>
-        </div>
-      </div>
-      <div class="btn-info">
-        <div class="btns-title" (click)="retractInfo = !retractInfo">
-          <span class="material-symbols-outlined"> remove </span>
-          <span> Ocultar informações </span>
-        </div>
-      </div>
-      }
-    </div>
     <div class="btn">
       <button type="button" class="btn btn-light" (click)="cancel()"> Cancelar </button>
       <button type="button" class="btn btn-primary" (click)="edit ? updateResident() : saveResident()"> Salvar </button>
