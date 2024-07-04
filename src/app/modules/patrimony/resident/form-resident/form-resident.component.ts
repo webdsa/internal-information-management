@@ -29,6 +29,7 @@ export class FormResidentComponent {
     const colaborators: any[] = [];
 
     this.#patrimonyService.getColaborators().result$.subscribe((res: any) => {
+      console.log('teste', res.data.data);
       res.data.data.map((colaborator: any) => {
         colaborators.push({ value: colaborator.codeAPS, label: colaborator.employeeName })
       });
