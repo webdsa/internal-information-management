@@ -5,27 +5,28 @@ import { CardComponent } from '../../../../shared/card/card.component';
 import { FormLabelComponent } from '../../../../shared/form-label/form-label.component';
 import { FormMsgErrorComponent } from '../../../../shared/form-msg-error/form-msg-error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InsertResident } from '../../../../core/models/insert-resident.model';
+import { InsertResident, ResidentSpouse } from '../../../../core/models/insert-resident.model';
 import { DetailRealty } from '../../../../core/models/insert.property';
 import { PatrimonyService } from '../../services/patrimony.services';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-form-resident',
-    standalone: true,
-    templateUrl: './form-resident.component.html',
-    styleUrl: './form-resident.component.scss',
-    imports: [CommonModule, HeaderTitleComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule, CardComponent]
+  selector: 'app-form-resident',
+  standalone: true,
+  templateUrl: './form-resident.component.html',
+  styleUrl: './form-resident.component.scss',
+  imports: [CommonModule, HeaderTitleComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule, CardComponent]
 })
 export class FormResidentComponent {
   public form: InsertResident = new InsertResident();
+  public spouse: ResidentSpouse = new ResidentSpouse();
   public detailRealty: DetailRealty = new DetailRealty();
   public retractInfo: boolean = true;
   @Input() edit: boolean = false;
 
   #patrimonyService = inject(PatrimonyService);
 
-  constructor (private _router: Router) {}
+  constructor(private _router: Router) { }
 
   selectMaritalStatus(event: any) {
     this.form.maritalStatus = event.value;
