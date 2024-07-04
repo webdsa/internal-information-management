@@ -9,6 +9,7 @@ import { InsertResident, ResidentSpouse } from '../../../../core/models/insert-r
 import { PatrimonyService } from '../../services/patrimony.services';
 import { Router } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -42,8 +43,9 @@ export class FormResidentComponent {
     const properties: any[] = [];
 
     this.#patrimonyService.getProperty().result$.subscribe((res: any) => {
+      console.log(res.data.data);
       res.data.data.map((property: any) => {
-        properties.push({ value: property.id, label: property.name })
+        properties.push({ value: property.id, label: property.propertyName })
       });
     });
 
@@ -53,9 +55,10 @@ export class FormResidentComponent {
 
 
   selectedColaborator: any;
+  selectedProperty: any;
 
-  @Input() edit: boolean = false;
-  constructor(private _router: Router) { }
+  // @Input() edit: boolean = false;
+  constructor(private _router: Router, private _toast: ToastrService) { }
 
   selectProperty(event: any) {
     this.form.propertyId = Number(event.value);
@@ -65,13 +68,22 @@ export class FormResidentComponent {
     this.form = new InsertResident();
   }
 
-  updateResident() {
-    // Logic for update Resident
+  saveResident() {
+    this.#patrimonyService.postColaborator(this.form).mutateAsync(null).then((res: any) => {
+      if (res.succeeded) {
+        this._toast.success('Colaborador linkado com sucesso!');
+        this.form = new InsertResident();
+        this._router.navigate(['patrimony/resident']);
+      } else {
+        this._toast.error('Procure a equipe de suporte.', 'Erro ao linkar Colaborador!');
+      }
+    });
   }
 
-  saveResident() {
-    // Logic for save Resident
-  }
+  // updateResident() {
+  //   this.#patrimonyService.updateColabo
+  // }
+
 
   public navigateTo(path: string) {
     this._router.navigate(['patrimony/' + path]);

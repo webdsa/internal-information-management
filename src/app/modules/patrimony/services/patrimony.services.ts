@@ -87,4 +87,10 @@ export class PatrimonyService extends BaseService {
       queryFn: () => this.#http.get(`${this._urlBase}/Collaborators`, this.ObterAuthHeader())
     });
   }
+  public postColaborator(colaborator: any) {
+    return this.#mutation({
+      mutationKey: ['colaborator'],
+      mutationFn: () => this.#http.post(`${this._urlPostProperty}/resident`, colaborator, this.ObterAuthHeader())
+    });
+  }
 }

@@ -7,11 +7,11 @@ import { ToastrService } from 'ngx-toastr';
 import { CardComponent } from "../../../shared/card/card.component";
 
 @Component({
-    selector: 'app-resident',
-    standalone: true,
-    templateUrl: './resident.component.html',
-    styleUrl: './resident.component.scss',
-    imports: [RouterOutlet, SearchComponent, FilterComponent, CardComponent]
+  selector: 'app-resident',
+  standalone: true,
+  templateUrl: './resident.component.html',
+  styleUrl: './resident.component.scss',
+  imports: [RouterOutlet, SearchComponent, FilterComponent, CardComponent]
 })
 export class ResidentComponent {
 
@@ -36,11 +36,6 @@ export class ResidentComponent {
 
   filterProperty(event: any) {
     if (event.type === "Todos" && event.status === "Todos") this.filteredResident = this.residentsBkp;
-    // else if (event.type === "Todos") {
-    //   this.filteredResident = this.residentsBkp.filter(property => property.Status === event.status);
-    // } else {
-    //   this.filteredResident = this.residentsBkp.filter(property => property.PropertyType === event.type && property.Status === event.status);
-    // }
   }
 
   addNew() {
