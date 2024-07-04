@@ -30,7 +30,7 @@
         </app-form-label>
 
         <app-form-label class="col-2" titleLabel="Data de saída">
-          <input type="date" class="form-control" id="departureAt" name="departureAt" [(ngModel)]="form.departureAt" />
+          <input type="date" class="form-control" id="departureAt" name="departureAt" disabled="disabled" [(ngModel)]="form.departureAt" />
           <app-form-msg-error [value]="form.departureAt" [type]="1"></app-form-msg-error>
         </app-form-label>
 
