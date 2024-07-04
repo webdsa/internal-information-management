@@ -29,9 +29,8 @@ export class FormResidentComponent {
     const colaborators: any[] = [];
 
     this.#patrimonyService.getColaborators().result$.subscribe((res: any) => {
-      console.log('teste', res.data.data);
       res.data.data.map((colaborator: any) => {
-        colaborators.push({ value: colaborator.codeAPS, label: colaborator.employeeName })
+        colaborators.push({ value: colaborator.id, label: colaborator.employeeName })
       });
     });
 
@@ -39,13 +38,23 @@ export class FormResidentComponent {
     return colaborators;
   });
 
+  protected properties = computed(() => {
+    const properties: any[] = [];
+
+    this.#patrimonyService.getProperty().result$.subscribe((res: any) => {
+      res.data.data.map((property: any) => {
+        properties.push({ value: property.id, label: property.name })
+      });
+    });
+
+    properties.unshift({ value: 0, label: 'Selecione um imóvel' });
+    return properties;
+  });
+
 
   selectedColaborator: any;
 
   @Input() edit: boolean = false;
-
-
-
   constructor(private _router: Router) { }
 
   selectProperty(event: any) {
