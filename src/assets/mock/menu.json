@@ -25,6 +25,25 @@
     ]
   },
   {
+    "id": 3,
+    "label": "Moradores",
+    "icon": "home",
+    "items": [
+      {
+        "id": 1,
+        "label": "Cadastrar",
+        "icon": "add",
+        "routerLink": "/patrimony/new-resident"
+      },
+      {
+        "id": 2,
+        "label": "Todos os moradores",
+        "icon": "list",
+        "routerLink": "/patrimony/resident"
+      }
+    ]
+  },
+  {
     "id": 4,
     "label": "Fornecedores",
     "icon": "build",
