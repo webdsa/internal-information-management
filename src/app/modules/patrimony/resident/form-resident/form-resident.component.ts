@@ -43,7 +43,6 @@ export class FormResidentComponent {
     const properties: any[] = [];
 
     this.#patrimonyService.getProperty().result$.subscribe((res: any) => {
-      console.log(res.data.data);
       res.data.data.map((property: any) => {
         properties.push({ value: property.id, label: property.propertyName })
       });
@@ -69,9 +68,8 @@ export class FormResidentComponent {
   }
 
   saveResident() {
-    console.log(this.selectedColaborator, 'super estranho');
     this.form.propertyId = Number(this.selectedProperty);
-    this.form.collaboradorId = Number(this.selectedColaborator);
+    this.form.collaboratorId = Number(this.selectedColaborator);
     this.form.entryAt = new Date(this.form.entryAt);
     this.form.departureAt = new Date(this.form.departureAt);
 

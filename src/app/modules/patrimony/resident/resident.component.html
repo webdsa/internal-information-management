@@ -44,31 +44,24 @@
           <div class="row tbody border-style">
             <div class="d-flex list align-items-center">
               <div class="checkbox">
-                <input [id]="'checkbox' + resident.collaboradorId" class="form-check-input" type="checkbox" />
+                <input [id]="'checkbox' + resident.collaborator.id" class="form-check-input" type="checkbox" />
               </div>
               <div style="display: contents">
-                <div class="col person-name --kt-text-gray-900 text-hover-primary fw-semibold">
-                  {{ resident.collaboradorId }}
+                <div class="col-3 person-name --kt-text-gray-900 text-hover-primary fw-semibold">
+                  {{ resident.collaborator.employeeName }}
                 </div>
-                <div class="col-4 date">
-                  {{ resident.spouse.name}}
+                <div class="col date">
+                  {{ resident.collaborator.departmentName}}
                 </div>
-
-                  <!-- @else {
-                    <label class="status status-yellow">{{ property.Status.toString() }}</label>
-                    } -->
-
-                <!-- <div class="col-2 date">
-                  <button class="action edit">
-                    <span class="material-symbols-outlined" (click)="editProperty(property)"> edit </span>
-                  </button>
-                  <button class="action visibility">
-                    <span class="material-symbols-outlined"> visibility </span>
-                  </button>
-                  <button class="action delete">
-                    <span class="material-symbols-outlined" (click)="deletePropertyById(property.id)"> delete </span>
-                  </button>
-                </div> -->
+                <div class="col date">
+                  {{ resident.collaborator.isReligious ? 'Sim' : 'Não'}}
+                </div>
+                <div class="col-2 date">
+                  {{ property.propertyName}}
+                </div>
+                <div class="col date">
+                  {{ resident.entryAt | date: 'dd/MM/yyyy'}}
+                </div>
               </div>
             </div>
           </div>

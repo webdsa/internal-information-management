@@ -115,7 +115,6 @@ export class FormPropertyComponent {
   fillAdditionalDataByRealty(additionalData: Array<PropertyAdditionalDataModel>) {
     if (!additionalData) return;
     additionalData.forEach((data) => {
-      console.log(data.type);
       switch (data.type as number) {
         case 0:
           this.detailRealty.qtyRooms = Number(data.value);
@@ -175,9 +174,5 @@ export class FormPropertyComponent {
   cancel() {
     this.form = new InsertProperty();
     this.detailRealty = new DetailRealty();
-  }
-
-  public navigateTo(path: string) {
-    this._router.navigate(['patrimony/' + path]);
   }
 }
