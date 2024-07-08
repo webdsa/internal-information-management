@@ -9,6 +9,8 @@ import { FormMsgErrorComponent } from '../../../../shared/form-msg-error/form-ms
 import { DetailRealty, GasTypeEnum, InsertProperty, PropertyAdditionalDataModel, PropertyTypeEnum } from '../../../../core/models/insert.property';
 import { PatrimonyService } from '../../services/patrimony.services';
 import { Router } from '@angular/router';
+import { CorreiosService } from '../../../../core/services/correios.service';
+import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 @Component({
   selector: 'app-form-property',
   standalone: true,
@@ -17,10 +19,13 @@ import { Router } from '@angular/router';
   styleUrl: './form-property.component.scss'
 })
 export class FormPropertyComponent {
+  cep: string = '';
+  resultado: any;
+  private searchSubject = new Subject<string>();
+
   public form: InsertProperty = new InsertProperty();
   public retractInfo: boolean = true;
   public detailRealty: DetailRealty = new DetailRealty();
-
 
   public typePropertyArray = Object.values(PropertyTypeEnum)
     .filter(key => typeof key === 'number')
@@ -43,7 +48,25 @@ export class FormPropertyComponent {
   @Output() onEdited: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   #patrimonyService = inject(PatrimonyService);
-  constructor(private _toast: ToastrService, private _router: Router) { }
+  constructor(private _toast: ToastrService, private _router: Router, private correiosService: CorreiosService) {
+    this.searchSubject.pipe(
+      debounceTime(300), // Espera 300ms após o último evento
+      distinctUntilChanged(), // Ignora se o próximo valor for igual ao anterior
+      switchMap((cep: string) => this.correiosService.consultarCEP(cep))
+    ).subscribe(
+      data => {
+        this.resultado = data;
+        this.form.address = data.logradouro;
+        this.form.city = data.localidade;
+        this.form.complement = data.complemento;
+        this.form.federativeUnit = data.uf;
+        this.form.neighborhood = data.bairro;
+      },
+      error => {
+        console.error('Erro ao consultar CEP', error);
+      }
+    );
+  }
 
   ngOnInit(): void {
     if (this.realty && Object.keys(this.realty).length > 0) {
@@ -60,6 +83,24 @@ export class FormPropertyComponent {
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
     return changes[values] && changes[values]?.previousValue != changes[values]?.previousValue;
+  }
+
+  onKeyUp(event: any): void {
+    const input = event.target.value;
+    if (input.length >= 8) { // Verifica se o CEP tem pelo menos 8 caracteres
+      this.searchSubject.next(input);
+    }
+  }
+
+  consultarCEP() {
+    this.correiosService.consultarCEP(this.cep).subscribe(
+      data => {
+        this.resultado = data;
+      },
+      error => {
+        console.error('Erro ao consultar CEP', error);
+      }
+    );
   }
 
   saveProperty() {
@@ -115,7 +156,6 @@ export class FormPropertyComponent {
   fillAdditionalDataByRealty(additionalData: Array<PropertyAdditionalDataModel>) {
     if (!additionalData) return;
     additionalData.forEach((data) => {
-      console.log(data.type);
       switch (data.type as number) {
         case 0:
           this.detailRealty.qtyRooms = Number(data.value);
@@ -175,9 +215,5 @@ export class FormPropertyComponent {
   cancel() {
     this.form = new InsertProperty();
     this.detailRealty = new DetailRealty();
-  }
-
-  public navigateTo(path: string) {
-    this._router.navigate(['patrimony/' + path]);
   }
 }

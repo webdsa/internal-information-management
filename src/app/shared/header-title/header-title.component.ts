@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-title',
@@ -16,6 +17,10 @@ export class HeaderTitleComponent {
   @Input() colorLight!: string;
   @Input() icon: string = 'visibility';
   @Input() textBtn!: string;
-  constructor() {}
+  @Input() router!: string;
+  constructor(private _router: Router) { }
 
+  public navigateTo(path: string) {
+    this._router.navigate([this.router]);
+  }
 }

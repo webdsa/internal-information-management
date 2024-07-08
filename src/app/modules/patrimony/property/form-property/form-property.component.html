@@ -2,7 +2,7 @@
     @defer () {
     <app-header-title class="header-line" title="Adicionar Novo" textBtn="VER TODOS IMÓVEIS" titleEmphasis="Imóvel"
         description="Preencha corretamente com as informações do novo imóvel." color="#37B582" colorLight="#E5FAF5"
-        (click)="navigateTo('property')"></app-header-title>
+        router="patrimony/property"></app-header-title>
     }
     @defer () {
     <app-card [hasPadding]="true">
@@ -46,12 +46,12 @@
             </div>
             <div class="row">
                 <app-form-label class="col-3" titleLabel="CEP" [required]="true">
-                    <input type="text" class="form-control" [(ngModel)]="form.postalCode" />
+                    <input type="text" class="form-control" [(ngModel)]="form.postalCode" (keyup)="onKeyUp($event)" />
                     <app-form-msg-error [value]="form.postalCode" [type]="3"></app-form-msg-error>
                 </app-form-label>
 
                 <app-form-label class="col-6" titleLabel="Endereço" [required]="true">
-                    <input type="text" class="form-control" [(ngModel)]="form.address" />
+                    <input type="text" class="form-control" [(ngModel)]="form.address" disabled="disabled"/>
                     <app-form-msg-error [value]="form.address" [type]="3"></app-form-msg-error>
                 </app-form-label>
 

@@ -32,47 +32,37 @@
             </div>
             <div class="col title-table">Código</div>
             <div class="col-3 title-table">Nome do Morador</div>
-            <div class="col title-table">Setor</div>
-            <div class="col title-table">Obreiro</div>
             <div class="col-2 title-table">Imóvel</div>
             <div class="col title-table">Entrada</div>
             <div class="col title-table"></div>
           </div>
         </div>
-        @for (resident of residents; track $index) {
+        @for (item of property; track $index) {
+        @for(resident of item.residents; track $index){
         <div class="reports">
           <div class="row tbody border-style">
-            <div class="d-flex list align-items-center">
+            <div class="d-flex list align-items-left">
               <div class="checkbox">
-                <input [id]="'checkbox' + resident.collaboradorId" class="form-check-input" type="checkbox" />
+                <input [id]="'checkbox' + resident.collaborator.id" class="form-check-input" type="checkbox" />
               </div>
               <div style="display: contents">
-                <div class="col person-name --kt-text-gray-900 text-hover-primary fw-semibold">
-                  {{ resident.collaboradorId }}
+                <div class="col-3">
+                  {{ resident.collaborator.id }}
                 </div>
-                <div class="col-4 date">
-                  {{ resident.spouse.name}}
+                <div class="col-3 person-name --kt-text-gray-900 text-hover-primary fw-semibold">
+                  {{ resident.collaborator.employeeName }}
                 </div>
-
-                  <!-- @else {
-                    <label class="status status-yellow">{{ property.Status.toString() }}</label>
-                    } -->
-
-                <!-- <div class="col-2 date">
-                  <button class="action edit">
-                    <span class="material-symbols-outlined" (click)="editProperty(property)"> edit </span>
-                  </button>
-                  <button class="action visibility">
-                    <span class="material-symbols-outlined"> visibility </span>
-                  </button>
-                  <button class="action delete">
-                    <span class="material-symbols-outlined" (click)="deletePropertyById(property.id)"> delete </span>
-                  </button>
-                </div> -->
+                <div class="col-2 date">
+                  {{ item.propertyName}}
+                </div>
+                <div class="col date">
+                  {{ resident.entryAt | date: 'dd/MM/yyyy'}}
+                </div>
               </div>
             </div>
           </div>
         </div>
+        }
         }
       </div>
     </app-card>

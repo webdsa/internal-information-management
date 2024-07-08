@@ -105,7 +105,6 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Formulário enviado:', this.user);
   }
 
   login() {

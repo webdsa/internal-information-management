@@ -14,7 +14,6 @@ export class InsertProperty {
     propertyValue!: number;
     gasType!: GasTypeEnum;
     additionalData!: Array<PropertyAdditionalDataModel>;
-
 }
 
 export enum PropertyTypeEnum {

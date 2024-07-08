@@ -1,6 +1,6 @@
 export class InsertResident {
   propertyId!: number;
-  collaboradorId!: number;
+  collaboratorId!: number;
   entryAt!: Date;
   departureAt!: Date;
   spouse!: ResidentSpouse;
