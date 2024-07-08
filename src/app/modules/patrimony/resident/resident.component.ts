@@ -33,8 +33,6 @@ export class ResidentComponent {
         this.residents = res.data.data.residents;
         this.residentsBkp = res.data.data.residents;
         this.filteredResident = res.data.data.residents;
-
-        console.log(this.property, this.residents, this.residentsBkp, this.filteredResident, 'sacola');
       }
     });
 
