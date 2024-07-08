@@ -32,32 +32,28 @@
             </div>
             <div class="col title-table">Código</div>
             <div class="col-3 title-table">Nome do Morador</div>
-            <div class="col title-table">Setor</div>
-            <div class="col title-table">Obreiro</div>
             <div class="col-2 title-table">Imóvel</div>
             <div class="col title-table">Entrada</div>
             <div class="col title-table"></div>
           </div>
         </div>
-        @for (resident of residents; track $index) {
+        @for (item of property; track $index) {
+        @for(resident of item.residents; track $index){
         <div class="reports">
           <div class="row tbody border-style">
-            <div class="d-flex list align-items-center">
+            <div class="d-flex list align-items-left">
               <div class="checkbox">
                 <input [id]="'checkbox' + resident.collaborator.id" class="form-check-input" type="checkbox" />
               </div>
               <div style="display: contents">
+                <div class="col-3">
+                  {{ resident.collaborator.id }}
+                </div>
                 <div class="col-3 person-name --kt-text-gray-900 text-hover-primary fw-semibold">
                   {{ resident.collaborator.employeeName }}
                 </div>
-                <div class="col date">
-                  {{ resident.collaborator.departmentName}}
-                </div>
-                <div class="col date">
-                  {{ resident.collaborator.isReligious ? 'Sim' : 'Não'}}
-                </div>
                 <div class="col-2 date">
-                  {{ property.propertyName}}
+                  {{ item.propertyName}}
                 </div>
                 <div class="col date">
                   {{ resident.entryAt | date: 'dd/MM/yyyy'}}
@@ -66,6 +62,7 @@
             </div>
           </div>
         </div>
+        }
         }
       </div>
     </app-card>
