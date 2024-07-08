@@ -10,6 +10,7 @@ export const environment = {
         scopes: ['user.read']
     },
     //urlApi: 'https://a240-179-89-244-234.ngrok-free.app'
-    urlApi: 'http://localhost:5171'
+    // urlApi: 'http://localhost:5171'
+    urlApi: 'https://mgn.dsa.org.br'
 
 };
