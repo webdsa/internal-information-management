@@ -106,7 +106,7 @@ export class FormPropertyComponent {
   saveProperty() {
     this.fillAdditionalData();
     this.form.status = 0;
-    this.form.propertyValue = 0;
+    // this.form.propertyValue = 0;
     this.#patrimonyService.postProperty(this.form).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {
         this._toast.success('Imóvel cadastrado com sucesso!');
@@ -121,7 +121,7 @@ export class FormPropertyComponent {
   updateProperty() {
     this.fillAdditionalData();
     this.form.status = 0;
-    this.form.propertyValue = 0;
+    // this.form.propertyValue = 0;
     this.#patrimonyService.putProperty(this.form).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {
         this._toast.success('Imóvel cadastrado com sucesso!');

@@ -9,7 +9,7 @@
         <div class="form-info">
             <h3>INFORMAÇÕES GERAIS</h3>
             <div class="row">
-                <app-form-label class="col-4" titleLabel="Código do Imóvel">
+                <app-form-label class="col-4" titleLabel="Código do Imóvel" [required]="true">
                     <input type="number" class="form-control" [(ngModel)]="form.id" />
                     <app-form-msg-error [value]="form.id" [type]="1"></app-form-msg-error>
                 </app-form-label>
@@ -75,7 +75,7 @@
                     <app-form-msg-error [value]="form.federativeUnit" [type]="3"></app-form-msg-error>
                 </app-form-label>
 
-                <app-form-label class="col-5" titleLabel="Nome do edifício">
+                <app-form-label class="col-5" titleLabel="Nome do edifício" [required]="true">
                     <input type="text" class="form-control" [(ngModel)]="form.propertyName" />
                     <app-form-msg-error [value]="form.propertyName" [type]="3"></app-form-msg-error>
                 </app-form-label>
@@ -138,7 +138,7 @@
                 </app-form-label>
             </div>
             <div class="row">
-                <app-form-label class="col-4" titleLabel="Inscrição municipal">
+                <app-form-label class="col-4" titleLabel="Inscrição municipal" [required]="true">
                     <input type="text" class="form-control" [(ngModel)]="detailRealty.municipalRegistration" />
                     <app-form-msg-error [value]="detailRealty.municipalRegistration" [type]="3"></app-form-msg-error>
                 </app-form-label>
@@ -164,54 +164,30 @@
             </div>
         </div>
         <div class="add-informations">
-            @if (retractInfo) {
-            <div class="btn-info">
-                <div class="btns-title" (click)="retractInfo =! retractInfo">
-                    <span class="material-symbols-outlined">
-                        add
-                    </span>
-                    <span>
-                        Adicionar informações
-                    </span>
-                </div>
-            </div>
-            }
-            @else {
             <div>
                 <h3>INFORMAÇÕES ADICIONAIS</h3>
                 <div class="row">
-                    <app-form-label class="col-4" titleLabel="Numero de Interfone" [required]="false">
+                    <app-form-label class="col-4" titleLabel="Número de Interfone" [required]="true">
                         <input type="text" class="form-control" [(ngModel)]="detailRealty.intercomNumber" />
                         <app-form-msg-error [value]="detailRealty.intercomNumber" [type]="1"></app-form-msg-error>
                     </app-form-label>
 
-                    <app-form-label class="col-4" titleLabel="Telefone da portaria " [required]="false">
+                    <app-form-label class="col-4" titleLabel="Telefone da portaria" [required]="true">
                         <input type="text" class="form-control" [(ngModel)]="detailRealty.conciergePhone" />
                         <app-form-msg-error [value]="detailRealty.conciergePhone" [type]="3"></app-form-msg-error>
                     </app-form-label>
 
-                    <app-form-label class="col-4" titleLabel="Email da portaria" [required]="false">
+                    <app-form-label class="col-4" titleLabel="Email da portaria" [required]="true">
                         <input type="email" class="form-control" [(ngModel)]="detailRealty.emailConcierge" />
                         <app-form-msg-error [value]="detailRealty.emailConcierge" [type]="3"></app-form-msg-error>
                     </app-form-label>
                 </div>
                 <div class="row">
-                    <app-form-label class="col-12" titleLabel="Observações" [required]="false">
+                    <app-form-label class="col-12" titleLabel="Observações" [required]="true">
                         <textarea class="form-control" [(ngModel)]="detailRealty.observation" rows="3"></textarea>
                     </app-form-label>
                 </div>
             </div>
-            <div class="btn-info">
-                <div class="btns-title" (click)="retractInfo =! retractInfo">
-                    <span class="material-symbols-outlined">
-                        remove
-                    </span>
-                    <span>
-                        Ocultar informações
-                    </span>
-                </div>
-            </div>
-            }
         </div>
         <div class="btn">
             <button type="button" class="btn btn-light" (click)="cancel()">Cancelar</button>
