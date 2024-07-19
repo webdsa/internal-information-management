@@ -6,7 +6,7 @@
       name="ageMax"
       class="form-control text-start"
       placeholder="Idade máxima"
-      [(ngModel)]="ageMax"
+      [(ngModel)]="form().ageMax"
     />
   </div>
   <div class="row">
@@ -16,7 +16,7 @@
       name="ageMin"
       class="form-control text-start"
       placeholder="Idade mínima"
-      [(ngModel)]="ageMin"
+      [(ngModel)]="form().ageMin"
     />
   </div>
   <div class="row">
@@ -26,7 +26,7 @@
       name="exacliAge"
       class="form-control text-start"
       placeholder="Idade exata"
-      [(ngModel)]="exacliAge"
+      [(ngModel)]="form().exacliAge"
     />
   </div>
   <div class="row">
@@ -36,22 +36,16 @@
       name="departure"
       class="form-control text-start"
       placeholder="Escreva departamento"
-      [(ngModel)]="departure"
+      [(ngModel)]="form().departure"
     />
 
   </div>
   <div class="row">
     <label>Gênero: </label>
-    <!-- <input type="text" name="genderType" class="form-control text-start" placeholder="Gênero destinado"
-            [(ngModel)]="genderType" /> -->
-    <select>
-      <option [(ngModel)]="genderType">-</option>
-      <option class="form-control text-start" [(ngModel)]="genderType">
-        Masculino
-      </option>
-      <option class="form-control text-start" [(ngModel)]="genderType">
-        Feminino
-      </option>
+    <select (change)="selectGender($event.target)">
+      <option value="">-</option>
+      <option [selected]="form().genderType == 'masculino'" value="masculino">Masculino</option>
+      <option [selected]="form().genderType == 'feminino'" value="feminino">Feminino</option>
     </select>
   </div>
   <div class="row">
