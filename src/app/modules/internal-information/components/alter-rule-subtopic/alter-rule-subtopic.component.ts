@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, WritableSignal, inject, signal } from '@angular/core';
 import { Subtopics } from '../../../../core/models/guid.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,16 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './alter-rule-subtopic.component.scss'
 })
 export class AlterRuleSubtopicComponent {
-  public exaclyFunction: string = '';
-  public excludeFunction: string = '';
-  public departure: string = '';
-  public genderType: string = '';
-  public ageMax: number = 0;
-  public ageMin: number = 0;
-  public exacliAge: number = 0;
-  dropdownList = [];
-  selectedItems = [];
-  dropdownSettings = {};
+  protected form: WritableSignal<TravelerProfile> = signal<TravelerProfile>( new TravelerProfile());
 
   @Input() public subtopic: Subtopics = new Subtopics();
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -30,18 +21,7 @@ export class AlterRuleSubtopicComponent {
   constructor(private _toast: ToastrService) { }
 
   public AlterRuleSubTopic() {
-    const rule = {
-      "topicId": this.subtopic.topicId ?? 0,
-      "subTopicId": this.subtopic.id ?? 0,
-      "exaclyFunction": this.exaclyFunction ?? null,
-      "excludeFunction": this.excludeFunction ?? null,
-      "departure": this.departure ?? null,
-      "genderType": this.genderType ?? null,
-      "ageMax": this.ageMax ?? null,
-      "ageMin": this.ageMin ?? null,
-      "exacliAge": this.exacliAge ?? null
-    };
-    this.#InternalService.alterRuleSubTopic(rule).mutateAsync(null).then((res: any) => {
+    this.#InternalService.alterRuleSubTopic(this.form()).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {
         this.onClose.emit(true);
         this._toast.success('Regra alterada com sucesso!');
@@ -50,4 +30,19 @@ export class AlterRuleSubtopicComponent {
       }
     });
   }
+
+  selectGender(target:any){
+    this.form().genderType = target.value;
+  }
+}
+export class TravelerProfile {
+  topicId!: number;
+  subTopicId!: number;
+  ageMax: number | undefined;
+  ageMin: number | undefined;
+  exacliAge: number | undefined;
+  genderType: string | undefined;
+  exaclyFunction: string[] | undefined;
+  excludeFunction: string[] | undefined;
+  departure: string[] | undefined;
 }

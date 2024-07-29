@@ -44,7 +44,7 @@ export class FormResidentComponent {
 
     this.#patrimonyService.getProperty().result$.subscribe((res: any) => {
       res.data.data.map((property: any) => {
-        properties.push({ value: property.id, label: property.propertyName })
+        properties.push({ value: property.id, label: property.propertyName + (property.complement? ', ' + property.complement:'')})
       });
     });
 
