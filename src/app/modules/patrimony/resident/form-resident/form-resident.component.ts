@@ -38,7 +38,7 @@ export class FormResidentComponent {
             });
           });
         } else {
-          this._toast.error('Näo existe colaboradores cadastrados.');
+          return;
         }
       },
       error: (err) => {
@@ -63,7 +63,7 @@ export class FormResidentComponent {
             });
           });
         } else {
-          this._toast.error('Näo existe moradias cadastradas.');
+          return;
         }
       },
       error: (err) => {
