@@ -28,12 +28,24 @@ export class FormResidentComponent {
 
   protected colaboratorNames = computed(() => {
     const colaborators: any[] = [];
-
-    this.#patrimonyService.getColaborators().result$.subscribe((res: any) => {
-      res.data.data.map((colaborator: any) => {
-        colaborators.push({ value: colaborator.id, label: colaborator.employeeName })
-      });
+    this.#patrimonyService.getColaborators().result$.subscribe({
+      next: (res: any) => {
+        if (res && res.data && Array.isArray(res.data.data)) { 
+          res.data.data.map((colaborator: any) => {
+            colaborators.push({ 
+              value: colaborator.id, 
+              label: colaborator.employeeName
+            });
+          });
+        } else {
+          return;
+        }
+      },
+      error: (err) => {
+        this._toast.error('Erro ao consultar colaboradores:', err);
+      }
     });
+
 
     colaborators.unshift({ value: 0, label: 'Selecione um colaborador' });
     return colaborators;
@@ -41,12 +53,24 @@ export class FormResidentComponent {
 
   protected properties = computed(() => {
     const properties: any[] = [];
-
-    this.#patrimonyService.getProperty().result$.subscribe((res: any) => {
-      res.data.data.map((property: any) => {
-        properties.push({ value: property.id, label: property.propertyName + (property.complement? ', ' + property.complement:'')})
-      });
+    this.#patrimonyService.getProperty().result$.subscribe({
+      next: (res: any) => {
+        if (res && res.data && Array.isArray(res.data.data)) { 
+          res.data.data.map((property: any) => {
+            properties.push({ 
+              value: property.id, 
+              label: property.propertyName + (property?.complement ? ', ' + property.complement : '') 
+            });
+          });
+        } else {
+          return;
+        }
+      },
+      error: (err) => {
+        this._toast.error('Erro ao consultar moradias:', err);
+      }
     });
+
 
     properties.unshift({ value: 0, label: 'Selecione um imóvel' });
     return properties;
