@@ -35,6 +35,11 @@ export class MenuBarComponent implements OnInit {
     document.removeEventListener('click', this.handleOutsideClick.bind(this));
   }
 
+  clearLocalStorage(){
+    localStorage.clear();
+    location.reload();
+  }
+
   handleOutsideClick(event: MouseEvent) {
     if (this.childrenMenuRef && !this.childrenMenuRef.nativeElement.contains(event.target) && this.MenuRef && !this.MenuRef.nativeElement.contains(event.target)) {
       this.subMenu = [];
