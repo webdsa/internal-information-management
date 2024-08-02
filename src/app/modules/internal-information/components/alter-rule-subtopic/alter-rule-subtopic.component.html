@@ -1,36 +1,20 @@
 <div class="alter-rule">
   <div class="row">
-    <label>Idade máxima: </label>
-    <input
-      type="text"
-      name="ageMax"
-      class="form-control text-start"
-      placeholder="Idade máxima"
-      [(ngModel)]="form().ageMax"
-    />
+    <label>Obreiro: </label>
+    <select (change)="selectEmployee($event.target)">
+      <option [selected]="form().forEmployee == 1" value="1">Sim</option>
+      <option [selected]="form().forEmployee == 2" value="2">Nao</option>
+      <option [selected]="form().forEmployee == 0" value="0">Todos</option>
+    </select>
   </div>
   <div class="row">
-    <label>Idade mínima: </label>
-    <input
-      type="text"
-      name="ageMin"
-      class="form-control text-start"
-      placeholder="Idade mínima"
-      [(ngModel)]="form().ageMin"
-    />
+    <div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="form().allEmployee">
+    <label class="form-check-label" for="flexSwitchCheckDefault">Todos os funcionários?:</label>
   </div>
-  <div class="row">
-    <label>Idade exata: </label>
-    <input
-      type="text"
-      name="exacliAge"
-      class="form-control text-start"
-      placeholder="Idade exata"
-      [(ngModel)]="form().exacliAge"
-    />
-  </div>
-  <div class="row">
-    <label>Departamento: </label>
+
+  <!-- <div class="row">
+    <label>Imóvel Funcional: </label>
     <input
       type="text"
       name="departure"
@@ -38,15 +22,18 @@
       placeholder="Escreva departamento"
       [(ngModel)]="form().departure"
     />
+  </div> -->
+    <!-- <div class="row">
+    <label>Ordem do campo Ocupacional: </label>
+    <input
+      type="text"
+      name="departure"
+      class="form-control text-start"
+      placeholder="Escreva departamento"
+      [(ngModel)]="form().departure"
+    />
+  </div> -->
 
-  </div>
-  <div class="row">
-    <label>Gênero: </label>
-    <select (change)="selectGender($event.target)">
-      <option value="">-</option>
-      <option [selected]="form().genderType == 'masculino'" value="masculino">Masculino</option>
-      <option [selected]="form().genderType == 'feminino'" value="feminino">Feminino</option>
-    </select>
   </div>
   <div class="row">
     <div class="btns">

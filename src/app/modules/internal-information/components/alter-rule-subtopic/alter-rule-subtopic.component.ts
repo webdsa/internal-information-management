@@ -21,28 +21,25 @@ export class AlterRuleSubtopicComponent {
   constructor(private _toast: ToastrService) { }
 
   public AlterRuleSubTopic() {
-    this.#InternalService.alterRuleSubTopic(this.form()).mutateAsync(null).then((res: any) => {
-      if (res.succeeded) {
-        this.onClose.emit(true);
-        this._toast.success('Regra alterada com sucesso!');
-      } else {
-        this._toast.error('Procure a equipe de suporte.', 'Erro ao alterar regra!');
-      }
-    });
+    console.log(this.form());
+    // this.#InternalService.alterRuleSubTopic(this.form()).mutateAsync(null).then((res: any) => {
+    //   if (res.succeeded) {
+    //     this.onClose.emit(true);
+    //     this._toast.success('Regra alterada com sucesso!');
+    //   } else {
+    //     this._toast.error('Procure a equipe de suporte.', 'Erro ao alterar regra!');
+    //   }
+    // });
   }
 
-  selectGender(target:any){
-    this.form().genderType = target.value;
+
+  selectEmployee(target:any){
+    this.form().forEmployee = target.value;
   }
 }
 export class TravelerProfile {
   topicId!: number;
   subTopicId!: number;
-  ageMax: number | undefined;
-  ageMin: number | undefined;
-  exacliAge: number | undefined;
-  genderType: string | undefined;
-  exaclyFunction: string[] | undefined;
-  excludeFunction: string[] | undefined;
-  departure: string[] | undefined;
+  forEmployee: number | undefined;
+  allEmployee: boolean | undefined;
 }
