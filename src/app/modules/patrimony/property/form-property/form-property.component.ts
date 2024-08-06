@@ -30,14 +30,14 @@ export class FormPropertyComponent {
   public typePropertyArray = Object.values(PropertyTypeEnum)
     .filter(key => typeof key === 'number')
     .map(key => ({
-      label: PropertyTypeEnum[key as keyof typeof PropertyTypeEnum],
+      label: PropertyTypeEnum[key as unknown as keyof typeof PropertyTypeEnum],
       value: key
     }));
 
   public typeGasArray = Object.values(GasTypeEnum)
     .filter(key => typeof key === 'number')
     .map(key => ({
-      label: GasTypeEnum[key as keyof typeof GasTypeEnum],
+      label: GasTypeEnum[key as unknown as keyof typeof GasTypeEnum],
       value: key
     }));
 
@@ -83,6 +83,17 @@ export class FormPropertyComponent {
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
     return changes[values] && changes[values]?.previousValue != changes[values]?.previousValue;
+  }
+
+  deletePropertyById(id: number) {
+    this.#patrimonyService.deletePropertyById(id).mutateAsync(null).then((res: any) => {
+      if (res.succeeded) {
+        this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
+        this._router.navigate(['patrimony/property']);
+      } else {
+        this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
+      }
+    });
   }
 
   onKeyUp(event: any): void {

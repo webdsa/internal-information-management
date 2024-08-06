@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Output, Pipe, PipeTransform, inject } from '@angular/core';
 import { CardComponent } from '../../../shared/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from "../../../shared/search/search.component";
@@ -9,7 +9,25 @@ import { PatrimonyService } from '../services/patrimony.services';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormPropertyComponent } from './form-property/form-property.component';
-import { InsertProperty, PropertyAdditionalDataModel, PropertyStatusEnum } from '../../../core/models/insert.property';
+import { InsertProperty, PropertyAdditionalDataModel, PropertyStatusEnum, PropertyTypeEnum } from '../../../core/models/insert.property';
+
+@Pipe({
+  name: 'propertyTypeToString'
+})
+export class PropertyTypeToStringPipe implements PipeTransform {
+  transform(value: PropertyTypeEnum): string {
+    switch (value) {
+      case PropertyTypeEnum.Apartment:
+        return 'Apartamento';
+      case PropertyTypeEnum.House:
+        return 'Casa';
+      case PropertyTypeEnum.Academy:
+        return 'Academia';
+      default:
+        return 'Tipo de propriedade desconhecido';
+    }
+  }
+}
 
 @Component({
   selector: 'app-property',

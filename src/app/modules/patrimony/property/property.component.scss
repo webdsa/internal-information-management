@@ -13,34 +13,45 @@
   }
 
   .un,
-  .value{
-    width: 12rem;
+  .value,
+  .phone{
+    width: 16rem;
   }
 
+  // .un{
+  //   position: absolute;
+  // }
+
   .name{
-    width: 20rem;
+    width: 25rem;
+    // position: absolute;
+    // left: 12rem;
+  }
+
+  .actions {
+    width: 10rem;
   }
 
   .address{
-    width: 30rem;
+    width: 40rem;
+    left: 32rem;
   }
 
   .photovoltaic,
-  .phone,
   .iptu,
   .type{
     width: 8rem;
   }
 
   .gas{
-    width: 4rem;
+    width: 6rem;
   }
 
   .code-energy,
   .code-water,
   .water,
   .inscription{
-    width: 14rem;
+    width: 16rem;
   }
 
   .label-property {

@@ -43,6 +43,7 @@
             <div class="value">Avaliação do Imóvel</div>
             <div class="type">Tipo</div>
             <div class="status">Status</div>
+            <div class="actions"></div>
           </div>
         </div>
         @for (property of propertys; track $index ) {
@@ -74,30 +75,41 @@
             <div class="inscription">
               {{ getAdditionalDataValue(property.additionalData, 10) }}
             </div>
+
             @if(property.hasPhotovoltaic) {
-            <div class="photovoltaic">
-              Sim
-            </div>
+            <div class="photovoltaic">Sim</div>
             } @else {
-              <div class="photovoltaic">
-                Não
-              </div>
+            <div class="photovoltaic">Não</div>
             }
+
             <div class="phone">
               {{ getAdditionalDataValue(property.additionalData, 3) }}
             </div>
+
             <div class="iptu">
               {{ getAdditionalDataValue(property.additionalData, 11) }}
             </div>
-            <div class="gas">
-              {{ property.gasType }}
-            </div>
+
+            @if(property.gasType === 0) {
+            <div class="gas">P13</div>
+            } @else if (property.gasType === 1) {
+            <div class="gas">P45</div>
+            } @else if (property.gasType === 2) {
+            <div class="gas">Plumbed</div>
+            }
+
             <div class="value">
               {{ property.propertyValue }}
             </div>
-            <div class="type">
-              {{ property.propertyType.toString() }}
-            </div>
+
+            @if(property.propertyType === 0) {
+            <div class="type">Apartamento</div>
+            } @else if (property.propertyType === 1) {
+            <div class="type">Casa</div>
+            } @else if (property.propertyType === 2) {
+            <div class="type">Academia</div>
+            }
+
             <div class="status">
               @if(property.status === 0) {
               <label class="status status-red">Ocupado</label>
@@ -109,17 +121,17 @@
                         <label class="status status-yellow">{{ property.Status.toString() }}</label>
                         } -->
             </div>
-            <!-- <div class="col-2">
+            <div class="actions">
                   <button class="action edit">
                     <span class="material-symbols-outlined" (click)="editProperty(property)"> edit </span>
                   </button>
                   <button class="action visibility">
                     <span class="material-symbols-outlined"> visibility </span>
                   </button>
-                  <button class="action delete">
+                  <!-- <button class="action delete">
                     <span class="material-symbols-outlined" (click)="deletePropertyById(property.id)"> delete </span>
-                  </button>
-                </div> -->
+                  </button> -->
+                </div>
           </div>
         </div>
         }

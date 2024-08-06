@@ -22,6 +22,18 @@ export enum PropertyTypeEnum {
     Academy = 2
 }
 
+export namespace PropertyTypeEnum {
+  export function Array() {
+    return Object.keys(PropertyTypeEnum)
+        .filter((e) => !isNaN(+e))
+        .map((k) => ({
+            key: Number(k),
+            value: PropertyTypeEnum[k as any],
+            item: k,
+        }));
+}
+}
+
 export enum PropertyStatusEnum {
     Buzy = 0,
     NotBuzy = 1,

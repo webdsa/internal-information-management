@@ -16,6 +16,9 @@
 
 .card-body {
   padding: 0px;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .icon-info {
