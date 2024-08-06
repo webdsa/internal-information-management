@@ -63,6 +63,10 @@ export class MenuBarComponent implements OnInit {
   openSubMenu(id: number) {
     this.subMenu = this.menuItens.find(x => x.id === id)!.items;
   }
+  onMouseEnter(id: number) {
+    this.openSubMenu(id);
+  }
+
   navigateTo(rout: string) {
     if (this.selected) this.subMenu = [];
     this.ngZone.run(() => this.router.navigate([rout]));

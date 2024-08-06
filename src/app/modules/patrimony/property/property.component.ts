@@ -9,7 +9,7 @@ import { PatrimonyService } from '../services/patrimony.services';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormPropertyComponent } from './form-property/form-property.component';
-import { InsertProperty, PropertyStatusEnum } from '../../../core/models/insert.property';
+import { InsertProperty, PropertyAdditionalDataModel, PropertyStatusEnum } from '../../../core/models/insert.property';
 
 @Component({
   selector: 'app-property',
@@ -22,6 +22,7 @@ export class PropertyComponent {
 
   public propertys: Array<InsertProperty> = [];
   public property: InsertProperty = new InsertProperty();
+  public additionalDataProperty: Array<PropertyAdditionalDataModel> = [];
   public propertysBkp: Array<InsertProperty> = [];
   public filteredProperties: Array<InsertProperty> = [];
 
@@ -51,6 +52,11 @@ export class PropertyComponent {
       this.propertysBkp = response.data!.data;
       this.filteredProperties = response.data!.data;
     });
+  }
+
+  getAdditionalDataValue(additionalData: any[], type: number): string {
+    const data = additionalData.find(d => d.type === type);
+    return data ? data.value : '';
   }
 
   onclickOpenModal() {
@@ -102,4 +108,5 @@ export class PropertyComponent {
     this.openModalEdit = true;
     this.property = property;
   }
+
 }

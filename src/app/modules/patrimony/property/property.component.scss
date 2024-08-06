@@ -6,6 +6,43 @@
     font-weight: 600;
   }
 
+  .data-table-reports{
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 150vw;
+  }
+
+  .un,
+  .value{
+    width: 12rem;
+  }
+
+  .name{
+    width: 20rem;
+  }
+
+  .address{
+    width: 30rem;
+  }
+
+  .photovoltaic,
+  .phone,
+  .iptu,
+  .type{
+    width: 8rem;
+  }
+
+  .gas{
+    width: 4rem;
+  }
+
+  .code-energy,
+  .code-water,
+  .water,
+  .inscription{
+    width: 14rem;
+  }
+
   .label-property {
     color: #17b582;
   }

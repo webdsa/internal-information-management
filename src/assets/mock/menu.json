@@ -9,6 +9,7 @@
     "id": 2,
     "label": "Imóveis",
     "icon": "home",
+    "routerLink": "/patrimony/property",
     "items": [
       {
         "id": 1,
@@ -28,6 +29,7 @@
     "id": 3,
     "label": "Moradores",
     "icon": "home",
+    "routerLink": "/patrimony/resident",
     "items": [
       {
         "id": 1,
@@ -47,6 +49,7 @@
     "id": 4,
     "label": "Fornecedores",
     "icon": "build",
+    "routerLink": "/patrimony/provider",
     "items": [
       {
         "id": 1,
