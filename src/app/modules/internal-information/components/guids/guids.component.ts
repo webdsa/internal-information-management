@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Output, WritableSignal, inject, signal } from '@angular/core';
 import { InternalService } from '../../services/internal.service';
 import { GuidModel, Subtopics } from '../../../../core/models/guid.model';
 import { NewTopicComponent } from '../new-topic/new-topic.component';
@@ -24,8 +24,8 @@ export class GuidsComponent {
   public openModalConfirmSub: boolean = false;
   public openModalAlterRuleSubtopic: boolean = false;
 
-  public topicId: number = 0;
-  public subTopic: Subtopics = new Subtopics();
+  protected topicId:WritableSignal<number> = signal<number>(0);
+  protected subTopic:WritableSignal<Subtopics> = signal<Subtopics>(new Subtopics());
 
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -43,17 +43,17 @@ export class GuidsComponent {
 
   public OpenModalSubtopic(id: number) {
     this.openModalSubtopic = true;
-    this.topicId = id;
+    this.topicId.set(id);
   }
 
   public openModalDelete(id: number) {
     this.openModalConfirm = true;
-    this.topicId = id;
+    this.topicId.set(id);
   }
 
   public openModalDeleteSub(id: number) {
     this.openModalConfirmSub = true;
-    this.topicId = id;
+    this.topicId.set(id);
   }
 
   public deleteTopic(id: number) {
@@ -80,11 +80,11 @@ export class GuidsComponent {
 
   public editSubTopic(subTopic: Subtopics) {
     this.openModalSubtopic = true;
-    this.subTopic = subTopic;
+    this.subTopic.set(subTopic);
   }
 
   openModalAlterRule(subTopic: Subtopics) {
     this.openModalAlterRuleSubtopic = true;
-    this.subTopic = subTopic;
+    this.subTopic.set(subTopic);
   }
 }
