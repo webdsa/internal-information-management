@@ -30,7 +30,7 @@
     <div class="row">
       <div class="card subtopic">
         <div class="row menu-subtopic">
-          <span class="material-symbols-outlined" (click)="
+          <span class="material-symbols-outlined" (click)="topicId.set(guid.id);
               isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]
             ">
             more_vert
@@ -91,7 +91,7 @@
     <span class="material-symbols-outlined" (click)="openModalSubtopic = !openModalSubtopic">
       close
     </span>
-    <app-new-subtopic [subtopic]="subTopic" [topicId]="topicId"
+    <app-new-subtopic [subtopic]="subTopic()" [topicId]="topicId()"
       (onClose)="openModalSubtopic = !$event"></app-new-subtopic>
   </div>
 </div>
@@ -116,7 +116,7 @@
           background-color: #1e5799;
           border: 1px #1e5799 solid;
           color: #ffffff;
-        " (click)="deleteTopic(topicId)">
+        " (click)="deleteTopic(topicId())">
         Excluir
       </button>
     </div>
@@ -146,7 +146,7 @@
             background-color: #1e5799;
             border: 1px #1e5799 solid;
             color: #ffffff;
-          " (click)="deleteSubTopic(topicId)">
+          " (click)="deleteSubTopic(topicId())">
         Excluir
       </button>
     </div>
@@ -160,7 +160,7 @@
     <span class="material-symbols-outlined" (click)="openModalAlterRuleSubtopic = !openModalAlterRuleSubtopic">
       close
     </span>
-    <app-alter-rule-subtopic [subtopic]="subTopic" (onClose)="openModalAlterRuleSubtopic = !$event"></app-alter-rule-subtopic>
+    <app-alter-rule-subtopic [subtopic]="subTopic()" (onClose)="openModalAlterRuleSubtopic = !$event"></app-alter-rule-subtopic>
   </div>
 </div>
 }

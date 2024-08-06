@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Pipe, PipeTransform, inject } from '@angular/core';
+import { Component, EventEmitter, Output, Pipe, PipeTransform, WritableSignal, inject, signal } from '@angular/core';
 import { CardComponent } from '../../../shared/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from "../../../shared/search/search.component";
@@ -38,8 +38,8 @@ export class PropertyTypeToStringPipe implements PipeTransform {
 })
 export class PropertyComponent {
 
-  public propertys: Array<InsertProperty> = [];
-  public property: InsertProperty = new InsertProperty();
+  protected propertys : WritableSignal<Array<InsertProperty>> = signal<Array<InsertProperty>>(new Array<InsertProperty>());
+  protected property : WritableSignal<InsertProperty> = signal<InsertProperty>(new InsertProperty());
   public additionalDataProperty: Array<PropertyAdditionalDataModel> = [];
   public propertysBkp: Array<InsertProperty> = [];
   public filteredProperties: Array<InsertProperty> = [];
@@ -66,7 +66,7 @@ export class PropertyComponent {
   getProperty() {
     this.#patrimonyService.getProperty().result$.subscribe((response: any) => {
       if (response.data == null) return;
-      this.propertys = response.data!.data;
+      this.propertys.set(response.data!.data);
       this.propertysBkp = response.data!.data;
       this.filteredProperties = response.data!.data;
     });
@@ -92,7 +92,7 @@ export class PropertyComponent {
       search = this.noAccents(search);
       this.filteredProperties = this.propertysBkp?.filter((x) => this.noAccents(x.propertyName.toUpperCase()).includes(search) || this.noAccents((x.status.toString()).toUpperCase()).includes(search));
 
-    } else this.filteredProperties = this.propertys;
+    } else this.filteredProperties = this.propertys();
   }
 
   noAccents(str: string) {
@@ -124,7 +124,7 @@ export class PropertyComponent {
 
   editProperty(property: any) {
     this.openModalEdit = true;
-    this.property = property;
+    this.property.set(property);
   }
 
 }

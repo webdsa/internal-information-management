@@ -46,7 +46,7 @@
             <div class="actions"></div>
           </div>
         </div>
-        @for (property of propertys; track $index ) {
+        @for (property of propertys(); track $index ) {
         <div class="reports">
           <div class="d-flex">
             <!-- <div class="checkbox">
@@ -158,7 +158,7 @@
       close
     </span>
     <app-form-property
-      [realty]="property"
+      [realty]="property()"
       [edit]="true"
       (onEdited)="openModalEdit = !$event"
     ></app-form-property>

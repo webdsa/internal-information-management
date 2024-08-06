@@ -9,5 +9,4 @@ export const environment = {
         scopes: ['user.read']
     },
     urlApi: 'https://mgn.dsa.org.br'
-    // urlApi: 'http://localhost:5171'
 }

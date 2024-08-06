@@ -166,3 +166,32 @@
     margin: 1rem 1rem 0;
   }
 }
+
+@media screen and (max-width: 1600px) {
+  .guids {
+    padding: 100px 20px;
+
+    .subtopics {
+      grid-template-columns: repeat(3, 1fr);
+
+      .subtopic {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .guids {
+    padding: 80px 20px;
+
+    .subtopics {
+      grid-template-columns: repeat(2, 1fr);
+
+      .subtopic {
+        width: 100%;
+      }
+    }
+  }
+  
+}
