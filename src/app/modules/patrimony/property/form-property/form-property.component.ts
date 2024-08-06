@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges, inject, output } from '@angular/core';
+import { Component, EventEmitter, Input, InputSignal, Output, SimpleChanges, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -30,19 +30,19 @@ export class FormPropertyComponent {
   public typePropertyArray = Object.values(PropertyTypeEnum)
     .filter(key => typeof key === 'number')
     .map(key => ({
-      label: PropertyTypeEnum[key as keyof typeof PropertyTypeEnum],
+      label: PropertyTypeEnum[key as unknown as keyof typeof PropertyTypeEnum],
       value: key
     }));
 
   public typeGasArray = Object.values(GasTypeEnum)
     .filter(key => typeof key === 'number')
     .map(key => ({
-      label: GasTypeEnum[key as keyof typeof GasTypeEnum],
+      label: GasTypeEnum[key as unknown as keyof typeof GasTypeEnum],
       value: key
     }));
 
 
-  @Input() realty: InsertProperty = new InsertProperty();
+  realty:InputSignal<InsertProperty> = input(new InsertProperty());
   @Input() edit: boolean = false;
 
   @Output() onEdited: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -69,15 +69,9 @@ export class FormPropertyComponent {
   }
 
   ngOnInit(): void {
-    if (this.realty && Object.keys(this.realty).length > 0) {
-      this.form = this.realty ?? new InsertProperty();
+    if (this.realty() && Object.keys(this.realty()).length > 0) {
+      this.form = this.realty();
       this.fillAdditionalDataByRealty(this.form.additionalData);
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.checkChanges(changes, 'realty')) {
-      this.form = this.realty ?? new InsertProperty();
     }
   }
 
