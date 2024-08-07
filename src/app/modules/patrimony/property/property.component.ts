@@ -123,7 +123,7 @@ export class PropertyComponent {
   }
 
   editProperty(property: any) {
-    this.ngZone.run(() => this.router.navigate(['/patrimony/new-property/'+property.id]));
+    this.router.navigate(['/patrimony/new-property'+property.id]);
   }
 
 }
