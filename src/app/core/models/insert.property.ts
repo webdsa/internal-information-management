@@ -74,11 +74,11 @@ export class DetailRealty {
     qtyMaxResidents!: number;
     eletricalCode!: number;
     eletricMeter!: number;
-    waterCode!: number;
+    waterCode!: string;
     municipalRegistration!: string;
     propertyTax!: string;
     intercomNumber!: number;
-    conciergePhone!: number;
+    conciergePhone!: string;
     emailConcierge!: string;
     observation!: string;
 }
