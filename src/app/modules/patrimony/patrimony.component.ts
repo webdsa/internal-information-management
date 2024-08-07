@@ -116,7 +116,7 @@ export class PatrimonyComponent {
     this._router.navigate(['patrimony/' + route]);
   }
   updateComponentDisplay(url: string) {
-    this.showProperty = url.endsWith('/property') || url.endsWith('/new-property');
+    this.showProperty = url.endsWith('/property') || url.endsWith('/new-property') || url.includes('/property/:id');
     this.showResident = url.endsWith('/resident') || url.endsWith('/new-resident');
     this.showProvider = url.endsWith('/provider') || url.endsWith('/new-provider');
   }
