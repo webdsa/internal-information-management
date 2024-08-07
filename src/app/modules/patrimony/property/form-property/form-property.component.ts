@@ -28,7 +28,6 @@ export class FormPropertyComponent {
   public form: InsertProperty = new InsertProperty();
   public retractInfo: boolean = true;
   public detailRealty: DetailRealty = new DetailRealty();
-  public realtyId: WritableSignal<number> = signal(0);
 
   public typePropertyArray = Object.values(PropertyTypeEnum)
     .filter(key => typeof key === 'number')
@@ -76,14 +75,12 @@ export class FormPropertyComponent {
       this.form = this.realty();
       this.fillAdditionalDataByRealty(this.form.additionalData);
     }
-    this.realtyId.set(this._activatedRoute.snapshot.params["id"]); 
-    if(this.realtyId() != null){
-      this.#patrimonyService.getPropertyById(this.realtyId()).result$.subscribe((response: any) => {
-        if (response.data == null) return;
-        this.form = response.data.data;
+    this.#patrimonyService.currProperty.subscribe((property: InsertProperty) => {
+      this.form = property;
+      if(this.form != null) {
         this.fillAdditionalDataByRealty(this.form.additionalData);
-      });
-    }
+      }
+    });
   }
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
@@ -144,7 +141,7 @@ export class FormPropertyComponent {
     // this.form.propertyValue = 0;
     this.#patrimonyService.putProperty(this.form).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {
-        this._toast.success('Imóvel cadastrado com sucesso!');
+        this._toast.success('Imóvel editado com sucesso!');
         this.form = new InsertProperty();
         this.edit = false;
         this.onEdited.emit(true);
