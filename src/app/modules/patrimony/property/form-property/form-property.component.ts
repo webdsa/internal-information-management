@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, InputSignal, Output, SimpleChanges, inject, input, output } from '@angular/core';
+import { Component, EventEmitter, Input, InputSignal, Output, SimpleChanges, WritableSignal, inject, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,7 @@ import { FormLabelComponent } from '../../../../shared/form-label/form-label.com
 import { FormMsgErrorComponent } from '../../../../shared/form-msg-error/form-msg-error.component';
 import { DetailRealty, GasTypeEnum, InsertProperty, PropertyAdditionalDataModel, PropertyTypeEnum } from '../../../../core/models/insert.property';
 import { PatrimonyService } from '../../services/patrimony.services';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CorreiosService } from '../../../../core/services/correios.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { ModalComponent } from "../../../../shared/modal/modal.component";
@@ -28,6 +28,7 @@ export class FormPropertyComponent {
   public form: InsertProperty = new InsertProperty();
   public retractInfo: boolean = true;
   public detailRealty: DetailRealty = new DetailRealty();
+  public realtyId: WritableSignal<number> = signal(0);
 
   public typePropertyArray = Object.values(PropertyTypeEnum)
     .filter(key => typeof key === 'number')
@@ -50,7 +51,7 @@ export class FormPropertyComponent {
   @Output() onEdited: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   #patrimonyService = inject(PatrimonyService);
-  constructor(private _toast: ToastrService, private _router: Router, private correiosService: CorreiosService) {
+  constructor(private _toast: ToastrService, private _router: Router, private _activatedRoute:ActivatedRoute, private correiosService: CorreiosService) {
     this.searchSubject.pipe(
       debounceTime(300), // Espera 300ms após o último evento
       distinctUntilChanged(), // Ignora se o próximo valor for igual ao anterior
@@ -74,6 +75,14 @@ export class FormPropertyComponent {
     if (this.realty() && Object.keys(this.realty()).length > 0) {
       this.form = this.realty();
       this.fillAdditionalDataByRealty(this.form.additionalData);
+    }
+    this.realtyId.set(this._activatedRoute.snapshot.params["id"]); 
+    if(this.realtyId() != null){
+      this.#patrimonyService.getPropertyById(this.realtyId()).result$.subscribe((response: any) => {
+        if (response.data == null) return;
+        this.form = response.data.data;
+        this.fillAdditionalDataByRealty(this.form.additionalData);
+      });
     }
   }
 

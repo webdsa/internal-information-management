@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Pipe, PipeTransform, WritableSignal, inject, signal } from '@angular/core';
+import { Component, EventEmitter, NgZone, Output, Pipe, PipeTransform, WritableSignal, inject, signal } from '@angular/core';
 import { CardComponent } from '../../../shared/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from "../../../shared/search/search.component";
@@ -58,7 +58,7 @@ export class PropertyComponent {
 
   @Output() result: EventEmitter<number> = new EventEmitter();
   #patrimonyService = inject(PatrimonyService);
-  constructor(private router: Router, private _toast: ToastrService) { }
+  constructor(private router: Router, private _toast: ToastrService,private ngZone: NgZone) { }
   ngOnInit() {
     this.getProperty();
   }
@@ -123,8 +123,7 @@ export class PropertyComponent {
   }
 
   editProperty(property: any) {
-    this.openModalEdit = true;
-    this.property.set(property);
+    this.ngZone.run(() => this.router.navigate(['/patrimony/new-property/'+property.id]));
   }
 
 }
