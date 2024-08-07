@@ -18,12 +18,11 @@
   .data-table-reports{
     overflow-x: auto;
     overflow-y: hidden;
-    width: 150vw;
+    width: 93vw;
   }
 
-  .value,
   .phone{
-    min-width: 16rem;
+    min-width: 12rem;
   }
 
   .un{
@@ -33,18 +32,18 @@
   }
 
   .name{
-    min-width: 25rem;
+    min-width: 20rem;
     position: absolute;
     left: 14rem;
     background-color: white;
   }
 
   .actions {
-    min-width: 10rem;
+    min-width: 6rem;
   }
 
   .address{
-    min-width: 40rem;
+    min-width: 35rem;
     left: 32rem;
   }
 
@@ -58,6 +57,7 @@
     min-width: 6rem;
   }
 
+  .value,
   .code-energy,
   .code-water,
   .water,
