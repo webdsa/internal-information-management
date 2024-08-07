@@ -97,6 +97,7 @@ export class FormPropertyComponent {
       if (res.succeeded) {
         this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
         this.onEdited.emit(true);
+        this._router.navigate(['patrimony/property']);
       } else {
         this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
       }
