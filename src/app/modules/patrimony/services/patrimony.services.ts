@@ -5,6 +5,7 @@ import { BaseService } from '../../../core/services/base.service';
 import { InsertProperty } from '../../../core/models/insert.property';
 import { injectMutation, injectQuery, injectQueryClient } from '@ngneat/query';
 import { InsertProvider } from '../../../core/models/insert.provider';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -16,12 +17,19 @@ export class PatrimonyService extends BaseService {
   private _urlPostProperty = `${this._urlBase}/property`;
   private _urlProvider = `${this._urlBase}/provider`;
 
+  private property: BehaviorSubject<InsertProperty> = new BehaviorSubject<InsertProperty>(new InsertProperty());
+  public currProperty= this.property.asObservable();
+
   #http = inject(HttpClient);
   #query = injectQuery();
   #mutation = injectMutation();
   #client = injectQueryClient();
 
   constructor() { super(); }
+
+  public changeProperty(Property: InsertProperty) {
+    this.property.next(Property);
+}
 
   public getProperty() {
     return this.#query({

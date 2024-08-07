@@ -9,5 +9,4 @@ export const environment = {
         scopes: ['user.read']
     },
     urlApi: 'https://mgn.dsa.org.br'
-    //urlApi: 'https://782d-2804-214-8593-5218-60d9-db6-d9fd-9734.ngrok-free.app/'
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges, inject, output } from '@angular/core';
+import { Component, EventEmitter, Input, InputSignal, Output, SimpleChanges, WritableSignal, inject, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -8,13 +8,14 @@ import { FormLabelComponent } from '../../../../shared/form-label/form-label.com
 import { FormMsgErrorComponent } from '../../../../shared/form-msg-error/form-msg-error.component';
 import { DetailRealty, GasTypeEnum, InsertProperty, PropertyAdditionalDataModel, PropertyTypeEnum } from '../../../../core/models/insert.property';
 import { PatrimonyService } from '../../services/patrimony.services';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CorreiosService } from '../../../../core/services/correios.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { ModalComponent } from "../../../../shared/modal/modal.component";
 @Component({
   selector: 'app-form-property',
   standalone: true,
-  imports: [CommonModule, HeaderTitleComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, HeaderTitleComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule, ModalComponent],
   templateUrl: './form-property.component.html',
   styleUrl: './form-property.component.scss'
 })
@@ -23,6 +24,7 @@ export class FormPropertyComponent {
   resultado: any;
   private searchSubject = new Subject<string>();
 
+  public openModalConfirm: boolean = false;
   public form: InsertProperty = new InsertProperty();
   public retractInfo: boolean = true;
   public detailRealty: DetailRealty = new DetailRealty();
@@ -30,25 +32,25 @@ export class FormPropertyComponent {
   public typePropertyArray = Object.values(PropertyTypeEnum)
     .filter(key => typeof key === 'number')
     .map(key => ({
-      label: PropertyTypeEnum[key as keyof typeof PropertyTypeEnum],
+      label: PropertyTypeEnum[key as unknown as keyof typeof PropertyTypeEnum],
       value: key
     }));
 
   public typeGasArray = Object.values(GasTypeEnum)
     .filter(key => typeof key === 'number')
     .map(key => ({
-      label: GasTypeEnum[key as keyof typeof GasTypeEnum],
+      label: GasTypeEnum[key as unknown as keyof typeof GasTypeEnum],
       value: key
     }));
 
 
-  @Input() realty: InsertProperty = new InsertProperty();
+  realty:InputSignal<InsertProperty> = input(new InsertProperty());
   @Input() edit: boolean = false;
 
   @Output() onEdited: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   #patrimonyService = inject(PatrimonyService);
-  constructor(private _toast: ToastrService, private _router: Router, private correiosService: CorreiosService) {
+  constructor(private _toast: ToastrService, private _router: Router, private _activatedRoute:ActivatedRoute, private correiosService: CorreiosService) {
     this.searchSubject.pipe(
       debounceTime(300), // Espera 300ms após o último evento
       distinctUntilChanged(), // Ignora se o próximo valor for igual ao anterior
@@ -69,20 +71,37 @@ export class FormPropertyComponent {
   }
 
   ngOnInit(): void {
-    if (this.realty && Object.keys(this.realty).length > 0) {
-      this.form = this.realty ?? new InsertProperty();
+    if (this.realty() && Object.keys(this.realty()).length > 0) {
+      this.form = this.realty();
       this.fillAdditionalDataByRealty(this.form.additionalData);
     }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.checkChanges(changes, 'realty')) {
-      this.form = this.realty ?? new InsertProperty();
-    }
+    this.#patrimonyService.currProperty.subscribe((property: InsertProperty) => {
+      this.form = property;
+      if(this.form != null) {
+        this.edit = true;
+        this.fillAdditionalDataByRealty(this.form.additionalData);
+      }
+    });
   }
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
     return changes[values] && changes[values]?.previousValue != changes[values]?.previousValue;
+  }
+
+  public openModalDelete() {
+    this.openModalConfirm = true;
+  }
+
+  deletePropertyById(id: number) {
+    this.#patrimonyService.deletePropertyById(id).mutateAsync(null).then((res: any) => {
+      if (res.succeeded) {
+        this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
+        this.onEdited.emit(true);
+        this._router.navigate(['patrimony/property']);
+      } else {
+        this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
+      }
+    });
   }
 
   onKeyUp(event: any): void {
@@ -124,7 +143,7 @@ export class FormPropertyComponent {
     // this.form.propertyValue = 0;
     this.#patrimonyService.putProperty(this.form).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {
-        this._toast.success('Imóvel cadastrado com sucesso!');
+        this._toast.success('Imóvel editado com sucesso!');
         this.form = new InsertProperty();
         this.edit = false;
         this.onEdited.emit(true);
@@ -141,10 +160,10 @@ export class FormPropertyComponent {
       { type: 0, value: this.detailRealty.qtyRooms.toString() ?? "0" },
       // { type: 1, value: this.detailRealty.QtyBathrooms },
       { type: 2, value: this.detailRealty.intercomNumber.toString() ?? "0" }, //IntercomNumber
-      { type: 3, value: this.detailRealty.conciergePhone.toString() ?? "0" }, //ConciergePhone
+      { type: 3, value: this.detailRealty.conciergePhone ?? "0" }, //ConciergePhone
       { type: 4, value: this.detailRealty.observation ?? "" }, //Observation
       { type: 5, value: this.detailRealty.eletricalCode.toString() ?? "0" }, //EletricalCode
-      { type: 6, value: this.detailRealty.waterCode.toString() ?? "0" }, //WaterCode
+      { type: 6, value: this.detailRealty.waterCode ?? "0" }, //WaterCode
       { type: 7, value: this.detailRealty.eletricMeter.toString() ?? "0" }, //EletricMeter
       // { type: 8, value: this.detailRealty. }, //QtyResidents
       { type: 9, value: this.detailRealty.qtyMaxResidents.toString() ?? "0" }, //QtyMaxResidents
@@ -167,7 +186,7 @@ export class FormPropertyComponent {
           this.detailRealty.intercomNumber = Number(data.value);
           break;
         case 3:
-          this.detailRealty.conciergePhone = Number(data.value);
+          this.detailRealty.conciergePhone = Number(data.value).toString();
           break;
         case 4:
           this.detailRealty.observation = data.value;
@@ -176,7 +195,7 @@ export class FormPropertyComponent {
           this.detailRealty.eletricalCode = Number(data.value);
           break;
         case 6:
-          this.detailRealty.waterCode = Number(data.value);
+          this.detailRealty.waterCode = Number(data.value).toString();
           break;
         case 7:
           this.detailRealty.eletricMeter = Number(data.value);
@@ -213,7 +232,8 @@ export class FormPropertyComponent {
   }
 
   cancel() {
-    this.form = new InsertProperty();
-    this.detailRealty = new DetailRealty();
+    this.onEdited.emit(true);
+    // this.form = new InsertProperty();
+    // this.detailRealty = new DetailRealty();
   }
 }

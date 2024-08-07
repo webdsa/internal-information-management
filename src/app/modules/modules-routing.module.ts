@@ -29,6 +29,11 @@ export const routes: Routes = [
                 component: PropertyComponent,
             },
             {
+                path: 'property/edit',
+                title: 'Editar Imóvel',
+                component: FormPropertyComponent,
+            },
+            {
                 path: 'new-property',
                 title: 'Novo Imóvel',
                 component: FormPropertyComponent,

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, NgZone, Output, Pipe, PipeTransform, WritableSignal, inject, signal } from '@angular/core';
 import { CardComponent } from '../../../shared/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from "../../../shared/search/search.component";
@@ -9,7 +9,25 @@ import { PatrimonyService } from '../services/patrimony.services';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormPropertyComponent } from './form-property/form-property.component';
-import { InsertProperty, PropertyStatusEnum } from '../../../core/models/insert.property';
+import { InsertProperty, PropertyAdditionalDataModel, PropertyStatusEnum, PropertyTypeEnum } from '../../../core/models/insert.property';
+
+@Pipe({
+  name: 'propertyTypeToString'
+})
+export class PropertyTypeToStringPipe implements PipeTransform {
+  transform(value: PropertyTypeEnum): string {
+    switch (value) {
+      case PropertyTypeEnum.Apartment:
+        return 'Apartamento';
+      case PropertyTypeEnum.House:
+        return 'Casa';
+      case PropertyTypeEnum.Academy:
+        return 'Academia';
+      default:
+        return 'Tipo de propriedade desconhecido';
+    }
+  }
+}
 
 @Component({
   selector: 'app-property',
@@ -20,8 +38,9 @@ import { InsertProperty, PropertyStatusEnum } from '../../../core/models/insert.
 })
 export class PropertyComponent {
 
-  public propertys: Array<InsertProperty> = [];
-  public property: InsertProperty = new InsertProperty();
+  protected propertys : WritableSignal<Array<InsertProperty>> = signal<Array<InsertProperty>>(new Array<InsertProperty>());
+  protected property : WritableSignal<InsertProperty> = signal<InsertProperty>(new InsertProperty());
+  public additionalDataProperty: Array<PropertyAdditionalDataModel> = [];
   public propertysBkp: Array<InsertProperty> = [];
   public filteredProperties: Array<InsertProperty> = [];
 
@@ -39,7 +58,7 @@ export class PropertyComponent {
 
   @Output() result: EventEmitter<number> = new EventEmitter();
   #patrimonyService = inject(PatrimonyService);
-  constructor(private router: Router, private _toast: ToastrService) { }
+  constructor(private router: Router, private _toast: ToastrService,private ngZone: NgZone) { }
   ngOnInit() {
     this.getProperty();
   }
@@ -47,10 +66,15 @@ export class PropertyComponent {
   getProperty() {
     this.#patrimonyService.getProperty().result$.subscribe((response: any) => {
       if (response.data == null) return;
-      this.propertys = response.data!.data;
+      this.propertys.set(response.data!.data);
       this.propertysBkp = response.data!.data;
       this.filteredProperties = response.data!.data;
     });
+  }
+
+  getAdditionalDataValue(additionalData: any[], type: number): string {
+    const data = additionalData.find(d => d.type === type);
+    return data ? data.value : '';
   }
 
   onclickOpenModal() {
@@ -68,7 +92,7 @@ export class PropertyComponent {
       search = this.noAccents(search);
       this.filteredProperties = this.propertysBkp?.filter((x) => this.noAccents(x.propertyName.toUpperCase()).includes(search) || this.noAccents((x.status.toString()).toUpperCase()).includes(search));
 
-    } else this.filteredProperties = this.propertys;
+    } else this.filteredProperties = this.propertys();
   }
 
   noAccents(str: string) {
@@ -99,7 +123,7 @@ export class PropertyComponent {
   }
 
   editProperty(property: any) {
-    this.openModalEdit = true;
-    this.property = property;
+    this.#patrimonyService.changeProperty(property);
+    this.router.navigate(['/patrimony/property/edit']);
   }
 }

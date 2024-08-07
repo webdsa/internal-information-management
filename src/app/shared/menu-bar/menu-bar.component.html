@@ -5,11 +5,11 @@
   @if (haveMenuItens == true) {
   <div class="menu-itens">
     @for (item of menuItens; track $index) { @if(item.routerLink){
-    <a [routerLink]="item.routerLink ? item.routerLink : ''">
+    <a [routerLink]="item.routerLink ? item.routerLink : ''" (mouseenter)="onMouseEnter(item.id)">
       <label>{{ item.label }}</label>
     </a>
     }@else {
-    <label (click)="openSubMenu(item.id); selected = !selected">{{
+    <label (click)="openSubMenu(item.id); selected = !selected" #submenu>{{
       item.label
     }}</label>
     } }

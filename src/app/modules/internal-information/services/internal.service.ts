@@ -66,6 +66,15 @@ export class InternalService extends BaseService {
         });
     }
 
+    public alterSubTopic(subTopic: any) {
+        return this.#mutation({
+            mutationFn: () => this.#http.put(this._urlSubTopic+'/'+subTopic.id, subTopic, this.ObterAuthHeader()),
+            onSuccess: () => {
+                this.#client.invalidateQueries({ queryKey: ['AllGuid'] });
+            }
+        });
+    }
+
     public deleteSubTopic(id: number) {
         return this.#mutation({
             mutationFn: () => this.#http.delete(`${this._urlSubTopic}/${id}`, this.ObterAuthHeader()),

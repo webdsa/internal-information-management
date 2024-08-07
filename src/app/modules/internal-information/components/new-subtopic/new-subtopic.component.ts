@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, InputSignal, Output, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -16,8 +16,8 @@ import Quill from 'quill'
   styleUrl: './new-subtopic.component.scss'
 })
 export class NewSubtopicComponent {
-  @Input() public topicId: number = 0;
-  @Input() public subtopic: Subtopics = new Subtopics();
+  public topicId:InputSignal<number> = input<number>(0);
+  public subtopic:InputSignal<Subtopics> = input<Subtopics>(new Subtopics());
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public titleSuTtopic: string = '';
@@ -29,34 +29,41 @@ export class NewSubtopicComponent {
   #InternalService = inject(InternalService);
 
   ngOnInit(): void {
-    if (this.subtopic) {
-      this.titleSuTtopic = this.subtopic.name;
-      this.subTopicDescription = this.subtopic.description;
-      this.subTopicContent = this.subtopic.content;
+    if (this.subtopic()) {
+      this.titleSuTtopic = this.subtopic().name??'';
+      this.subTopicDescription = this.subtopic().description??''; 
+      this.subTopicContent = this.subtopic().content??'';
     }
   }
 
   public createSubTopic() {
-    const topic = {
-      "id": this.subtopic.id ?? 0,
+    const subtopic = {
+      "id": this.subtopic().id ?? 0,
       "name": this.titleSuTtopic,
       "isActive": true,
       "description": this.subTopicDescription,
-      "topicId": this.topicId,
+      "topicId": this.topicId(),
       "content": this.subTopicContent
     };
-    this.#InternalService.createSubTopic(topic).mutateAsync(null).then((res: any) => {
-      if (res.succeeded) {
-        this.onClose.emit(true);
-        this._toast.success('Tópico criado com sucesso!');
-      } else {
-        this._toast.error('Procure a equipe de suporte.', 'Erro ao criar tópico!');
-      }
-    });
-  }
-
-  public selectId(event: any) {
-    this.topicId = event.value;
+    if (this.subtopic()) {
+      this.#InternalService.alterSubTopic(subtopic).mutateAsync(null).then((res: any) => {
+        if (res.succeeded) {
+          this.onClose.emit(true);
+            this._toast.success('Tópico alterado com sucesso!');
+        } else {
+          this._toast.error('Procure a equipe de suporte.', 'Erro ao criar tópico!');
+        }
+      });
+    }else{
+      this.#InternalService.createSubTopic(subtopic).mutateAsync(null).then((res: any) => {
+        if (res.succeeded) {
+          this.onClose.emit(true);
+            this._toast.success('Tópico criado com sucesso!');
+        } else {
+          this._toast.error('Procure a equipe de suporte.', 'Erro ao criar tópico!');
+        }
+      });
+    }
   }
 
   created(event: Quill | any) {
