@@ -123,7 +123,7 @@ export class PropertyComponent {
   }
 
   editProperty(property: any) {
-    this.router.navigate(['/patrimony/property/'+property.id]);
+    this.#patrimonyService.changeProperty(property);
+    this.router.navigate(['/patrimony/property/edit']);
   }
-
 }
