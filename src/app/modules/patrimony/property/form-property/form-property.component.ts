@@ -78,6 +78,7 @@ export class FormPropertyComponent {
     this.#patrimonyService.currProperty.subscribe((property: InsertProperty) => {
       this.form = property;
       if(this.form != null) {
+        this.edit = true;
         this.fillAdditionalDataByRealty(this.form.additionalData);
       }
     });
@@ -158,10 +159,10 @@ export class FormPropertyComponent {
       { type: 0, value: this.detailRealty.qtyRooms.toString() ?? "0" },
       // { type: 1, value: this.detailRealty.QtyBathrooms },
       { type: 2, value: this.detailRealty.intercomNumber.toString() ?? "0" }, //IntercomNumber
-      { type: 3, value: this.detailRealty.conciergePhone.toString() ?? "0" }, //ConciergePhone
+      { type: 3, value: this.detailRealty.conciergePhone ?? "0" }, //ConciergePhone
       { type: 4, value: this.detailRealty.observation ?? "" }, //Observation
       { type: 5, value: this.detailRealty.eletricalCode.toString() ?? "0" }, //EletricalCode
-      { type: 6, value: this.detailRealty.waterCode.toString() ?? "0" }, //WaterCode
+      { type: 6, value: this.detailRealty.waterCode ?? "0" }, //WaterCode
       { type: 7, value: this.detailRealty.eletricMeter.toString() ?? "0" }, //EletricMeter
       // { type: 8, value: this.detailRealty. }, //QtyResidents
       { type: 9, value: this.detailRealty.qtyMaxResidents.toString() ?? "0" }, //QtyMaxResidents
@@ -184,7 +185,7 @@ export class FormPropertyComponent {
           this.detailRealty.intercomNumber = Number(data.value);
           break;
         case 3:
-          this.detailRealty.conciergePhone = Number(data.value);
+          this.detailRealty.conciergePhone = Number(data.value).toString();
           break;
         case 4:
           this.detailRealty.observation = data.value;
@@ -193,7 +194,7 @@ export class FormPropertyComponent {
           this.detailRealty.eletricalCode = Number(data.value);
           break;
         case 6:
-          this.detailRealty.waterCode = Number(data.value);
+          this.detailRealty.waterCode = Number(data.value).toString();
           break;
         case 7:
           this.detailRealty.eletricMeter = Number(data.value);
