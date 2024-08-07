@@ -141,7 +141,7 @@ export class FormPropertyComponent {
     // this.form.propertyValue = 0;
     this.#patrimonyService.putProperty(this.form).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {
-        this._toast.success('Imóvel cadastrado com sucesso!');
+        this._toast.success('Imóvel editado com sucesso!');
         this.form = new InsertProperty();
         this.edit = false;
         this.onEdited.emit(true);
