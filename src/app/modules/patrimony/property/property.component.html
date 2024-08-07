@@ -29,85 +29,85 @@
             <!-- <div class="checkbox">
               <input class="form-check-input" type="checkbox" id="checkAll" />
             </div> -->
-            <div class="un">Unidade</div>
-            <div class="name">Nome do Edifício</div>
-            <div class="address">Endereço</div>
-            <div class="code-energy">Código do Cliente – Energia</div>
-            <div class="code-water">Código do Cliente – Água</div>
-            <div class="water">Medidor – Água</div>
-            <div class="inscription">Inscrição Municipal</div>
-            <div class="photovoltaic">Fotovoltaica</div>
-            <div class="phone">Interfone</div>
-            <div class="iptu">IPTU</div>
-            <div class="gas">Gás</div>
-            <div class="value">Avaliação do Imóvel</div>
-            <div class="type">Tipo</div>
-            <div class="status">Status</div>
+            <div class="title-table un">Unidade</div>
+            <div class="title-table name">Nome do Edifício</div>
+            <div class="title-table address offset-md-3">Endereço</div>
+            <div class="title-table code-energy">Código do Cliente – Energia</div>
+            <div class="title-table code-water">Código do Cliente – Água</div>
+            <div class="title-table water">Medidor – Água</div>
+            <div class="title-table inscription">Inscrição Municipal</div>
+            <div class="title-table photovoltaic">Fotovoltaica</div>
+            <div class="title-table phone">Interfone</div>
+            <div class="title-table iptu">IPTU</div>
+            <div class="title-table gas">Gás</div>
+            <div class="title-table value">Avaliação do Imóvel</div>
+            <div class="title-table type">Tipo</div>
+            <div class="title-table status">Status</div>
             <div class="actions"></div>
           </div>
         </div>
         @for (property of propertys(); track $index ) {
         <div class="reports">
-          <div class="d-flex">
+          <div class="d-flex align-items-center" style="border-bottom: 1px dashed var(--primary-color-3);">
             <!-- <div class="checkbox">
                 <input [id]="'checkbox' + property.id" class="form-check-input" type="checkbox" />
               </div> -->
             <div
-              class="person-name --kt-text-gray-900 text-hover-primary fw-semibold un"
+              class="item-table person-name --kt-text-gray-900 text-hover-primary fw-semibold un"
             >
               {{ property.complement }}
             </div>
-            <div class="name">
+            <div class="item-table name">
               {{ property.propertyName }}
             </div>
-            <div class="address">
+            <div class="item-table address offset-md-3">
               {{ property.address }}
             </div>
-            <div class="code-energy">
+            <div class="item-table code-energy">
               {{ getAdditionalDataValue(property.additionalData, 5) }}
             </div>
-            <div class="code-water">
+            <div class="item-table code-water">
               {{ getAdditionalDataValue(property.additionalData, 7) }}
             </div>
-            <div class="water">
+            <div class="item-table water">
               {{ getAdditionalDataValue(property.additionalData, 6) }}
             </div>
-            <div class="inscription">
+            <div class="item-table inscription">
               {{ getAdditionalDataValue(property.additionalData, 10) }}
             </div>
 
             @if(property.hasPhotovoltaic) {
-            <div class="photovoltaic">Sim</div>
+            <div class="item-table photovoltaic">Sim</div>
             } @else {
-            <div class="photovoltaic">Não</div>
+            <div class="item-table photovoltaic">Não</div>
             }
 
-            <div class="phone">
+            <div class="item-table phone">
               {{ getAdditionalDataValue(property.additionalData, 3) }}
             </div>
 
-            <div class="iptu">
+            <div class="item-table iptu">
               {{ getAdditionalDataValue(property.additionalData, 11) }}
             </div>
 
             @if(property.gasType === 0) {
-            <div class="gas">P13</div>
+            <div class="item-table gas">P13</div>
             } @else if (property.gasType === 1) {
-            <div class="gas">P45</div>
+            <div class="item-table gas">P45</div>
             } @else if (property.gasType === 2) {
-            <div class="gas">Plumbed</div>
+            <div class="item-table gas">Plumbed</div>
             }
 
-            <div class="value">
+            <div class="item-table value">
               {{ property.propertyValue }}
             </div>
 
             @if(property.propertyType === 0) {
-            <div class="type">Apartamento</div>
+            <div class="item-table type">Apartamento</div>
             } @else if (property.propertyType === 1) {
-            <div class="type">Casa</div>
+            <div class="item-table type">Casa</div>
             } @else if (property.propertyType === 2) {
-            <div class="type">Academia</div>
+            <div class="item-table type">Academia</div>
             }
 
             <div class="status">
