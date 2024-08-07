@@ -233,6 +233,7 @@ export class FormPropertyComponent {
 
   cancel() {
     this.onEdited.emit(true);
+    this._router.navigate(['patrimony/property']);
     // this.form = new InsertProperty();
     // this.detailRealty = new DetailRealty();
   }
