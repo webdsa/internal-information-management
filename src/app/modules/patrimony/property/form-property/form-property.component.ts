@@ -11,10 +11,11 @@ import { PatrimonyService } from '../../services/patrimony.services';
 import { Router } from '@angular/router';
 import { CorreiosService } from '../../../../core/services/correios.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { ModalComponent } from "../../../../shared/modal/modal.component";
 @Component({
   selector: 'app-form-property',
   standalone: true,
-  imports: [CommonModule, HeaderTitleComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, HeaderTitleComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule, ModalComponent],
   templateUrl: './form-property.component.html',
   styleUrl: './form-property.component.scss'
 })
@@ -23,6 +24,7 @@ export class FormPropertyComponent {
   resultado: any;
   private searchSubject = new Subject<string>();
 
+  public openModalConfirm: boolean = false;
   public form: InsertProperty = new InsertProperty();
   public retractInfo: boolean = true;
   public detailRealty: DetailRealty = new DetailRealty();
@@ -79,11 +81,15 @@ export class FormPropertyComponent {
     return changes[values] && changes[values]?.previousValue != changes[values]?.previousValue;
   }
 
+  public openModalDelete() {
+    this.openModalConfirm = true;
+  }
+
   deletePropertyById(id: number) {
     this.#patrimonyService.deletePropertyById(id).mutateAsync(null).then((res: any) => {
       if (res.succeeded) {
         this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
-        this._router.navigate(['patrimony/property']);
+        this.onEdited.emit(true);
       } else {
         this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
       }
@@ -218,7 +224,8 @@ export class FormPropertyComponent {
   }
 
   cancel() {
-    this.form = new InsertProperty();
-    this.detailRealty = new DetailRealty();
+    this.onEdited.emit(true);
+    // this.form = new InsertProperty();
+    // this.detailRealty = new DetailRealty();
   }
 }
