@@ -31,11 +31,8 @@ export class ModalComponent {
 
 
   response(type: number) {
-    const result: any = {
-      response: type,
-    };
     this.open = false;
-    this.result.emit(result);
+    this.result.emit(type);
   }
 
   openModal() {

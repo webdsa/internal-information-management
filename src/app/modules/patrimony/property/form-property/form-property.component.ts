@@ -102,16 +102,21 @@ export class FormPropertyComponent {
     this.openModalConfirm = true;
   }
 
-  deletePropertyById(id: number) {
-    this.#patrimonyService.deletePropertyById(id).mutateAsync(null).then((res: any) => {
-      if (res.succeeded) {
-        this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
-        this.onEdited.emit(true);
-        this._router.navigate(['patrimony/property']);
-      } else {
-        this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
-      }
-    });
+  deletePropertyById(id: number,event:number) {
+    if(event == 1){
+      this.#patrimonyService.deletePropertyById(id).mutateAsync(null).then((res: any) => {
+        if (res.succeeded) {
+          this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
+          this.onEdited.emit(true);
+          this._router.navigate(['patrimony/property']);
+        } else {
+          this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
+        }
+      });
+    }else{
+      this.openModalConfirm = false
+    }
+
   }
 
   onKeyUp(event: any): void {
