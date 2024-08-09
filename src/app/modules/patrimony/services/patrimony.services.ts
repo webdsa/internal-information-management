@@ -65,6 +65,13 @@ export class PatrimonyService extends BaseService {
     });
   }
 
+  public inactivePropertyById(id: number) {
+    return this.#mutation({
+      mutationKey: ['property'],
+      mutationFn: () => this.#http.put(`${this._urlPostProperty}/inactive/${id}`, this.ObterAuthHeader())
+    });
+  }
+
   public getProvider() {
     return this.#query({
       queryKey: ['provider'],

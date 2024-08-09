@@ -13,7 +13,12 @@
   } @defer () {
   <app-card [hasPadding]="true">
     <div class="form-info">
-      <h3>INFORMAÇÕES GERAIS</h3>
+      <div class="d-flex justify-content-between">
+        <h3>INFORMAÇÕES GERAIS</h3>
+        @if(edit){
+          <button type="button" class="btn btn-light" (click)="openModalInactiveProperty()">Inativar Imóvel</button>
+        }
+      </div>
       <div class="row">
         <app-form-label
           class="col-4"
@@ -411,4 +416,14 @@
   messageBtnYes="Sim"
   messageBtnNo="Cancelar"
   (result)="deletePropertyById(form.id)"
+></app-modal>
+
+<app-modal
+  [open]="openModalInactive"
+  [observation]="true"
+  icon="e5cd"
+  description="Tem certeza que este imóvel ficará inativo?"
+  messageBtnYes="Sim"
+  messageBtnNo="Cancelar"
+  (result)="inactivePropertyId(form.id)"
 ></app-modal>

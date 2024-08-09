@@ -96,4 +96,53 @@
     background-color: #FFFBEA;
     color: #FFD32A;
   }
+
+  .data-table-reports{
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 93vw;
+
+    .code{
+      min-width: 8rem;
+      position: absolute;
+      background-color: white;
+    }
+
+    .actions{
+      min-width: 6rem;
+    }
+
+    .maritalStatus,
+    .entry {
+      min-width: 8rem;
+    }
+
+    .name{
+      min-width: 24rem;
+      position: absolute;
+      left: 12rem;
+      background-color: white;
+    }
+
+    .entity{
+      min-width: 24rem;
+    }
+
+    .cpf{
+      min-width: 12rem;
+      left: 32rem;
+    }
+    .phone{
+      min-width: 12rem;
+    }
+
+    .email,
+    .function{
+      min-width: 16rem;
+    }
+
+    .property{
+      min-width: 20rem;
+    }
+  }
 }

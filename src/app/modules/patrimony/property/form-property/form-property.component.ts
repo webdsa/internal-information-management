@@ -25,6 +25,7 @@ export class FormPropertyComponent {
   private searchSubject = new Subject<string>();
 
   public openModalConfirm: boolean = false;
+  public openModalInactive: boolean = false;
   public form: InsertProperty = new InsertProperty();
   public retractInfo: boolean = true;
   public detailRealty: DetailRealty = new DetailRealty();
@@ -90,6 +91,22 @@ export class FormPropertyComponent {
 
   public openModalDelete() {
     this.openModalConfirm = true;
+  }
+
+  public openModalInactiveProperty() {
+    this.openModalInactive = !this.openModalInactive;
+  }
+
+  inactivePropertyId(id:number) {
+    this.#patrimonyService.inactivePropertyById(id).mutateAsync(null).then((res: any) => {
+      if(res.succeeded){
+        this._toast.success('Propriedade desativada com sucesso!', 'Sucesso');
+        this.onEdited.emit(true);
+        this._router.navigate(['patrimony/property']);
+      } else {
+        this._toast.error('Procure a equipe de suporte.', 'Erro ao desativar propriedade!');
+      }
+    })
   }
 
   deletePropertyById(id: number) {
