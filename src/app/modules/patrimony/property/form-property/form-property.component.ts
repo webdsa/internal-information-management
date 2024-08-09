@@ -25,6 +25,7 @@ export class FormPropertyComponent {
   private searchSubject = new Subject<string>();
 
   public openModalConfirm: boolean = false;
+  public openModalInactive: boolean = false;
   public form: InsertProperty = new InsertProperty();
   public retractInfo: boolean = true;
   public detailRealty: DetailRealty = new DetailRealty();
@@ -51,6 +52,10 @@ export class FormPropertyComponent {
 
   #patrimonyService = inject(PatrimonyService);
   constructor(private _toast: ToastrService, private _router: Router, private _activatedRoute:ActivatedRoute, private correiosService: CorreiosService) {
+    this._activatedRoute.url.subscribe(segments => {
+      const fullPath = segments.join('/'); // Obtém o caminho completo da rota
+      this.edit = fullPath.endsWith('/edit')??false; 
+    });
     this.searchSubject.pipe(
       debounceTime(300), // Espera 300ms após o último evento
       distinctUntilChanged(), // Ignora se o próximo valor for igual ao anterior
@@ -75,13 +80,19 @@ export class FormPropertyComponent {
       this.form = this.realty();
       this.fillAdditionalDataByRealty(this.form.additionalData);
     }
-    this.#patrimonyService.currProperty.subscribe((property: InsertProperty) => {
-      this.form = property;
-      if(this.form != null) {
-        this.edit = true;
-        this.fillAdditionalDataByRealty(this.form.additionalData);
-      }
-    });
+    if(this.edit){
+      this.#patrimonyService.currProperty.subscribe((property: InsertProperty) => {
+        this.form = property;
+        if(this.form != null) {
+          this.edit = true;
+          this.fillAdditionalDataByRealty(this.form.additionalData);
+        }
+      });
+    }
+    else{
+      this.form = new InsertProperty();
+    }
+
   }
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
@@ -92,21 +103,42 @@ export class FormPropertyComponent {
     this.openModalConfirm = true;
   }
 
-  deletePropertyById(id: number) {
-    this.#patrimonyService.deletePropertyById(id).mutateAsync(null).then((res: any) => {
-      if (res.succeeded) {
-        this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
+  public openModalInactiveProperty() {
+    this.openModalInactive = !this.openModalInactive;
+  }
+
+  inactivePropertyId(id:number) {
+    this.#patrimonyService.inactivePropertyById(id).mutateAsync(null).then((res: any) => {
+      if(res.succeeded){
+        this._toast.success('Propriedade desativada com sucesso!', 'Sucesso');
         this.onEdited.emit(true);
         this._router.navigate(['patrimony/property']);
       } else {
-        this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
+        this._toast.error('Procure a equipe de suporte.', 'Erro ao desativar propriedade!');
       }
-    });
+    })
+  }
+
+  deletePropertyById(id: number,event:number) {
+    if(event == 1){
+      this.#patrimonyService.deletePropertyById(id).mutateAsync(null).then((res: any) => {
+        if (res.succeeded) {
+          this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
+          this.onEdited.emit(true);
+          this._router.navigate(['patrimony/property']);
+        } else {
+          this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
+        }
+      });
+    }else{
+      this.openModalConfirm = false
+    }
+
   }
 
   onKeyUp(event: any): void {
     const input = event.target.value;
-    if (input.length >= 8) { // Verifica se o CEP tem pelo menos 8 caracteres
+    if (input.length >= 8) {
       this.searchSubject.next(input);
     }
   }

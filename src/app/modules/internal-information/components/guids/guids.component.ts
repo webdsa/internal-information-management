@@ -44,6 +44,7 @@ export class GuidsComponent {
   public OpenModalSubtopic(id: number) {
     this.openModalSubtopic = true;
     this.topicId.set(id);
+    this.subTopic.set(new Subtopics);
   }
 
   public openModalDelete(id: number) {

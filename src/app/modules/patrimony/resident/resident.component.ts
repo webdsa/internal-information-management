@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { SearchComponent } from "../../../shared/search/search.component";
 import { FilterComponent } from "../../../shared/filter/filter.component";
 import { ToastrService } from 'ngx-toastr';
@@ -22,20 +22,21 @@ export class ResidentComponent {
   public resident: Residents = new Residents();
   public residentsBkp: Array<Residents> = [];
   public filteredResident: Array<Residents> = [];
-
   #patrimonyService = inject(PatrimonyService);
-  constructor(private router: Router, private _toast: ToastrService) { }
+
+  constructor(private router: Router, private _toast: ToastrService) { 
+
+  }
 
   ngOnInit(): void {
-    this.#patrimonyService.getColaboratorsByPropert().result$.subscribe((res: any) => {
-      if (res?.data?.data?.length > 0) {
-        this.property = res.data.data;
-        this.residents = res.data.data.residents;
-        this.residentsBkp = res.data.data.residents;
-        this.filteredResident = res.data.data.residents;
-      }
-    });
-
+      this.#patrimonyService.getColaboratorsByPropert().result$.subscribe((res: any) => {
+        if (res?.data?.data?.length > 0) {
+          this.property = res.data.data;
+          this.residents = res.data.data.residents;
+          this.residentsBkp = res.data.data.residents;
+          this.filteredResident = res.data.data.residents;
+        }
+      });
   }
   searchByName(search: string) {
     if (search != '' && search != undefined) {
@@ -56,5 +57,10 @@ export class ResidentComponent {
 
   addNew() {
     this.router.navigate(['/patrimony/new-resident']);
+  }
+
+  editResident(resident:any, id:number){
+    this.#patrimonyService.changeResident(resident);
+    this.router.navigate(['/patrimony/resident/edit/'+id]);
   }
 }

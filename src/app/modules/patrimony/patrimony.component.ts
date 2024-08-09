@@ -117,7 +117,7 @@ export class PatrimonyComponent {
   }
   updateComponentDisplay(url: string) {
     this.showProperty = url.endsWith('/property') || url.endsWith('/new-property') || url.includes('/property/');
-    this.showResident = url.endsWith('/resident') || url.endsWith('/new-resident');
+    this.showResident = url.endsWith('/resident') || url.endsWith('/new-resident') || url.endsWith('/resident/edit/');
     this.showProvider = url.endsWith('/provider') || url.endsWith('/new-provider');
   }
 }

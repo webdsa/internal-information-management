@@ -49,6 +49,11 @@ export const routes: Routes = [
                 component: FormResidentComponent,
             },
             {
+                path: 'resident/edit/:id',
+                title: 'Editar Morador',
+                component: FormResidentComponent,
+            },
+            {
                 path: 'provider',
                 title: 'App Provider Page',
                 component: ProviderComponent,

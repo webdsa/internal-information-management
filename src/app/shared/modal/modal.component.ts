@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { FormMsgErrorComponent } from "../form-msg-error/form-msg-error.component";
+import { FormLabelComponent } from "../form-label/form-label.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormMsgErrorComponent, FormLabelComponent, FormsModule],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
 })
@@ -14,6 +17,8 @@ export class ModalComponent {
   @Input() icon!: string;
   @Input() messageBtnYes!: string;
   @Input() messageBtnNo: string = '';
+  @Input() observation: boolean = false;
+  @Input() observationText: string = '';
 
   @Output() result: EventEmitter<any> = new EventEmitter();
 
@@ -31,11 +36,8 @@ export class ModalComponent {
 
 
   response(type: number) {
-    const result: any = {
-      response: type,
-    };
     this.open = false;
-    this.result.emit(result);
+    this.result.emit(type);
   }
 
   openModal() {

@@ -7,9 +7,10 @@ import { FormMsgErrorComponent } from '../../../../shared/form-msg-error/form-ms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InsertResident, ResidentSpouse } from '../../../../core/models/insert-resident.model';
 import { PatrimonyService } from '../../services/patrimony.services';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastrService } from 'ngx-toastr';
+import { Residents } from '../../../../core/models/property.model';
 
 
 @Component({
@@ -25,15 +26,17 @@ export class FormResidentComponent {
   public form: InsertResident = new InsertResident();
   public spouse: ResidentSpouse = new ResidentSpouse();
   public retractInfo: boolean = true;
+  protected edit: boolean = false;
+  protected propertyId: number = 0;
 
   protected colaboratorNames = computed(() => {
     const colaborators: any[] = [];
     this.#patrimonyService.getColaborators().result$.subscribe({
       next: (res: any) => {
-        if (res && res.data && Array.isArray(res.data.data)) { 
+        if (res && res.data && Array.isArray(res.data.data)) {
           res.data.data.map((colaborator: any) => {
-            colaborators.push({ 
-              value: colaborator.id, 
+            colaborators.push({
+              value: colaborator.id,
               label: colaborator.employeeName
             });
           });
@@ -55,12 +58,14 @@ export class FormResidentComponent {
     const properties: any[] = [];
     this.#patrimonyService.getProperty().result$.subscribe({
       next: (res: any) => {
-        if (res && res.data && Array.isArray(res.data.data)) { 
+        if (res && res.data && Array.isArray(res.data.data)) {
           res.data.data.map((property: any) => {
-            properties.push({ 
-              value: property.id, 
-              label: property.propertyName + (property?.complement ? ', ' + property.complement : '') 
+            if (property.status === 1) {
+            properties.push({
+              value: property.id,
+              label: property.propertyName + (property?.complement ? ', ' + property.complement : '')
             });
+          }
           });
         } else {
           return;
@@ -81,7 +86,33 @@ export class FormResidentComponent {
   selectedProperty: any;
 
   // @Input() edit: boolean = false;
-  constructor(private _router: Router, private _toast: ToastrService) { }
+  constructor(private _router: Router, private _toast: ToastrService,private _activatedRoute:ActivatedRoute) {
+    this._activatedRoute.url.subscribe(segments => {
+      const fullPath = segments.join('/');
+      this.edit = fullPath.endsWith('/edit')??false; 
+      if (this.edit) {
+        this._activatedRoute.paramMap.subscribe(params => {
+          this.propertyId = Number(params.get('id'));
+        });
+      } else {
+        this.propertyId = 0;
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    if (this.edit) {
+      this.#patrimonyService.currResidents.subscribe((res: Residents) => {
+        this.form.propertyId = this.propertyId;
+        this.form.collaboratorId = res.collaborator.id;
+        this.form.entryAt = res.entryAt;
+        this.form.departureAt = res.departureAt;
+        this.form.spouse = res.spouse;
+      });
+    }else{
+      this.form = new InsertResident();
+    }
+  }
 
   selectProperty(event: any) {
     this.form.propertyId = Number(event.value);
@@ -108,7 +139,8 @@ export class FormResidentComponent {
     });
   }
 
-  // updateResident() {
-  //   this.#patrimonyService.updateColabo
-  // }
+  updateResident() {
+    this._toast.error('Procure a equipe de suporte.', 'Rota ainda näo implementada!');
+    // this.#patrimonyService.updateColabo
+  }
 }
