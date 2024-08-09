@@ -118,7 +118,7 @@ export class FormPropertyComponent {
       }
     })
   }
-  
+
   deletePropertyById(id: number,event:number) {
     if(event == 1){
       this.#patrimonyService.deletePropertyById(id).mutateAsync(null).then((res: any) => {
@@ -138,7 +138,7 @@ export class FormPropertyComponent {
 
   onKeyUp(event: any): void {
     const input = event.target.value;
-    if (input.length >= 8) { // Verifica se o CEP tem pelo menos 8 caracteres
+    if (input.length >= 8) {
       this.searchSubject.next(input);
     }
   }
