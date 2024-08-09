@@ -51,7 +51,7 @@
 
     <div class="btn">
       <button type="button" class="btn btn-light" (click)="cancel()"> Cancelar </button>
-      <button type="button" class="btn btn-primary" (click)="saveResident()"> Salvar </button>
+      <button type="button" class="btn btn-primary" (click)="edit==true?updateResident():saveResident()"> Salvar </button>
     </div>
   </app-card>
   }

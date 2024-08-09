@@ -139,7 +139,8 @@ export class FormResidentComponent {
     });
   }
 
-  // updateResident() {
-  //   this.#patrimonyService.updateColabo
-  // }
+  updateResident() {
+    this._toast.error('Procure a equipe de suporte.', 'Rota ainda näo implementada!');
+    // this.#patrimonyService.updateColabo
+  }
 }
