@@ -51,6 +51,10 @@ export class FormPropertyComponent {
 
   #patrimonyService = inject(PatrimonyService);
   constructor(private _toast: ToastrService, private _router: Router, private _activatedRoute:ActivatedRoute, private correiosService: CorreiosService) {
+    this._activatedRoute.url.subscribe(segments => {
+      const fullPath = segments.join('/'); // Obtém o caminho completo da rota
+      this.edit = fullPath.endsWith('/edit')??false; 
+    });
     this.searchSubject.pipe(
       debounceTime(300), // Espera 300ms após o último evento
       distinctUntilChanged(), // Ignora se o próximo valor for igual ao anterior
@@ -75,13 +79,19 @@ export class FormPropertyComponent {
       this.form = this.realty();
       this.fillAdditionalDataByRealty(this.form.additionalData);
     }
-    this.#patrimonyService.currProperty.subscribe((property: InsertProperty) => {
-      this.form = property;
-      if(this.form != null) {
-        this.edit = true;
-        this.fillAdditionalDataByRealty(this.form.additionalData);
-      }
-    });
+    if(this.edit){
+      this.#patrimonyService.currProperty.subscribe((property: InsertProperty) => {
+        this.form = property;
+        if(this.form != null) {
+          this.edit = true;
+          this.fillAdditionalDataByRealty(this.form.additionalData);
+        }
+      });
+    }
+    else{
+      this.form = new InsertProperty();
+    }
+
   }
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
