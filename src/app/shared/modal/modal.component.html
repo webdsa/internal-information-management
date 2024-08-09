@@ -5,6 +5,23 @@
       <div class="icon-description">
         <i class="yellow fa-light {{ icon }}"></i>
         <p>{{ description }}</p>
+        @if(observation){
+          <app-form-label
+          class="col"
+          titleLabel="Motivo"
+          [required]="true"
+        >
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="observationText"
+          />
+          <app-form-msg-error
+            [value]=""
+            [type]="3"
+          ></app-form-msg-error>
+        </app-form-label>
+        }
       </div>
       <div class="btns">
         <button BlockClicks class="btn btn-primary" (click)="response(1)">

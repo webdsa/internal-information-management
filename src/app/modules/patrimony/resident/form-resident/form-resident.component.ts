@@ -30,10 +30,10 @@ export class FormResidentComponent {
     const colaborators: any[] = [];
     this.#patrimonyService.getColaborators().result$.subscribe({
       next: (res: any) => {
-        if (res && res.data && Array.isArray(res.data.data)) { 
+        if (res && res.data && Array.isArray(res.data.data)) {
           res.data.data.map((colaborator: any) => {
-            colaborators.push({ 
-              value: colaborator.id, 
+            colaborators.push({
+              value: colaborator.id,
               label: colaborator.employeeName
             });
           });
@@ -55,12 +55,14 @@ export class FormResidentComponent {
     const properties: any[] = [];
     this.#patrimonyService.getProperty().result$.subscribe({
       next: (res: any) => {
-        if (res && res.data && Array.isArray(res.data.data)) { 
+        if (res && res.data && Array.isArray(res.data.data)) {
           res.data.data.map((property: any) => {
-            properties.push({ 
-              value: property.id, 
-              label: property.propertyName + (property?.complement ? ', ' + property.complement : '') 
+            if (property.status === 1) {
+            properties.push({
+              value: property.id,
+              label: property.propertyName + (property?.complement ? ', ' + property.complement : '')
             });
+          }
           });
         } else {
           return;

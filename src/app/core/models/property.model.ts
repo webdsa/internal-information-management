@@ -32,8 +32,10 @@ export class Residents {
 
 export class Colaborator {
     id!: number;
+    entityCode!: number;
     entityName!: string;
     codeAPS!: number;
+    cpf!: string;
     employeeName!: string;
     email!: string;
     maritalStatus!: string;
@@ -41,8 +43,10 @@ export class Colaborator {
     gender!: string;
     isReligious!: true;
     departmentName!: string;
+    nameOccupational!: string;
     groupEmployee!: string;
-    phoneNumber!: string
+    phoneNumber!: string;
+    spouseData!: ResidentSpouse;
 }
 export class ResidentSpouse {
     name!: string;

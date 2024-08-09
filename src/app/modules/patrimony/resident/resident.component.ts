@@ -57,4 +57,8 @@ export class ResidentComponent {
   addNew() {
     this.router.navigate(['/patrimony/new-resident']);
   }
+
+  editResident(){
+    
+  }
 }
