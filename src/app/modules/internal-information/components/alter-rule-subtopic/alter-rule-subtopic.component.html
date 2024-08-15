@@ -1,7 +1,7 @@
 <div class="alter-rule">
   <div class="row">
     <label>Obreiro: </label>
-    <select (change)="selectEmployee($event.target)">
+    <select (change)="selectEmployee($event.target)" class="form-control">
       <option [selected]="form().isReligious == true" [value]="true">Sim</option>
       <option [selected]="form().isReligious == false" [value]="false">Nao</option>
       <option [selected]="form().isReligious == null" [value]="null">Todos</option>
@@ -10,16 +10,16 @@
 
   <div class="row">
     <label>Imóvel Funcional: </label>
-    <select (change)="selectProperty($event.target)">
-      @for (item of propertys; track $index) {
+    <select (change)="selectProperty($event.target)" class="form-control">
+      @for (item of propertys(); track $index) {
       <option [value]="item">{{ item }}</option>
       }
     </select>
   </div>
   <div class="row">
     <label>Ordem do campo Ocupacional: </label>
-    <input type="text" name="departure" class="form-control text-start" placeholder="Ordem mínima" [(ngModel)]="form().minOrderOcupational" />
-    <input type="text" name="departure" class="form-control text-start" placeholder="Ordem máxima" [(ngModel)]="form().maxOrderOcupational" />
+    <div class="col-6"><input type="text" name="departure" class="form-control text-start" placeholder="Ordem mínima" [(ngModel)]="form().minOrderOcupational" /></div>
+    <div class="col-6"><input type="text" name="departure" class="form-control text-start" placeholder="Ordem máxima" [(ngModel)]="form().maxOrderOcupational" /></div>
   </div>
 </div>
 <div class="row">
