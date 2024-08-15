@@ -4,13 +4,7 @@
       <span class="title"> Manual de instruções - Tópicos </span>
     </div>
     <div class="col" style="float: right">
-      <button class="btn" style="
-          background-color: #1e5799;
-          border: 1px #1e5799 solid;
-          color: #ffffff;
-        " (click)="openModal = !openModal">
-        Adicionar Novo
-      </button>
+      <button class="btn" style="background-color: #1e5799; border: 1px #1e5799 solid; color: #ffffff" (click)="openModal = !openModal">Adicionar Novo</button>
     </div>
   </div>
   @for (guid of allGuids; track $index) {
@@ -20,9 +14,7 @@
       <span class="title-guid">{{ guid.name }}</span>
     </div>
     <div class="col delete-sub">
-      <button class="btn-delete" (click)="openModalDelete(guid.id)">
-        Excluir
-      </button>
+      <button class="btn-delete" (click)="openModalDelete(guid.id)">Excluir</button>
     </div>
   </div>
   <div class="subtopics">
@@ -30,29 +22,12 @@
     <div class="row">
       <div class="card subtopic">
         <div class="row menu-subtopic">
-          <span class="material-symbols-outlined" (click)="topicId.set(guid.id);
-              isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]
-            ">
-            more_vert
-          </span>
+          <span class="material-symbols-outlined" (click)="topicId.set(guid.id); isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]"> more_vert </span>
           @if (isCollapsed[guid.id][$index]) {
           <div class="colapse">
-            <li (click)="
-                editSubTopic(subtopic);
-                isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]
-              ">
-              Editar
-            </li>
-            <li (click)="
-            openModalAlterRule(subtopic);
-          ">
-              Gerenciar Regra
-            </li>
-            <li style="color: red" (click)="
-                openModalDeleteSub(subtopic.id);
-              ">
-              Excluir
-            </li>
+            <li (click)="editSubTopic(subtopic); isCollapsed[guid.id][$index] = !isCollapsed[guid.id][$index]">Editar</li>
+            <li (click)="openModalAlterRule(subtopic)">Gerenciar Regra</li>
+            <li style="color: red" (click)="openModalDeleteSub(subtopic.id)">Excluir</li>
           </div>
           }
         </div>
@@ -79,55 +54,34 @@
 @if (openModal) {
 <div class="modal">
   <div class="modal-content">
-    <span class="material-symbols-outlined" (click)="openModal = !openModal">
-      close
-    </span>
+    <span class="material-symbols-outlined" (click)="openModal = !openModal"> close </span>
     <app-new-topic (onClose)="openModal = !$event"></app-new-topic>
   </div>
 </div>
 } @if (openModalSubtopic) {
 <div class="modal">
   <div class="modal-content">
-    <span class="material-symbols-outlined" (click)="openModalSubtopic = !openModalSubtopic">
-      close
-    </span>
-    <app-new-subtopic [subtopic]="subTopic()" [topicId]="topicId()"
-      (onClose)="openModalSubtopic = !$event"></app-new-subtopic>
+    <span class="material-symbols-outlined" (click)="openModalSubtopic = !openModalSubtopic"> close </span>
+    <app-new-subtopic [subtopic]="subTopic()" [topicId]="topicId()" (onClose)="openModalSubtopic = !$event"></app-new-subtopic>
   </div>
 </div>
 } @if (openModalConfirm) {
 <div class="modal">
   <div class="modal-content">
-    <span class="material-symbols-outlined" (click)="openModalConfirm = !openModalConfirm">
-      close
-    </span>
+    <span class="material-symbols-outlined" (click)="openModalConfirm = !openModalConfirm"> close </span>
     <div class="row">
       <strong>Tem certeza que deseja excluir este tópico?</strong>
     </div>
     <div class="btns">
-      <button class="btn" style="
-          background-color: #ffffff;
-          border: 1px #1e5799 solid;
-          color: #1e5799;
-        " (click)="openModalConfirm = !openModalConfirm">
-        Cancelar
-      </button>
-      <button class="btn" style="
-          background-color: #1e5799;
-          border: 1px #1e5799 solid;
-          color: #ffffff;
-        " (click)="deleteTopic(topicId())">
-        Excluir
-      </button>
+      <button class="btn" style="background-color: #ffffff; border: 1px #1e5799 solid; color: #1e5799" (click)="openModalConfirm = !openModalConfirm">Cancelar</button>
+      <button class="btn" style="background-color: #1e5799; border: 1px #1e5799 solid; color: #ffffff" (click)="deleteTopic(topicId())">Excluir</button>
     </div>
   </div>
 </div>
 } @if (openModalConfirmSub) {
 <div class="modal">
   <div class="modal-content">
-    <span class="material-symbols-outlined" (click)="openModalConfirmSub = !openModalConfirmSub">
-      close
-    </span>
+    <span class="material-symbols-outlined" (click)="openModalConfirmSub = !openModalConfirmSub"> close </span>
     <div class="row">
       <i class="fa-sharp fa-thin fa-circle-xmark"></i>
     </div>
@@ -135,31 +89,15 @@
       <strong>Tem certeza que deseja excluir este subtópico?</strong>
     </div>
     <div class="btns">
-      <button class="btn" style="
-            background-color: #ffffff;
-            border: 1px #1e5799 solid;
-            color: #1e5799;
-          " (click)="openModalConfirmSub = !openModalConfirmSub">
-        Cancelar
-      </button>
-      <button class="btn" style="
-            background-color: #1e5799;
-            border: 1px #1e5799 solid;
-            color: #ffffff;
-          " (click)="deleteSubTopic(topicId())">
-        Excluir
-      </button>
+      <button class="btn" style="background-color: #ffffff; border: 1px #1e5799 solid; color: #1e5799" (click)="openModalConfirmSub = !openModalConfirmSub">Cancelar</button>
+      <button class="btn" style="background-color: #1e5799; border: 1px #1e5799 solid; color: #ffffff" (click)="deleteSubTopic(topicId())">Excluir</button>
     </div>
   </div>
 </div>
-}
-
-@if (openModalAlterRuleSubtopic) {
+} @if (openModalAlterRuleSubtopic) {
 <div class="modal">
   <div class="modal-content">
-    <span class="material-symbols-outlined" (click)="openModalAlterRuleSubtopic = !openModalAlterRuleSubtopic">
-      close
-    </span>
+    <span class="material-symbols-outlined" (click)="openModalAlterRuleSubtopic = !openModalAlterRuleSubtopic"> close </span>
     <app-alter-rule-subtopic [subtopic]="subTopic()" (onClose)="openModalAlterRuleSubtopic = !$event"></app-alter-rule-subtopic>
   </div>
 </div>

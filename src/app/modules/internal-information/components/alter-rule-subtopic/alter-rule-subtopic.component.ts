@@ -13,17 +13,21 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './alter-rule-subtopic.component.scss'
 })
 export class AlterRuleSubtopicComponent {
-  protected form: WritableSignal<TravelerProfile> = signal<TravelerProfile>( new TravelerProfile());
+  protected form: WritableSignal<TravelerProfile> = signal<TravelerProfile>(new TravelerProfile());
 
   @Input() public subtopic: Subtopics = new Subtopics();
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
+  protected propertys: string[] = [];
   #InternalService = inject(InternalService);
-  constructor(private _toast: ToastrService) { }
+  constructor(private _toast: ToastrService) {}
 
+  ngOnInit(): void {
+    this.propertys = this.getPropertys();
+  }
   public AlterRuleSubTopic() {
     console.log(this.form());
     // this.#InternalService.alterRuleSubTopic(this.form()).mutateAsync(null).then((res: any) => {
-    //   if (res.succeeded) {
+    //   if (res.isSucceed) {
     //     this.onClose.emit(true);
     //     this._toast.success('Regra alterada com sucesso!');
     //   } else {
@@ -32,14 +36,27 @@ export class AlterRuleSubtopicComponent {
     // });
   }
 
+  selectEmployee(target: any) {
+    this.form().isReligious = target.value;
+  }
 
-  selectEmployee(target:any){
-    this.form().forEmployee = target.value;
+  getPropertys() {
+    let propertys: any[] = [];
+    this.#InternalService.getPropertys().result$.subscribe((res: any) => {
+      propertys = res.data?.data;
+    });
+    console.log(propertys, 'senhor');
+    return propertys ?? [];
+  }
+  selectProperty(target: any) {
+    this.form().functionalPropertyName = target.value;
   }
 }
 export class TravelerProfile {
   topicId!: number;
   subTopicId!: number;
-  forEmployee: number | undefined;
-  allEmployee: boolean | undefined;
+  isReligious!: boolean;
+  maxOrderOcupational!: number;
+  minOrderOcupational!: number;
+  functionalPropertyName!: string;
 }
