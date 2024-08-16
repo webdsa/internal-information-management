@@ -81,11 +81,13 @@ export class GuidsComponent {
 
   public editSubTopic(subTopic: Subtopics) {
     this.openModalSubtopic = true;
+    subTopic.topicId = this.topicId();
     this.subTopic.set(subTopic);
   }
 
   openModalAlterRule(subTopic: Subtopics) {
     this.openModalAlterRuleSubtopic = true;
+    subTopic.topicId = this.topicId();
     this.subTopic.set(subTopic);
   }
 }

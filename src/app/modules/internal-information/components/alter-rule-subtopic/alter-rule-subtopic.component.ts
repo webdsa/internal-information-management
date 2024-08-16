@@ -1,14 +1,18 @@
 import { Component, EventEmitter, Input, Output, WritableSignal, inject, signal } from '@angular/core';
-import { Subtopics } from '../../../../core/models/guid.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { InternalService } from '../../services/internal.service';
+
+import { MultiSelectModule } from 'primeng/multiselect';
+import { FloatLabelModule } from 'primeng/floatlabel';
 import { ToastrService } from 'ngx-toastr';
+
+import { InternalService } from '../../services/internal.service';
+import { Subtopics } from '../../../../core/models/guid.model';
 
 @Component({
   selector: 'app-alter-rule-subtopic',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,MultiSelectModule,FloatLabelModule],
   templateUrl: './alter-rule-subtopic.component.html',
   styleUrl: './alter-rule-subtopic.component.scss'
 })
@@ -23,6 +27,7 @@ export class AlterRuleSubtopicComponent {
 
   ngOnInit(): void {
     this.form().topicId = this.subtopic.topicId;
+    console.log(this.subtopic.topicId,'woow')
     this.form().subTopicId = this.subtopic.id;
     this.getPropertys();
   }
@@ -52,6 +57,9 @@ export class AlterRuleSubtopicComponent {
   }
   selectProperty(target: any) {
     this.form().functionalPropertyName = target.value;
+  }
+  callMe(){
+    console.log(this.form(),'like u');
   }
 }
 export class TravelerProfile {

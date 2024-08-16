@@ -8,13 +8,18 @@
     </select>
   </div>
 
-  <div class="row">
-    <label>Imóvel Funcional: </label>
-    <select (change)="selectProperty($event.target)" class="form-control">
-      @for (item of propertys(); track $index) {
-      <option [value]="item">{{ item }}</option>
-      }
-    </select>
+  <div class="row spacing">
+    <div class="col-12">
+      <p-floatLabel>
+        <p-multiSelect 
+        inputId="float-label"
+      [options]="propertys()" 
+      [loading]="propertys() == undefined"
+      (onChange)="callMe()"
+      [(ngModel)]="form().functionalPropertyName" />
+      <label for="float-label">Imóvel Funcional: </label>
+    </p-floatLabel>
+    </div>
   </div>
   <div class="row">
     <label>Ordem do campo Ocupacional: </label>
