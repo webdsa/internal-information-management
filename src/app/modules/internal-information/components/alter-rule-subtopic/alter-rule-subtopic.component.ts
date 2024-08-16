@@ -32,12 +32,11 @@ export class AlterRuleSubtopicComponent {
     this.getPropertys();
   }
   public AlterRuleSubTopic() {
-    console.log(this.form());
     this.#InternalService
       .alterRuleSubTopic(this.form())
       .mutateAsync(null)
       .then((res: any) => {
-        if (res.isSucceed) {
+        if (res.succeeded) {
           this.onClose.emit(true);
           this._toast.success('Regra alterada com sucesso!');
         } else {
