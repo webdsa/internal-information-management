@@ -3,8 +3,8 @@ export const environment = {
     clientId: '3ecdf6fc-e97b-4fec-87ab-827a54f6d471',
     tenantId: 'f8cdef31-a31e-4b4a-93e4-5f571e91255a',
     //redirect: 'https://e051-177-121-251-127.ngrok-free.app' // use this for production
-    //redirect: 'https://internal-information-management.vercel.app' // use this for local
-    redirect: 'http://localhost:4200'
+    redirect: 'https://internal-information-management.vercel.app' // use this for local
+    //redirect: 'http://localhost:4200'
   },
   graph: {
     uri: 'https://graph.microsoft.com/v1.0/me',
