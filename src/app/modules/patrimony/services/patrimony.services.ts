@@ -74,8 +74,10 @@ export class PatrimonyService extends BaseService {
 
   public inactivePropertyById(id: number) {
     return this.#mutation({
-      mutationKey: ['property'],
-      mutationFn: () => this.#http.put(`${this._urlPostProperty}/inactive/${id}`, this.ObterAuthHeader())
+      mutationFn: () => this.#http.put(`${this._urlPostProperty}/inactive/${id}`, this.ObterAuthHeader()),
+      onSuccess: () => {
+        this.#client.invalidateQueries({ queryKey: ['property'] });
+    }
     });
   }
 
