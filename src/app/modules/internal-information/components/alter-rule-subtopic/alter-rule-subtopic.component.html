@@ -10,14 +10,14 @@
 
   <div class="row spacing">
     <div class="col-12">
+      <label for="float-label">Imóvel Funcional: </label>
       <p-floatLabel>
-        <p-multiSelect 
+        <p-multiSelect
         inputId="float-label"
-      [options]="propertys()" 
+      [options]="propertys()"
       [loading]="propertys() == undefined"
       (onChange)="callMe()"
       [(ngModel)]="form().functionalPropertyName" />
-      <label for="float-label">Imóvel Funcional: </label>
     </p-floatLabel>
     </div>
   </div>
