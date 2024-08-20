@@ -1,64 +1,35 @@
 <div class="alter-rule">
   <div class="row">
     <label>Obreiro: </label>
-    <select (change)="selectEmployee($event.target)">
-      <option [selected]="form().forEmployee == 1" value="1">Sim</option>
-      <option [selected]="form().forEmployee == 2" value="2">Nao</option>
-      <option [selected]="form().forEmployee == 0" value="0">Todos</option>
+    <select (change)="selectEmployee($event.target)" class="form-control">
+      <option [selected]="form().isReligious == true" [value]="true">Sim</option>
+      <option [selected]="form().isReligious == false" [value]="false">Nao</option>
+      <option [selected]="form().isReligious == null" [value]="null">Todos</option>
     </select>
   </div>
-  <div class="row">
-    <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="form().allEmployee">
-    <label class="form-check-label" for="flexSwitchCheckDefault">Todos os funcionários?:</label>
-  </div>
 
-  <!-- <div class="row">
-    <label>Imóvel Funcional: </label>
-    <input
-      type="text"
-      name="departure"
-      class="form-control text-start"
-      placeholder="Escreva departamento"
-      [(ngModel)]="form().departure"
-    />
-  </div> -->
-    <!-- <div class="row">
-    <label>Ordem do campo Ocupacional: </label>
-    <input
-      type="text"
-      name="departure"
-      class="form-control text-start"
-      placeholder="Escreva departamento"
-      [(ngModel)]="form().departure"
-    />
-  </div> -->
-
-  </div>
-  <div class="row">
-    <div class="btns">
-      <button
-        class="btn"
-        style="
-          background-color: #ffffff;
-          border: 1px #1e5799 solid;
-          color: #1e5799;
-        "
-        (click)="onClose.emit(true)"
-      >
-        Cancelar
-      </button>
-      <button
-        class="btn"
-        style="
-          background-color: #1e5799;
-          border: 1px #1e5799 solid;
-          color: #ffffff;
-        "
-        (click)="AlterRuleSubTopic()"
-      >
-        Adicionar
-      </button>
+  <div class="row spacing">
+    <div class="col-12">
+      <p-floatLabel>
+        <p-multiSelect 
+        inputId="float-label"
+      [options]="propertys()" 
+      [loading]="propertys() == undefined"
+      (onChange)="callMe()"
+      [(ngModel)]="form().functionalPropertyName" />
+      <label for="float-label">Imóvel Funcional: </label>
+    </p-floatLabel>
     </div>
+  </div>
+  <div class="row">
+    <label>Ordem do campo Ocupacional: </label>
+    <div class="col-6"><input type="text" name="departure" class="form-control text-start" placeholder="Ordem mínima" [(ngModel)]="form().minOrderOcupational" /></div>
+    <div class="col-6"><input type="text" name="departure" class="form-control text-start" placeholder="Ordem máxima" [(ngModel)]="form().maxOrderOcupational" /></div>
+  </div>
+</div>
+<div class="row">
+  <div class="btns">
+    <button class="btn" style="background-color: #ffffff; border: 1px #1e5799 solid; color: #1e5799" (click)="onClose.emit(true)">Cancelar</button>
+    <button class="btn" style="background-color: #1e5799; border: 1px #1e5799 solid; color: #ffffff" (click)="AlterRuleSubTopic()">Adicionar</button>
   </div>
 </div>
