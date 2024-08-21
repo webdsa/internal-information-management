@@ -26,9 +26,11 @@ export class FormPropertyComponent {
 
   public openModalConfirm: boolean = false;
   public openModalInactive: boolean = false;
+  public openModalActive: boolean = false;
   public form: InsertProperty = new InsertProperty();
   public retractInfo: boolean = true;
   public detailRealty: DetailRealty = new DetailRealty();
+  public observation: string = '';
 
   public typePropertyArray = Object.values(PropertyTypeEnum)
     .filter(key => typeof key === 'number')
@@ -54,7 +56,7 @@ export class FormPropertyComponent {
   constructor(private _toast: ToastrService, private _router: Router, private _activatedRoute:ActivatedRoute, private correiosService: CorreiosService) {
     this._activatedRoute.url.subscribe(segments => {
       const fullPath = segments.join('/'); // Obtém o caminho completo da rota
-      this.edit = fullPath.endsWith('/edit')??false; 
+      this.edit = fullPath.endsWith('/edit')??false;
     });
     this.searchSubject.pipe(
       debounceTime(300), // Espera 300ms após o último evento
@@ -107,10 +109,26 @@ export class FormPropertyComponent {
     this.openModalInactive = !this.openModalInactive;
   }
 
+  public openModalActiveProperty() {
+    this.openModalActive = !this.openModalActive;
+  }
+
   inactivePropertyId(id:number) {
-    this.#patrimonyService.inactivePropertyById(id).mutateAsync(null).then((res: any) => {
+    this.#patrimonyService.inactivePropertyById(id, this.form).mutateAsync(null).then((res: any) => {
       if(res.succeeded){
         this._toast.success('Propriedade desativada com sucesso!', 'Sucesso');
+        this.onEdited.emit(true);
+        this._router.navigate(['patrimony/property']);
+      } else {
+        this._toast.error('Procure a equipe de suporte.', 'Erro ao desativar propriedade!');
+      }
+    })
+  }
+
+  activePropertyId(id: number ) {
+    this.#patrimonyService.activePropertyById(id, this.form).mutateAsync(null).then((res: any) => {
+      if(res.succeeded){
+        this._toast.success('Propriedade ativada com sucesso!', 'Sucesso');
         this.onEdited.emit(true);
         this._router.navigate(['patrimony/property']);
       } else {
@@ -190,6 +208,7 @@ export class FormPropertyComponent {
     this.form.additionalData = [];
     this.form.additionalData.push(
       { type: 0, value: this.detailRealty.qtyRooms.toString() ?? "0" },
+      { type: 1, value: this.detailRealty.qtyMaxResidents.toString() ?? "0" },
       // { type: 1, value: this.detailRealty.QtyBathrooms },
       { type: 2, value: this.detailRealty.intercomNumber.toString() ?? "0" }, //IntercomNumber
       { type: 3, value: this.detailRealty.conciergePhone ?? "0" }, //ConciergePhone

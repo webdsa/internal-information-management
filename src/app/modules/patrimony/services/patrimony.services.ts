@@ -5,8 +5,9 @@ import { BaseService } from '../../../core/services/base.service';
 import { InsertProperty } from '../../../core/models/insert.property';
 import { injectMutation, injectQuery, injectQueryClient } from '@ngneat/query';
 import { InsertProvider } from '../../../core/models/insert.provider';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, throwError } from 'rxjs';
 import { Residents } from '../../../core/models/property.model';
+import { observeNotification } from 'rxjs/internal/Notification';
 
 
 @Injectable({
@@ -72,12 +73,17 @@ export class PatrimonyService extends BaseService {
     });
   }
 
-  public inactivePropertyById(id: number) {
+  public activePropertyById(id: number, property: InsertProperty) {
     return this.#mutation({
-      mutationFn: () => this.#http.put(`${this._urlPostProperty}/inactive/${id}`, this.ObterAuthHeader()),
-      onSuccess: () => {
-        this.#client.invalidateQueries({ queryKey: ['property'] });
-    }
+      mutationKey: ['property'],
+      mutationFn: () => this.#http.put<InsertProperty>(`${this._urlPostProperty}/active/${id}`, property, this.ObterAuthHeader())
+    });
+  }
+
+  public inactivePropertyById(id: number, property: InsertProperty) {
+    return this.#mutation({
+      mutationKey: ['property'],
+      mutationFn: () => this.#http.put(`${this._urlBase}/property/inactive/${id}?observation=property-inactive`, property, this.ObterAuthHeader()),
     });
   }
 

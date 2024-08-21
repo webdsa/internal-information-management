@@ -8,15 +8,17 @@
     description="Preencha corretamente com as informações do novo imóvel."
     color="#37B582"
     colorLight="#E5FAF5"
-    router="patrimony/property"
+    router="https://internal-information-management.vercel.app/patrimony/property"
   ></app-header-title>
   } @defer () {
   <app-card [hasPadding]="true">
     <div class="form-info">
       <div class="d-flex justify-content-between">
         <h3>INFORMAÇÕES GERAIS</h3>
-        @if(edit){
+        @if(edit && form.status == 1){
           <button type="button" class="btn btn-light" (click)="openModalInactiveProperty()">Inativar Imóvel</button>
+        } @if(edit && form.status == 2){
+          <button type="button" class="btn btn-outline-success" (click)="openModalActiveProperty()">Ativar Imóvel</button>
         }
       </div>
       <div class="row">
@@ -426,4 +428,13 @@
   messageBtnYes="Sim"
   messageBtnNo="Cancelar"
   (result)="inactivePropertyId(form.id)"
+></app-modal>
+
+<app-modal
+  [open]="openModalActive"
+  icon="e5cd"
+  description="Tem certeza que este imóvel ficará ativo?"
+  messageBtnYes="Sim"
+  messageBtnNo="Cancelar"
+  (result)="activePropertyId(form.id)"
 ></app-modal>
