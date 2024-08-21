@@ -73,11 +73,9 @@ export class NewSubtopicComponent {
 
   created(event: Quill | any) {
     // tslint:disable-next-line:no-console
-    console.log('editor-created', event);
   }
 
   changedEditor(event: EditorChangeContent | EditorChangeSelection | any) {
     // tslint:disable-next-line:no-console
-    console.log('editor-change', event);
   }
 }
