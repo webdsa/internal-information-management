@@ -12,13 +12,8 @@
     <div class="col-12">
       <label for="float-label">Imóvel Funcional: </label>
       <p-floatLabel>
-        <p-multiSelect
-        inputId="float-label"
-      [options]="propertys()"
-      [loading]="propertys() == undefined"
-      (onChange)="callMe()"
-      [(ngModel)]="form().functionalPropertyName" />
-    </p-floatLabel>
+        <p-multiSelect inputId="float-label" [options]="propertys()" [loading]="propertys() == undefined" [(ngModel)]="form().functionalPropertyName" />
+      </p-floatLabel>
     </div>
   </div>
   <div class="row">
