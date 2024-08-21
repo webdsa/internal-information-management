@@ -5,8 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { InternalService } from '../../services/internal.service';
 import { Subtopics } from '../../../../core/models/guid.model';
 import { EditorChangeContent, EditorChangeSelection, QuillModule } from 'ngx-quill';
-import Quill from 'quill'
-
+import Quill from 'quill';
 
 @Component({
   selector: 'app-new-subtopic',
@@ -16,63 +15,69 @@ import Quill from 'quill'
   styleUrl: './new-subtopic.component.scss'
 })
 export class NewSubtopicComponent {
-  public topicId:InputSignal<number> = input<number>(0);
-  public subtopic:InputSignal<Subtopics> = input<Subtopics>(new Subtopics());
+  public topicId: InputSignal<number> = input<number>(0);
+  public subtopic: InputSignal<Subtopics> = input<Subtopics>(new Subtopics());
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public titleSuTtopic: string = '';
   public subTopicDescription: string = '';
   public subTopicContent: string = '';
 
-  constructor(private _toast: ToastrService) { }
+  constructor(private _toast: ToastrService) {}
 
   #InternalService = inject(InternalService);
 
   ngOnInit(): void {
-    if (this.subtopic()) {
-      this.titleSuTtopic = this.subtopic().name??'';
-      this.subTopicDescription = this.subtopic().description??''; 
-      this.subTopicContent = this.subtopic().content??'';
+    if (this.subtopic().id) {
+      this.titleSuTtopic = this.subtopic().name ?? '';
+      this.subTopicDescription = this.subtopic().description ?? '';
+      this.subTopicContent = this.subtopic().content ?? '';
     }
   }
 
   public createSubTopic() {
     const subtopic = {
-      "id": this.subtopic().id ?? 0,
-      "name": this.titleSuTtopic,
-      "isActive": true,
-      "description": this.subTopicDescription,
-      "topicId": this.topicId(),
-      "content": this.subTopicContent
+      id: this.subtopic().id ?? 0,
+      name: this.titleSuTtopic,
+      isActive: true,
+      description: this.subTopicDescription,
+      topicId: this.topicId(),
+      content: this.subTopicContent
     };
-    if (this.subtopic()) {
-      this.#InternalService.alterSubTopic(subtopic).mutateAsync(null).then((res: any) => {
-        if (res.succeeded) {
-          this.onClose.emit(true);
+    if (this.subtopic().id) {
+      this.#InternalService
+        .alterSubTopic(subtopic)
+        .mutateAsync(null)
+        .then((res: any) => {
+          if (res.succeeded) {
+            this.onClose.emit(true);
             this._toast.success('Tópico alterado com sucesso!');
-        } else {
-          this._toast.error('Procure a equipe de suporte.', 'Erro ao criar tópico!');
-        }
-      });
-    }else{
-      this.#InternalService.createSubTopic(subtopic).mutateAsync(null).then((res: any) => {
-        if (res.succeeded) {
-          this.onClose.emit(true);
+          } else {
+            this._toast.error('Procure a equipe de suporte.', 'Erro ao criar tópico!');
+          }
+        });
+    } else {
+      this.#InternalService
+        .createSubTopic(subtopic)
+        .mutateAsync(null)
+        .then((res: any) => {
+          if (res.succeeded) {
+            this.onClose.emit(true);
             this._toast.success('Tópico criado com sucesso!');
-        } else {
-          this._toast.error('Procure a equipe de suporte.', 'Erro ao criar tópico!');
-        }
-      });
+          } else {
+            this._toast.error('Procure a equipe de suporte.', 'Erro ao criar tópico!');
+          }
+        });
     }
   }
 
   created(event: Quill | any) {
     // tslint:disable-next-line:no-console
-    console.log('editor-created', event)
+    console.log('editor-created', event);
   }
 
   changedEditor(event: EditorChangeContent | EditorChangeSelection | any) {
     // tslint:disable-next-line:no-console
-    console.log('editor-change', event)
+    console.log('editor-change', event);
   }
 }
