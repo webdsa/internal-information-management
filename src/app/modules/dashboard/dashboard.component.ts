@@ -1,7 +1,8 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, inject, NgZone, OnInit } from '@angular/core';
 import { GraphProfile } from '../../core/models/graph-profile.type';
 import { Router } from '@angular/router';
 import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
+import { AuthService } from '../../auth/service/authService';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,9 +15,15 @@ export class DashboardComponent implements OnInit {
   profile?: GraphProfile;
   tokenExpiration!: string;
   public nameAcount: string = 'User';
+  #authService = inject(AuthService);
+
   constructor(private ngZone: NgZone, private router: Router) { }
 
   ngOnInit(): void {
+    this.#authService.getUserPermissions().result$.subscribe((response: any) => {
+      if(!response.data) this.ngZone.run(() => this.router.navigate(['no-permissions']));
+    });
+
     this.tokenExpiration = localStorage.getItem('tokenExpiration')!;
     this.nameAcount = localStorage.getItem('user.name')!;
   }
