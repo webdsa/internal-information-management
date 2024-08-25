@@ -1,0 +1,12 @@
+.support{
+    padding: 120px 80px;
+    .card-gradient {
+        gap: 0px;
+        border-radius: 10px;
+        opacity: 0px;
+        padding: 10vh 5vw;
+        background: rgb(143, 193, 251);
+        background: linear-gradient(90deg, rgba(143, 193, 251, 1) 0%, rgba(167, 252, 252, 1) 100%);
+        color: var(--white);
+    }
+}

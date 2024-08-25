@@ -8,6 +8,7 @@ import { InsertProvider } from '../../../core/models/insert.provider';
 import { BehaviorSubject, catchError, throwError } from 'rxjs';
 import { Residents } from '../../../core/models/property.model';
 import { observeNotification } from 'rxjs/internal/Notification';
+import { SupportModel } from '../../support/support.component';
 
 
 @Injectable({
@@ -127,6 +128,12 @@ export class PatrimonyService extends BaseService {
     return this.#query({
       queryKey: ['list-colaborators'],
       queryFn: () => this.#http.get(`${this._urlPostProperty}/list`, this.ObterAuthHeader())
+    });
+  }
+  public postSupport(spport:SupportModel){
+    return this.#mutation({
+      mutationKey: ['support'],
+      mutationFn: () => this.#http.post(`${this._urlBase}/support`, spport, this.ObterAuthHeader())
     });
   }
 }

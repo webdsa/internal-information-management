@@ -19,7 +19,13 @@
     <div class="logout align-self-center">
       <span class="material-symbols-outlined" (click)="clearLocalStorage()"> logout </span>
     </div>
-    <div class="user">{{ getInitials() }}</div>
+    <div class="user" (click)="open=!open">{{ getInitials() }}</div>
+    @if (open) {
+      <div class="user-info">
+        <label>{{  this.nameAcount }}</label>
+        <a href="/support">Ajuda</a>
+    </div>
+    }
   </div>
 </div>
 @if (subMenu.length > 0 && haveMenuItens == true) {

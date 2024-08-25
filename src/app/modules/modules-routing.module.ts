@@ -10,7 +10,7 @@ import { ResidentComponent } from './patrimony/resident/resident.component';
 import { FormResidentComponent } from './patrimony/resident/form-resident/form-resident.component';
 import { ProviderComponent } from './patrimony/provider/provider.component';
 import { FormProviderComponent } from './patrimony/provider/form-provider/form-provider.component';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { SupportComponent } from './support/support.component';
 
 export const routes: Routes = [
     {
@@ -78,9 +78,9 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'privacy-policy',
-        title: 'Política de Privacidade',
-        component: PrivacyPolicyComponent,
+        path: 'support',
+        title: 'Ajuda',
+        component: SupportComponent,
     }
 ];
 

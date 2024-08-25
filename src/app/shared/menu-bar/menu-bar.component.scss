@@ -87,3 +87,17 @@ a,
 label {
   cursor: pointer;
 }
+
+.user-info{
+  position: absolute;
+  top: 80px;
+  width: 120px;
+  background-color: #5fa9ff;
+  a,label{
+    text-decoration: none;
+    color: #3c7ac2;
+  }
+  a:hover{
+    color: #ffffff;
+  }
+}
