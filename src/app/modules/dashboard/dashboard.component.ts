@@ -20,14 +20,17 @@ export class DashboardComponent implements OnInit {
   constructor(private ngZone: NgZone, private router: Router) { }
 
   ngOnInit(): void {
-    this.#authService.getUserPermissions().result$.subscribe((response: any) => {
-      if(!response.data) this.ngZone.run(() => this.router.navigate(['no-permissions']));
-    });
-
     this.tokenExpiration = localStorage.getItem('tokenExpiration')!;
     this.nameAcount = localStorage.getItem('user.name')!;
   }
 
+  ngAfterViewInit(){
+    this.#authService.getUserPermissions().result$.subscribe({
+      next: (response) => {
+        if(!response.data) console.log(response.data);
+      },
+    });
+  }
   navigateTo(rout: string) {
     this.ngZone.run(() => this.router.navigate([rout]));
   }
