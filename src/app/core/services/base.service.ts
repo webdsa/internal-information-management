@@ -2,11 +2,10 @@ import { HttpHeaders } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { LocalStorageUtils } from "../utils/local-storage.utils";
 
+
 export abstract class BaseService {
-
-
-    protected UrlServiceV1: string = environment.urlApi;
-    public LocalStorage = new LocalStorageUtils();
+    protected _urlBase = environment.urlApi;
+    protected LocalStorage = new LocalStorageUtils();
 
     protected ObterAuthHeader() {
         return {
@@ -16,4 +15,5 @@ export abstract class BaseService {
             })
         };
     }
+
 }

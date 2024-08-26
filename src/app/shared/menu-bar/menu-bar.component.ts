@@ -18,6 +18,7 @@ export class MenuBarComponent implements OnInit {
   public menuItens: layoutMenu[] = [];
   public subMenu: layoutMenu[] = [];
   public selected: boolean = false;
+  protected open:boolean =false;
 
   @Input() haveMenuItens: boolean = true;
 
@@ -47,10 +48,12 @@ export class MenuBarComponent implements OnInit {
   }
 
   getInitials() {
-    const firstName = this.nameAcount[0];
-    const lastName = this.nameAcount[this.nameAcount.length - 1];
-
-    const firstLetterFirstName = firstName.charAt(0);
+    const name = this.nameAcount.includes('-') 
+        ? this.nameAcount.split('-')[1].trim() 
+        : this.nameAcount.trim();
+    const nameParts = name.split(' ');
+    const firstLetterFirstName = nameParts[0].charAt(0);
+    const lastName = nameParts[nameParts.length - 1];
     const firstLetterLastName = lastName.charAt(0);
 
     return firstLetterFirstName + firstLetterLastName;

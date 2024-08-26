@@ -1,0 +1,62 @@
+.dash {
+    background-color: #eff4ff;
+    width: 100%;
+    height: 100%;
+    .dash-header {
+      background-color: var(--manual---primary--03);
+      padding: 10px;
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+  
+      .logo img {
+        width: 43px;
+        height: 43px;
+        gap: 0px;
+        opacity: 0px;
+        margin: 10px;
+      }
+  
+      .user {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: var(--white);
+        border: 1px solid #447bf180;
+        align-content: center;
+        text-align: center;
+        background-color: #447bf180;
+        margin: 10px;
+      }
+  
+      .user:hover {
+        background-color: var(--foundation---primary---dark-active);
+        cursor: pointer;
+      }
+    }
+  }
+  
+  .content-404 {
+    text-align-last: center;
+    display: grid;
+  
+    .ops{
+      margin-top: 7vh;
+  
+      h2 {
+        color: var(--manual---primary--03);
+      }
+    }
+  
+    .error-image {
+      max-width: 90%; /* Define a largura máxima da imagem */
+      max-height: 50vh; /* Define a altura máxima da imagem, ajustada para 90% da altura da tela */
+      width: auto;
+      height: auto;
+    }
+  
+    a{
+      color: var(--manual---primary--03);
+    }
+  }
+  

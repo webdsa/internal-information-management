@@ -1,20 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { environment } from '../../../../environments/environment';
 import { BaseService } from '../../../core/services/base.service';
 import { InsertProperty } from '../../../core/models/insert.property';
 import { injectMutation, injectQuery, injectQueryClient } from '@ngneat/query';
 import { InsertProvider } from '../../../core/models/insert.provider';
-import { BehaviorSubject, catchError, throwError } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Residents } from '../../../core/models/property.model';
-import { observeNotification } from 'rxjs/internal/Notification';
+import { SupportModel } from '../../support/support.component';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class PatrimonyService extends BaseService {
-  private _urlBase = environment.urlApi;
   private _urlGetProperty = `${this._urlBase}/property/list`;
   private _urlPostProperty = `${this._urlBase}/property`;
   private _urlProvider = `${this._urlBase}/provider`;
@@ -127,6 +125,12 @@ export class PatrimonyService extends BaseService {
     return this.#query({
       queryKey: ['list-colaborators'],
       queryFn: () => this.#http.get(`${this._urlPostProperty}/list`, this.ObterAuthHeader())
+    });
+  }
+  public postSupport(spport:SupportModel){
+    return this.#mutation({
+      mutationKey: ['support'],
+      mutationFn: () => this.#http.post(`${this._urlBase}/support`, spport, this.ObterAuthHeader())
     });
   }
 }
