@@ -5,6 +5,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { PrivacyPolicyComponent } from './modules/privacy-policy/privacy-policy.component';
 import { NoPermissionComponent } from './modules/no-permission/no-permission.component';
+import { SupportComponent } from './modules/support/support.component';
 
 export const routes: Routes = [
     {
@@ -31,6 +32,11 @@ export const routes: Routes = [
         title: 'Sem permissöes para estar aqui',
         component: NoPermissionComponent,
     },
+    {
+        path: 'support',
+        title: 'Ajuda',
+        component: SupportComponent,
+    }
 
 
 ];

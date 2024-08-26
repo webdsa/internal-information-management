@@ -10,7 +10,6 @@ import { ResidentComponent } from './patrimony/resident/resident.component';
 import { FormResidentComponent } from './patrimony/resident/form-resident/form-resident.component';
 import { ProviderComponent } from './patrimony/provider/provider.component';
 import { FormProviderComponent } from './patrimony/provider/form-provider/form-provider.component';
-import { SupportComponent } from './support/support.component';
 
 export const routes: Routes = [
     {
@@ -76,11 +75,6 @@ export const routes: Routes = [
                 component: GuidsComponent,
             }
         ]
-    },
-    {
-        path: 'support',
-        title: 'Ajuda',
-        component: SupportComponent,
     }
 ];
 
