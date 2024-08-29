@@ -8,35 +8,33 @@ import { NoPermissionComponent } from './modules/no-permission/no-permission.com
 import { SupportComponent } from './modules/support/support.component';
 
 export const routes: Routes = [
-    {
-        path: '',
-        canActivate: [MicrosoftLoginGuard],
-        loadChildren: () => import('./modules/modules.module').then((m) => m.ModulesModule),
-    },
-    {
-        path: 'signIn',
-        component: SignInComponent,
-    },
-    {
-        path: 'register',
-        component: RegisterComponent,
-    },
-    { path: '**', component: NotFoundComponent },
-    {
-        path: 'privacy-policy',
-        title: 'Política de Privacidade',
-        component: PrivacyPolicyComponent,
-    },
-    {
-        path: 'no-permissions',
-        title: 'Sem permissöes para estar aqui',
-        component: NoPermissionComponent,
-    },
-    {
-        path: 'support',
-        title: 'Ajuda',
-        component: SupportComponent,
-    }
-
-
+  {
+    path: '',
+    canActivate: [MicrosoftLoginGuard],
+    loadChildren: () => import('./modules/modules.module').then((m) => m.ModulesModule)
+  },
+  {
+    path: 'signIn',
+    component: SignInComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'privacy-policy',
+    title: 'Política de Privacidade',
+    component: PrivacyPolicyComponent
+  },
+  {
+    path: 'no-permissions',
+    title: 'Sem permissöes para estar aqui',
+    component: NoPermissionComponent
+  },
+  {
+    path: 'support',
+    title: 'Ajuda',
+    component: SupportComponent
+  },
+  { path: '**', component: NotFoundComponent }
 ];

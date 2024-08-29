@@ -1,77 +1,90 @@
-import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, NgZone, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { layoutMenu } from '../../core/models/layoutMenu.model';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-menu-bar',
   standalone: true,
-  imports: [RouterLink, RouterOutlet],
+  imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './menu-bar.component.html',
-  styleUrl: './menu-bar.component.scss'
+  styleUrls: ['./menu-bar.component.scss']
 })
-export class MenuBarComponent implements OnInit {
+export class MenuBarComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('childrenMenu') childrenMenuRef!: ElementRef;
-  @ViewChild('Menu') MenuRef!: ElementRef;
-  constructor(private _httpClient: HttpClient, private ngZone: NgZone, private router: Router) { }
-  public nameAcount: string = 'User';
-  public menuItens: layoutMenu[] = [];
-  public subMenu: layoutMenu[] = [];
-  public selected: boolean = false;
-  protected open:boolean =false;
+  @ViewChild('Menu') menuRef!: ElementRef;
 
   @Input() haveMenuItens: boolean = true;
 
+  public nameAccount: string | null = '';
+  public menuItems: layoutMenu[] = [];
+  public subMenu: layoutMenu[] = [];
+  public selected: boolean = false;
+  public open: boolean = false;
+
+  constructor(private httpClient: HttpClient, private ngZone: NgZone, private router: Router) {}
+
   ngOnInit(): void {
-    this.nameAcount = localStorage.getItem('user.name')!;
-    this.getInitials();
-    this.getMenu();
+    if (typeof localStorage !== 'undefined') {
+      this.nameAccount = localStorage.getItem('user.name')?.toString() || '';
+      if (this.nameAccount && this.nameAccount != '') {
+        this.getInitials();
+        this.getMenu();
+      }
+    }
   }
 
-  ngAfterViewInit() {
-    document.addEventListener('click', this.handleOutsideClick.bind(this));
+  ngAfterViewInit(): void {
+    if (typeof document !== 'undefined') {
+      document.addEventListener('click', this.handleOutsideClick.bind(this));
+    }
   }
 
-  ngOnDestroy() {
-    document.removeEventListener('click', this.handleOutsideClick.bind(this));
+  ngOnDestroy(): void {
+    if (typeof document !== 'undefined') {
+      document.removeEventListener('click', this.handleOutsideClick.bind(this));
+    }
   }
 
-  clearLocalStorage(){
-    localStorage.clear();
-    location.reload();
+  clearLocalStorage(): void {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.clear();
+      location.reload();
+    }
   }
 
-  handleOutsideClick(event: MouseEvent) {
-    if (this.childrenMenuRef && !this.childrenMenuRef.nativeElement.contains(event.target) && this.MenuRef && !this.MenuRef.nativeElement.contains(event.target)) {
+  handleOutsideClick(event: MouseEvent): void {
+    if (this.childrenMenuRef && !this.childrenMenuRef.nativeElement.contains(event.target) && this.menuRef && !this.menuRef.nativeElement.contains(event.target)) {
       this.subMenu = [];
     }
   }
 
-  getInitials() {
-    const name = this.nameAcount.includes('-') 
-        ? this.nameAcount.split('-')[1].trim() 
-        : this.nameAcount.trim();
-    const nameParts = name.split(' ');
-    const firstLetterFirstName = nameParts[0].charAt(0);
-    const lastName = nameParts[nameParts.length - 1];
-    const firstLetterLastName = lastName.charAt(0);
-
-    return firstLetterFirstName + firstLetterLastName;
+  getInitials(): string {
+    const name = this.nameAccount?.split('-').pop()?.trim() || '';
+    const [firstName = '', lastName = ''] = name.split(' ');
+    return `${firstName.charAt(0)}${lastName.charAt(0)}`;
   }
-  getMenu() {
-    this._httpClient.get<layoutMenu[]>('assets/mock/menu.json').subscribe(data => {
-      this.menuItens = data;
+
+  getMenu(): void {
+    this.httpClient.get<layoutMenu[]>('assets/mock/menu.json').subscribe((data) => {
+      this.menuItems = data;
     });
   }
-  openSubMenu(id: number) {
-    this.subMenu = this.menuItens.find(x => x.id === id)!.items;
+
+  openSubMenu(id: number): void {
+    const menuItem = this.menuItems.find((item) => item.id === id);
+    this.subMenu = menuItem ? menuItem.items : [];
   }
-  onMouseEnter(id: number) {
+
+  onMouseEnter(id: number): void {
     this.openSubMenu(id);
   }
 
-  navigateTo(rout: string) {
-    if (this.selected) this.subMenu = [];
-    this.ngZone.run(() => this.router.navigate([rout]));
+  navigateTo(route: string): void {
+    if (this.selected) {
+      this.subMenu = [];
+    }
+    this.ngZone.run(() => this.router.navigate([route]));
   }
 }

@@ -4,29 +4,28 @@
   </div>
   @if (haveMenuItens == true) {
   <div class="menu-itens">
-    @for (item of menuItens; track $index) { @if(item.routerLink){
+    @for (item of menuItems; track $index) { @if(item.routerLink){
     <a [routerLink]="item.routerLink ? item.routerLink : ''" (mouseenter)="onMouseEnter(item.id)">
       <label>{{ item.label }}</label>
     </a>
     }@else {
-    <label (click)="openSubMenu(item.id); selected = !selected" #submenu>{{
-      item.label
-    }}</label>
+    <label (click)="openSubMenu(item.id); selected = !selected" #submenu>{{ item.label }}</label>
     } }
   </div>
-  }
+  } @if(this.nameAccount != ''){
   <div class="icons d-flex">
     <div class="logout align-self-center">
       <span class="material-symbols-outlined" (click)="clearLocalStorage()"> logout </span>
     </div>
-    <div class="user" (click)="open=!open">{{ getInitials() }}</div>
+    <div class="user" (click)="open = !open">{{ getInitials() }}</div>
     @if (open) {
-      <div class="user-info">
-        <label>{{  this.nameAcount }}</label>
-        <a href="/support">Ajuda</a>
+    <div class="user-info">
+      <label>{{ this.nameAccount }}</label>
+      <a href="/support">Ajuda</a>
     </div>
     }
   </div>
+  }
 </div>
 @if (subMenu.length > 0 && haveMenuItens == true) {
 <div class="children-itens" #childrenMenu>
