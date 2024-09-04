@@ -102,14 +102,10 @@
               {{ property.propertyValue }}
             </div>
 
-            @if(property.propertyType === 0) {
-            <div class="item-table type">Apartamento</div>
-            } @else if (property.propertyType === 1) {
-            <div class="item-table type">Casa</div>
-            } @else if (property.propertyType === 2) {
-            <div class="item-table type">Academia</div>
-            }
-
+            <div class="item-table type">
+              {{ property.propertyType }}
+            </div>
+        
             <div class="status">
               @if(property.status === 0) {
               <label class="status status-red mr-3">Ocupado</label>

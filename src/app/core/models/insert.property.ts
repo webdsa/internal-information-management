@@ -2,7 +2,7 @@ export class InsertProperty {
     id!: number;
     ownerName!: string;
     propertyName!: string;
-    propertyType!: PropertyTypeEnum;
+    propertyType!: string;
     status!: PropertyStatusEnum;
     postalCode!: string;
     address!: string;

@@ -264,10 +264,6 @@ export class FormPropertyComponent {
     });
   }
 
-  selectProperty(event: any) {
-    this.form.propertyType = Number(event.value);
-  }
-
   selectGas(event: any) {
     this.form.gasType = Number(event.value);
   }

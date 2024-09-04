@@ -36,18 +36,12 @@
           titleLabel="Proprietário"
           [required]="true"
         >
-          <select class="form-select" (change)="selectOwnerName($event.target)">
-            <option value="-0">Selecione o proprietário</option>
-            <option value="CUB" [selected]="form.ownerName == 'CUB'">
-              CUB
-            </option>
-            <option value="PROASA" [selected]="form.ownerName == 'PROASA'">
-              PROASA
-            </option>
-            <option value="IAJA" [selected]="form.ownerName == 'IAJA'">
-              IAJA
-            </option>
-          </select>
+        <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="form.ownerName"
+      />
+      <app-form-msg-error [value]="form.ownerName"></app-form-msg-error>
         </app-form-label>
 
         <app-form-label
@@ -55,17 +49,12 @@
           titleLabel=" Tipo do Imóvel"
           [required]="true"
         >
-          <select class="form-select" (change)="selectProperty($event.target)">
-            <option value="-0">Selecione o tipo do imóvel</option>
-            @for (item of typePropertyArray; track $index) {
-            <option
-              value="{{ item.value }}"
-              [selected]="item.value == +form.propertyType"
-            >
-              {{ item.label }}
-            </option>
-            }
-          </select>
+            <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="form.propertyType"
+          />
+          <app-form-msg-error [value]="form.propertyType"></app-form-msg-error>
         </app-form-label>
       </div>
       <div class="row">
