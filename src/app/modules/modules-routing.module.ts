@@ -10,6 +10,7 @@ import { ResidentComponent } from './patrimony/resident/resident.component';
 import { FormResidentComponent } from './patrimony/resident/form-resident/form-resident.component';
 import { ProviderComponent } from './patrimony/provider/provider.component';
 import { FormProviderComponent } from './patrimony/provider/form-provider/form-provider.component';
+import { UsersManagementComponent } from './users-management/users-management.component';
 
 export const routes: Routes = [
     {
@@ -75,6 +76,11 @@ export const routes: Routes = [
                 component: GuidsComponent,
             }
         ]
+    },
+    {
+        path: 'users-management',
+        title: 'App Users Management Page',
+        component: UsersManagementComponent,
     }
 ];
 

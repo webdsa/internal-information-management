@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModulesRoutingModule } from './modules-routing.module';
+import { AuthService } from '../auth/service/authService';
 
 @NgModule({
     declarations: [],
@@ -8,4 +9,14 @@ import { ModulesRoutingModule } from './modules-routing.module';
     exports: []
 })
 
-export class ModulesModule {}
+export class ModulesModule {
+    #authService = inject(AuthService);
+
+    constructor() {
+        this.getPermissions();
+    }
+
+    getPermissions(){
+        this.#authService.getUserPermissionsByToken();
+    }
+}
