@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RouterOutlet } from '@angular/router';
@@ -10,6 +10,7 @@ import { SearchComponent } from '../../shared/search/search.component';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { UsersService } from './services/users.service';
 import { FormUserComponent } from './form-user/form-user.component';
+import { UserModel } from '../../core/models/user.model';
 
 @Component({
   selector: 'app-users-management',
@@ -22,9 +23,9 @@ export class UsersManagementComponent {
   #authService = inject(AuthService);
   #usersService = inject(UsersService);
 
-  protected users = signal<Array<any>>([]);
-  protected usersBk = signal<Array<any>>([]);
-  protected userSelected: any;
+  protected users = signal<Array<UserModel>>([]);
+  protected usersBk = signal<Array<UserModel>>([]);
+  protected userSelected: WritableSignal<UserModel> = signal(new UserModel());
   protected openModalEdit: boolean = false;
   listSelected: any;
 
@@ -44,9 +45,7 @@ export class UsersManagementComponent {
   searchByName(search: string) {
     if (search != '') {
       search = this.noAccents(search);
-      this.users.set(
-        this.usersBk().filter((x) => this.noAccents(x.codeAPS).includes(search) || this.noAccents(x.employeeName.toString().toUpperCase()).includes(search) || this.noAccents(x.email.toString().toUpperCase()).includes(search))
-      );
+      this.users.set(this.usersBk().filter((x) => x.codeAPS == Number(search) || this.noAccents(x.employeeName.toString().toUpperCase()).includes(search) || this.noAccents(x.email.toString().toUpperCase()).includes(search)));
     } else this.users.set(this.usersBk());
   }
 
@@ -56,5 +55,10 @@ export class UsersManagementComponent {
 
   selectAll() {
     this.listSelected;
+  }
+
+  editUser(user: any) {
+    this.openModalEdit = true;
+    this.userSelected = user;
   }
 }

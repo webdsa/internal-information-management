@@ -1,0 +1,33 @@
+export class UserModel {
+  id!: number;
+  updateAt!: Date;
+  entityCode!: string;
+  entityName!: string;
+  employeeId!: number;
+  codeAPS!: number;
+  employeeName!: string;
+  email!: string;
+  maritalStatus!: string;
+  birthdate!: Date;
+  gender!: string;
+  country!: string;
+  isReligious!: true;
+  pcd!: true;
+  codeStatus!: number;
+  state!: string;
+  codeDepartment!: string;
+  departmentName!: string;
+  codeLink!: number;
+  linkName!: string;
+  codeOccupational!: string;
+  typeOccupational!: string;
+  orderOccupational!: string;
+  nameCategoryOccupational!: string;
+  nameOccupational!: string;
+  codeGroupEmployee!: string;
+  groupEmployee!: string;
+  codeCredential!: string;
+  nameCredential!: string;
+  phoneNumber!: string;
+  cpf!: string;
+}
