@@ -38,7 +38,7 @@
 <div class="modal">
   <div class="modal-content">
     <span class="material-symbols-outlined" (click)="openModalEdit = !openModalEdit"> close </span>
-    <app-form-user [user]="userSelected()" (onEdited)="openModalEdit = !$event"></app-form-user>
+    <app-form-user [user]="userSelected()" (onChange)="openModalEdit = !$event"></app-form-user>
   </div>
 </div>
 }
