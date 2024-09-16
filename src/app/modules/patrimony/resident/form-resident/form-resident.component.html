@@ -19,6 +19,21 @@
             <app-form-msg-error [value]="selectedColaborator" [type]="3"></app-form-msg-error>
           </app-form-label>
         }
+        <app-form-label
+          class="col-3"
+          titleLabel="Teto de aluguel"
+          [required]="true"
+        >
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="form.rentCeiling"
+          />
+          <app-form-msg-error
+            [value]="form.rentCeiling"
+            [type]="1"
+          ></app-form-msg-error>
+        </app-form-label>
       </div>
     </div>
     <div class="form-detail">

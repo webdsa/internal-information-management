@@ -4,6 +4,7 @@ export class InsertResident {
   entryAt!: Date;
   departureAt!: Date;
   spouse!: ResidentSpouse;
+  rentCeiling!: number;
 }
 
 export class ResidentSpouse {
