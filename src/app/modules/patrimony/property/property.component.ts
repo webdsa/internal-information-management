@@ -1,9 +1,9 @@
 import { Component, EventEmitter, NgZone, Output, Pipe, PipeTransform, WritableSignal, inject, signal } from '@angular/core';
 import { CardComponent } from '../../../shared/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SearchComponent } from "../../../shared/search/search.component";
-import { FilterComponent } from "../../../shared/filter/filter.component";
-import { ModalComponent } from "../../../shared/modal/modal.component";
+import { SearchComponent } from '../../../shared/search/search.component';
+import { FilterComponent } from '../../../shared/filter/filter.component';
+import { ModalComponent } from '../../../shared/modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { PatrimonyService } from '../services/patrimony.services';
 import { Router } from '@angular/router';
@@ -34,12 +34,11 @@ export class PropertyTypeToStringPipe implements PipeTransform {
   standalone: true,
   templateUrl: './property.component.html',
   styleUrl: './property.component.scss',
-  imports: [CommonModule, CardComponent, SearchComponent, FilterComponent, ModalComponent, HttpClientModule, FormPropertyComponent],
+  imports: [CommonModule, CardComponent, SearchComponent, FilterComponent, ModalComponent, HttpClientModule, FormPropertyComponent]
 })
 export class PropertyComponent {
-
-  protected propertys : WritableSignal<Array<InsertProperty>> = signal<Array<InsertProperty>>(new Array<InsertProperty>());
-  protected property : WritableSignal<InsertProperty> = signal<InsertProperty>(new InsertProperty());
+  protected propertys: WritableSignal<Array<InsertProperty>> = signal<Array<InsertProperty>>(new Array<InsertProperty>());
+  protected property: WritableSignal<InsertProperty> = signal<InsertProperty>(new InsertProperty());
   public additionalDataProperty: Array<PropertyAdditionalDataModel> = [];
   public propertysBkp: Array<InsertProperty> = [];
   public filteredProperties: Array<InsertProperty> = [];
@@ -52,13 +51,13 @@ export class PropertyComponent {
   types: string[] = [];
   status: string[] = [];
 
-  selectedType: string = "Todos";
+  selectedType: string = 'Todos';
 
   response: any;
 
   @Output() result: EventEmitter<number> = new EventEmitter();
   #patrimonyService = inject(PatrimonyService);
-  constructor(private router: Router, private _toast: ToastrService,private ngZone: NgZone) { }
+  constructor(private router: Router, private _toast: ToastrService, private ngZone: NgZone) {}
   ngOnInit() {
     this.getProperty();
   }
@@ -73,7 +72,7 @@ export class PropertyComponent {
   }
 
   getAdditionalDataValue(additionalData: any[], type: number): string {
-    const data = additionalData.find(d => d.type === type);
+    const data = additionalData.find((d) => d.type === type);
     return data ? data.value : '';
   }
 
@@ -89,9 +88,8 @@ export class PropertyComponent {
 
   searchByName(search: string) {
     if (search != '' && search != undefined) {
-      search = this.noAccents(search);
-      this.filteredProperties = this.propertysBkp?.filter((x) => this.noAccents(x.propertyName.toUpperCase()).includes(search) || this.noAccents((x.status.toString()).toUpperCase()).includes(search));
-
+      search = this.noAccents(search).toLocaleLowerCase();
+      this.filteredProperties = this.propertysBkp?.filter((x) => this.noAccents(x.propertyName.toLocaleLowerCase()).includes(search) || this.noAccents(x.status.toString().toLocaleLowerCase()).includes(search));
     } else this.filteredProperties = this.propertys();
   }
 
@@ -99,11 +97,11 @@ export class PropertyComponent {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
   filterProperty(event: any) {
-    if (event.type === "Todos" && event.status === "Todos") this.filteredProperties = this.propertysBkp;
-    else if (event.type === "Todos") {
-      this.filteredProperties = this.propertysBkp.filter(property => property.status === event.status);
+    if (event.type === 'Todos' && event.status === 'Todos') this.filteredProperties = this.propertysBkp;
+    else if (event.type === 'Todos') {
+      this.filteredProperties = this.propertysBkp.filter((property) => property.status === event.status);
     } else {
-      this.filteredProperties = this.propertysBkp.filter(property => property.propertyType === event.type && property.status === event.status);
+      this.filteredProperties = this.propertysBkp.filter((property) => property.propertyType === event.type && property.status === event.status);
     }
   }
 
@@ -112,14 +110,17 @@ export class PropertyComponent {
   }
 
   deletePropertyById(id: number) {
-    this.#patrimonyService.deletePropertyById(id).mutateAsync(null).then((res: any) => {
-      if (res.succeeded) {
-        this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
-      } else {
-        this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
-      }
-      this.getProperty();
-    });
+    this.#patrimonyService
+      .deletePropertyById(id)
+      .mutateAsync(null)
+      .then((res: any) => {
+        if (res.succeeded) {
+          this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
+        } else {
+          this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
+        }
+        this.getProperty();
+      });
   }
 
   editProperty(property: any) {

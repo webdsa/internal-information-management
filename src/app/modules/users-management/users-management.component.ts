@@ -15,7 +15,7 @@ import { UserModel } from '../../core/models/user.model';
 @Component({
   selector: 'app-users-management',
   standalone: true,
-  imports: [MenuBarComponent, NgxSkeletonLoaderModule, RouterOutlet, FormsModule, CommonModule, CardComponent, SearchComponent, ModalComponent, FormUserComponent],
+  imports: [CommonModule, MenuBarComponent, NgxSkeletonLoaderModule, RouterOutlet, FormsModule, CardComponent, SearchComponent, ModalComponent, FormUserComponent],
   templateUrl: './users-management.component.html',
   styleUrl: './users-management.component.scss'
 })
@@ -37,15 +37,19 @@ export class UsersManagementComponent {
 
   getUsers() {
     this.#usersService.getAllUsers().result$.subscribe((response: any) => {
-      this.users.set(response.data.data);
-      this.usersBk.set(response.data.data);
+      if (response.data.data != undefined) {
+        this.users.set(response.data.data);
+        this.usersBk.set(response.data.data);
+      }
     });
   }
 
   searchByName(search: string) {
     if (search != '') {
-      search = this.noAccents(search);
-      this.users.set(this.usersBk().filter((x) => x.codeAPS == Number(search) || this.noAccents(x.employeeName.toString().toUpperCase()).includes(search) || this.noAccents(x.email.toString().toUpperCase()).includes(search)));
+      search = this.noAccents(search).toLocaleLowerCase();
+      this.users.set(
+        this.usersBk().filter((x) => x.codeAPS == Number(search) || this.noAccents(x.employeeName.toString().toLocaleLowerCase()).includes(search) || this.noAccents(x.email.toString().toLocaleLowerCase()).includes(search))
+      );
     } else this.users.set(this.usersBk());
   }
 
