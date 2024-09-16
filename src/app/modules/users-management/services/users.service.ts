@@ -21,4 +21,10 @@ export class UsersService extends BaseService {
       queryFn: () => this.#http.get<Array<any>>(this._urlBase + '/Collaborators', this.ObterAuthHeader())
     });
   }
+  updateUserRole(userRole: any) {
+    return this.#mutation({
+      mutationKey: ['updateUserRole'],
+      mutationFn: (userRole: any) => this.#http.put(this._urlBase + '/user/permission', userRole, this.ObterAuthHeader())
+    });
+  }
 }

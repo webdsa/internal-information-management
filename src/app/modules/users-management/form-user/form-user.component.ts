@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { HeaderTitleComponent } from '../../../shared/header-title/header-title.component';
 import { CardComponent } from '../../../shared/card/card.component';
 import { FormLabelComponent } from '../../../shared/form-label/form-label.component';
@@ -7,6 +7,8 @@ import { FormMsgErrorComponent } from '../../../shared/form-msg-error/form-msg-e
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../../../shared/modal/modal.component';
 import { RoleTypeEnum } from '../../../core/enums/role-type.enum';
+import { UsersService } from '../services/users.service';
+import { UserModel } from '../../../core/models/user.model';
 
 @Component({
   selector: 'app-form-user',
@@ -16,7 +18,9 @@ import { RoleTypeEnum } from '../../../core/enums/role-type.enum';
   styleUrl: './form-user.component.scss'
 })
 export class FormUserComponent {
-  user = input.required();
+  #usersService = inject(UsersService);
+
+  user = input.required<UserModel>();
   onChange = output<boolean>();
 
   protected form: any;
@@ -31,10 +35,18 @@ export class FormUserComponent {
     console.log('Componente cargado');
   }
 
-  updateUser() {}
+  updateUser() {
+    const userRole = {
+      userEmail: this.user().email,
+      roleId: this.form
+    };
+    this.#usersService.updateUserRole(userRole).mutateAsync(null);
+  }
 
   cancel() {
     this.onChange.emit(true);
   }
-  selectPermission(value: any) {}
+  selectPermission(value: any) {
+    this.form = value.value;
+  }
 }
