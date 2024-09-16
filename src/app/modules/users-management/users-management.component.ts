@@ -20,7 +20,6 @@ import { UserModel } from '../../core/models/user.model';
   styleUrl: './users-management.component.scss'
 })
 export class UsersManagementComponent {
-  #authService = inject(AuthService);
   #usersService = inject(UsersService);
 
   protected users = signal<Array<UserModel>>([]);
