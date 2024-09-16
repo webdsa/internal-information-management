@@ -63,6 +63,6 @@ export class UsersManagementComponent {
 
   editUser(user: any) {
     this.openModalEdit = true;
-    this.userSelected = user;
+    this.userSelected.set(user);
   }
 }

@@ -5,8 +5,16 @@
     <span> Usuário </span>
   </div>
   <div class="row">
-    <label for="">Tipo de usuário</label>
-    <select name="" id=""></select>
+    <app-form-label class="col-4" titleLabel=" Tipo do Imóvel" [required]="true">
+      <select class="form-select" (change)="selectPermission($event.target)">
+        <option value="-0">Selecione o tipo do usuário</option>
+        @for (item of typeUserPermissionsArray; track $index) {
+        <option value="{{ item.value }}">
+          {{ item.label }}
+        </option>
+        }
+      </select>
+    </app-form-label>
   </div>
   <div class="row">
     <div class="btn">

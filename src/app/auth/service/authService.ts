@@ -3,6 +3,7 @@ import { BaseService } from '../../core/services/base.service';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { ResponseModel } from '../../core/models/response.model';
+import { RoleTypeEnum } from '../../core/enums/role-type.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +33,4 @@ export class AuthService extends BaseService {
       queryFn: () => this.#http.get<Array<ResponseModel<RoleTypeEnum>>>(this._urlBase + '/user/permission', this.ObterAuthHeader())
     });
   }
-}
-export enum RoleTypeEnum {
-  Admin,
-  Standard,
-  Employee
 }
