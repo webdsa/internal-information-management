@@ -1,51 +1,46 @@
 <div class="dash">
-    <app-menu-bar [haveMenuItens]="false"></app-menu-bar>
-    <div class="main">
-        <div class="card-gradient">
-            <span class="welcome">Olá, {{nameAcount}}</span>
-            <h1>Explore o painel <br>de gerenciamento de <br>processos administrativos.</h1>
-            <small>ao clicar na opçäo correspondente</small>
-        </div>
-        <div class="app">
-            <h3>Usuários</h3>
-            <div class="cards">
-                <div class="card">
-                    <div class="title">
-                        <span class="material-symbols-outlined">
-                            new_releases
-                        </span>
-                        <span>Permissoes de Usuários</span>
-                    </div>
-                    <p class="description">Configure e gerencie permissões aos usuários de sua aplicação.</p>
-                    <button (click)="navigateTo('users-management')" class="btn">Configurar</button>
-                </div>
-            </div>
-        </div>
-        <div class="app">
-            <h3>Minhas Aplicações</h3>
-            <div class="cards">
-                <div class="card">
-                    <div class="title">
-                        <span class="material-symbols-outlined">
-                            new_releases
-                        </span>
-                        <span>Manual de orientações</span>
-                    </div>
-                    <p class="description">Gerencie o manual de orientações para o escritório DSA.</p>
-                    <button (click)="navigateTo('internal-information')" class="btn">Ver mais</button>
-                </div>
-                <div class="card">
-                    <div class="title">
-                        <span class="material-symbols-outlined">
-                            new_releases
-                        </span>
-                        <span>Patrimônio DSA</span>
-                    </div>
-                    <p class="description">Gerencie moradores, imóveis e muito mais, no painel de controle de patrimônio
-                        DSA.</p>
-                    <button (click)="navigateTo('patrimony')" class="btn">Ver mais</button>
-                </div>
-            </div>
-        </div>
+  <app-menu-bar [haveMenuItens]="false"></app-menu-bar>
+  <div class="main">
+    <div class="card-gradient">
+      <span class="welcome">Olá, {{ nameAcount }}</span>
+      <h1>Explore o painel <br />de gerenciamento de <br />processos administrativos.</h1>
+      <small>ao clicar na opçäo correspondente</small>
     </div>
+    @if (showUserManagement) {
+    <div class="app">
+      <h3>Usuários</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="title">
+            <span class="material-symbols-outlined"> new_releases </span>
+            <span>Permissoes de Usuários</span>
+          </div>
+          <p class="description">Configure e gerencie permissões aos usuários de sua aplicação.</p>
+          <button (click)="navigateTo('users-management')" class="btn">Configurar</button>
+        </div>
+      </div>
+    </div>
+    }
+    <div class="app">
+      <h3>Minhas Aplicações</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="title">
+            <span class="material-symbols-outlined"> new_releases </span>
+            <span>Manual de orientações</span>
+          </div>
+          <p class="description">Gerencie o manual de orientações para o escritório DSA.</p>
+          <button (click)="navigateTo('internal-information')" class="btn">Ver mais</button>
+        </div>
+        <div class="card">
+          <div class="title">
+            <span class="material-symbols-outlined"> new_releases </span>
+            <span>Patrimônio DSA</span>
+          </div>
+          <p class="description">Gerencie moradores, imóveis e muito mais, no painel de controle de patrimônio DSA.</p>
+          <button (click)="navigateTo('patrimony')" class="btn">Ver mais</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

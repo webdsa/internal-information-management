@@ -11,16 +11,19 @@ import { FormResidentComponent } from './patrimony/resident/form-resident/form-r
 import { ProviderComponent } from './patrimony/provider/provider.component';
 import { FormProviderComponent } from './patrimony/provider/form-provider/form-provider.component';
 import { UsersManagementComponent } from './users-management/users-management.component';
+import { PermissionGuard } from '../permissions.guard';
 
 export const MAIN_ROUTES: Routes = [
   {
     path: '',
     title: 'App Dash Page',
+    canActivate: [PermissionGuard],
     component: DashboardComponent
   },
   {
     path: 'patrimony',
     title: 'App Patrimony Page',
+    canActivate: [PermissionGuard],
     component: PatrimonyComponent,
     children: [
       {
@@ -68,6 +71,7 @@ export const MAIN_ROUTES: Routes = [
   {
     path: 'internal-information',
     title: 'App Internal Information Page',
+    canActivate: [PermissionGuard],
     component: InternalInformationComponent,
     children: [
       {
@@ -80,6 +84,7 @@ export const MAIN_ROUTES: Routes = [
   {
     path: 'users-management',
     title: 'App Users Management Page',
+    canActivate: [PermissionGuard],
     component: UsersManagementComponent
   }
 ];

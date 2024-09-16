@@ -14,14 +14,16 @@ import { AuthService } from '../../auth/service/authService';
 export class DashboardComponent implements OnInit {
   profile?: GraphProfile;
   tokenExpiration!: string;
+  showUserManagement: boolean = false;
   public nameAcount: string = 'User';
   #authService = inject(AuthService);
 
-  constructor(private ngZone: NgZone, private router: Router) { }
+  constructor(private ngZone: NgZone, private router: Router) {}
 
   ngOnInit(): void {
     this.tokenExpiration = localStorage.getItem('tokenExpiration')!;
     this.nameAcount = localStorage.getItem('user.name')!;
+    if (this.#authService.getUserPermissions() == 1) this.showUserManagement = true;
   }
 
   navigateTo(rout: string) {

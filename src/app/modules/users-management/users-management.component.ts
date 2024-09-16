@@ -1,7 +1,7 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../auth/service/authService';
 import { CommonModule } from '@angular/common';
@@ -21,6 +21,8 @@ import { UserModel } from '../../core/models/user.model';
 })
 export class UsersManagementComponent {
   #usersService = inject(UsersService);
+  #authService = inject(AuthService);
+  #router = inject(Router);
 
   protected users = signal<Array<UserModel>>([]);
   protected usersBk = signal<Array<UserModel>>([]);
@@ -29,8 +31,7 @@ export class UsersManagementComponent {
   listSelected: any;
 
   ngOnInit(): void {
-    // console.log('teste', this.#authService.getUserPermissions());
-
+    if (this.#authService.getUserPermissions() != 1) this.#router.navigate(['/no-permissions']);
     this.getUsers();
   }
 

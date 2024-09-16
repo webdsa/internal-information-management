@@ -19,7 +19,7 @@ export class AuthService extends BaseService {
   public getUserPermissions(): RoleTypeEnum | undefined {
     return this.permissions();
   }
-  protected setPermissions(permissions: RoleTypeEnum): void {
+  public setPermissions(permissions: RoleTypeEnum): void {
     this.permissions.set(permissions);
   }
 
@@ -28,9 +28,6 @@ export class AuthService extends BaseService {
   }
 
   public getUserPermissionsByToken() {
-    this.#query({
-      queryKey: ['permission'],
-      queryFn: () => this.#http.get<Array<ResponseModel<RoleTypeEnum>>>(this._urlBase + '/user/permission', this.ObterAuthHeader())
-    });
+    return this.#http.get<Array<ResponseModel<RoleTypeEnum>>>(this._urlBase + '/user/permission', this.ObterAuthHeader());
   }
 }

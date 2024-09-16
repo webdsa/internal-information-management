@@ -1,8 +1,9 @@
-import { Component, ElementRef, Input, NgZone, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Input, NgZone, OnInit, ViewChild, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { layoutMenu } from '../../core/models/layoutMenu.model';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../auth/service/authService';
 
 @Component({
   selector: 'app-menu-bar',
@@ -17,11 +18,13 @@ export class MenuBarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() haveMenuItens: boolean = true;
 
+  #authService = inject(AuthService);
   public nameAccount: string | null = '';
   public menuItems: layoutMenu[] = [];
   public subMenu: layoutMenu[] = [];
   public selected: boolean = false;
   public open: boolean = false;
+  protected showPermissionUser: boolean = false;
 
   constructor(private httpClient: HttpClient, private ngZone: NgZone, private router: Router) {}
 
@@ -33,6 +36,7 @@ export class MenuBarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.getMenu();
       }
     }
+    if (this.#authService.getUserPermissions() == 1) this.showPermissionUser = true;
   }
 
   ngAfterViewInit(): void {
