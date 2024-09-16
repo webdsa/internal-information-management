@@ -11,7 +11,7 @@
 
       <div class="data-table-reports">
         <div class="row d-flex">
-          <div class="col-1 title-table"><input type="checkbox" name="" id="" /></div>
+          <div class="col-1 title-table"><input type="checkbox" name="" id="" (change)="selectAll()" /></div>
           <div class="col-2 title-table">Código</div>
           <div class="col-3 title-table">E-mail</div>
           <div class="col-3 title-table">Nível</div>
@@ -19,6 +19,7 @@
         </div>
         @for (user of users(); track $index ) {
         <div class="row d-flex align-items-center" style="border-bottom: 1px dashed var(--primary-color-3)">
+          <div class="col-1 title-table"><input type="checkbox" name="" id="" /></div>
           <div class="col-1 item-table">{{ user.codeAPS }}</div>
           <div class="col-2 item-table">{{ user.employeeName }}</div>
           <div class="col-3 item-table">{{ user.email }}</div>
@@ -30,3 +31,11 @@
     </app-card>
   </div>
 </div>
+@if (openModalEdit) {
+<div class="modal">
+  <div class="modal-content">
+    <span class="material-symbols-outlined" (click)="openModalEdit = !openModalEdit"> close </span>
+    <app-form-user [user]="userSelected()" (onEdited)="openModalEdit = !$event"></app-form-user>
+  </div>
+</div>
+}
