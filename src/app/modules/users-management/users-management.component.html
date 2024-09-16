@@ -12,11 +12,11 @@
       <div class="data-table-reports">
         <div class="row d-flex">
           <div class="col-1 title-table"><input type="checkbox" name="" id="" (change)="selectAll()" /></div>
-          <div class="col-2 title-table">Código</div>
+          <div class="col-1 title-table">Código</div>
           <div class="col-2 item-table">Nome</div>
           <div class="col-3 title-table">E-mail</div>
-          <div class="col-3 title-table">Nível</div>
-          <div class="col-3 title-table">Açöes</div>
+          <div class="col-2 title-table">Nível</div>
+          <div class="col title-table">Açöes</div>
         </div>
         @for (user of users(); track $index ) {
         <div class="row d-flex align-items-center" style="border-bottom: 1px dashed var(--primary-color-3)">
@@ -24,9 +24,10 @@
           <div class="col-1 item-table">{{ user.codeAPS }}</div>
           <div class="col-2 item-table">{{ user.employeeName }}</div>
           <div class="col-3 item-table">{{ user.email }}</div>
-          <div class="col-3 item-table">{{ user.email }}</div>
-          <div class="col-3 item-table">
-            <button type="button" class="btn"><span class="material-symbols-outlined" (click)="editUser(user)"> edit </span></button><button type="button" class="btn"><span class="material-symbols-outlined"> delete </span></button>
+          <div class="col-2 item-table">{{ user.email }}</div>
+          <div class="col item-table">
+            <button type="button" class="btn"><span class="material-symbols-outlined" (click)="editUser(user)"> edit </span></button>
+            <button type="button" class="btn"><span class="material-symbols-outlined"> delete </span></button>
           </div>
         </div>
         }
@@ -36,7 +37,7 @@
 </div>
 @if (openModalEdit) {
 <div class="modal">
-  <div class="modal-content">
+  <div class="modal-content w-50">
     <span class="material-symbols-outlined" (click)="openModalEdit = !openModalEdit"> close </span>
     <app-form-user [user]="userSelected()" (onChange)="openModalEdit = !$event"></app-form-user>
   </div>
