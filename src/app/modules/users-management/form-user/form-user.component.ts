@@ -6,7 +6,7 @@ import { FormLabelComponent } from '../../../shared/form-label/form-label.compon
 import { FormMsgErrorComponent } from '../../../shared/form-msg-error/form-msg-error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../../../shared/modal/modal.component';
-import { RoleTypeEnum } from '../../../core/enums/role-type.enum';
+import { RoleTypeEnum, RoleTypeEnumTranslation } from '../../../core/enums/role-type.enum';
 import { UsersService } from '../services/users.service';
 import { UserModel } from '../../../core/models/user.model';
 
@@ -24,10 +24,11 @@ export class FormUserComponent {
   onChange = output<boolean>();
 
   protected form: any;
+
   public typeUserPermissionsArray = Object.values(RoleTypeEnum)
     .filter((key) => typeof key === 'number')
     .map((key) => ({
-      label: RoleTypeEnum[key as unknown as keyof typeof RoleTypeEnum],
+      label: RoleTypeEnumTranslation[key as RoleTypeEnum],
       value: key
     }));
 

@@ -13,7 +13,7 @@ export const PermissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot, st
       const permissions = res.data;
       if (permissions) {
         authService.setPermissions(permissions);
-        return false;
+        return true;
       } else {
         router.navigate(['/no-permissions']);
         return false;

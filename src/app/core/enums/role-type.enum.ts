@@ -3,6 +3,13 @@ export enum RoleTypeEnum {
   Standard,
   Employee
 }
+
+export const RoleTypeEnumTranslation = {
+  [RoleTypeEnum.Admin]: 'Administrador',
+  [RoleTypeEnum.Standard]: 'Padrão',
+  [RoleTypeEnum.Employee]: 'Funcionário'
+};
+
 export namespace RoleTypeEnum {
   export function Array() {
     return Object.keys(RoleTypeEnum)
