@@ -11,7 +11,7 @@ import { PatrimonyService } from '../../services/patrimony.services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CorreiosService } from '../../../../core/services/correios.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
-import { ModalComponent } from "../../../../shared/modal/modal.component";
+import { ModalComponent } from '../../../../shared/modal/modal.component';
 @Component({
   selector: 'app-form-property',
   standalone: true,
@@ -33,48 +33,49 @@ export class FormPropertyComponent {
   public observation: string = '';
 
   public typePropertyArray = Object.values(PropertyTypeEnum)
-    .filter(key => typeof key === 'number')
-    .map(key => ({
+    .filter((key) => typeof key === 'number')
+    .map((key) => ({
       label: PropertyTypeEnum[key as unknown as keyof typeof PropertyTypeEnum],
       value: key
     }));
 
   public typeGasArray = Object.values(GasTypeEnum)
-    .filter(key => typeof key === 'number')
-    .map(key => ({
+    .filter((key) => typeof key === 'number')
+    .map((key) => ({
       label: GasTypeEnum[key as unknown as keyof typeof GasTypeEnum],
       value: key
     }));
 
-
-  realty:InputSignal<InsertProperty> = input(new InsertProperty());
+  realty: InputSignal<InsertProperty> = input(new InsertProperty());
   @Input() edit: boolean = false;
 
   @Output() onEdited: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   #patrimonyService = inject(PatrimonyService);
-  constructor(private _toast: ToastrService, private _router: Router, private _activatedRoute:ActivatedRoute, private correiosService: CorreiosService) {
-    this._activatedRoute.url.subscribe(segments => {
+  constructor(private _toast: ToastrService, private _router: Router, private _activatedRoute: ActivatedRoute, private correiosService: CorreiosService) {
+    this._activatedRoute.url.subscribe((segments) => {
       const fullPath = segments.join('/'); // Obtém o caminho completo da rota
-      this.edit = fullPath.endsWith('/edit')??false;
+      this.edit = fullPath.endsWith('/edit') ?? false;
     });
-    this.searchSubject.pipe(
-      debounceTime(300), // Espera 300ms após o último evento
-      distinctUntilChanged(), // Ignora se o próximo valor for igual ao anterior
-      switchMap((cep: string) => this.correiosService.consultarCEP(cep))
-    ).subscribe(
-      data => {
-        this.resultado = data;
-        this.form.address = data.logradouro;
-        this.form.city = data.localidade;
-        this.form.complement = data.complemento;
-        this.form.federativeUnit = data.uf;
-        this.form.neighborhood = data.bairro;
-      },
-      error => {
-        console.error('Erro ao consultar CEP', error);
-      }
-    );
+    this.searchSubject
+      .pipe(
+        debounceTime(300), // Espera 300ms após o último evento
+        distinctUntilChanged(), // Ignora se o próximo valor for igual ao anterior
+        switchMap((cep: string) => this.correiosService.consultarCEP(cep))
+      )
+      .subscribe(
+        (data) => {
+          this.resultado = data;
+          this.form.address = data.logradouro;
+          this.form.city = data.localidade;
+          this.form.complement = data.complemento;
+          this.form.federativeUnit = data.uf;
+          this.form.neighborhood = data.bairro;
+        },
+        (error) => {
+          console.error('Erro ao consultar CEP', error);
+        }
+      );
   }
 
   ngOnInit(): void {
@@ -82,19 +83,17 @@ export class FormPropertyComponent {
       this.form = this.realty();
       this.fillAdditionalDataByRealty(this.form.additionalData);
     }
-    if(this.edit){
+    if (this.edit) {
       this.#patrimonyService.currProperty.subscribe((property: InsertProperty) => {
         this.form = property;
-        if(this.form != null) {
+        if (this.form != null) {
           this.edit = true;
           this.fillAdditionalDataByRealty(this.form.additionalData);
         }
       });
-    }
-    else{
+    } else {
       this.form = new InsertProperty();
     }
-
   }
 
   checkChanges(changes: SimpleChanges, values: string): boolean {
@@ -113,45 +112,53 @@ export class FormPropertyComponent {
     this.openModalActive = !this.openModalActive;
   }
 
-  inactivePropertyId(id:number) {
-    this.#patrimonyService.inactivePropertyById(id, this.form).mutateAsync(null).then((res: any) => {
-      if(res.succeeded){
-        this._toast.success('Propriedade desativada com sucesso!', 'Sucesso');
-        this.onEdited.emit(true);
-        this._router.navigate(['patrimony/property']);
-      } else {
-        this._toast.error('Procure a equipe de suporte.', 'Erro ao desativar propriedade!');
-      }
-    })
-  }
-
-  activePropertyId(id: number ) {
-    this.#patrimonyService.activePropertyById(id, this.form).mutateAsync(null).then((res: any) => {
-      if(res.succeeded){
-        this._toast.success('Propriedade ativada com sucesso!', 'Sucesso');
-        this.onEdited.emit(true);
-        this._router.navigate(['patrimony/property']);
-      } else {
-        this._toast.error('Procure a equipe de suporte.', 'Erro ao desativar propriedade!');
-      }
-    })
-  }
-
-  deletePropertyById(id: number,event:number) {
-    if(event == 1){
-      this.#patrimonyService.deletePropertyById(id).mutateAsync(null).then((res: any) => {
+  inactivePropertyId(id: number) {
+    this.#patrimonyService
+      .inactivePropertyById(id, this.form)
+      .mutateAsync(null)
+      .then((res: any) => {
         if (res.succeeded) {
-          this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
+          this._toast.success('Propriedade desativada com sucesso!', 'Sucesso');
           this.onEdited.emit(true);
           this._router.navigate(['patrimony/property']);
         } else {
-          this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
+          this._toast.error('Procure a equipe de suporte.', 'Erro ao desativar propriedade!');
         }
       });
-    }else{
-      this.openModalConfirm = false
-    }
+  }
 
+  activePropertyId(id: number) {
+    this.#patrimonyService
+      .activePropertyById(id, this.form)
+      .mutateAsync(null)
+      .then((res: any) => {
+        if (res.succeeded) {
+          this._toast.success('Propriedade ativada com sucesso!', 'Sucesso');
+          this.onEdited.emit(true);
+          this._router.navigate(['patrimony/property']);
+        } else {
+          this._toast.error('Procure a equipe de suporte.', 'Erro ao desativar propriedade!');
+        }
+      });
+  }
+
+  deletePropertyById(id: number, event: number) {
+    if (event == 1) {
+      this.#patrimonyService
+        .deletePropertyById(id)
+        .mutateAsync(null)
+        .then((res: any) => {
+          if (res.succeeded) {
+            this._toast.success('Propriedade excluída com sucesso!', 'Sucesso');
+            this.onEdited.emit(true);
+            this._router.navigate(['patrimony/property']);
+          } else {
+            this._toast.error('Procure a equipe de suporte.', 'Erro ao excluir propriedade!');
+          }
+        });
+    } else {
+      this.openModalConfirm = false;
+    }
   }
 
   onKeyUp(event: any): void {
@@ -163,10 +170,10 @@ export class FormPropertyComponent {
 
   consultarCEP() {
     this.correiosService.consultarCEP(this.cep).subscribe(
-      data => {
+      (data) => {
         this.resultado = data;
       },
-      error => {
+      (error) => {
         console.error('Erro ao consultar CEP', error);
       }
     );
@@ -176,50 +183,56 @@ export class FormPropertyComponent {
     this.fillAdditionalData();
     this.form.status = 0;
     // this.form.propertyValue = 0;
-    this.#patrimonyService.postProperty(this.form).mutateAsync(null).then((res: any) => {
-      if (res.succeeded) {
-        this._toast.success('Imóvel cadastrado com sucesso!');
-        this.form = new InsertProperty();
-        this._router.navigate(['patrimony/property']);
-      } else {
-        this._toast.error('Procure a equipe de suporte.', 'Erro ao cadastrar imóvel!');
-      }
-    });
+    this.#patrimonyService
+      .postProperty(this.form)
+      .mutateAsync(null)
+      .then((res: any) => {
+        if (res.succeeded) {
+          this._toast.success('Imóvel cadastrado com sucesso!');
+          this.form = new InsertProperty();
+          this._router.navigate(['patrimony/property']);
+        } else {
+          this._toast.error('Procure a equipe de suporte.', 'Erro ao cadastrar imóvel!');
+        }
+      });
   }
 
   updateProperty() {
     this.fillAdditionalData();
     this.form.status = 0;
     // this.form.propertyValue = 0;
-    this.#patrimonyService.putProperty(this.form).mutateAsync(null).then((res: any) => {
-      if (res.succeeded) {
-        this._toast.success('Imóvel editado com sucesso!');
-        this.form = new InsertProperty();
-        this.edit = false;
-        this.onEdited.emit(true);
-        this._router.navigate(['patrimony/property']);
-      } else {
-        this._toast.error('Procure a equipe de suporte.', 'Erro ao cadastrar imóvel!');
-      }
-    });
+    this.#patrimonyService
+      .putProperty(this.form)
+      .mutateAsync(null)
+      .then((res: any) => {
+        if (res.succeeded) {
+          this._toast.success('Imóvel editado com sucesso!');
+          this.form = new InsertProperty();
+          this.edit = false;
+          this.onEdited.emit(true);
+          this._router.navigate(['patrimony/property']);
+        } else {
+          this._toast.error('Procure a equipe de suporte.', 'Erro ao cadastrar imóvel!');
+        }
+      });
   }
 
   fillAdditionalData() {
     this.form.additionalData = [];
     this.form.additionalData.push(
-      { type: 0, value: this.detailRealty.qtyRooms.toString() ?? "0" },
-      { type: 1, value: this.detailRealty.qtyMaxResidents.toString() ?? "0" },
+      { type: 0, value: this.detailRealty.qtyRooms.toString() ?? '0' },
+      { type: 1, value: this.detailRealty.qtyMaxResidents.toString() ?? '0' },
       // { type: 1, value: this.detailRealty.QtyBathrooms },
-      { type: 2, value: this.detailRealty.intercomNumber.toString() ?? "0" }, //IntercomNumber
-      { type: 3, value: this.detailRealty.conciergePhone ?? "0" }, //ConciergePhone
-      { type: 4, value: this.detailRealty.observation ?? "" }, //Observation
-      { type: 5, value: this.detailRealty.eletricalCode.toString() ?? "0" }, //EletricalCode
-      { type: 6, value: this.detailRealty.waterCode ?? "0" }, //WaterCode
-      { type: 7, value: this.detailRealty.eletricMeter.toString() ?? "0" }, //EletricMeter
+      { type: 2, value: this.detailRealty.intercomNumber.toString() ?? '0' }, //IntercomNumber
+      { type: 3, value: this.detailRealty.conciergePhone ?? '0' }, //ConciergePhone
+      { type: 4, value: this.detailRealty.observation ?? '' }, //Observation
+      { type: 5, value: this.detailRealty.eletricalCode.toString() ?? '0' }, //EletricalCode
+      { type: 6, value: this.detailRealty.waterCode ?? '0' }, //WaterCode
+      { type: 7, value: this.detailRealty.eletricMeter.toString() ?? '0' }, //EletricMeter
       // { type: 8, value: this.detailRealty. }, //QtyResidents
-      { type: 9, value: this.detailRealty.qtyMaxResidents.toString() ?? "0" }, //QtyMaxResidents
-      { type: 10, value: this.detailRealty.municipalRegistration ?? "0" },//MunicipalRegistration
-      { type: 11, value: this.detailRealty.propertyTax ?? "0" } //PropertyTax
+      { type: 9, value: this.detailRealty.qtyMaxResidents.toString() ?? '0' }, //QtyMaxResidents
+      { type: 10, value: this.detailRealty.municipalRegistration ?? '0' }, //MunicipalRegistration
+      { type: 11, value: this.detailRealty.propertyTax ?? '0' } //PropertyTax
     );
   }
 
@@ -281,7 +294,5 @@ export class FormPropertyComponent {
   cancel() {
     this.onEdited.emit(true);
     this._router.navigate(['patrimony/property']);
-    // this.form = new InsertProperty();
-    // this.detailRealty = new DetailRealty();
   }
 }

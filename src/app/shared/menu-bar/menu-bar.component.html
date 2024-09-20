@@ -4,11 +4,11 @@
   </div>
   @if (haveMenuItens == true) {
   <div class="menu-itens">
-    @for (item of menuItems; track $index) { @if(item.routerLink){
+    @for (item of menuItems; track $index) { @if(item.routerLink){ @if(item.id !== 6 || (item.id === 6 && showPermissionUser)){
     <a [routerLink]="item.routerLink ? item.routerLink : ''" (mouseenter)="onMouseEnter(item.id)">
       <label>{{ item.label }}</label>
     </a>
-    }@else {
+    }}@else {
     <label (click)="openSubMenu(item.id); selected = !selected" #submenu>{{ item.label }}</label>
     } }
   </div>

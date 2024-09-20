@@ -1,0 +1,26 @@
+<div class="edit-user">
+  <h1>Editar usuário</h1>
+
+  <div class="row">
+    <div class="col"><span> Usuário </span> {{ user().userName }}</div>
+    <div class="col"><span>E-mail</span> {{ user().userEmail }}</div>
+  </div>
+  <div class="row">
+    <app-form-label class="col-12" titleLabel=" Tipo do Imóvel" [required]="true">
+      <select class="form-select" (change)="selectPermission($event.target)">
+        <option value="-0">Selecione o tipo do usuário</option>
+        @for (item of typeUserPermissionsArray; track $index) {
+        <option value="{{ item.key }}">
+          {{ item.translated }}
+        </option>
+        }
+      </select>
+    </app-form-label>
+  </div>
+  <div class="row">
+    <div class="btn">
+      <button type="button" class="btn btn-light" (click)="cancel()">Cancelar</button>
+      <button type="button" class="btn btn-primary" (click)="updateUser()">Salvar</button>
+    </div>
+  </div>
+</div>

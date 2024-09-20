@@ -11,7 +11,7 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [MicrosoftLoginGuard],
-    loadChildren: () => import('./modules/modules.module').then((m) => m.ModulesModule)
+    loadChildren: () => import('./modules/main.routes').then((r) => r.MAIN_ROUTES)
   },
   {
     path: 'signIn',

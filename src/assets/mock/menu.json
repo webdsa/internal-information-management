@@ -66,9 +66,14 @@
     ]
   },
   {
-    "id": 4,
+    "id": 5,
     "label": "Política de Privacidade",
     "icon": "build",
     "routerLink": "/privacy-policy"
+  },
+  {
+    "id": 6,
+    "label": "Permissoes de Usuário",
+    "routerLink": "/users-management"
   }
 ]
