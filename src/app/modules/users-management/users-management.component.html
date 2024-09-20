@@ -12,18 +12,18 @@
       <div class="data-table-reports">
         <div class="row d-flex">
           <!-- <div class="col-1 title-table"><input type="checkbox" name="" id="" (change)="selectAll()" /></div> -->
-          <div class="col-2 item-table">Nome</div>
-          <div class="col-3 title-table">E-mail</div>
+          <div class="col-4 item-table">Nome</div>
+          <div class="col-4 title-table">E-mail</div>
           <div class="col-2 title-table">Nível</div>
-          <div class="col title-table">Açöes</div>
+          <div class="col-2 title-table">Açöes</div>
         </div>
         @for (user of users(); track $index ) {
         <div class="row d-flex align-items-center" style="border-bottom: 1px dashed var(--primary-color-3)">
           <!-- <div class="col-1 title-table"><input type="checkbox" name="" id="" /></div> -->
-          <div class="col-2 item-table">{{ user.userName }}</div>
-          <div class="col-3 item-table">{{ user.userEmail }}</div>
+          <div class="col-4 item-table">{{ user.userName }}</div>
+          <div class="col-4 item-table">{{ user.userEmail }}</div>
           <div class="col-2 item-table">{{ user.role | roleTranslation : RoleTypeEnumTranslation }}</div>
-          <div class="col item-table">
+          <div class="col-2 item-table">
             <button type="button" class="btn"><span class="material-symbols-outlined" (click)="editUser(user)"> edit </span></button>
             <button type="button" class="btn"><span class="material-symbols-outlined"> delete </span></button>
           </div>
