@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../../../shared/modal/modal.component';
 import { RoleTypeEnum, RoleTypeEnumTranslation } from '../../../core/enums/role-type.enum';
 import { UsersService } from '../services/users.service';
-import { UserModel } from '../../../core/models/user.model';
+import { UpdateUserModel, UserModel } from '../../../core/models/user.model';
 
 @Component({
   selector: 'app-form-user',
@@ -28,9 +28,9 @@ export class FormUserComponent {
   public typeUserPermissionsArray = RoleTypeEnum.Array();
 
   updateUser() {
-    const userRole = {
+    const userRole: UpdateUserModel = {
       userEmail: this.user().userEmail,
-      roleId: this.role
+      roleId: Number(this.role)
     };
     this.#usersService.updateUserRole(userRole).mutateAsync(null);
   }

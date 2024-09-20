@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { BaseService } from '../../../core/services/base.service';
 import { HttpClient } from '@angular/common/http';
 import { injectMutation, injectQuery, injectQueryClient } from '@ngneat/query';
+import { UpdateUserModel } from '../../../core/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +22,10 @@ export class UsersService extends BaseService {
       queryFn: () => this.#http.get<Array<any>>(this._urlBase + '/user/all', this.ObterAuthHeader())
     });
   }
-  updateUserRole(userRole: any) {
+  updateUserRole(userRole: UpdateUserModel) {
     return this.#mutation({
       mutationKey: ['updateUserRole'],
-      mutationFn: (userRole: any) => this.#http.put(this._urlBase + '/user/permission', userRole, this.ObterAuthHeader())
+      mutationFn: () => this.#http.put(this._urlBase + '/user/permission', userRole, this.ObterAuthHeader())
     });
   }
 }

@@ -6,3 +6,8 @@ export class UserModel {
   userEmail!: string;
   role!: RoleTypeEnum;
 }
+
+export class UpdateUserModel {
+  userEmail!: string;
+  roleId!: number;
+}
