@@ -18,7 +18,7 @@ export class UsersService extends BaseService {
   getAllUsers() {
     return this.#query({
       queryKey: ['users'],
-      queryFn: () => this.#http.get<Array<any>>(this._urlBase + '/Collaborators', this.ObterAuthHeader())
+      queryFn: () => this.#http.get<Array<any>>(this._urlBase + '/user/all', this.ObterAuthHeader())
     });
   }
   updateUserRole(userRole: any) {

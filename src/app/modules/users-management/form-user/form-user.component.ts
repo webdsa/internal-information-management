@@ -23,23 +23,14 @@ export class FormUserComponent {
   user = input.required<UserModel>();
   onChange = output<boolean>();
 
-  protected form: any;
+  protected role: number = 0;
 
-  public typeUserPermissionsArray = Object.values(RoleTypeEnum)
-    .filter((key) => typeof key === 'number')
-    .map((key) => ({
-      label: RoleTypeEnumTranslation[key as RoleTypeEnum],
-      value: key
-    }));
-
-  ngOnInit() {
-    console.log('Componente cargado');
-  }
+  public typeUserPermissionsArray = RoleTypeEnum.Array();
 
   updateUser() {
     const userRole = {
-      userEmail: this.user().email,
-      roleId: this.form
+      userEmail: this.user().userEmail,
+      roleId: this.role
     };
     this.#usersService.updateUserRole(userRole).mutateAsync(null);
   }
@@ -47,7 +38,8 @@ export class FormUserComponent {
   cancel() {
     this.onChange.emit(true);
   }
-  selectPermission(value: any) {
-    this.form = value.value;
+  selectPermission(target: any) {
+    if (!target.value) return;
+    this.role = target.value;
   }
 }

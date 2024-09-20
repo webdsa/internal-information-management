@@ -1,7 +1,7 @@
 export enum RoleTypeEnum {
-  Admin,
-  Standard,
-  Employee
+  Admin = 1,
+  Standard = 2,
+  Employee = 3
 }
 
 export const RoleTypeEnumTranslation = {
@@ -11,13 +11,14 @@ export const RoleTypeEnumTranslation = {
 };
 
 export namespace RoleTypeEnum {
-  export function Array() {
-    return Object.keys(RoleTypeEnum)
-      .filter((e) => !isNaN(+e))
-      .map((k) => ({
-        key: Number(k),
-        value: RoleTypeEnum[k as any],
-        item: k
+  export function Array(): any {
+    return Object.values(RoleTypeEnum)
+      .filter((value): value is RoleTypeEnum => typeof value === 'number')
+      .map((key) => ({
+        key: key,
+        value: RoleTypeEnum[key],
+        translated: RoleTypeEnumTranslation[key],
+        item: RoleTypeEnum[key]
       }));
   }
 }

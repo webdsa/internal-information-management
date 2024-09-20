@@ -11,11 +11,13 @@ import { ModalComponent } from '../../shared/modal/modal.component';
 import { UsersService } from './services/users.service';
 import { FormUserComponent } from './form-user/form-user.component';
 import { UserModel } from '../../core/models/user.model';
+import { RoleTranslationPipe } from './pipes/user.pipe';
+import { RoleTypeEnumTranslation } from '../../core/enums/role-type.enum';
 
 @Component({
   selector: 'app-users-management',
   standalone: true,
-  imports: [CommonModule, MenuBarComponent, NgxSkeletonLoaderModule, RouterOutlet, FormsModule, CardComponent, SearchComponent, ModalComponent, FormUserComponent],
+  imports: [CommonModule, MenuBarComponent, NgxSkeletonLoaderModule, RouterOutlet, FormsModule, CardComponent, SearchComponent, ModalComponent, FormUserComponent, RoleTranslationPipe],
   templateUrl: './users-management.component.html',
   styleUrl: './users-management.component.scss'
 })
@@ -28,6 +30,7 @@ export class UsersManagementComponent {
   protected usersBk = signal<Array<UserModel>>([]);
   protected userSelected: WritableSignal<UserModel> = signal(new UserModel());
   protected openModalEdit: boolean = false;
+  protected RoleTypeEnumTranslation = RoleTypeEnumTranslation;
   listSelected: any;
 
   ngOnInit(): void {
@@ -47,9 +50,7 @@ export class UsersManagementComponent {
   searchByName(search: string) {
     if (search != '') {
       search = this.noAccents(search).toLocaleLowerCase();
-      this.users.set(
-        this.usersBk().filter((x) => x.codeAPS == Number(search) || this.noAccents(x.employeeName.toString().toLocaleLowerCase()).includes(search) || this.noAccents(x.email.toString().toLocaleLowerCase()).includes(search))
-      );
+      this.users.set(this.usersBk().filter((x) => this.noAccents(x.userName.toString().toLocaleLowerCase()).includes(search) || this.noAccents(x.userEmail.toString().toLocaleLowerCase()).includes(search)));
     } else this.users.set(this.usersBk());
   }
 
