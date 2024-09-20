@@ -33,6 +33,7 @@ export class FormUserComponent {
       roleId: Number(this.role)
     };
     this.#usersService.updateUserRole(userRole).mutateAsync(null);
+    this.onChange.emit(true);
   }
 
   cancel() {

@@ -31,7 +31,7 @@ export class UsersManagementComponent {
   protected userSelected: WritableSignal<UserModel> = signal(new UserModel());
   protected openModalEdit: boolean = false;
   protected RoleTypeEnumTranslation = RoleTypeEnumTranslation;
-  listSelected: any;
+  protected openConfirmDelete: boolean = false;
 
   ngOnInit(): void {
     if (this.#authService.getUserPermissions() != 1) this.#router.navigate(['/no-permissions']);
@@ -58,12 +58,23 @@ export class UsersManagementComponent {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
-  selectAll() {
-    this.listSelected;
-  }
-
   editUser(user: any) {
     this.openModalEdit = true;
     this.userSelected.set(user);
   }
+
+  // deletUser(user: any) {
+  //   this.userSelected.set(user);
+  //   this.openConfirmDelete = true;
+  // }
+
+  // onclickCloseModal(event:any){
+  //   if (event.response == 0) return;
+  //   else{
+  //     this.#usersService.deleteUser(this.userSelected()).result$.subscribe((response: any) => {
+  //       if (response.data == null) return;
+  //       this.getUsers();
+  //     });
+  //   }
+  // }
 }

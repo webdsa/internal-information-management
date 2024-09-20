@@ -25,7 +25,14 @@ export class UsersService extends BaseService {
   updateUserRole(userRole: UpdateUserModel) {
     return this.#mutation({
       mutationKey: ['updateUserRole'],
-      mutationFn: () => this.#http.put(this._urlBase + '/user/permission', userRole, this.ObterAuthHeader())
+      mutationFn: () => this.#http.put(this._urlBase + '/user/permission', userRole, this.ObterAuthHeader()),
+      onSuccess: () => {
+        this._toast.success('Sucesso', 'Alteração realizada com sucesso');
+        this.#client.invalidateQueries({ queryKey: ['users'] });
+      },
+      onError: () => {
+        this._toast.success('Erro', 'Alteração não realizada com sucesso');
+      }
     });
   }
 }
