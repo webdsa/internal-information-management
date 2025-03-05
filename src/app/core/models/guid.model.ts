@@ -21,7 +21,7 @@ export class Rules {
   id!: number;
   topicId!: number;
   subTopicId!: number;
-  isReligious!: boolean;
+  isReligious!: boolean | null;
   maxOrderOcupational!: number;
   minOrderOcupational!: number;
   functionalPropertyName!: [string];

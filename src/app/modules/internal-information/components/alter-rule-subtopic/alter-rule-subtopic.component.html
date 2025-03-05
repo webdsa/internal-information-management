@@ -18,9 +18,18 @@
   </div>
   <div class="row">
     <label>Ordem do campo Ocupacional: </label>
-    <div class="col-6"><input type="text" name="departure" class="form-control text-start" placeholder="Ordem mínima" [(ngModel)]="form().minOrderOcupational" /></div>
-    <div class="col-6"><input type="text" name="departure" class="form-control text-start" placeholder="Ordem máxima" [(ngModel)]="form().maxOrderOcupational" /></div>
+    <div class="col-6">
+      <input type="text" name="departure" class="form-control text-start" 
+        placeholder="Ordem mínima" [(ngModel)]="form().minOrderOcupational"
+        (ngModelChange)="convertToNull('minOrderOcupational', $event)" />
+    </div>
+    <div class="col-6">
+      <input type="text" name="departure" class="form-control text-start" 
+        placeholder="Ordem máxima" [(ngModel)]="form().maxOrderOcupational"
+        (ngModelChange)="convertToNull('maxOrderOcupational', $event)" />
+    </div>
   </div>
+  
 </div>
 <div class="row">
   <div class="btns">

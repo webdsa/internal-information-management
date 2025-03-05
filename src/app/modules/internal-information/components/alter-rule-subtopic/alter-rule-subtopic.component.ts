@@ -46,17 +46,21 @@ export class AlterRuleSubtopicComponent {
   }
 
   selectEmployee(target: any) {
-    const value = target.value == 'true' ? true : false;
-    this.form().isReligious = value;
+    this.form().isReligious = target.value === 'true' ? true : target.value === 'false' ? false : null;
   }
-  
 
   getPropertys() {
     this.#InternalService.getPropertys().result$.subscribe((res: any) => {
       this.propertys.set(res.data?.data);
     });
   }
+  
   selectProperty(target: any) {
     this.form().functionalPropertyName = target.value;
   }
+
+  convertToNull(field: 'minOrderOcupational' | 'maxOrderOcupational', value: any) {
+    this.form()[field] = value === '' ? null : value;
+  }
+  
 }
