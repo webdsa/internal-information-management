@@ -47,7 +47,6 @@ export class AlterRuleSubtopicComponent {
 
   selectEmployee(target: any) {
     const value = target.value == 'true' ? true : false;
-    console.log(`teste`, value);
     this.form().isReligious = value;
   }
   
