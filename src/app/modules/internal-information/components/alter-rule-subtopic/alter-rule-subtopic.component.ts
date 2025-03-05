@@ -46,8 +46,11 @@ export class AlterRuleSubtopicComponent {
   }
 
   selectEmployee(target: any) {
-    this.form().isReligious = target.value;
+    const value = target.value == 'true' ? true : false;
+    console.log(`teste`, value);
+    this.form().isReligious = value;
   }
+  
 
   getPropertys() {
     this.#InternalService.getPropertys().result$.subscribe((res: any) => {

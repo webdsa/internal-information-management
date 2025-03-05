@@ -2,9 +2,9 @@
   <div class="row">
     <label>Obreiro: </label>
     <select (change)="selectEmployee($event.target)" class="form-control">
-      <option [selected]="form().isReligious === true" [value]="true">Sim</option>
-      <option [selected]="form().isReligious === false" [value]="false">Nao</option>
-      <option [selected]="form().isReligious === null" [value]="null">Todos</option>
+      <option [selected]="form().isReligious == true" [value]="true">Sim</option>
+      <option [selected]="form().isReligious == false" [value]="false">Nao</option>
+      <option [selected]="form().isReligious == null" [value]="null">Todos</option>
     </select>
   </div>
 
