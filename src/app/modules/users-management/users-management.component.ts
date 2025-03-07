@@ -34,7 +34,7 @@ export class UsersManagementComponent {
   protected openConfirmDelete: boolean = false;
 
   ngOnInit(): void {
-    if (this.#authService.getUserPermissions() != 1) this.#router.navigate(['/no-permissions']);
+    if (this.#authService.getUserPermissions() != 0) this.#router.navigate(['/no-permissions']);
     this.getUsers();
   }
 
