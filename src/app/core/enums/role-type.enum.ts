@@ -1,7 +1,7 @@
 export enum RoleTypeEnum {
-  Admin = 1,
-  Standard = 2,
-  Employee = 3
+  Admin = 0,
+  Standard = 1,
+  Employee = 2
 }
 
 export const RoleTypeEnumTranslation = {
