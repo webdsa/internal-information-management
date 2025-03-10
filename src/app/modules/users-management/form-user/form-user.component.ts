@@ -23,7 +23,7 @@ export class FormUserComponent {
   user = input.required<UserModel>();
   onChange = output<boolean>();
 
-  protected role: number = 0;
+  protected role: number = 1;
 
   public typeUserPermissionsArray = RoleTypeEnum.Array();
 
