@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.tokenExpiration = localStorage.getItem('tokenExpiration')!;
     this.nameAcount = localStorage.getItem('user.name')!;
-    if (this.#authService.getUserPermissions() == 1) this.showUserManagement = true;
+    if (this.#authService.getUserPermissions() == 0) this.showUserManagement = true;
   }
 
   navigateTo(rout: string) {

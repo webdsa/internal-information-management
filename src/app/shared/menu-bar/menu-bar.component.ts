@@ -36,7 +36,7 @@ export class MenuBarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.getMenu();
       }
     }
-    if (this.#authService.getUserPermissions() == 1) this.showPermissionUser = true;
+    if (this.#authService.getUserPermissions() == 0) this.showPermissionUser = true;
   }
 
   ngAfterViewInit(): void {
