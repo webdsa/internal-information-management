@@ -11,7 +11,7 @@ export const PermissionGuard: CanActivateFn = (route: ActivatedRouteSnapshot, st
   return authService.getUserPermissionsByToken().pipe(
     map((res: any) => {
       const permissions = res.data;
-      if (permissions) {
+      if (permissions >=0) {
         authService.setPermissions(permissions);
         return true;
       } else {
