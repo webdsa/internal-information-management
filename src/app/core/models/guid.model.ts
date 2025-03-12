@@ -19,8 +19,8 @@ export class Subtopics {
 
 export class Rules {
   id!: number;
-  topicId: number  | null;
-  subTopicId: number  | null;
+  topicId!: number | null;
+  subTopicId!: number | null;
   isReligious!: boolean | null;
   maxOrderOcupational!: number;
   minOrderOcupational!: number;
