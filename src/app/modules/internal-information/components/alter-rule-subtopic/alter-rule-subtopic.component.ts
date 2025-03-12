@@ -27,7 +27,7 @@ export class AlterRuleSubtopicComponent {
 
   ngOnInit(): void {
     this.form.set(this.subtopic().rules);
-    this.form().topicId = this.subtopic().topicId;
+    this.form().topicId = null;
     this.form().subTopicId = this.subtopic().id;
     this.getPropertys();
   }
