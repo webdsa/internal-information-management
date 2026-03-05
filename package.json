@@ -20,7 +20,7 @@
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/platform-server": "^17.1.0",
     "@angular/router": "^17.1.0",
-    "@angular/ssr": "^17.1.2",
+    "@angular/ssr": "^19.2.21",
     "@azure/msal-angular": "^3.0.13",
     "@azure/msal-browser": "^3.10.0",
     "@ngneat/query": "^2.0.0-beta.11",
