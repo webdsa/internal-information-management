@@ -11,11 +11,10 @@ import { UsersService } from '../services/users.service';
 import { UpdateUserModel, UserModel } from '../../../core/models/user.model';
 
 @Component({
-  selector: 'app-form-user',
-  standalone: true,
-  imports: [CommonModule, HeaderTitleComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule, ModalComponent],
-  templateUrl: './form-user.component.html',
-  styleUrl: './form-user.component.scss'
+    selector: 'app-form-user',
+    imports: [CommonModule, HeaderTitleComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule, ModalComponent],
+    templateUrl: './form-user.component.html',
+    styleUrl: './form-user.component.scss'
 })
 export class FormUserComponent {
   #usersService = inject(UsersService);

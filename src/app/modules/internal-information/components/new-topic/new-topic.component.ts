@@ -5,11 +5,10 @@ import { InternalService } from '../../services/internal.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-new-topic',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './new-topic.component.html',
-  styleUrl: './new-topic.component.scss'
+    selector: 'app-new-topic',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './new-topic.component.html',
+    styleUrl: './new-topic.component.scss'
 })
 export class NewTopicComponent {
   @Output() onChanged: EventEmitter<any> = new EventEmitter<any>();

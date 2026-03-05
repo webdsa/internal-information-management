@@ -28,12 +28,11 @@ import { Subject, filter, takeUntil } from 'rxjs';
 import { LocalStorageUtils } from '../../core/utils/local-storage.utils';
 
 @Component({
-  selector: 'app-signIn',
-  standalone: true,
-  imports: [CommonModule, MsalModule, RouterLink, RouterOutlet],
-  templateUrl: './signIn.component.html',
-  styleUrls: ['./signIn.component.scss'],
-  providers: [LocalStorageUtils],
+    selector: 'app-signIn',
+    imports: [CommonModule, MsalModule, RouterLink, RouterOutlet],
+    templateUrl: './signIn.component.html',
+    styleUrls: ['./signIn.component.scss'],
+    providers: [LocalStorageUtils]
 })
 export class SignInComponent implements OnInit {
   private readonly _destroying$ = new Subject<void>();

@@ -10,11 +10,10 @@ import { InternalService } from '../../services/internal.service';
 import { Rules, Subtopics } from '../../../../core/models/guid.model';
 
 @Component({
-  selector: 'app-alter-rule-subtopic',
-  standalone: true,
-  imports: [CommonModule, FormsModule, MultiSelectModule, FloatLabelModule],
-  templateUrl: './alter-rule-subtopic.component.html',
-  styleUrl: './alter-rule-subtopic.component.scss'
+    selector: 'app-alter-rule-subtopic',
+    imports: [CommonModule, FormsModule, MultiSelectModule, FloatLabelModule],
+    templateUrl: './alter-rule-subtopic.component.html',
+    styleUrl: './alter-rule-subtopic.component.scss'
 })
 export class AlterRuleSubtopicComponent {
   protected form: WritableSignal<Rules> = signal<Rules>(new Rules());

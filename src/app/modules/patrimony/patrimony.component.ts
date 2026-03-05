@@ -7,11 +7,10 @@ import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-patrimony',
-  standalone: true,
-  imports: [CommonModule, NgxSkeletonLoaderModule, RouterOutlet, MenuBarComponent],
-  templateUrl: './patrimony.component.html',
-  styleUrl: './patrimony.component.scss'
+    selector: 'app-patrimony',
+    imports: [CommonModule, NgxSkeletonLoaderModule, RouterOutlet, MenuBarComponent],
+    templateUrl: './patrimony.component.html',
+    styleUrl: './patrimony.component.scss'
 })
 export class PatrimonyComponent {
 

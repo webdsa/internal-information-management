@@ -6,11 +6,10 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth/service/authService';
 
 @Component({
-  selector: 'app-menu-bar',
-  standalone: true,
-  imports: [CommonModule, RouterLink, RouterOutlet],
-  templateUrl: './menu-bar.component.html',
-  styleUrls: ['./menu-bar.component.scss']
+    selector: 'app-menu-bar',
+    imports: [CommonModule, RouterLink, RouterOutlet],
+    templateUrl: './menu-bar.component.html',
+    styleUrls: ['./menu-bar.component.scss']
 })
 export class MenuBarComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('childrenMenu') childrenMenuRef!: ElementRef;

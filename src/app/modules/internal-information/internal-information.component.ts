@@ -7,11 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { NewTopicComponent } from './components/new-topic/new-topic.component';
 
 @Component({
-  selector: 'app-internal-information',
-  standalone: true,
-  imports: [MenuBarComponent, NgxSkeletonLoaderModule, RouterOutlet, FormsModule, NewTopicComponent],
-  templateUrl: './internal-information.component.html',
-  styleUrl: './internal-information.component.scss'
+    selector: 'app-internal-information',
+    imports: [MenuBarComponent, NgxSkeletonLoaderModule, RouterOutlet, FormsModule, NewTopicComponent],
+    templateUrl: './internal-information.component.html',
+    styleUrl: './internal-information.component.scss'
 })
 export class InternalInformationComponent {
   public colapse: number = 300;

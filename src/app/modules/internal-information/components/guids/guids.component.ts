@@ -8,11 +8,10 @@ import { ToastrService } from 'ngx-toastr';
 import { AlterRuleSubtopicComponent } from '../alter-rule-subtopic/alter-rule-subtopic.component';
 
 @Component({
-  selector: 'app-guids',
-  standalone: true,
-  imports: [CommonModule, NewTopicComponent, NewSubtopicComponent, AlterRuleSubtopicComponent],
-  templateUrl: './guids.component.html',
-  styleUrl: './guids.component.scss'
+    selector: 'app-guids',
+    imports: [CommonModule, NewTopicComponent, NewSubtopicComponent, AlterRuleSubtopicComponent],
+    templateUrl: './guids.component.html',
+    styleUrl: './guids.component.scss'
 })
 export class GuidsComponent {
   public allGuids: GuidModel[] = [];

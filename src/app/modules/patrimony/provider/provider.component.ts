@@ -4,7 +4,6 @@ import { CardComponent } from '../../../shared/card/card.component';
 import { SearchComponent } from '../../../shared/search/search.component';
 import { FilterComponent } from '../../../shared/filter/filter.component';
 import { ModalComponent } from '../../../shared/modal/modal.component';
-import { HttpClientModule } from '@angular/common/http';
 import { PatrimonyService } from '../services/patrimony.services';
 import { FormProviderComponent } from './form-provider/form-provider.component';
 import { ToastrService } from 'ngx-toastr';
@@ -12,11 +11,10 @@ import { Router } from '@angular/router';
 import { InsertProvider } from '../../../core/models/insert.provider';
 
 @Component({
-  selector: 'app-provider',
-  standalone: true,
-  imports: [CommonModule, CardComponent, SearchComponent, FilterComponent, ModalComponent, HttpClientModule, FormProviderComponent],
-  templateUrl: './provider.component.html',
-  styleUrl: './provider.component.scss'
+    selector: 'app-provider',
+    imports: [CommonModule, CardComponent, SearchComponent, FilterComponent, ModalComponent, FormProviderComponent],
+    templateUrl: './provider.component.html',
+    styleUrl: './provider.component.scss'
 })
 export class ProviderComponent {
   public providers: Array<InsertProvider> = [];

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, NgZone, Output, Pipe, PipeTransform, WritableSignal, inject, signal } from '@angular/core';
 import { CardComponent } from '../../../shared/card/card.component';
-import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from '../../../shared/search/search.component';
 import { FilterComponent } from '../../../shared/filter/filter.component';
 import { ModalComponent } from '../../../shared/modal/modal.component';
@@ -12,7 +11,8 @@ import { FormPropertyComponent } from './form-property/form-property.component';
 import { InsertProperty, PropertyAdditionalDataModel, PropertyStatusEnum, PropertyTypeEnum } from '../../../core/models/insert.property';
 
 @Pipe({
-  name: 'propertyTypeToString'
+    name: 'propertyTypeToString',
+    standalone: false
 })
 export class PropertyTypeToStringPipe implements PipeTransform {
   transform(value: PropertyTypeEnum): string {
@@ -30,11 +30,10 @@ export class PropertyTypeToStringPipe implements PipeTransform {
 }
 
 @Component({
-  selector: 'app-property',
-  standalone: true,
-  templateUrl: './property.component.html',
-  styleUrl: './property.component.scss',
-  imports: [CommonModule, CardComponent, SearchComponent, FilterComponent, ModalComponent, HttpClientModule, FormPropertyComponent]
+    selector: 'app-property',
+    templateUrl: './property.component.html',
+    styleUrl: './property.component.scss',
+    imports: [CommonModule, CardComponent, SearchComponent, FilterComponent, ModalComponent, FormPropertyComponent]
 })
 export class PropertyComponent {
   protected propertys: WritableSignal<Array<InsertProperty>> = signal<Array<InsertProperty>>(new Array<InsertProperty>());

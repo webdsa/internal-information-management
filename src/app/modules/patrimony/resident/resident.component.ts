@@ -9,11 +9,10 @@ import { PropertyModel, Residents } from '../../../core/models/property.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-resident',
-  standalone: true,
-  templateUrl: './resident.component.html',
-  styleUrl: './resident.component.scss',
-  imports: [CommonModule, RouterOutlet, SearchComponent, FilterComponent, CardComponent]
+    selector: 'app-resident',
+    templateUrl: './resident.component.html',
+    styleUrl: './resident.component.scss',
+    imports: [CommonModule, RouterOutlet, SearchComponent, FilterComponent, CardComponent]
 })
 export class ResidentComponent {
 

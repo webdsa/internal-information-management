@@ -3,11 +3,10 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-header-title',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './header-title.component.html',
-  styleUrl: './header-title.component.scss'
+    selector: 'app-header-title',
+    imports: [CommonModule],
+    templateUrl: './header-title.component.html',
+    styleUrl: './header-title.component.scss'
 })
 export class HeaderTitleComponent {
   @Input() title: string = 'Adicionar novo';

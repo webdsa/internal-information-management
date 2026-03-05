@@ -15,11 +15,10 @@ import { RoleTranslationPipe } from './pipes/user.pipe';
 import { RoleTypeEnumTranslation } from '../../core/enums/role-type.enum';
 
 @Component({
-  selector: 'app-users-management',
-  standalone: true,
-  imports: [CommonModule, MenuBarComponent, NgxSkeletonLoaderModule, RouterOutlet, FormsModule, CardComponent, SearchComponent, ModalComponent, FormUserComponent, RoleTranslationPipe],
-  templateUrl: './users-management.component.html',
-  styleUrl: './users-management.component.scss'
+    selector: 'app-users-management',
+    imports: [CommonModule, MenuBarComponent, NgxSkeletonLoaderModule, RouterOutlet, FormsModule, CardComponent, SearchComponent, ModalComponent, FormUserComponent, RoleTranslationPipe],
+    templateUrl: './users-management.component.html',
+    styleUrl: './users-management.component.scss'
 })
 export class UsersManagementComponent {
   #usersService = inject(UsersService);

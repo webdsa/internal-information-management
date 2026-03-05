@@ -13,11 +13,10 @@ import { CorreiosService } from '../../../../core/services/correios.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { ModalComponent } from '../../../../shared/modal/modal.component';
 @Component({
-  selector: 'app-form-property',
-  standalone: true,
-  imports: [CommonModule, HeaderTitleComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule, ModalComponent],
-  templateUrl: './form-property.component.html',
-  styleUrl: './form-property.component.scss'
+    selector: 'app-form-property',
+    imports: [CommonModule, HeaderTitleComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule, ModalComponent],
+    templateUrl: './form-property.component.html',
+    styleUrl: './form-property.component.scss'
 })
 export class FormPropertyComponent {
   cep: string = '';

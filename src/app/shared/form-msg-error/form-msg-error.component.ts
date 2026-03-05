@@ -10,11 +10,10 @@ enum typeValid {
 }
 
 @Component({
-  selector: 'app-form-msg-error',
-  templateUrl: './form-msg-error.component.html',
-  standalone: true,
-  imports: [CommonModule],
-  styleUrls: ['./form-msg-error.component.scss'],
+    selector: 'app-form-msg-error',
+    templateUrl: './form-msg-error.component.html',
+    imports: [CommonModule],
+    styleUrls: ['./form-msg-error.component.scss']
 })
 export class FormMsgErrorComponent {
   @Input() valid: boolean | undefined;

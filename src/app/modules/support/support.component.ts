@@ -9,11 +9,10 @@ import { PatrimonyService } from '../patrimony/services/patrimony.services';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-support',
-  standalone: true,
-  imports: [CommonModule,MenuBarComponent,CardComponent,FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule],
-  templateUrl: './support.component.html',
-  styleUrl: './support.component.scss'
+    selector: 'app-support',
+    imports: [CommonModule, MenuBarComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule],
+    templateUrl: './support.component.html',
+    styleUrl: './support.component.scss'
 })
 export class SupportComponent {
   protected form: WritableSignal<SupportModel> = signal(new SupportModel());

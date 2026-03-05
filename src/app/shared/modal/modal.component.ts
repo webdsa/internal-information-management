@@ -5,11 +5,10 @@ import { FormLabelComponent } from "../form-label/form-label.component";
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-modal',
-  standalone: true,
-  imports: [CommonModule, FormMsgErrorComponent, FormLabelComponent, FormsModule],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+    selector: 'app-modal',
+    imports: [CommonModule, FormMsgErrorComponent, FormLabelComponent, FormsModule],
+    templateUrl: './modal.component.html',
+    styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
   @Input() open: boolean = false;

@@ -5,11 +5,10 @@ import { MenuBarComponent } from '../../shared/menu-bar/menu-bar.component';
 import { AuthService } from '../../auth/service/authService';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [MenuBarComponent],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+    selector: 'app-dashboard',
+    imports: [MenuBarComponent],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
   profile?: GraphProfile;

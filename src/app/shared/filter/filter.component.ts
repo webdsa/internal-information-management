@@ -4,11 +4,10 @@ import { StatusPropertyEnum } from '../../core/enums/statusPropertyEnum.enum';
 import { TypePropertyEnum } from '../../core/enums/typePropertyEnum.enum';
 
 @Component({
-  selector: 'app-filter',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './filter.component.html',
-  styleUrl: './filter.component.scss'
+    selector: 'app-filter',
+    imports: [CommonModule],
+    templateUrl: './filter.component.html',
+    styleUrl: './filter.component.scss'
 })
 export class FilterComponent {
   public showFilter: boolean = false;

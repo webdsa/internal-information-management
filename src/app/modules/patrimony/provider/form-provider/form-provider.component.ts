@@ -10,11 +10,10 @@ import { PatrimonyService } from '../../services/patrimony.services';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-form-provider',
-  standalone: true,
-  imports: [CommonModule, HeaderTitleComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule],
-  templateUrl: './form-provider.component.html',
-  styleUrl: './form-provider.component.scss'
+    selector: 'app-form-provider',
+    imports: [CommonModule, HeaderTitleComponent, CardComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule],
+    templateUrl: './form-provider.component.html',
+    styleUrl: './form-provider.component.scss'
 })
 export class FormProviderComponent {
   public form: InsertProvider = new InsertProvider();

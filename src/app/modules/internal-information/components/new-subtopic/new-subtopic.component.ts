@@ -8,11 +8,10 @@ import { EditorChangeContent, EditorChangeSelection, QuillModule } from 'ngx-qui
 import Quill from 'quill';
 
 @Component({
-  selector: 'app-new-subtopic',
-  standalone: true,
-  imports: [CommonModule, FormsModule, QuillModule],
-  templateUrl: './new-subtopic.component.html',
-  styleUrl: './new-subtopic.component.scss'
+    selector: 'app-new-subtopic',
+    imports: [CommonModule, FormsModule, QuillModule],
+    templateUrl: './new-subtopic.component.html',
+    styleUrl: './new-subtopic.component.scss'
 })
 export class NewSubtopicComponent {
   public topicId: InputSignal<number> = input<number>(0);

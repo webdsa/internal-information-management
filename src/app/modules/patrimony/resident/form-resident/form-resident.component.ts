@@ -14,11 +14,10 @@ import { Residents } from '../../../../core/models/property.model';
 
 
 @Component({
-  selector: 'app-form-resident',
-  standalone: true,
-  templateUrl: './form-resident.component.html',
-  styleUrl: './form-resident.component.scss',
-  imports: [CommonModule, HeaderTitleComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule, CardComponent, DropdownModule]
+    selector: 'app-form-resident',
+    templateUrl: './form-resident.component.html',
+    styleUrl: './form-resident.component.scss',
+    imports: [CommonModule, HeaderTitleComponent, FormLabelComponent, FormMsgErrorComponent, FormsModule, ReactiveFormsModule, CardComponent, DropdownModule]
 })
 export class FormResidentComponent {
   #patrimonyService = inject(PatrimonyService);
